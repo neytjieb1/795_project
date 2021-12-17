@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  16 DEC 2021 11:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  17 DEC 2021 17:52
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1254,52 +1254,60 @@ LaTeX Warning: Citation `de2013elements' on page 3 undefined on input line 213.
 
 LaTeX Warning: Citation `saber2010introduction' on page 4 undefined on input line 238.
 
-[4]
+[4] [5]
 
-LaTeX Warning: Citation `lorenz1963deterministic' on page 5 undefined on input line 267.
-
-
-LaTeX Warning: Citation `gleick2008chaos' on page 5 undefined on input line 267.
+LaTeX Warning: Citation `lorenz1963deterministic' on page 6 undefined on input line 286.
 
 
-LaTeX Warning: Citation `devaney2018introduction' on page 5 undefined on input line 269.
+LaTeX Warning: Citation `gleick2008chaos' on page 6 undefined on input line 286.
 
 
-LaTeX Warning: Citation `de2013elements' on page 5 undefined on input line 269.
+LaTeX Warning: Citation `devaney2018introduction' on page 6 undefined on input line 288.
 
-[5] EdNote!
 
-LaTeX Warning: Citation `devaney2018introduction' on page 6 undefined on input line 290.
+LaTeX Warning: Citation `de2013elements' on page 6 undefined on input line 288.
 
-[6]
+EdNote! [6]
 
-LaTeX Warning: Citation `de2013elements' on page 7 undefined on input line 326.
+LaTeX Warning: Citation `devaney2018introduction' on page 7 undefined on input line 309.
 
 [7]
+
+LaTeX Warning: Citation `de2013elements' on page 8 undefined on input line 345.
+
 No file draft1.bbl.
 
 There are still 1 EdNotes, New/Oldparts, and Issues to resolve!
 
-[8] (./draft1.aux)
+[8
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 9.23354 4.61676 3.61...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 9.23354 4.61676 3.61...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 9.46101 4.7305 3.616...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 10.76656 5.38327 3.6...
+] (./draft1.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `draft1.out' has not changed.
-(rerunfilecheck)             Checksum: 1AA9D0014AC8ED43E97CA5087AD49932;307.
+(rerunfilecheck)             Checksum: 12DD046DC1867A47C9652B2F44A20AA5;519.
  ) 
 Here is how much of TeX's memory you used:
- 36878 strings out of 478579
- 739158 string characters out of 5853456
- 1143404 words of memory out of 5000000
- 54062 multiletter control sequences out of 15000+600000
- 414226 words of font info for 73 fonts, out of 8000000 for 9000
+ 36887 strings out of 478579
+ 739277 string characters out of 5853456
+ 1142381 words of memory out of 5000000
+ 54069 multiletter control sequences out of 15000+600000
+ 414533 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,8n,117p,1732b,875s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,8n,117p,1732b,835s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft1.pdf (8 pages, 174621 bytes).
+Output written on draft1.pdf (8 pages, 181147 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
- 107 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
- 29 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 154 PDF objects out of 1000 (max. 8388607)
+ 116 compressed objects within 2 object streams
+ 32 named destinations out of 1000 (max. 500000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
 

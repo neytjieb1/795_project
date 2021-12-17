@@ -242,31 +242,50 @@ can be approximated at the time instant $t+(m+1)h$ by iterating the equation
 $$x(t+(m+1)h) = x(t+mh) + h f(x(t+mh)).$$ 
 Adopting more succinct notation by replacing $x(t+mh)$ with $u_m$, we rewrite the above equation as
 $$u_{m+1} = u_m + hf(u_m)$$
-or in even simpler terms as the discrete-time dynamical system with map $T(u) = u + hf(u)$, where $T$, $u$ and $f$ are understood to be as above.
+or, in even simpler terms, as the discrete-time dynamical system with map $T(u) = u + hf(u)$, where $T$, $u$ and $f$ are understood to be as above.
 
-Given a discrete-time dynamical system $T: U \to U$, we call a sequence $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ that obeys the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$ the \emph{orbit of $T$}. A core concept in the study of dynamical systems is that of invariance. A subset $A \subset U$ is said to be an \emph{invariant set} if $T(A) =A$. 
-\newline Two examples of invariant sets include a fixed point where $Tu=u$ for  $u\in U$, and a periodic orbit, i.e., a set of iterates $\{u,Tu, T^2u,\ldots,T^pu\}$, where $T^{p+1}u=u$ for some $p$.  The entire space $U$ could be also be invariant. Consider for example the space $U=[0,1]$, where $Tu=4u(1-u)$ and then $U$ is invariant. 
+\subsection{Invariant Sets}
 
-%%%RIGHT HERE
+A core concept in the study of dynamical systems is that of invariance. Given a discrete-time dynamical system $T: U \to U$, a subset $A \subset U$ is said to be an \emph{invariant set} if $T(A) =A$. 
+We also define the \emph{orbit of T} to be a sequence $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ obeying the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$. 
 
-The kind of invariant sets a discrete-time dynamical system has can tell a great deal about the iterates of a dynamical system. For example, if $U=[0,1]$ has map $Tu= u/2$, then the only invariant set is $\{0\}$, and all orbits approach this invariant set as time flows in the forward direction. One may ask if every orbit approaches an invariant set? In general the answer is no, since for the dynamical system $Tu=2u$, an orbit not intersecting the invariant set $\{0\}$ would not approach any invariant set. However,  when the space $U$ is compact, all orbits approach an invariant set. In fact the $\omega$-limit set $\omega(u;T)$ of a point $u$ defined to the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$ is nonempty, and $\omega(u;T)$ is invariant.  Now, invariant sets can be attracting or repelling depending on how orbits in its vicinity behave as in the examples of $Tu =u/2$ and $Tu=2u$. We are interested in attractive invariant sets, and in particular what are called attractors whose definition we recall next. 
+
+Two examples of invariant sets include a fixed point where $Tu=u$ for  $u\in U$, and a periodic orbit, i.e., a set of iterates $\{u,Tu, T^2u,\ldots,T^pu\}$, where $T^{p+1}u=u$ for some $p$.  The entire space $U$ could be also be invariant.
+Consider for example the space $U=[0,1]$, where $Tu=4u(1-u)$ and then $U$ is invariant. \emph{(as every $u\in{U}$ can be written as $u = 4x(1-x)$ for some $x\in{U}$)}
+
+We may learn a great deal about the iterates of a dynamical system by considering the types of invariant sets of a discrete-time dynamical system.  For example, if $U=[0,1]$ has map $Tu= u/2$, then the only invariant set is $\{0\}$, and all orbits approach this invariant set as time flows in the forward direction. 
+Indeed, if a some non-zero invariant set (call it $B$) exists, then there is  some $r\in(0,1]\cap{B}$. But $r\notin{T(B)}$ since any orbit with initial value $r$ will be a decreasing sequence. Moreover, every orbit of T will be decreasing and therefore approach the value $0$ as $n\rightarrow\infty$
+
+One may ask if every orbit approaches an invariant set? In general the answer is no, since for the dynamical system $Tu=2u$, any orbit that does not intersect the invariant set $\{0\}$, will not approach any invariant set. 
+
+However,  when the space $U$ is compact, all orbits approach an invariant set. \textbf{For let $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ be an orbit in the compact space U, then $\bar{u}$ has a convergent subsequence }
+
+\textbf{In fact the $\omega$-limit set $\omega(u;T)$ of a point $u$ defined to the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$ is nonempty, and $\omega(u;T)$ is invariant. } (not relevant other than being an additional example perhaps?)
+
+We discuss various properties of invariant sets: Invariant sets can be attracting or repelling depending on how orbits in its vicinity behave (recall the examples $Tu =u/2$ and $Tu=2u$). We are interested in attractive invariant sets, and in particular so-called attractors which we define below.
 \begin{Definition} \rm Let $T: U \to U$, where $U$  is a metric space with metric $d$. A compact subset $A \subset U$ is said to be an attractor if it satisfies the three conditions: 
-\begin{enumerate}
+  \vspace{-8mm}
+  \begin{enumerate}
 	\item $A$ is invariant. 
-	\item $A$ is asymptotically stable, i.e., for every $\epsilon > 0$ and for all $u$ so that $d(u,A) < \epsilon$, $d(T^nu,A) \to 0$ as $n\to \infty$. 
+	\item $A$ is asymptotically stable, i.e., for every $\epsilon > 0$ and for all $u$ so that $d(u,A) < \epsilon$, we have $d(T^nu,A) \to 0$ as $n\to \infty$. 
 	\item $A$ has Lyapunov stability, i.e., for every $\epsilon > 0$  there exists a $\delta(\epsilon) > 0$ so that $d(u,A) < \delta$ implies $d(T^nu,A) < \epsilon$ for all $n\ge 0$.  
 \end{enumerate}
 \end{Definition} 
 
+In our previous examples, the system  $Tu=u/2$ had the singleton set $\{0\}$ as an attractor. For the system,  $Tu=4u(1-u)$ on $[0,1]$, one may easily verify that the only attractor is the entire space $[0,1]$. \textbf{For let $B$ be an attractor of U. From above, we know that B is itself invariant, is asymptotically stable and has Lyapunov stability. Now suppose there is some attractor $C\subsetneq{U}=B$, so there is a $b\in{U}$ which is not in $C$. ........  }
 
-For instance, in the system  $Tu=u/2$ the set $\{0\}$ is an attractor. For the system,  $Tu=4u(1-u)$ on $[0,1]$, it can be verified that the only attractor is the entire space $[0,1]$. A dynamical system can have several attractors, and an attractor can be contained in another attractor as well. 
+A dynamical system can have several attractors, and may also be contained in another attractor. 
 
-If the dynamics on the attractor is somewhat complicated in the sense that the attractor cannot be decomposed further, and if the attractor is infinite then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called a chaotic behaviour. 
+% If the dynamics on the attractor are somewhat complicated in the sense that the attractor cannot be decomposed further, and if the attractor is infinite then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called a chaotic behaviour. 
 
+If the dynamics on an attractor cannot be decomposed further and the attractor is itself also infinite, then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called chaotic behaviour. 
 
-In the 1960s, a number of mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. Edward Lorenz, a meteorologist, may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. We note that the notions of invariance, attractivity and chaos can be described for continuous systems as well, and Lorenz's system comprised of a system of differential equations. The narrative of Lorenz's discovery of chaos, as well as the history of other forerunners in this subject, are fascinating. For those who are interested, we highly recommend James Gleick's book Chaos: The Making of a New Science \cite{gleick2008chaos}. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery, and describes the underlying mathematical notions for non-specialists.
+\subsection{Chaos}
 
-There are several intricately different notions of chaos each of them indicating some complexity. In practice, it is not possible to verify which notion is satisfied when data is observed from a dynamical system. However, for the sake of understanding some nuances, we recall the notion of the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements}. Devaney's definitio has three ingredients, and the first one is the notion of sensitive dependence on initial conditions. 
+\emph{$\downarrow$ - should one add paragraphs like these?}
+\newline In the 1960s, a number of mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. The notions of invariance, attractivity and chaos may also bedescribed for continuous systems, and Lorenz's system comprised of a system of differential equations. The narrative of Lorenz's discovery of chaos, as well as the history of other forerunners in this subject, are fascinating. For those who are interested, we highly recommend James Gleick's book Chaos: The Making of a New Science \cite{gleick2008chaos}. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery, and describes the underlying mathematical notions for non-specialists.
+
+There are several intricately different notions of chaos, with each of them indicating some complexity. \emph{ $rightarrow$ what are we saying here?}In practice, it is not possible to verify which notion is satisfied when data is observed from a dynamical system. However, for the sake of understanding some nuances, we recall the notion of the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements}. Devaney's definition has three ingredients, and the first one is the notion of sensitive dependence on initial conditions. 
 
 \begin{Definition} \rm 
 A dynamical system $T: U \to U$ is said to have sensitive dependence on initial conditions (SDIC) if there exists a $\delta > 0$ such that for every $u \in U$ and in every neighborhood of $u \in U$ there exists an $v$ and an integer $N$ such that $d(T^Nu,T^Nv)>\delta$. 	
@@ -308,15 +327,15 @@ To show two metric or topological spaces are topologically the same one needs to
 %    \[ 
     \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
  \everypsbox{\scriptstyle}
-%  \begin{psmatrix}
-% U & U\\%
-% V & V.
-%  %%%
+ \begin{psmatrix}
+U & U\\%
+V & V.
+ %%%
 %  \ncline{1,1}{1,2}^{T} 
 %  \ncline{1,1}{2,1} <{\phi}
 %   \ncline{2,1}{2,2}^{S}
 %  \ncline{1,2}{2,2} > {\phi}
-%  \end{psmatrix}
+ \end{psmatrix}
 % \]
 \end{equation} 
 To understand the diagram we note that if we travel ``right and then down," the diagram instructs us to use $T$ (top arrow right) first, followed by $\phi$. (right arrow downwards). As a result, the pathway amounts to finding $\phi(T(u))$. If we proceed ``down and then right," the diagram instructs us to apply $\phi$ (left arrow downwards) first, and then apply $\phi$ (right arrow downwards) and then $S$ (bottom arrow right). As a result, the pathway amounts to finding  $S(\phi(u))$. When the diagram holds, we say 
