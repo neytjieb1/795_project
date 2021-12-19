@@ -91,6 +91,7 @@
 \newtheorem{Proposition}{Proposition}[]
 \newtheorem{Corollary}{Corollary}[]
 \newtheorem{Remark}{Remark}[]
+\newtheorem{Example}{Example}[]
 
 
 
@@ -285,43 +286,97 @@ If the dynamics on an attractor cannot be decomposed further and the attractor i
 \emph{$\downarrow$ - should one add paragraphs like these?}
 \newline In the 1960s, a number of mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. The notions of invariance, attractivity and chaos may also bedescribed for continuous systems, and Lorenz's system comprised of a system of differential equations. The narrative of Lorenz's discovery of chaos, as well as the history of other forerunners in this subject, are fascinating. For those who are interested, we highly recommend James Gleick's book Chaos: The Making of a New Science \cite{gleick2008chaos}. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery, and describes the underlying mathematical notions for non-specialists.
 
-There are several intricately different notions of chaos, with each of them indicating some complexity. \emph{ $rightarrow$ what are we saying here?}In practice, it is not possible to verify which notion is satisfied when data is observed from a dynamical system. However, for the sake of understanding some nuances, we recall the notion of the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements}. Devaney's definition has three ingredients, and the first one is the notion of sensitive dependence on initial conditions. 
+There are several intricately different notions of chaos, with each of them indicating some complexity. \emph{ $\leftarrow  $ what are we saying here?} In practice, it is not possible to verify which notion is satisfied when data is observed from a dynamical system. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances. Devaney's definition consists of three parts, with the first being the notion  of sensitive dependence on initial conditions. 
 
 \begin{Definition} \rm 
-A dynamical system $T: U \to U$ is said to have sensitive dependence on initial conditions (SDIC) if there exists a $\delta > 0$ such that for every $u \in U$ and in every neighborhood of $u \in U$ there exists an $v$ and an integer $N$ such that $d(T^Nu,T^Nv)>\delta$. 	
+A dynamical system $T: U \to U$ is said to have sensitive dependence on initial conditions (SDIC) if there exists a $\delta > 0$ such that for every $u \in U$ and in every neighborhood of $u \in U$ there exists a $v\in{U}$ and an integer $N:=N{(u,v)}\in\mathbb{Z}$ such that $d(T^Nu,T^Nv)>\delta$. 	
 \end{Definition}
 
-This definition has a lot of quantifiers in it to analyse, so we should take our time to acquire a sense of what it says. The common misconception is to interpret SDIC as two close points ($u$ and $v$) eventually become separated by a distance $\delta$ under iteration by $T$. But this is not true. To completely comprehend all of the subtleties of the concept, we need to talk about it more thoroughly. The simplest way to achieve this is to go through each sentence in the definition slowly and attentively, then examine how they fit together to convey the concept of sensitive dependence.
+It is important to acquire a sense of this definition as it can easily be misunderstood. It is common misconception to interpret SDIC as two close points ($u$ and $v$) that eventually become separated by a distance $\delta$ under iteration by $T$. But this is not true. To fully comprehend all the subtleties of the concept, one needs to discuss it more thoroughly by considering each sentence with care and attention, whereafter one may examine how they fit together to convey the concept of sensitive dependence. \emph{ $\leftarrow$ is this talking too simply perhaps?}. 
 
-First, the $\delta>0$ in the definition of SDIC should be independent of $u$. Second, in every neighborhood of $u$, we may not necessarily find all points $v$ in the neighborhood distinct from $u$ that would separate from the forward iterates of $u$. Next, $N$ depends upon $u$ and $v$ chosen, and their iterates may not separate for ever (i.e., for all $n>N$) and we allow their iterates to get arbitrarily close in the future. 
+To this end we make 3 remarks:
+\vspace{-5mm}
+\begin{enumerate}
+  \item First, the $\delta>0$ in the definition of SDIC is independent of $u$. 
+  \item Second, in every neighborhood of $u$, we may not necessarily find all points $v$ in the neighborhood distinct from $u$ that would separate from the forward iterates of $u$. 
+  \item  Finally, $N$ depends upon $u$ and $v$ chosen, and their iterates may not separate for ever (i.e., for all $n>N$) and we allow their iterates to get arbitrarily close in the future. 
+\end{enumerate}
+
 
  
 \ednote{M: It is probably best to see a few numerical simulations to understand SDIC. (Please use the logistic map and perhaps the trajectories of the double pendulum data). } 
 
-We next recall the next ingredient of Devaney's definition of chaos.  
+The second part in Devaney's definition of chaos concerns topological transitivity.
 
 \begin{Definition}
-	A dynamical system $F: U \to U$ is topologically transive if for any pair of nonempty open sets $E_1$ and $E_2$ there exists a $n>0$ such that $T^n(E_1) \cap E_2 \not= \emptyset$. 
+	A dynamical system $F: U \to U$ is topologically transitive if for any pair of nonempty open sets $E_1$ and $E_2$ there exists a $n\in\mathbb{N}$ such that $T^n(E_1) \cap E_2 \not= \emptyset$. 
 \end{Definition}
 
-Topologically transitivity implies that the iterates of an open set of initial conditions gets mixed up with other open sets. On a compact metric space, it can be shown that topological transitivity also implies the existence of a point whose forward iterates are dense. In fact, it is more topologically likely that one picks a point whose iterates are dense in the sense that the complement of the set of points whose forward iterates are not dense in $U$  are topologically insignificant -- such an insignificant set can be written as a countable union of sets with empty interior. 
+Topologically transitivity implies that the iterates of an open set of initial conditions gets mixed up with other open sets. On a compact metric space, it can be shown that topological transitivity also implies the existence of a point whose forward iterates are dense; or in other words, the orbit going through this point will be dense in the compact metric space. 
 
-Now we recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction}.
+In fact, it is topologically more likely that the choice of an arbitrary point will be one  whose iterates are almost dense.
+% I inserted a definition here: it makes more sense to me. 
+\begin{Definition}
+A compact metric space $U$ is said to be almost dense if the complement of the set of points which are dense in $U$ may be written as a countable union of sets of with empty interior. In other words, the set on points not dense on $U$ is topologically insignificant.
+\end{Definition}
+
+We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018introduction}.
 \begin{Definition}
 	A dynamical system $T: U \to U$ is said to exhibit chaos in the sense of Devaney if it satisfies the three properties:
-	\begin{enumerate}
-		\item $T$ has SDIC
-		\item $T$ has topologically transitive
-		\item the set of periodic points of $T$ are dense in $U$. 
+	\vspace{-5mm}
+  \begin{enumerate}
+		\item $T$ has SDIC.
+		\item $T$ is topologically transitive.
+		\item The set of periodic points of $T$ are dense in $U$. 
 	\end{enumerate}
 \end{Definition}
 
 
-An example of a dynamical system that satisfies these three properties is the standard tent map $T(u)=1-|2u-1|$ defined on $[0,1]$. We now reason as why this map exhibits chaos in the sense of Devaney.   The graph of the map $T$ is piecewise linear with two straight lines, one that connects the points $(0,0)$ and $(1/2,1)$ and the other that connects $(1/2,1)$ to $(1,0)$ and they form a tent with a base centered at $u=1/2$. The graph of the map $T^2$ comprises two symmetric tents with their base centered at $1/4$ and $3/4$.  So given any point $u$ and an open neighborhoow $W  \subset [0,1]$ of $u$, we can find $k$ large enough so that $T^k(W) = [0,1]$ since since we can accommodate a tent whose base is contained in $W$. This implies that there are two points $w_1$ and $w_2$ in $W$ so that $d(T^kw_1,T^kw_2)= 1$, and by triangle inequality  at least one of the inequalities $d(T^ku,T^kw_1)> \delta$ or $d(T^ku,T^kw_2)> \delta$ hold when $\delta\in (0,1/2)$.  So $T$ has sensitive dependence on initial conditions.  Next, let $W_1$ and $W_2$ be two nonempty open sets. Since given any open set $W_1$, we can find a $k$ large enough so that $T^k(W_1) = [0,1]$ since we can accommodate a tent whose base is contained in $W$. So $T^k(W_1) \cap W_2 \not=\emptyset$, and thus $T$ has topological transitivity. Next, since for every open interval $(a,b)$,  there exists a $k$ such that $T^k(a,b) = [0,1]$, the graph of $T^k$ intersects the graph of the identity map on $[0,1]$, and if intersection has coordinates $(p,p)$,  the point $p$ is a fixed point of $T^k$, which is a periodic point of $T$. Thus the set of periodic points are dense. 
+\begin{figure}
+  \centering
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[scale=0.18]{chaos1.png}
+    \captionof{figure}{Starting to diverge}
+    \label{fig:chaos1}
+  \end{minipage}%
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[scale=0.18]{chaos2.png}
+    \captionof{figure}{Completely chaotic}
+    \label{fig:chaos2}
+  \end{minipage}
+  \end{figure}
 
-We next talk on another concept of conjugacy. 
-To show two metric or topological spaces are topologically the same one needs to show that they are homeomorphic, i.e., to establish a homeomorphism between the spaces. In the study of dynamical systems defined on two spaces, showing two spaces to be homeomorphic does not mean that the two dynamical systems are somehow related. One needs to establish some kind of dynamical equivalence. The easiest way to illustrate dynamical equivalence between two systems $T:U\to U$ and $S:V\to V$  is through a commutativity diagram: 
+\begin{Example}
+  The standard tent map $T(u)=1-|2u-1|$ defined on $[0,1]$ is a common example of a dynamical system satisfying these three properties. 
+  \begin{figure}
+    \includegraphics[scale=0.6]{T2.png}
+    \centering
+    \label{fig:T2tentmap}
+  \end{figure}
 
+  Let us now consider why this map exhibit's Devaneys's sense of chaos. The graph of the map $T$ is piecewise linear with two straight lines, one connecting the points $(0,0)$ and $(1/2,1)$ and the other connecting $(1/2,1)$ with $(1,0)$. They form a so-called tent with base centered at $u=1/2$. The graph of the map $T^2$ comprises two symmetric tents with their base centered at $1/4$ and $3/4$.
+  % We now reason as why this map exhibits chaos in the sense of Devaney.   
+  
+  Given any point $u$ and an open neighborhood $W \subset[0,1]$ of $u$, we can find $k\in\mathbb{Z}$ large enough so that $T^k(W) = [0,1]$ because we can accommodate a tent whose base is contained in $W$. \emph{This last phrase doesn't make sense to me.} This implies the existence of two points $w_1$ and $w_2$ in $W$ so that $d(T^kw_1,T^kw_2)= 1$, and by the triangle inequality  at least one of the inequalities $d(T^ku,T^kw_1)> \delta$ or $d(T^ku,T^kw_2)> \delta$ hold when $\delta\in (0,1/2)$. \newline So $T$ has sensitive dependence on initial conditions.  
+  
+  Next, let $W_1$ and $W_2$ be two nonempty open sets. Given any open set $W_1$, we can find a $k\in\mathbb{N}$ large enough so that $T^k(W_1) = [0,1]$ because we can accommodate a tent with base contained in $W$. So $T^k(W_1) \cap W_2 \not=\emptyset$, and thus $T$ has topological transitivity.
+  
+  Finally, for every open interval $(a,b)$, the graph of $T^k$ intersects the graph of the identity map on $[0,1]$. This follows from the fact established above that there exists a $k\in\mathbb{N}$ such that $T^k(a,b) = [0,1]$.If the intersection point has coordinates of the form $(p,p)$, the point p is then a fixed point of $T^k$ and therefore also a periodic point of T. It follows that the set of periodic points are dense in T.
+  \textbf{Expand further on reason for density.}
+\end{Example}
+
+
+
+
+
+\subsection{Conjugacy}
+
+We now turn our attention to the subject of conjugacy. 
+
+To show topological similarity or sameness between two metric or topological spaces, one needs to establish a homeomorphism between the two spaces. 
+However, in the study of dynamical systems defined on two spaces, establishing a homeomorphism does not indicate that the systems are (physically) related in any way. \textbf{"related" - in what sense am I saying it here? Physically?}  For this one rather needs to establish a kind of dynamical equivalence which we illustrate in a simple commutativity diagram below.
 % Giving errors
 \begin{equation}  \label{eqn_conjugacy}
 %    \[ 

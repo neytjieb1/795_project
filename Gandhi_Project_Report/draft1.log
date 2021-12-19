@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  17 DEC 2021 17:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  19 DEC 2021 15:17
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -951,6 +951,7 @@ File: pst-blur.tex 2005/09/08 v2.0 `PST-blur' (hv)
 \c@Proposition=\count394
 \c@Corollary=\count395
 \c@Remark=\count396
+\c@Example=\count397
  (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/xr.sty
 Package: xr 2020-05-10 v5.06 eXternal References (DPC)
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/colortbl/colortbl.sty
@@ -969,18 +970,18 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen350
 \cmidrulekern=\dimen351
 \defaultaddspace=\dimen352
-\@cmidla=\count397
-\@cmidlb=\count398
+\@cmidla=\count398
+\@cmidlb=\count399
 \@aboverulesep=\dimen353
 \@belowrulesep=\dimen354
-\@thisruleclass=\count399
-\@lastruleclass=\count400
+\@thisruleclass=\count400
+\@lastruleclass=\count401
 \@thisrulewidth=\dimen355
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/algorithms/algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
  (/usr/local/texlive/2021/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count401
+\c@float@type=\count402
 \float@exts=\toks55
 \float@box=\box100
 \@float@everytoks=\toks56
@@ -989,37 +990,37 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
 )
 \@float@every@algorithm=\toks57
-\c@algorithm=\count402
+\c@algorithm=\count403
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
  (/usr/local/texlive/2021/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count403
-\c@ALG@rem=\count404
-\c@ALG@nested=\count405
+\c@ALG@line=\count404
+\c@ALG@rem=\count405
+\c@ALG@nested=\count406
 \ALG@tlm=\skip146
 \ALG@thistlm=\skip147
-\c@ALG@Lnr=\count406
-\c@ALG@blocknr=\count407
-\c@ALG@storecount=\count408
-\c@ALG@tmpcounter=\count409
+\c@ALG@Lnr=\count407
+\c@ALG@blocknr=\count408
+\c@ALG@storecount=\count409
+\c@ALG@tmpcounter=\count410
 \ALG@tmplength=\skip148
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/changepage/changepage.sty
 Package: changepage 2009/10/20 v1.0c check page and change page layout
-\c@cp@cntr=\count410
-\cp@tempcnt=\count411
+\c@cp@cntr=\count411
+\cp@tempcnt=\count412
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count412
-\Gm@cntv=\count413
-\c@Gm@tempcnt=\count414
+\Gm@cnth=\count413
+\Gm@cntv=\count414
+\c@Gm@tempcnt=\count415
 \Gm@bindingoffset=\dimen356
 \Gm@wd@mp=\dimen357
 \Gm@odd@mp=\dimen358
@@ -1046,8 +1047,8 @@ Package caption Info: Option `figurename' requires the `newfloat' package on inp
  (/usr/local/texlive/2021/texmf-dist/tex/latex/newfloat/newfloat.sty
 Package: newfloat 2019/09/02 v1.1l Defining new floating environments (AR)
 )
-\c@caption@flags=\count415
-\c@continuedfloat=\count416
+\c@caption@flags=\count416
+\c@continuedfloat=\count417
 Package caption Info: changepage package is loaded.
 \caption@adjustwidth@hsize=\dimen371
 \caption@adjustwidth@linewidth=\dimen372
@@ -1059,42 +1060,42 @@ Package caption Info: subfigure package is loaded.
 Package xr Warning: 
 No file Supp_Koopman-0808.aux
 LABELS NOT IMPORTED.
- on input line 156.
+ on input line 157.
 
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 157.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 158.
 (./draft1.aux)
 \openout1 = `draft1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
  (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count417
+\scratchcounter=\count418
 \scratchdimen=\dimen373
 \scratchbox=\box102
-\nofMPsegments=\count418
-\nofMParguments=\count419
+\nofMPsegments=\count419
+\nofMParguments=\count420
 \everyMPshowfont=\toks59
-\MPscratchCnt=\count420
+\MPscratchCnt=\count421
 \MPscratchDim=\dimen374
-\MPnumerator=\count421
-\makeMPintoPDFobject=\count422
+\MPnumerator=\count422
+\makeMPintoPDFobject=\count423
 \everyMPtoPDFconversion=\toks60
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1102,7 +1103,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 157.
+Package hyperref Info: Link coloring OFF on input line 158.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/local/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1110,11 +1111,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count423
+\c@section@level=\count424
 )
-LaTeX Info: Redefining \ref on input line 157.
-LaTeX Info: Redefining \pageref on input line 157.
-LaTeX Info: Redefining \nameref on input line 157.
+LaTeX Info: Redefining \ref on input line 158.
+LaTeX Info: Redefining \pageref on input line 158.
+LaTeX Info: Redefining \nameref on input line 158.
  (./draft1.out) (./draft1.out)
 \@outlinefile=\write6
 \openout6 = `draft1.out'.
@@ -1122,7 +1123,7 @@ LaTeX Info: Redefining \nameref on input line 157.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 157.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 158.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1162,20 +1163,20 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 Package newfloat Info: `float' package detected.
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 169.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 170.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 169.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 170.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 169.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 170.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Citation `takens1981detecting' on page 1 undefined on input line 191.
+LaTeX Warning: Citation `takens1981detecting' on page 1 undefined on input line 192.
 
 [1
 Non-PDF special ignored!
@@ -1217,69 +1218,80 @@ Non-PDF special ignored!
 <special> ps:0.8 setlinewidth 0 setgray
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Citation `koopman1932dynamical' on page 2 undefined on input line 193.
+LaTeX Warning: Citation `koopman1932dynamical' on page 2 undefined on input line 194.
 
 
-LaTeX Warning: Citation `budivsic2012applied' on page 2 undefined on input line 193.
+LaTeX Warning: Citation `budivsic2012applied' on page 2 undefined on input line 194.
 
 
-LaTeX Warning: Citation `takens1981detecting' on page 2 undefined on input line 195.
+LaTeX Warning: Citation `takens1981detecting' on page 2 undefined on input line 196.
 
 
-LaTeX Warning: Citation `sauer1991embedology' on page 2 undefined on input line 195.
+LaTeX Warning: Citation `sauer1991embedology' on page 2 undefined on input line 196.
 
 
-LaTeX Warning: Citation `stark1999delay' on page 2 undefined on input line 195.
+LaTeX Warning: Citation `stark1999delay' on page 2 undefined on input line 196.
 
 
-LaTeX Warning: Citation `gutman2018embedding' on page 2 undefined on input line 195.
+LaTeX Warning: Citation `gutman2018embedding' on page 2 undefined on input line 196.
 
 
-LaTeX Warning: Citation `gutman2018embedding' on page 2 undefined on input line 195.
+LaTeX Warning: Citation `gutman2018embedding' on page 2 undefined on input line 196.
 
 
-LaTeX Warning: Citation `principe1992prediction' on page 2 undefined on input line 195.
+LaTeX Warning: Citation `principe1992prediction' on page 2 undefined on input line 196.
 
 
-LaTeX Warning: Citation `manjunath2021universal' on page 2 undefined on input line 198.
+LaTeX Warning: Citation `manjunath2021universal' on page 2 undefined on input line 199.
 
 [2]
 
-LaTeX Warning: Citation `devaney2018introduction' on page 3 undefined on input line 213.
+LaTeX Warning: Citation `devaney2018introduction' on page 3 undefined on input line 214.
 
 
-LaTeX Warning: Citation `de2013elements' on page 3 undefined on input line 213.
+LaTeX Warning: Citation `de2013elements' on page 3 undefined on input line 214.
 
 [3]
 
-LaTeX Warning: Citation `saber2010introduction' on page 4 undefined on input line 238.
+LaTeX Warning: Citation `saber2010introduction' on page 4 undefined on input line 239.
 
 [4] [5]
 
-LaTeX Warning: Citation `lorenz1963deterministic' on page 6 undefined on input line 286.
+LaTeX Warning: Citation `lorenz1963deterministic' on page 6 undefined on input line 287.
 
 
-LaTeX Warning: Citation `gleick2008chaos' on page 6 undefined on input line 286.
+LaTeX Warning: Citation `gleick2008chaos' on page 6 undefined on input line 287.
 
 
-LaTeX Warning: Citation `devaney2018introduction' on page 6 undefined on input line 288.
+LaTeX Warning: Citation `devaney2018introduction' on page 6 undefined on input line 289.
 
 
-LaTeX Warning: Citation `de2013elements' on page 6 undefined on input line 288.
+LaTeX Warning: Citation `de2013elements' on page 6 undefined on input line 289.
 
 EdNote! [6]
 
-LaTeX Warning: Citation `devaney2018introduction' on page 7 undefined on input line 309.
+LaTeX Warning: Citation `devaney2018introduction' on page 7 undefined on input line 323.
 
-[7]
+<chaos1.png, id=78, 1304.875pt x 1064.97874pt>
+File: chaos1.png Graphic file (type png)
+<use chaos1.png>
+Package pdftex.def Info: chaos1.png  used on input line 339.
+(pdftex.def)             Requested size: 234.86737pt x 191.6879pt.
+<chaos2.png, id=80, 1304.875pt x 1064.97874pt>
+File: chaos2.png Graphic file (type png)
+<use chaos2.png>
+Package pdftex.def Info: chaos2.png  used on input line 345.
+(pdftex.def)             Requested size: 234.86737pt x 191.6879pt.
+<T2.png, id=81, 462.528pt x 346.896pt>
+File: T2.png Graphic file (type png)
+<use T2.png>
+Package pdftex.def Info: T2.png  used on input line 354.
+(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
+[7] [8 <./chaos1.png> <./chaos2.png> <./T2.png>]
 
-LaTeX Warning: Citation `de2013elements' on page 8 undefined on input line 345.
+LaTeX Warning: Citation `de2013elements' on page 9 undefined on input line 400.
 
-No file draft1.bbl.
-
-There are still 1 EdNotes, New/Oldparts, and Issues to resolve!
-
-[8
+[9
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 9.23354 4.61676 3.61...
 Non-PDF special ignored!
@@ -1288,26 +1300,31 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 9.46101 4.7305 3.616...
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 10.76656 5.38327 3.6...
-] (./draft1.aux)
+]
+No file draft1.bbl.
+
+There are still 1 EdNotes, New/Oldparts, and Issues to resolve!
+
+[10] (./draft1.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `draft1.out' has not changed.
-(rerunfilecheck)             Checksum: 12DD046DC1867A47C9652B2F44A20AA5;519.
+(rerunfilecheck)             Checksum: 5D2AD084C60E95039B4B9AD0F0FE16AD;621.
  ) 
 Here is how much of TeX's memory you used:
- 36887 strings out of 478579
- 739277 string characters out of 5853456
- 1142381 words of memory out of 5000000
- 54069 multiletter control sequences out of 15000+600000
- 414533 words of font info for 74 fonts, out of 8000000 for 9000
+ 36944 strings out of 478579
+ 739975 string characters out of 5853456
+ 1142604 words of memory out of 5000000
+ 54108 multiletter control sequences out of 15000+600000
+ 415793 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,8n,117p,1732b,835s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft1.pdf (8 pages, 181147 bytes).
+ 108i,9n,117p,1366b,864s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on draft1.pdf (10 pages, 471819 bytes).
 PDF statistics:
- 154 PDF objects out of 1000 (max. 8388607)
- 116 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 198 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
+ 42 named destinations out of 1000 (max. 500000)
+ 68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
