@@ -94,6 +94,8 @@
 \newtheorem{Example}{Example}[]
 
 
+%Shortcut symbols
+\newcommand{\Ftheta}{\ensuremath{F_\theta}}
 
 
 \makeatletter 
@@ -225,7 +227,7 @@ Formally, a function $T: U \to U$, where $U$ is some set is  a \emph{discrete-ti
 
 
 Continuous dynamical systems modelled using ordinary differential equations can give rise to discrete-time dynamical systems. To see this, consider differential equation $\dot{x} = f(x)$, $f: \mathbb{R}^n \to \mathbb{R}^n$, $n\in\mathbb{N}$ given to have a unique solution passing through 
-each point $x\in\mathbb{R}^{n}$, the \emph{flow of the equation} is defined to be a mapping $\varphi: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ that satisfies the following properties:
+each point $x\in\mathbb{R}^{n}$, the \emph{flow of the equation}\label{defn_flow} is defined to be a mapping $\varphi: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ that satisfies the following properties:
 \vspace{-8mm}
 \begin{enumerate}[noitemsep, label=\roman*.]
   \item $x(t)$ is a solution of the differential equation,
@@ -332,7 +334,7 @@ We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018i
 \end{Definition}
 
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \begin{minipage}{.5\textwidth}
     \centering
@@ -350,7 +352,7 @@ We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018i
 
 \begin{Example}
   The standard tent map $T(u)=1-|2u-1|$ defined on $[0,1]$ is a common example of a dynamical system satisfying these three properties. 
-  \begin{figure}
+  \begin{figure}[ht]
     \includegraphics[scale=0.6]{T2.png}
     \centering
     \label{fig:T2tentmap}
@@ -422,7 +424,7 @@ Suppose we only have the observations $\theta(u_0), \theta(u_1), \ldots, \theta(
 Here we consider a continuous-time dynamical system $(U,T)$ with true state $u$ in the input space $U$ and then a measured signal $\theta$ (where $\theta(u_n)=\theta(u(t_n))$ for $n\in\mathbb{N}$. The sequence $\{x_n\}$ represents a scalar time-series and intuitively $\theta$ may be thought to represent a probe inserted into a larger system and itself measuring/extracting only a small part of the greater system state at time $t=n$. Consider for example a thermometer erected to measure the ambient temperature in a local village. This measurement function, the thermometer is capturing a single aspect, the temperature, of a grander dynamical system entailing the present weather of the surrounding area, but even more than that, it is measuring an incredibly small part of the global weather system. 
 
 From here we construct a multidimensional observable using the method of delay-coordinate stacking. 
-\textbf{move to later} Given the sequence $\{\theta_1, \theta_2, \ldots\}$, we define the variable $y_n:=[\theta_n, \theta_{n-\tau}, \ldots, \theta_{n-(2d-2)\tau}, \theta_{n-(2d-1)\tau}]^{T}\in\mathbb{R}_{d}\times{1}$ where $\tau$ represents the lag and $d$ the dimension of the attractor. (We shall return to these terms shortly and their discussion may be put on hold for the time being).
+\textbf{move to later} Given the sequence $\{\theta_1, \theta_2, \ldots\}$, we define the variable \newline $y_n:=[\theta_n, \theta_{n-\tau}, \ldots, \theta_{n-(2d-2)\tau}, \theta_{n-(2d-1)\tau}]^{T}\in\mathbb{R}_{d}\times{1}$ where $\tau$ represents the lag and $d$ the dimension of the attractor. (We shall return to these terms shortly and their discussion may be put on hold for the time being).
 
 However, the true state $u$ of a system is seldom, if ever fully known. In almost all cases we can merely insert probes into a system to obtain partial information by measurements taken. Moreover, the process of taking a measurement itself introduces 2 additional difficulties:
 \vspace{-8mm}
@@ -433,14 +435,92 @@ However, the true state $u$ of a system is seldom, if ever fully known. In almos
 measure of numerical noise/inaccuracy.
 \end{enumerate}
 
-More formally we may say that in the process of measuring a system, we obtain a 1-dimensional time-series $\{\theta(u(t))\}$, where $\theta:\mathbb{R}^n\to\mathbb{R}$ is a smooth observation or measurement function which is probably also introducing noise 
+More formally we may say that in the process of measuring a system, we obtain a 1-dimensional time-series $\{\theta(u(t))\}$, where $\theta:\mathbb{R}^n\to\mathbb{R}$ is a smooth observation or measurement function. This series represents a possibly noise-augmented dataset containing information of certain parts of the original system. 
+
+We may then ask ourselves the question: Is it in any way possible to retain information about the system state $x(t)$ in this temporal data-series $\theta(x(t))$? The answer is easily yes if T is known. However, neither this, nor even the exact function $\theta$ is available. 
+
+\subsection{Taken Embedding Theorem}
+
+We define first the concepts of homeomorphism and embedding:
+\begin{Definition}
+  A homeomorphism is a function $f:Z\rightarrow Y$ between two topological spaces $Z$ and $Y$ that is continuous, bijective and has a continuous inverse. 
+\end{Definition}
+
+\begin{Definition}
+  Consider a homeomorphism $f:Z\rightarrow Y$ for $Y\in X$. $Z$ is said to be embedded in $X$ by $f$.
+\end{Definition}
+
+Takens Theorem states a result that establishes a relationship between the observed and underlying dynamical systems by showing that the concetantion of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems. \textbf{check wording} We formultate the theorem from \cite{takens1981detecting}.  
+
+\begin{Theorem} 
+	[\bf Takens Embedding Theorem (adopted from \cite{takens1981detecting}] \label{Thm_Takens}
+            Let $W$ be a compact manifold of dimension $m$, and $d\ge m$ so that $2d\in\mathbb{Z}$. It is a 
+            generic property for the pair $(T, \theta)$,  where $T:W \to W$ is
+            a smooth diffeomorphism, and $\theta:W \to \mathbb{R}$ a smooth function, that the map $\Phi_{2d,\theta}:W \to \mathbb{R}^{2d+1}$ defined on $W$ by 
+            $\Phi_{2d,\theta}(w) := (\theta(T^{-2d}w)\ldots,\theta(T^{-1}w),\theta(w))$
+            is a diffeomorphic embedding; by `smooth' we mean at least $C^2$. Consequently, there exists a map $\Ftheta: \Phi_{2d,\theta}(W) \to \Phi_{2d,\theta}(W)$ defined by 
+            \begin{equation}  \label{eqn_takens}
+              \Ftheta: (\theta(T^{-2d}w),\ldots,\theta(T^{-1}w),\theta(w)) \mapsto  (\theta(T^{-2d+1}w),\ldots,\theta(T^{-1}w),\theta(Tw))
+            \end{equation}
+           so that $(W,T)$ is topologically conjugate to 
+            $(\Phi_{2d,\theta}(W), \Ftheta)$. 
+\end{Theorem} 
+
+(In our scenario, the input space $U$ is considered the attractor.)
+
+Some explanation is beneficial. Takens establishes a delay-coordinate map $\Ftheta$ defined in \ref{eqn_takens} for $T$ the flow (\ref{defn_flow}) defined by the update equation  $Tu_n=u_{n+1}$ and $theta$ our measurement function. When confining a dynamical system to the manifold U (in which the underlying system is contained), Takens showed that if certain smoothness conditions are satisfied on $T$ and $\theta$, then the delay-coordinate map $\Ftheta$ embeds $U$ in the reconstruction space $R^{2d+1}$ \textbf{we haven't used the term reconstruction space yet, so this is falling out of the blue}, for almost every choice of measurement function $\theta$, the observable. By almost every choice here, we mean that we exclude some observations which do not give any information. To see a more precise discussion, see \textbf{xxx} for we do not concern ourselves with a further elaboration on this thesis/report.
+
+Alternatively we may also make the statement: Takens' Embedding Theorem guarantees that almost all dynamical systems can be reconstructed from just one noiseless observation sequence \textbf{this isn't obvious from the theorem's formulation, is it?} i.e. for a great number of possible observation functions $\theta$, $\Ftheta$ preserves the topology of U. \textbf{'preserving the topology' is not something we've touched on before. Perhaps I should add to previous discussion so logic flows seamlessly here}.
+
+\begin{figure}[ht]
+  \includegraphics[scale=0.3]{takensmap.png}
+  \centering
+  \label{fig:takensmap}
+\end{figure}
+
+Once again we pause and consider the graph to consolidate our understanding of the conjugacy (\textbf{are we being too simplistic?}). If we are in state $u$ and then evolve towards state $Tu$ before embedding into $\mathbb{R}^{2m-1}$, then this is equivalent to first embedding into $\mathbb{R}^{2m-1}$ and then evolving through the map $\Ftheta$, i.e. $\Phi_{2d,\theta}\circ{F}_{\theta} = T\circ\Phi_{2d,\theta}$. The map $F_theta$ is a homeomorphism as well. 
+
+Thus information about U can be retained in the time series' (or observation's) output. By preserving the topology on the manifold $U$ in the reconstruction space $X$ (\textbf{not discussed before}), we are also guaranteed the preservation of topological invariants of the manifold, of which dimensionality is one such invariant. (We note here that dimensionality will again be considered later in this project/report).
+
+\subsection{Obstacles to Takens}
+Despite the fact that the Takens' Embedding Theorem is a powerful result and provides compelling reason to believe that it is possible to accurately ()\emph{right word?}) reconstruct the underlying space, it does present some serious limitations:
+\vspace{-5mm}
+\begin{enumerate}
+\item Even if we can indeed find \Ftheta{}  our \emph{approximation} of \Ftheta{}  is a map from a larger set $\mathbb{R}^{2m+1}$ containing the embedded attractor. There are, however, no theoretical guarantees that \Ftheta{}  will keep this attractor $U$  the same.(\textbf{We haven't properly said that U is an attractor, or have we.})
+\item Takens only holds for noiseless observations. Suppose the case where \Ftheta{} was learnt, but due to measurement error or other noise we obtained the set $V$ and not the original attractor. Due to the chaotic nature of the underlying system (i.e. the fact that it has SIDC), this new system $V$ will then move in a different direction. This problem will later be eliminated by some properties of a new function $g$, namely the Unique Solution Property. 
+\item It is an unfortunate case that the functional complexity (i.e., the relative number of oscillatory graphs \cite{manjunath2021universal}) as well as stability of the embedding \Ftheta{} (\textbf{cite?})depends on the choice of observable $\theta$. This means that we may even learn a map that complicates our learning task and in so doing adds obstacles to the road to learning a conjugate map with predictive power. (\textbf{Am I talking nonsense here?})
+\end{enumerate}
+
+Another limitation owes itself to the requirement that T be a surjective map. This is not always the case in practical examples and we may consider the case of a damped double pendulum. 
+
+\textbf{Continue writing here}
 
 
+\begin{figure}[ht]
+  \includegraphics[scale=0.3]{learningfailure.png}
+  \centering
+  \label{fig:supp_learning_failure}
+  \caption{Illustration of a system having failed to learn the map}
+\end{figure}
 
+
+\textbf{Explanation continued here}
+Traalala lorem ipsum et dolore faria maria didi klapogaani koro di tolore mi strem srem krem lem lemmy bemmy bem te dem dem 
+
+\begin{figure}[h]
+  \includegraphics[scale=0.4]{temporary_damp_fig.png}
+  \centering
+  \label{fig:damped_pendulum}
+\caption{A damped pendulum}
+\end{figure}
+
+\textbf{Continue explaining here}
 
 \vspace{-1cm}
 \bibliographystyle{pnas-new}
 \bibliography{pnas}
+
+
 
 
 \end{document}
