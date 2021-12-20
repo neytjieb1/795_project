@@ -393,15 +393,47 @@ V & V.
  \end{psmatrix}
 % \]
 \end{equation} 
-To understand the diagram we note that if we travel ``right and then down," the diagram instructs us to use $T$ (top arrow right) first, followed by $\phi$. (right arrow downwards). As a result, the pathway amounts to finding $\phi(T(u))$. If we proceed ``down and then right," the diagram instructs us to apply $\phi$ (left arrow downwards) first, and then apply $\phi$ (right arrow downwards) and then $S$ (bottom arrow right). As a result, the pathway amounts to finding  $S(\phi(u))$. When the diagram holds, we say 
-$\phi(T(u))= S(\phi(u))$ and write it more formally as
-$\phi \circ T=S\circ \phi$.
-When the above commutativity holds in addition that $\phi$ is a homeomorphism, then we say we say that  $S$ is conjugate to $T$.  
-If we relax the criterion on $\phi$ to merely require $\phi$ to be continuous and surjective rather than being a homeomorphism, then $\phi$ is called a semi-conjugacy, and declare that $S$ is semi-conjugate to $T$. When $S$ is conjugate to $T$, it indicates the dynamics between the two systems are in one-to-one correspondence, however when $S$ is semi-conjugate to $T$ with $\phi$ a many-to-one mapping, the dynamics on $V$ provides a coarse-grained description of the dynamics on $V$. It is common to remark that $S$ is a factor of $T$ or that $T$ is an extension of $S$ when $S$ is semi-conjugate to $T$. In essence, an extension (e.g., \cite{de2013elements}) is a larger system that captures all of the important dynamics of its factor.
 
-It is a very hard or nearly an impossible task to establish the existence of a conjugacy or a semi-conjugacy $\phi$ between two systems. However, one can verify if given a function $\phi$ if it satisfies the commutativity.  For example $\phi(x)=\sin(\pi x/2)^2$ is a conjugacy between two systems $Tu=1-|2u-1|$ and $Sv=4v(1-v)$  defined on $[0,1]$.  The importance of conjugacy is that when we know it exists we can prefer to work with  the dynamical systems to gain information of the other, and this is useful for us while forecasting dynamical systems.  
+%Composite functions
+To understand the diagram we note that if we travel ``right and then down," the diagram instructs us to use $T$ (top arrow right) first, followed by $\phi$. (right arrow downwards). Consequently the pathway amounts to finding $\phi(T(u))$. If we proceed "down and then right", the diagram instructs us to apply $\phi$ (left arrow downwards) first, and then apply $S$ (bottom arrow right). This then amounts to finding  $S(\phi(u))$. When the relationships in this diagram hold, we say $\phi(T(u))= S(\phi(u))$ and formally denote it as $\phi \circ T=S\circ \phi$.
 
+\begin{Definition}
+  Consider the dynamical systems $T:U\to{U}$, $S:V\to{V}$ and suppose the relationship $\phi \circ T=S\circ \phi$ holds. If $\phi$ is a homeomorphism, then S is said to be conjugate to T and $\phi$ is called a conugacy. If we relax the criterion on $\phi$ and merely require $\phi$ to be continuous and surjective, $\phi$ is then a semi-conjugacy between $T$ and $S$; S is said to be semi-conjugate to T. 
+\end{Definition}
 
+When $S$ is conjugate to $T$, the dynamics of the two systems are in some way ''dynamically equivalent'' and specifically they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi$ a many-to-one mapping, the dynamics on $V$ provides a coarse-grained \textbf{cite?} description of the dynamics on $U$ . When $S$ is semi-conjugate to $T$, it is also common to call $S$ a factor of $T$, or conversely that $T$ is an extension of $S$. In essence, an extension (e.g., \cite{de2013elements}) is a larger system capturing all of the important dynamics of its factor.
+
+It is a very hard or nearly an impossible task to establish the existence of a conjugacy or a semi-conjugacy $\phi$ between two systems. \textbf{cite?} However, one can verify that a function $\phi$ satisfies the commutativity diagram \ref{eqn_conjugacy}.  For example $\phi(x)=\sin(\pi x/2)^2$ is a conjugacy between two systems $Tu=1-|2u-1|$ and $Sv=4v(1-v)$  defined on $U=[0,1]$.  
+
+In establishing that two systems are conjugate (semi-conjugate) to one another, we have also shown that one may choose to work with one systems as opposed to the second and still be guaranteed to obtain information on the latter. This is incredibly useful while forecasting the future evolution of dynamical systems. 
+
+\section{The Learning Problem}
+
+\emph{Introduction...}
+
+Consider a relatively simple learning problem: 
+
+Given $(u_0, u_1, \ldots, u_m)$ for $m\in\mathbb{Z}$, a finite segment of an orbit of the map $T$ where $T$ is defined by the update equation $u_{n+1} = Tu_n$, forecast the values $u_{m+1}, u_{m+1}$ where the map $T$ is unknown, given that $u_m$. 
+
+A practical example of this would be - given the sequential coordinates of an object moving in space, predict the future positions of that object. However we are very rarely, if at all, presented with a problem where the entire state information is available to us in the form $u_n$ at some time-step $n\in\mathbb{N}$. Consider then a more involved learning problem:
+
+Suppose we only have the observations $\theta(u_0), \theta(u_1), \ldots, \theta(u_m)$ of the true system states $u$ in an unknown dynamical system $(U,T)$ and we wish to predict the values $\theta(u_{m+1}), \theta(u_{m+2})$. 
+
+Here we consider a continuous-time dynamical system $(U,T)$ with true state $u$ in the input space $U$ and then a measured signal $\theta$ (where $\theta(u_n)=\theta(u(t_n))$ for $n\in\mathbb{N}$. The sequence $\{x_n\}$ represents a scalar time-series and intuitively $\theta$ may be thought to represent a probe inserted into a larger system and itself measuring/extracting only a small part of the greater system state at time $t=n$. Consider for example a thermometer erected to measure the ambient temperature in a local village. This measurement function, the thermometer is capturing a single aspect, the temperature, of a grander dynamical system entailing the present weather of the surrounding area, but even more than that, it is measuring an incredibly small part of the global weather system. 
+
+From here we construct a multidimensional observable using the method of delay-coordinate stacking. 
+\textbf{move to later} Given the sequence $\{\theta_1, \theta_2, \ldots\}$, we define the variable $y_n:=[\theta_n, \theta_{n-\tau}, \ldots, \theta_{n-(2d-2)\tau}, \theta_{n-(2d-1)\tau}]^{T}\in\mathbb{R}_{d}\times{1}$ where $\tau$ represents the lag and $d$ the dimension of the attractor. (We shall return to these terms shortly and their discussion may be put on hold for the time being).
+
+However, the true state $u$ of a system is seldom, if ever fully known. In almost all cases we can merely insert probes into a system to obtain partial information by measurements taken. Moreover, the process of taking a measurement itself introduces 2 additional difficulties:
+\vspace{-8mm}
+\begin{enumerate}[noitemsep, label=\roman*.]
+  \item A series of measurements over a specific time-interval is inherently a discretisation
+  procedure of the underlying continuous-time dynamical system. (Hence why we restricted our attention to discrete-time systems in the preceding section)
+  \item A probe will never be fully accurate and so the act of measurement introduces a certain
+measure of numerical noise/inaccuracy.
+\end{enumerate}
+
+More formally we may say that in the process of measuring a system, we obtain a 1-dimensional time-series $\{\theta(u(t))\}$, where $\theta:\mathbb{R}^n\to\mathbb{R}$ is a smooth observation or measurement function which is probably also introducing noise 
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  19 DEC 2021 15:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  20 DEC 2021 08:11
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1272,24 +1272,24 @@ EdNote! [6]
 
 LaTeX Warning: Citation `devaney2018introduction' on page 7 undefined on input line 323.
 
-<chaos1.png, id=78, 1304.875pt x 1064.97874pt>
+<chaos1.png, id=82, 1304.875pt x 1064.97874pt>
 File: chaos1.png Graphic file (type png)
 <use chaos1.png>
 Package pdftex.def Info: chaos1.png  used on input line 339.
 (pdftex.def)             Requested size: 234.86737pt x 191.6879pt.
-<chaos2.png, id=80, 1304.875pt x 1064.97874pt>
+<chaos2.png, id=84, 1304.875pt x 1064.97874pt>
 File: chaos2.png Graphic file (type png)
 <use chaos2.png>
 Package pdftex.def Info: chaos2.png  used on input line 345.
 (pdftex.def)             Requested size: 234.86737pt x 191.6879pt.
-<T2.png, id=81, 462.528pt x 346.896pt>
+<T2.png, id=85, 462.528pt x 346.896pt>
 File: T2.png Graphic file (type png)
 <use T2.png>
 Package pdftex.def Info: T2.png  used on input line 354.
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
 [7] [8 <./chaos1.png> <./chaos2.png> <./T2.png>]
 
-LaTeX Warning: Citation `de2013elements' on page 9 undefined on input line 400.
+LaTeX Warning: Citation `de2013elements' on page 9 undefined on input line 404.
 
 [9
 Non-PDF special ignored!
@@ -1300,31 +1300,35 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 9.46101 4.7305 3.616...
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 10.76656 5.38327 3.6...
-]
+] [10]
+Overfull \hbox (117.2861pt too wide) in paragraph at lines 424--426
+\OT1/cmr/m/n/12 stack-ing. \OT1/cmr/bx/n/12 move to later \OT1/cmr/m/n/12 Given the se-quence $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 ^^R[]; ^^R[]; []\OMS/cmsy/m/n/12 g$\OT1/cmr/m/n/12 , we de-fine the vari-able $\OML/cmm/m/it/12 y[] \OT1/cmr/m/n/12 := [\OML/cmm/m/it/12 ^^R[]; ^^R[]; [] ; ^^R[]; ^^R[]\OT1/cmr/m/n/12 ][] \OMS/cmsy/m/n/12 2
+ []
+
 No file draft1.bbl.
 
 There are still 1 EdNotes, New/Oldparts, and Issues to resolve!
 
-[10] (./draft1.aux)
+[11] (./draft1.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `draft1.out' has not changed.
-(rerunfilecheck)             Checksum: 5D2AD084C60E95039B4B9AD0F0FE16AD;621.
+(rerunfilecheck)             Checksum: 234684E9CC68C8F2812E1E81F432B1D2;770.
  ) 
 Here is how much of TeX's memory you used:
- 36944 strings out of 478579
- 739975 string characters out of 5853456
- 1142604 words of memory out of 5000000
- 54108 multiletter control sequences out of 15000+600000
+ 36950 strings out of 478579
+ 740028 string characters out of 5853456
+ 1142603 words of memory out of 5000000
+ 54109 multiletter control sequences out of 15000+600000
  415793 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,9n,117p,1366b,864s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft1.pdf (10 pages, 471819 bytes).
+Output written on draft1.pdf (11 pages, 478221 bytes).
 PDF statistics:
- 198 PDF objects out of 1000 (max. 8388607)
- 146 compressed objects within 2 object streams
- 42 named destinations out of 1000 (max. 500000)
- 68 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 211 PDF objects out of 1000 (max. 8388607)
+ 158 compressed objects within 2 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 
