@@ -195,19 +195,19 @@ Examples in the literature attempting to forecast data from such systems have tr
 
 Recent partially interpretable models available in the literature have been based on the Koopman operator (e.g.,\cite{koopman1932dynamical,budivsic2012applied}) to  employ observables mapping the data onto a higher-dimensional space. This then makes the dynamics in the higher-dimensional space more amenable for approximation by a linear transformation. Such methods, obviously, do not guarantee an exact reconstructions for nonlinear models, and in practice provide poor long-term consistency for a large class of systems. (Add citation)
 
-The non-interpretable models include the delay embedding and the machine learning algorithms. Under some generic conditions, the Takens delay embedding theorem \cite{takens1981detecting} and its various generalisations (e.g., \cite{sauer1991embedology, stark1999delay, gutman2018embedding, gutman2018embedding}) establishes the learnability of a system constructed by concatenating sufficiently large previous time-series observations of a dynamical system into a vector (called delay coordinates). This then establishes the existence of a map on the space of delay coordinates equivalent (or topologically conjugate) to the underlying map from which the observed time-series was first obtained. Although topological conjugacy guarantees an alternate representation of the underlying system, the quality of thsi representationstill depends on numerous parameters, making the comprehension of the dynamics rather unreliable (e.g., \cite{principe1992prediction}). One reason for this fragility is that the embedded attractor in the reconstruction space not always an attractor itself, despite  unquestionably being an invariant set. Since the embedded object is not \emph{(definitely/always?)} an attractor (as explained in Chapter 3) it can cause predictions to fail.
+The non-interpretable models include the delay embedding and the machine learning algorithms. Under some generic conditions, the Takens delay embedding theorem \cite{takens1981detecting} and its various generalisations (e.g., \cite{sauer1991embedology, stark1999delay, gutman2018embedding, gutman2018embedding}) establishes the learnability of a system constructed by concatenating sufficiently large previous time-series observations of a dynamical system into a vector (called delay coordinates). This then establishes the existence of a map on the space of delay coordinates equivalent (or topologically conjugate) to the underlying map from which the observed time-series was first obtained. Although topological conjugacy guarantees an alternate representation of the underlying system, the quality of thsi representationstill depends on numerous parameters, making the comprehension of the dynamics rather unreliable (e.g., \cite{principe1992prediction}). One reason for this fragility is that the embedded attractor in the reconstruction space not always an attractor itself, despite  unquestionably being an invariant set. Since the embedded object is not \textbf{(definitely/always?)} an attractor (as explained in Chapter 3) it can cause predictions to fail.
 
 
 Practically, the application of Takens embedding involves learning a map through some technique and consequently one wishes that these would have low functional complexity\cite{manjunath2021universal}, i.e., functions with fewer oscillatory graphs.
 
-This thesis deals with the implementation and analysis of non-interpretable models that can guarantee \emph{exact/accurate} reconstruction. The project work concerns the study and implementation of a method (Citation to paper with Adriaan) that incorporates learning a function by mapping the data on to a higher dimensional space. With a clear understanding of how the data is mapped onto the higher dimensional space, the method then permits the learning of a dynamical system topologically conjugate to that of the underlying system. Instead of linear regression, deep learning methods are employed to learn the correct function. With slight modifications to the implementation in the paper (with Adriaan), we show that one can construct accurate non-interpretable models with the ability to reconstruct attractors from more hard-to-forecast systems like the double pendulum. (The forecasting of the time-series from a double pendulum has not been reported before.) Moreover, we also demonstrate that long-term statistical consistency is preserved.
+This thesis deals with the implementation and analysis of non-interpretable models that can guarantee \textbf{exact/accurate} reconstruction. The project work concerns the study and implementation of a method (Citation to paper with Adriaan) that incorporates learning a function by mapping the data on to a higher dimensional space. With a clear understanding of how the data is mapped onto the higher dimensional space, the method then permits the learning of a dynamical system topologically conjugate to that of the underlying system. Instead of linear regression, deep learning methods are employed to learn the correct function. With slight modifications to the implementation in the paper (with Adriaan), we show that one can construct accurate non-interpretable models with the ability to reconstruct attractors from more hard-to-forecast systems like the double pendulum. (The forecasting of the time-series from a double pendulum has not been reported before.) Moreover, we also demonstrate that long-term statistical consistency is preserved.
 
 By solidifying the mathematical underpinnings of our theory, we hope to guarantee the ability to construct models with predictive power ranging from molecular biology to neuroscience. in the near future. (We can modify this sentence when the report is completed.)
 
 The report is organised as follows: 
 \newline In Section 2, we recall the definition of a discrete-time dynamical system, how a discrete-system arises from a flow of an ODE and then proceed to define the inverse limit space and topological conjugacy of autonomous systems. 
 \newline In Section 3, we introduce the problem of forecasting dynamical systems, state the Takens delay embedding theorem and discuss various issues faced while forecasting. 
-\newline In Section 4, a driven dynamical system is defined and discuss the properties of a specific class of driven dynamical systems that we make use of in this theses/report/paper. 
+\newline In Section 4, a driven dynamical system is defined and discuss the properties of a specific class of driven dynamical systems that we make use of in this thesis/report/paper. 
 \newline Finally in Section 5 we show the implementation of these forecasting methods, and conclusions are provided in Section 6.
 
 
@@ -215,7 +215,7 @@ The report is organised as follows:
 
 In this chapter, we provide a brief description of what a discrete-time dynamical system is and what it means for it to exhibit chaos. We refer to \cite{devaney2018introduction, de2013elements} for more details. 
 
-At its most elementary level, a dynamical system is just \emph{something} that evolves deterministically through time. In the context of this thesis, deterministic refers to the fact that a system evolves according to specified rules rather than based on random events. 
+At its most elementary level, a dynamical system is just something that evolves deterministically through time. In the context of this thesis, deterministic refers to the fact that a system evolves according to specified rules rather than based on random events. 
 Dynamical systems arise in a variety of situations. A continuous dynamical system, and here specifically the motion of a pendulum, is one in which quantities such as the angular position and angular momentum are known at all times. 
 The equations of the dynamical system take the form of one or more ordinary differential equation that determine the relevant quantities at any future time if we know the initial location and momentum. 
 In ecology, discrete dynamical systems are widely used to model population growth. The model in this case is a function calculating the following generation's population given the population of the previous generation. If we know the starting population, we may once again calculate the population at any time in the future. 
@@ -227,7 +227,7 @@ Formally, a function $T: U \to U$, where $U$ is some set is  a \emph{discrete-ti
 
 
 Continuous dynamical systems modelled using ordinary differential equations can give rise to discrete-time dynamical systems. To see this, consider differential equation $\dot{x} = f(x)$, $f: \mathbb{R}^n \to \mathbb{R}^n$, $n\in\mathbb{N}$ given to have a unique solution passing through 
-each point $x\in\mathbb{R}^{n}$, the \emph{flow of the equation}\label{defn_flow} is defined to be a mapping $\varphi: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ that satisfies the following properties:
+each point $x\in\mathbb{R}^{n}$, the flow of the equation \label{defn_flow} is defined to be a mapping $\varphi: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ that satisfies the following properties:
 \vspace{-8mm}
 \begin{enumerate}[noitemsep, label=\roman*.]
   \item $x(t)$ is a solution of the differential equation,
@@ -238,7 +238,7 @@ By fixing $t=K$, we can define the \emph{time-$K$ map} as  $T(x):= \varphi(x_0,K
 Thus ordinary differential equations give rise to a discrete-time dynamical systems by sampling the value of $x$ at time intervals $K$ units apart. 
 
 Of course, discrete-time dynamical systems need not always arise through a differential equation, and once again we may consider the field of ecology where discrete dynamical systems are often directly derived or assumed. 
-\emph{There is a school of thought that advocates discrete-time dynamical systems to be more natural for modelling real-world observations than differential equations (see \cite{saber2010introduction}).  <- too philosphical, or actually good?}
+\emph{There is a school of thought that advocates discrete-time dynamical systems to be more natural for modelling real-world observations than differential equations (see \cite{saber2010introduction})}. \textbf{too philosphical, or actually good?}
 
 A numerical discretization of a differential equation can also give rise to a discrete-time dynamical system. For instance, Euler's method approximates $\dot{x}(t)$ by $(x(t+h)-x(t))/h$; if $h$ is fixed throughout, the solution of a differential equation $\dot{x}=f(x)$ 
 can be approximated at the time instant $t+(m+1)h$ by iterating the equation 
@@ -263,7 +263,7 @@ One may ask if every orbit approaches an invariant set? In general the answer is
 
 However,  when the space $U$ is compact, all orbits approach an invariant set. \textbf{For let $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ be an orbit in the compact space U, then $\bar{u}$ has a convergent subsequence }
 
-\textbf{In fact the $\omega$-limit set $\omega(u;T)$ of a point $u$ defined to the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$ is nonempty, and $\omega(u;T)$ is invariant. } (not relevant other than being an additional example perhaps?)
+In fact the $\omega$-limit set $\omega(u;T)$ of a point $u$ defined to the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$ is nonempty, and $\omega(u;T)$ is invariant. \textbf{(not relevant other than being an additional example perhaps?)}
 
 We discuss various properties of invariant sets: Invariant sets can be attracting or repelling depending on how orbits in its vicinity behave (recall the examples $Tu =u/2$ and $Tu=2u$). We are interested in attractive invariant sets, and in particular so-called attractors which we define below.
 \begin{Definition} \rm Let $T: U \to U$, where $U$  is a metric space with metric $d$. A compact subset $A \subset U$ is said to be an attractor if it satisfies the three conditions: 
@@ -285,16 +285,17 @@ If the dynamics on an attractor cannot be decomposed further and the attractor i
 
 \subsection{Chaos}
 
-\emph{$\downarrow$ - should one add paragraphs like these?}
+\textbf{$\downarrow$ - should one add paragraphs like these?}
 \newline In the 1960s, a number of mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. The notions of invariance, attractivity and chaos may also bedescribed for continuous systems, and Lorenz's system comprised of a system of differential equations. The narrative of Lorenz's discovery of chaos, as well as the history of other forerunners in this subject, are fascinating. For those who are interested, we highly recommend James Gleick's book Chaos: The Making of a New Science \cite{gleick2008chaos}. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery, and describes the underlying mathematical notions for non-specialists.
 
-There are several intricately different notions of chaos, with each of them indicating some complexity. \emph{ $\leftarrow  $ what are we saying here?} In practice, it is not possible to verify which notion is satisfied when data is observed from a dynamical system. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances. Devaney's definition consists of three parts, with the first being the notion  of sensitive dependence on initial conditions. 
+There are several intricately different notions of chaos, with each of them indicating some complexity. \textbf{ $\leftarrow  $ what are we saying here?} In practice, it is not possible to verify which notion is satisfied when data is observed from a dynamical system. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances. Devaney's definition consists of three parts, with the first being the notion  of sensitive dependence on initial conditions. 
 
 \begin{Definition} \rm 
 A dynamical system $T: U \to U$ is said to have sensitive dependence on initial conditions (SDIC) if there exists a $\delta > 0$ such that for every $u \in U$ and in every neighborhood of $u \in U$ there exists a $v\in{U}$ and an integer $N:=N{(u,v)}\in\mathbb{Z}$ such that $d(T^Nu,T^Nv)>\delta$. 	
 \end{Definition}
 
-It is important to acquire a sense of this definition as it can easily be misunderstood. It is common misconception to interpret SDIC as two close points ($u$ and $v$) that eventually become separated by a distance $\delta$ under iteration by $T$. But this is not true. To fully comprehend all the subtleties of the concept, one needs to discuss it more thoroughly by considering each sentence with care and attention, whereafter one may examine how they fit together to convey the concept of sensitive dependence. \emph{ $\leftarrow$ is this talking too simply perhaps?}. 
+It is important to acquire a sense of this definition as it can easily be misunderstood. It is common misconception to interpret SDIC as two close points ($u$ and $v$) that eventually become separated by a distance $\delta$ under iteration by $T$. But this is not true. To fully comprehend all the subtleties of the concept, one needs to discuss it more thoroughly by considering each sentence with care and attention, whereafter one may examine how they fit together to convey the concept of sensitive dependence. 
+\textbf{ $\leftarrow$ is this talking too simply perhaps?}. 
 
 To this end we make 3 remarks:
 \vspace{-5mm}
@@ -450,7 +451,7 @@ We define first the concepts of homeomorphism and embedding:
   Consider a homeomorphism $f:Z\rightarrow Y$ for $Y\in X$. $Z$ is said to be embedded in $X$ by $f$.
 \end{Definition}
 
-Takens Theorem states a result that establishes a relationship between the observed and underlying dynamical systems by showing that the concetantion of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems. \textbf{check wording} We formultate the theorem from \cite{takens1981detecting}.  
+Takens Theorem states a result that establishes a relationship between the observed and underlying dynamical systems by showing that the concetantion of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems. \textbf{Check wording} We formultate the theorem from \cite{takens1981detecting}.  
 
 \begin{Theorem} 
 	[\bf Takens Embedding Theorem (adopted from \cite{takens1981detecting}] \label{Thm_Takens}
@@ -463,7 +464,7 @@ Takens Theorem states a result that establishes a relationship between the obser
               \Ftheta: (\theta(T^{-2d}w),\ldots,\theta(T^{-1}w),\theta(w)) \mapsto  (\theta(T^{-2d+1}w),\ldots,\theta(T^{-1}w),\theta(Tw))
             \end{equation}
            so that $(W,T)$ is topologically conjugate to 
-            $(\Phi_{2d,\theta}(W), \Ftheta)$. 
+            $(\Phi_{2d,\theta}(W), \Ftheta)$.   
 \end{Theorem} 
 
 (In our scenario, the input space $U$ is considered the attractor.)
@@ -505,7 +506,6 @@ Another limitation owes itself to the requirement that T be a surjective map. Th
 
 
 \textbf{Explanation continued here}
-Traalala lorem ipsum et dolore faria maria didi klapogaani koro di tolore mi strem srem krem lem lemmy bemmy bem te dem dem 
 
 \begin{figure}[h]
   \includegraphics[scale=0.4]{temporary_damp_fig.png}
@@ -515,6 +515,261 @@ Traalala lorem ipsum et dolore faria maria didi klapogaani koro di tolore mi str
 \end{figure}
 
 \textbf{Continue explaining here}
+
+
+\section{Obtaining X through Driven Dynamical Systems}
+
+In this chapter, we recall results on mapping temporal data acquired from a discrete-dynamical system onto a different space through a driven dynamical system. We recall the conditions the driven system should have not to add distortion to its state space representation, so that the single-delay dynamics (SDD) gets conjugate or semi-conjugate to the system. The SDD can be then use to forecast and reconstruct the underlying attractor
+
+\subsection{Nonautonomous and Driven Dynamical Systems}
+
+A nonautonomous dynamical system is simply a dynamical system where the input $u$ from the input space $U$, a  topological space is time-dependent. \textbf{This means it can no longer be generated by a flow?}
+
+We now recall the figure first defined in \ref{eqn_conjugacy} below and the greater goal to construct a system - such as $(V,S)$  - conjugate to $(U,T)$, 
+
+%#####################################
+\begin{center}
+\psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+\everypsbox{\scriptstyle}
+\begin{psmatrix}
+U & U\\%
+V & V.
+%%%
+%  \ncline{1,1}{1,2}^{T} 
+%  \ncline{1,1}{2,1} <{\phi}
+%   \ncline{2,1}{2,2}^{S}
+%  \ncline{1,2}{2,2} > {\phi}
+\end{psmatrix}
+%#####################################
+\end{center}
+
+To do this, we need to consider a driven dynamical system taking input from both an input space $U$, and an underlying state space $X$. This is done to account for influence of both the input and the actual state of the system at a specific timestep.
+
+\begin{Definition}
+A driven dynamical system comprises two topological spaces $U$, $X$ and a continuous function  $g:U\times{X}\to{X}$ where $g(u_n, x_n)=x_{n+1}$. The dynamics on X are generated by the update equation $x_{n+1}=g(u_n, x_n)$ where $n\in\mathbb{Z}$, $u_n$ from the metric input space $U$ and state $x_n$ belonging to the state space $X$, a compact metric space. If the input space $U$ is compact, we refer to the system as compactly driven. 
+Abbreviated, we shall refer only to the "driven system $g$", with all other entities being understood implicitly.
+\end{Definition}
+
+In particular, a nonautonomous dynamical system may be generated from $U$; any input $\overline{u}$, a bi-infinite sequence from $U$ gives rise the sequence of self-maps $\{g(u_n, \ldotp)\}_{n\in\mathbb{Z}}$ contained in $X$. \textbf{explain better why}
+Physically, one may think of this bi-infinite as referring to a system that has been running for an incredibly long period at the time of the first measurement/observation taken from the system.
+
+\begin{Definition}
+  A sequence $\{x_n\}_{n\in\mathbb{Z}}\subset{U}$ is called an entire solution(or simply a solution) to the driven system  $g$ with input $\overline{u}$ when it satisfies 
+  $$g(u_{n-1}, x_{n-1})=x_n$$ for all $n$ in $\mathbb{Z}$
+\end{Definition}
+
+It is important to emphasise that a sequence satisfying the update equation above can only be a solution if $x_n\in{U}$ for all $n\in\mathbb{Z}$. Consider the example below.
+
+\begin{Example}
+  Consider the driven system $g(u_n,x_n)=x^n$ for $X=[0,1]$. This system has an uncountable number of solutions, because for every $x\in{X}$, there exists a solution passing through the point $x$ and $lim_{n\to\infty}x_n=0$, $lim_{n\to{-}\infty}x_n=1$.
+\end{Example}
+
+\begin{Definition}
+Let $X_n{\overline{u}}:= \cap_{m<n}{\phi_{\overline{u}}(n,m,X)}$ be the set of all reachable states at time $n$ for input $\overline{u}$.
+  A function $g:U\times{X}\to{X}$ is a topological contraction if for all $n\in\mathbb{Z}$ and all $\overline{u}\subset{U}$, $X_n(\overline{u})$ is a singleton subset of X.  
+\end{Definition}
+
+Note that $x\in{X_n{\overline{u}}}$ if and only g has a solution $\{x_k\}$ s.t. $x_n=x$ and the input is $\overline{u}$. \textbf{cite paper}. This will lead to a result established later, but which is worth taking note of now: $g$ being a topological contraction is equivalent to the existence of a unique entire solution for every $n\in\mathbb{Z}$. \textbf{Adding worth or not?} \label{here_UAP_firstestablished}
+
+\begin{Example}\label{ex_halfux}
+  If $X=[0,1]$, $U=[0,1]$, then the only possible solution $\{x_n\}$ to the driven system $g(u,x)=\frac{ux}{2}$ is the zero solution $x_n\equiv0$.
+
+  To see this, we show that for every input $\{u_n\}$, $g(u_k,\dot)$ is a contraction map on $X$ for every $k\in\mathbb{Z}$. \textbf{Show}
+  Consequently, we easily conclude that $\{x_n\}$ where $x_n=0$ for all $n\in\mathbb{Z}$ is the only solution. \textbf{Show}
+\end{Example}
+
+One may ask if a driven system always has a solution, and if so, whether it has certain properties such as uniqueness. Should the system be compact, existence follows immediately as can be seen in the following result.
+
+%%%%%%%%%%%%%%%%%%%%%ISSUE HERE - fix before sending
+\begin{Theorem}
+  If $X$ is compact then for each input $\overline{u}$, there exists at least one solution to the driven system $g(\ldotp, x)$
+\end{Theorem}
+\begin{proof}
+  Consider ${u_n}_{n\in\mathbb{Z}}\subset{U}$ and $g:U\times{X}\to{X}$  generating a sequence ${x_n}_{n\in\mathbb{Z}}$ in the compact space. (If U is a metric space then $x_n$ has a convergent subseqeunce)
+\end{proof}
+
+\begin{Example}
+  The driven system $g(u,x)=x$ has only the constant solution $x$ and so for $U=[-1,1]$, the system has no solution if $|X|>1$
+\end{Example}
+
+The examples above present systems with trivial sets of solutions. To refine the scenario, we define systems with unique solutions. 
+
+\begin{Definition}
+  A driven system $g$ is said to have the Unique Solution Property if for each input $\overline{u}$ there exists exactly one solution. Alternatively we may formulate the USP as follows: $g$ has the Unique Solution Property if there exists a well-defined map $\Psi:{U}\to{X}$ where $\Psi({\overline{u}})$ denotes the unique solution 
+\end{Definition}
+
+\emph{(More discussion on USP … - not yet filled in ...)}
+
+We next identify a subspace $X_U$ of $X$ that contains all possible solutions. To realize such a subspace of a driven system $g$, we define 
+the \textit{reachable set} of the driven system $g$ to be the union of all the elements of all the solutions, i.e., 
+$$X_U :=\Big \{x \in X:  x = x_k \mbox{ where  $\{x_n\}$  is a solution for some  $\bar{u}$} \Big \}.$$
+
+We denote $\cev{u}^{n}:=(\ldots,u_{n-2} ,u_{n-1})$ and $\overleftarrow{U}$ denote all the left-infinite sequences in $U$. 
+Symbolically we let $\cev{u}^{n}v:=(\ldots,u_{n-2} ,u_{n-1}, v)$ denote the input up to time $n$ with $v \in U$ being the input value at time $n$. This introduction of a new input at time $n$ can be described by a mapping $\sigma_v:   
+\cev{u}^{n} \mapsto \cev{u}^{n}v$.   \textbf{Is this in the right place?}
+
+
+The question now becomes whether we may establish a conjugacy as presented below for g driven
+
+\begin{equation}  \label{Scomm_h}
+  %    \[ 
+      \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+   \everypsbox{\scriptstyle}
+   \begin{psmatrix}
+   \overleftarrow{U} & \overleftarrow{U}\\%
+   X_U & X_U.
+   %%%
+  %  \ncline{1,1}{1,2}^{\sigma_v} \ncline{1,1}{2,1} <{h}
+  %  \ncline{1,2}{2,2} > {h}
+  %  \ncline{2,1}{2,2}^{g(v,\cdot)}
+   \end{psmatrix}
+  % \]
+  \end{equation} 	
+
+
+  \begin{Definition} \rm \label{Def_UC}
+    Given a driven system $g$, we  call a continuous and surjective map $h : \overleftarrow{U} \to X_U$ a universal semi-conjugacy if  diagram \ref{Scomm_h} commutes for all $v \in U$.
+  \end{Definition}
+
+If the universal semi-conjugacy $h$ exists (i.e. the diagram  \ref{Scomm_h} commutes) then the solution $\Psi$ will be at least a coarse-grained representation of the input $u$; we may now consider the question of the existence of such a function $h$ for the driven system defined above. 
+
+If $g$ has the USP and $\Psi(u)=\{x_n\}$ then $h$, defined by  $h(\overleftarrow{u}_n)=x_n=g(u_n,x_{n-1})$, will satisfy the semi-conjugacy in the graph above \ref{Scomm_h}.
+
+In general the mapping h is not guaranteed to exist. We thus state the following result.
+
+\begin{Theorem}
+  For a compactly driven system, a causal mapping $H$ exists if and only if $g$ has the USP. 
+\end{Theorem}
+\begin{proof}
+  \emph{See proof from p.15 of \cite{manjunath2021universal}}
+\end{proof}
+
+Note that even when $h$ does exist, we are not guaranteed its injectivity. Considering again example 3* \ref{ex_halfux}, we conclude that even if $h$ were to exist, it could not be injective as $X_U=\{0\}$. 
+
+An embedding of the space $\overleftarrow{U}$   would allow one to establish topological conjugacy, which in turn provides stronger results than merely obtaining a coarse-grained representation via a causal mapping. 
+
+Re-sketching the graph \ref{Scomm_h} above by fixing $v$ in $g$ and replacing $X_U$ by its left-infinite sequence space $\overleftarrow{U}$, we obtain the graph below. In this case, the function $H:\overleftarrow{U}\to\overleftarrow{X}_U$, a map that is both continuous and surjective, is called a \emph{causal mapping}. 
+
+\begin{equation}  \label{SCausal_H}
+    %    \[ 
+        \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+     \everypsbox{\scriptstyle}
+     \begin{psmatrix}
+     \overleftarrow{U} & \overleftarrow{U}\\%
+     \overleftarrow{X}_U & \overleftarrow{X}_U.
+     %%%
+    %  \ncline{1,1}{1,2}^{\sigma_v} \ncline{1,1}{2,1} <{h}
+    %  \ncline{1,2}{2,2} > {h}
+    %  \ncline{2,1}{2,2}^{\tilde{g}_v}
+     \end{psmatrix}
+    % \]
+    \end{equation} 	
+
+  Note that $\tilde{g}_v$ maps $(\ldots, u_{-2}, u_{-1})$ to $(\ldots, u_{-2}, u_{-1}, g(v, u_{-1}))$.
+  The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: 
+  If $H$ is also injective (and hence bijective), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$ and we refer to $H$ as a \emph{causal embedding}. We formalise this in the following definition.
+
+\begin{Definition}
+  A driven system $g$ is said to causally embed the dynamical system $(U,T)$ if 
+  \vspace{-8mm}
+\begin{enumerate}[noitemsep, label=\roman*.]
+  \item The diagram below commutes (i.e. $g$ is a universal semi-conjugacy),
+  \item $H_2(\overline{u}):=(h(r\overline{u}, h(\overline{u})))$ embeds the inverse-limit space $(\hat{U}, \hat{T})$ of $(U,T)$ in $X\times{X}$.
+\end{enumerate}
+\end{Definition}
+
+
+\begin{Theorem}
+ If $g(\ldotp,x)$ is invertible and has the USP then $H$ is a causal embedding. 
+\end{Theorem}
+
+When g has the USP, the diagram below illustrates the operation of the the mappings h and H the mapping $h:\overleftarrow{U}\to{X_U}$ is an observable as discussed (above).  
+
+\begin{figure}[ht]
+  \includegraphics[scale=0.3]{actionofh_H.png}
+  \centering
+  \label{fig:actionh_H}
+\end{figure}
+
+\begin{Theorem}
+  The following statements are equivalent:
+  \vspace{-8mm}
+  \begin{enumerate}[noitemsep, label=\roman*.]
+    \item $g$ has the USP 
+    \item $g$ is topological contraction 
+    \item $g$ has the Unique Attraction Property (UAP). 
+  \end{enumerate}
+\end{Theorem}
+\begin{proof}
+  (we’ll show this)  [11] eqn.6 
+\end{proof}
+
+We have not as of yet treated the UAP, and establish the necessary result here (without proof - left to literature or later) so as not to break up the completeness of theorem 
+
+It is important to note here that one must be careful to avoid a choice of g which adds additional complexity to the obtained solution.  
+When the causal embedding exists for the driven system $g$, one may map an arbitrary input $u$ onto the solution space $X$ without additional distortion or information-loss.  
+Establishing an embedding removes this problem by guaranteeing that, since the systems are conjugate (semi-conjugate), $g$ does not add any (only “some”) complexity to the system.  
+It is, however, a balancing act as one also does not want to choose a function g that quenches the temporal structure in $u$ by contracting to such a degree that one loses the ability to recover information from the original system completely. To obtain this we want the reachable set of a driven system to be large enough to relate to the input.  
+ 
+In the example above \ref{ex_halfux}, we cannot relate the input's temporal variation and the reachable set because $X_U$ consists of a single element.  
+
+The reachable set $Y_T$ of a driven system must therefore be such that we can embed the inverse-limit space of $U_T$ can be embedded in some finite self-product of the reachable set of $T$. To this end, consider the notion of State-Input (SI) Invertibility.  
+
+\begin{Definition}
+  A map $g$ is said to be SI-Invertible if $g$ is invertible for all $x\in{X}$. Alternatively, if, given $x_n$ and $x_{n-1}$, $u_n$ can be uniquely determined from $x_n=g(u_n,x_{n-1})$, then $g$ is said to be SI-invertible.
+\end{Definition}
+ 
+We make special note of a specific driven system. The function $$g(u,x)=(1-a)x+atanh(Au+\alpha{a}Bx)$$  is both SI-invertible and possesses the USP. This function $g$ is used in our implementation and is more completely discussed in Section 5 \ref{sect5}
+The proof of these two facts is rather involved and the proof, instead of being replicated here, may be found in (cite relevant article) 
+
+
+\textbf{Expand: UAP + Embedding -> perturbation isn’t an issue + we can drop left-infinite sequence.  }
+
+Despite the ease that one may work with left-infinite sequences in the realm of theory, it is impossible to obtain such a sequence in any real-life application.  One does not in practice, however, need the entire left-infinite history of the input due to the Uniform Attraction Property (UAP). The next definition is stated in an informal manner as the more rigourous definition makes use of processes, a concept which would take some amount of paper to establish and explain - something which would detract from the overarching thrust of this paper/project/thesis. \textbf{is it VERY obsious to the reader at this point what the general 'thrust' of the paper IS?} \textbf{Cite articles}
+
+\begin{Definition}
+  A driven system $g$ has the Uniform Attraction Property (UAP) if, regardless of starting position, all trajectories converge to a single trajectory as time flows forward. 
+  This trajectory is also the unique solution sequence $x$ to the input sequence $u$ as mentioned above \ref{here_UAP_firstestablished}.
+\end{Definition}
+
+Incredibly, one may then initialise a driven system with a completely arbitrary initial value $y_m\in{X}$ where $m\in\mathbb{Z}$ and the UAP then guarantees that the sequence $\{y_{m+1}, y_{m+2},\ldots\}$ satisfying $y_n=g(u_n, y_{n-1})$  with $k\geq{m}$  will uniformly approach the elements $\{x_n\}$ of the actual solution. (see [41, Theorem 1] or [11, Eqn. (18)]) 
+ 
+One may now appreciate an even more astounding result. $g$ having the USP is equivalent to the UAP and so one need not establish any additional results to ensure that the sequence uniformly approach the unique solution $\Psi$. This vastly simplifies the work needed to be done in setting up a problem to guarantee that the underlying system will be accurately 'represented' by the conjugate system. \textbf{Check this statement again to make sure it's not nonsensical.} 
+
+\begin{figure}[h]
+  \includegraphics[scale=0.4]{memloss_conttime.png}
+  \centering
+  \label{fig:memoryLosscont_time}
+%\caption{Approaching the true solution if g has the UAP}
+\end{figure}
+
+This also solves the problem of perturbations or noise introduced by the observable or measurement function. \textbf{(rephrase)}
+
+Next we define the relation $Y_T$ induced by $(U,T)$ on $X_U\times{X_U}$ for a driven system $g$ possessing SI-invertibility.  To describe the  single-delay lag dynamics formally, we consider a dynamical system $T: U \to U$ and we define a relation on the reachable set $X_U$, i.e., a subset defined on $X_U \times X_U$ by 
+$$Y_T:=\{(x_{n-1},x_n): \{x_k\}_{k\in \mathbb{Z}} \mbox{ is a solution for some orbit of } T \mbox{ and } n \in \mathbb{Z}\}.$$ 
+
+The following theorem establishes the existence of a well-defined map GT describing the single-delay dynamics of the system above. 
+
+\begin{Theorem}
+If we let $G_T:Y_T\to{Y_T}$ be a map defined by the relation $(x_{n-1},x_n)\mapsto(x_n,x_{n-1})$, then $G_T$ is well-defined (and this results holds even in the absence of $g$ possessing over the USP)  
+\end{Theorem}
+
+
+We're not getting quite close to where we want to be and our results carry more and more weight. Recall that $g$ is only being given inputs from the orbits of $T$.  
+
+\begin{Theorem}
+  Graph 1 is exactly the inverse-limit system $(\hat{U}, \hat{T})$.    
+\end{Theorem}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Implementation} \label{sect5}
+ 
+ 
+
+
 
 \vspace{-1cm}
 \bibliographystyle{pnas-new}

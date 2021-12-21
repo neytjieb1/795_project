@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  20 DEC 2021 10:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  21 DEC 2021 15:20
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1270,26 +1270,26 @@ LaTeX Warning: Citation `de2013elements' on page 6 undefined on input line 291.
 
 EdNote! [6]
 
-LaTeX Warning: Citation `devaney2018introduction' on page 7 undefined on input line 325.
+LaTeX Warning: Citation `devaney2018introduction' on page 7 undefined on input line 326.
 
-<chaos1.png, id=90, 1304.875pt x 1064.97874pt>
+<chaos1.png, id=102, 1304.875pt x 1064.97874pt>
 File: chaos1.png Graphic file (type png)
 <use chaos1.png>
-Package pdftex.def Info: chaos1.png  used on input line 341.
+Package pdftex.def Info: chaos1.png  used on input line 342.
 (pdftex.def)             Requested size: 234.86737pt x 191.6879pt.
-<chaos2.png, id=92, 1304.875pt x 1064.97874pt>
+<chaos2.png, id=104, 1304.875pt x 1064.97874pt>
 File: chaos2.png Graphic file (type png)
 <use chaos2.png>
-Package pdftex.def Info: chaos2.png  used on input line 347.
+Package pdftex.def Info: chaos2.png  used on input line 348.
 (pdftex.def)             Requested size: 234.86737pt x 191.6879pt.
-<T2.png, id=93, 462.528pt x 346.896pt>
+<T2.png, id=105, 462.528pt x 346.896pt>
 File: T2.png Graphic file (type png)
 <use T2.png>
-Package pdftex.def Info: T2.png  used on input line 356.
+Package pdftex.def Info: T2.png  used on input line 357.
 (pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
 [7] [8 <./chaos1.png> <./chaos2.png> <./T2.png>]
 
-LaTeX Warning: Citation `de2013elements' on page 9 undefined on input line 406.
+LaTeX Warning: Citation `de2013elements' on page 9 undefined on input line 407.
 
 [9
 Non-PDF special ignored!
@@ -1302,27 +1302,27 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 10.76656 5.38327 3.6...
 ] [10]
 
-LaTeX Warning: Citation `takens1981detecting' on page 11 undefined on input line 453.
+LaTeX Warning: Citation `takens1981detecting' on page 11 undefined on input line 454.
 
 
-LaTeX Warning: Citation `takens1981detecting' on page 11 undefined on input line 456.
+LaTeX Warning: Citation `takens1981detecting' on page 11 undefined on input line 457.
 
 [11]
-<takensmap.png, id=144, 1023.825pt x 590.205pt>
+<takensmap.png, id=157, 1023.825pt x 590.205pt>
 File: takensmap.png Graphic file (type png)
 <use takensmap.png>
-Package pdftex.def Info: takensmap.png  used on input line 476.
+Package pdftex.def Info: takensmap.png  used on input line 477.
 (pdftex.def)             Requested size: 307.14987pt x 177.06287pt.
  [12 <./takensmap.png>]
 
-LaTeX Warning: Citation `manjunath2021universal' on page 13 undefined on input line 491.
+LaTeX Warning: Citation `manjunath2021universal' on page 13 undefined on input line 492.
 
-<learningfailure.png, id=153, 1343.0175pt x 600.2425pt>
+<learningfailure.png, id=165, 1343.0175pt x 600.2425pt>
 File: learningfailure.png Graphic file (type png)
 <use learningfailure.png>
-Package pdftex.def Info: learningfailure.png  used on input line 500.
+Package pdftex.def Info: learningfailure.png  used on input line 501.
 (pdftex.def)             Requested size: 402.90836pt x 180.07413pt.
-<temporary_damp_fig.png, id=154, 602.25pt x 388.45125pt>
+<temporary_damp_fig.png, id=166, 602.25pt x 388.45125pt>
 File: temporary_damp_fig.png Graphic file (type png)
 <use temporary_damp_fig.png>
 Package pdftex.def Info: temporary_damp_fig.png  used on input line 511.
@@ -1330,30 +1330,73 @@ Package pdftex.def Info: temporary_damp_fig.png  used on input line 511.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[13 <./learningfailure.png>] [14
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 8.80824 4.40411 3.61...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 8.80824 4.40411 3.61...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 8.80824 4.40411 3.61...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 12.0721 6.03604 3.61...
+ <./temporary_damp_fig.png>] [15] [16
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {12.6025 0.0 12.0002 6.00009 ...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {12.6025 0.0 12.0002 6.00009 ...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 1.79999 16.85422 8.42711...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {8.2 1.79999 20.11807 10.0590...
+]
+
+LaTeX Warning: Citation `manjunath2021universal' on page 17 undefined on input line 644.
+
+<actionofh_H.png, id=207, 883.3pt x 491.8375pt>
+File: actionofh_H.png Graphic file (type png)
+<use actionofh_H.png>
+Package pdftex.def Info: actionofh_H.png  used on input line 689.
+(pdftex.def)             Requested size: 264.99205pt x 147.55238pt.
+[17
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {12.6025 0.0 12.0002 6.00009 ...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {12.6025 0.0 12.0002 6.00009 ...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {12.6025 1.79999 19.10277 9.5...
+Non-PDF special ignored!
+<special> ps:tx@Dict begin  tx@NodeDict begin {12.6025 1.79999 22.36662 11....
+] [18 <./actionofh_H.png>]
+<memloss_conttime.png, id=232, 861.2175pt x 421.575pt>
+File: memloss_conttime.png Graphic file (type png)
+<use memloss_conttime.png>
+Package pdftex.def Info: memloss_conttime.png  used on input line 740.
+(pdftex.def)             Requested size: 344.4809pt x 168.627pt.
+ [19 <./memloss_conttime.png>]
 No file draft1.bbl.
 
 There are still 1 EdNotes, New/Oldparts, and Issues to resolve!
 
-[13 <./learningfailure.png>] [14 <./temporary_damp_fig.png>] (./draft1.aux)
+[20] (./draft1.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `draft1.out' has not changed.
-(rerunfilecheck)             Checksum: 6C101B81D2F5145DCC6BBEFE45423D07;1106.
+(rerunfilecheck)             Checksum: E0F69470033E04689B206943448102A0;1778.
  ) 
 Here is how much of TeX's memory you used:
- 36996 strings out of 478579
- 740809 string characters out of 5853456
- 1143122 words of memory out of 5000000
- 54137 multiletter control sequences out of 15000+600000
+ 37057 strings out of 478579
+ 741632 string characters out of 5853456
+ 1148652 words of memory out of 5000000
+ 54161 multiletter control sequences out of 15000+600000
  415793 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,9n,117p,1366b,888s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft1.pdf (14 pages, 914645 bytes).
+ 108i,19n,117p,1366b,888s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on draft1.pdf (20 pages, 1100557 bytes).
 PDF statistics:
- 253 PDF objects out of 1000 (max. 8388607)
- 191 compressed objects within 2 object streams
- 62 named destinations out of 1000 (max. 500000)
- 107 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 342 PDF objects out of 1000 (max. 8388607)
+ 267 compressed objects within 3 object streams
+ 97 named destinations out of 1000 (max. 500000)
+ 141 words of extra memory for PDF output out of 10000 (max. 10000000)
 
