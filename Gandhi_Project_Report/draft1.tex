@@ -595,7 +595,7 @@ One may ask if a driven system always has a solution, and if so, whether it has 
 The examples above present systems with trivial sets of solutions. To refine the scenario, we define systems with unique solutions. 
 
 \begin{Definition}
-  A driven system $g$ is said to have the Unique Solution Property if for each input $\overline{u}$ there exists exactly one solution. Alternatively we may formulate the USP as follows: $g$ has the Unique Solution Property if there exists a well-defined map $\Psi:{U}\to{X}$ where $\Psi({\overline{u}})$ denotes the unique solution 
+  A driven system $g$ is said to have the Unique Solution Property(USP) if for each input $\overline{u}$ there exists exactly one solution. Alternatively we may formulate the USP as follows: $g$ has the Unique Solution Property if there exists a well-defined map $\Psi:{U}\to{X}$ where $\Psi({\overline{u}})$ denotes the unique solution 
 \end{Definition}
 
 \emph{(More discussion on USP … - not yet filled in ...)}
@@ -667,7 +667,10 @@ Re-sketching the graph \ref{Scomm_h} above by fixing $v$ in $g$ and replacing $X
 
   Note that $\tilde{g}_v$ maps $(\ldots, u_{-2}, u_{-1})$ to $(\ldots, u_{-2}, u_{-1}, g(v, u_{-1}))$.
   The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: 
-  If $H$ is also injective (and hence bijective), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$ and we refer to $H$ as a \emph{causal embedding}. We formalise this in the following definition.
+  If $H$ is also injective (and hence bijective), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$ and we refer to $H$ as a \emph{causal embedding}. 
+  
+  Before formalising this, we make mention of the concept of the \emph{inverse-limit system} of a system $(U,T)$. In broad sweeps, the inverse-limit system of a dynamical system is a self-map on a subset of an infinite-dimensional space \textbf{(expand what exactly this is?)} where each point in the inverse-limit space corresponds to a backward orbit of the map $T$. In literature, the inverse-limit space is denoted by $\hat{U}_T\subset\overleftarrow{U}$. \textbf{cite from supp.koopman}. 
+  The map $T$, then, induces a self-map $\hat{T}:\widehat{T}: (\ldots,u_{-2},u_{-1}) \mapsto  (\ldots,u_{-2},u_{-1},T(u_{-1}))$ on $\widehat{U}_T$
 
 \begin{Definition}
   A driven system $g$ is said to causally embed the dynamical system $(U,T)$ if 
@@ -704,7 +707,7 @@ When g has the USP, the diagram below illustrates the operation of the the mappi
   (we’ll show this)  [11] eqn.6 
 \end{proof}
 
-We have not as of yet treated the UAP, and establish the necessary result here (without proof - left to literature or later) so as not to break up the completeness of theorem 
+We have not as of yet treated the UAP, and establish the necessary result here (without proof - left to literature. Or later) so as not to break up the completeness of theorem 
 
 It is important to note here that one must be careful to avoid a choice of g which adds additional complexity to the obtained solution.  
 When the causal embedding exists for the driven system $g$, one may map an arbitrary input $u$ onto the solution space $X$ without additional distortion or information-loss.  
@@ -754,13 +757,53 @@ The following theorem establishes the existence of a well-defined map GT describ
 If we let $G_T:Y_T\to{Y_T}$ be a map defined by the relation $(x_{n-1},x_n)\mapsto(x_n,x_{n-1})$, then $G_T$ is well-defined (and this results holds even in the absence of $g$ possessing over the USP)  
 \end{Theorem}
 
+We're now getting quite close to where we want to be and our results carry more and more weight. Recall that $g$ is only being given inputs from the orbits of $T$.  
 
-We're not getting quite close to where we want to be and our results carry more and more weight. Recall that $g$ is only being given inputs from the orbits of $T$.  
+\begin{Definition}
+  The inverse-limit space $\widehat{U}_T$, a subspace of $\overleftarrow{U}$, is defined by $$\widehat{U}_T:=\{(\ldots, u_{-2}, u_{-1}):T(u_n)=u_{n+1}\}$$ This space is well-defined since $T:U\to{U}$ is surjective by assumption. \textbf{Expand why}
+\end{Definition}
 
 \begin{Theorem}
-  Graph 1 is exactly the inverse-limit system $(\hat{U}, \hat{T})$.    
+  Graph \ref{Scomm_h} is exactly the inverse-limit system $(\hat{U}, \hat{T})$.    
 \end{Theorem}
 
+
+Note that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ to an element in $X\times{X}$.
+ 
+We now have the following (compare with \ref{SCausal_H} above):
+
+\emph{graph here causes issues currently}
+\begin{center}
+%    \[ 
+      \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+      \everypsbox{\scriptstyle}
+      \begin{psmatrix}
+      \widehat{U}_T  && \widehat{U}_T \\
+      Y_T && Y_T \\
+      %%%
+     %  \ncline{1,1}{1,2}^{\widehat{T}} \ncline{1,1}{2,1} <{h}
+     %  \ncline{1,2}{2,2} > {H_2}
+     %  \ncline{2,1}{2,2}^{G_T}
+      \end{psmatrix}
+     % \]
+    \end{center}
+ 
+\textbf{Show that $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$. }
+
+\textbf{Summarising the discussing thus far:}
+It is easy to lose onself in the symbols, so we take a moment to review our progress up until this point.
+
+\vspace{-8mm}
+\begin{enumerate}
+\item We are interested in a dynamical system $(U,T)$ with unknown dynamics for whichever reason.
+\item To determine information about this system $(U,T)$, we shift our focus by rather aiming to determining the dynamics of the inverse-limit system $(\widehat{U}, \widehat{T})$ which, given certain assumptions, we can guarantee to be at least semi-conjugate to $(U,T)$.
+\item If the driven system $g$ (and $\{u_n\}$ in $U$  is an orbit of $T$), we have that $G_T$ exists. 
+\item If, furthermore, $g$ may be shown to have the USP, we showed that $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$.
+\item If $T$ is also (and at this stage this is very much our hope) a homeomorphism, then $(Y_T, G_T)$ topologically conjugate to $(\widehat{U}, \widehat{T})$ in which $(U,T)$ has been embedded! 
+ 
+One can therefore learn the single-delay lag dynamics of the driven system states via $G_T$ with enough data thanks to the USP. This enables us to do at least 2 things: 1) Forecast future values of $x_n$ via iterates of $G_T$ (as $G_T$ can be determined. 2) Forecast future values of $u_n$. 
+
+\end{enumerate}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
