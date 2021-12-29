@@ -1,0 +1,556 @@
+%\documentclass[12 pt]{article}
+
+\documentclass[a4paper,12pt,twoside]{book}
+\pagestyle{headings}
+\usepackage[utf8]{inputenc}
+\usepackage{filecontents}
+\usepackage[many]{tcolorbox}
+\usepackage{graphicx}
+\usepackage{harpoon}
+%\usepackage{apacite} 
+\usepackage{xcolor}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mdframed}
+%\usepackage[authoryear]{natbib}
+\usepackage{hyperref, url}
+\usepackage[show]{ed}
+\usepackage{subfigure}
+\usepackage[ntheorem]{empheq} 
+\usepackage{amsthm, amssymb, amsfonts, latexsym}
+%\usepackage{pst-all}
+
+\usepackage{enumitem}
+
+\setlength{\parskip}{1.7em}
+\setlength{\parindent}{0em}
+
+
+%\setlength{\baselineskip}{20pt}
+
+\setlength{\textwidth}{429.75499pt}
+\setlength{\textheight}{643.20255pt}
+\setlength{\oddsidemargin}{5 mm}
+\setlength{\evensidemargin}{5 mm}
+\setlength{\topmargin}{0 mm}
+\setlength{\headsep}{0 mm}
+\setlength{\headheight}{0 mm}
+
+
+\usepackage{pst-node}
+
+\newcommand{\citealtt}[1]{\citeauthor{#1},\citeyear{#1}}
+\newcommand{\myycite}[1]{\citep{#1}}
+
+\mathchardef\mhyphen="2D
+
+%\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
+
+
+\usepackage{pst-node,graphicx,pst-blur}
+%\uspackage{auto-pst-pdf}
+%\usepackage{tikz-cd} 
+
+
+
+\makeatletter
+\DeclareRobustCommand{\cev}[1]{%
+  \mathpalette\do@cev{#1}%
+}
+\newcommand{\do@cev}[2]{%
+  \fix@cev{#1}{+}%
+  \reflectbox{$\m@th#1\vec{\reflectbox{$\fix@cev{#1}{-}\m@th#1#2\fix@cev{#1}{+}$}}$}%
+  \fix@cev{#1}{-}%
+}
+\newcommand{\fix@cev}[2]{%
+  \ifx#1\displaystyle
+    \mkern#20mu
+  \else
+    \ifx#1\textstyle
+      \mkern#20mu
+    \else
+      \ifx#1\scriptstyle
+        \mkern#26mu
+      \else
+        \mkern#26mu
+      \fi
+    \fi
+  \fi
+}
+
+\makeatother
+
+\newcommand{\xcm}{\epsfxsize=3.1cm}
+\newcommand{\fig}[1]{\epsfbox}
+% \newcommand{\bp}{\begin{minipage}{3.1cm}}
+% \newcommand{\ep}{\end{minipage}}
+
+
+
+\newtheorem{Definition}{Definition}[]
+%\newmdtheoremenv{Theorem}{Theorem}[]
+\newtheorem{Theorem}{Theorem}[]
+\newtheorem{Lemma}{Lemma}[]
+\newtheorem{Proposition}{Proposition}[]
+\newtheorem{Corollary}{Corollary}[]
+\newtheorem{Remark}{Remark}[]
+\newtheorem{Example}{Example}[]
+
+
+%Shortcut symbols
+\newcommand{\Ftheta}{\ensuremath{F_\theta}}
+
+
+\makeatletter 
+\renewcommand{\thefigure}{\@arabic\c@figure}
+\makeatother
+\usepackage{xr}
+
+
+%%%% PNAS GRAPHICS SETUP- FROM THE PNAS STYLE LATEX FILE
+\RequirePackage{graphicx,xcolor}
+\RequirePackage{colortbl}
+\RequirePackage{booktabs}
+\RequirePackage{algorithm}
+\RequirePackage[noend]{algpseudocode}
+\RequirePackage{changepage}
+\RequirePackage[twoside,%
+				letterpaper,includeheadfoot,%
+				layoutsize={8.125in,10.875in},%
+                layouthoffset=0.1875in,%
+                layoutvoffset=0.0625in,%
+                left=38.5pt,%
+                right=43pt,%
+                top=43pt,% 10pt provided by headsep
+                bottom=32pt,%
+                headheight=0pt,% No Header
+                headsep=10pt,%
+                footskip=25pt,
+                marginparwidth=38pt]{geometry}
+\RequirePackage[labelfont={bf,sf},%
+                labelsep=period,%
+                figurename=Fig. ]{caption}
+\setlength{\columnsep}{13.5pt} % Distance between the two columns of text
+\setlength{\parindent}{12pt} % Paragraph indent
+
+%% Figure caption style
+\DeclareCaptionFormat{pnasformat}{\normalfont\sffamily\fontsize{7}{9}\selectfont#1#2#3}
+\captionsetup*{format=pnasformat}
+
+%%% GREYBOX AROUND FIG
+\definecolor{lightgray}{gray}{0.95}
+\newcommand\greybox[1]{%
+  \vskip\baselineskip%
+  \par\noindent\colorbox{lightgray}{%
+    \begin{minipage}{\textwidth}#1\end{minipage}%
+  }%
+  \vskip\baselineskip%
+}
+
+\newtcolorbox{paperbox}[1][]{
+    enhanced,
+    colback=white,
+    boxrule=0pt,
+    boxsep=0pt,
+    arc=0mm,
+    width=0.8\linewidth,
+    fuzzy shadow={0mm}{-4pt}{-4pt}{1mm}{black!30!white},
+    #1
+}
+
+
+%\externaldocument{Supp_Koopman-0808}
+\begin{document}
+
+
+
+\title{Project Thesis/Report}
+
+
+
+\author{} 
+\date{}
+\date{}
+\maketitle
+
+\tableofcontents
+
+\chapter{Introduction}
+
+Experimenting on biological, physical, and artificial systems in order to generate a more informative dynamical model is a well-established practice in modern science. Traditional methods for modelling physical systems are based on laws of physics that are based either on empirical relationships or on intuition. For systems that evolve with time, physical laws yield mathematical equations that govern how the quantities evolve with time. However our world around is, for the most part, much more complex than that which can be distilled into elegant equations. We do not fully understand many of the more complex systems, nor do they even provide us with a good physical intuition of the underlying principles governing the dynamics. To complicate this - the underlying systems we observe often display sensitive dependence on initial conditions; despite having highly similar initial conditions, differing orbits diverge quickly and to such an extent that it becomes seemingly impossible to retrace their steps back to the original conditions. Even the presence of usually 'negligible' computational noise or measurement error renders long-term point-wise prediction infeasible. 
+There are many difficulties that one encounters while modelling such systems:
+\vspace{-8mm}
+\begin{enumerate}[noitemsep, label=\roman*.]
+  \item One may not have access to the complete states of the systems
+  \item The actual system may be described by functions that behave wildly in the sense their graphs have a wild oscillatory behaviour, i.e., they have a large functional complexity.    
+\end{enumerate}
+
+
+Models derived primarily from data can be classified into three categories: 
+\vspace{-8mm}
+\begin{enumerate}[noitemsep, label=\roman*.]
+  \item  Interpretable models (i.e., they establish relationships between internal physical mechanisms), 
+  \item Partially interpretable models capturing some modes of the dynamics, 
+  \item Non-Interpretable models, defined as such mainly due to the fact that they are defined on a different phase space that is usually high-dimensional. 
+\end{enumerate}
+
+Examples in the literature attempting to forecast data from such systems have tried a number of different approaches with differing degrees of success. 
+When we have complete access to states of the system, an ordinary differential equation can be obtained from data (Citations to Sindy and \cite{small2002modeling,xu2006modeling}) wherein one could approximate the vector field by a library of functions to obtain interpretable models. 
+
+
+Recent partially interpretable models available in the literature have been based on the Koopman operator (e.g.,\cite{koopman1932dynamical,budivsic2012applied}) to  employ observables mapping the data onto a higher-dimensional space. This then makes the dynamics in the higher-dimensional space more amenable for approximation by a linear transformation. Such methods, obviously, do not guarantee an exact reconstructions for nonlinear models, and in practice provide poor long-term consistency for a large class of systems. (Add citation)
+
+
+
+
+
+
+The non-interpretable models include the delay embedding and the machine learning algorithms. One could learn a system conjugate to the underlying system by applying the Takens delay embedding \cite{takens1981detecting} when one has ``good" observations from the system; this learnt system could then be used for forecast the observed data.  Takens delay embedding theorem \cite{takens1981detecting} and its various generalisations (e.g., \cite{sauer1991embedology, stark1999delay, gutman2018embedding, gutman2018embedding}) establishes the learnability of a system constructed by concatenating sufficiently large previous time-series observations of a dynamical system into a vector (called delay coordinates). This then establishes the existence of a map on the space of delay coordinates equivalent (or topologically conjugate) to the underlying map from which the observed time-series was first obtained. Although topological conjugacy guarantees an alternate representation of the underlying system, the quality of this representation still depends on numerous parameters, making the comprehension of the dynamics rather unreliable (e.g., \cite{principe1992prediction}). One reason for this fragility is that the embedded attractor in the reconstruction space not always an attractor of the map that is learnt in the reconstruction space, despite  unquestionably being an invariant set. When the embedded object is not \textbf{(definitely/always?)} an attractor (as explained in Chapter 3) it can cause predictions to fail.
+
+
+
+
+Practically, the application of Takens embedding involves learning a map through some technique and consequently one wishes that these would have low functional complexity\cite{manjunath2021universal}, i.e., functions with fewer oscillatory graphs. Pure machine learning methodology that processes temporal information (like the echo state networks (Citations to echo state networks)) by mapping data onto a higher dimensional space for further processing. Although they perform  well on forecasting some dynamical systems, they fail completely on others (Citations here) as there is often no guarantee that the right function was learnt during training.
+
+This thesis deals with the implementation and analysis of non-interpretable models that can guarantee \textbf{exact/accurate} reconstruction. The project work concerns the study and implementation of a method (Citation to paper with Adriaan) that incorporates learning a function by mapping the data on to a higher dimensional space using what is called a driven dynamical system (See Chapter 4). With a clear understanding of how the data is mapped onto the higher dimensional space, the method then permits the learning of a dynamical system topologically conjugate to that of the underlying system. Instead of linear regression as in the training of echo state networks, deep learning methods are employed to learn the correct function. With slight modifications to the implementation in the paper (with Adriaan), we show that one can construct accurate non-interpretable models with the ability to reconstruct attractors from more hard-to-forecast systems like the double pendulum. (The forecasting of the time-series from a double pendulum has not been reported before.) Moreover, we also demonstrate that long-term statistical consistency is preserved.
+
+By solidifying the mathematical underpinnings of our theory, we hope to guarantee the ability to construct models with predictive power ranging from molecular biology to neuroscience. in the near future. (We can modify this sentence when the report is completed.)
+
+The report is organised as follows: 
+\newline In \ednote{M: Please label Sections as Chapters as this is apt for a thesis; for the paper that we will write soon, it would be in Sections. Please note the labelling in the tex file, and you may like it to be cross references like this}Chapter~\ref{Chapter_Ds}, we recall the definition of a discrete-time dynamical system, how a discrete-system arises from a flow of an ODE and then proceed to define the inverse limit space and topological conjugacy of autonomous systems. 
+\newline In Section 3, we introduce the problem of forecasting dynamical systems, state the Takens delay embedding theorem and discuss various issues faced while forecasting. 
+\newline In Section 4, a driven dynamical system is defined and discuss the properties of a specific class of driven dynamical systems that we make use of in this thesis/report/paper. 
+\newline Finally in Section 5 we show the implementation of these forecasting methods, and conclusions are provided in Section 6.
+
+
+\chapter{Discrete-time Dynamical Systems} \label{Chapter_Ds}
+
+In this chapter, we provide a brief description of what a discrete-time dynamical system is and what it means for it to exhibit chaos. We refer to \cite{devaney2018introduction, de2013elements} for more details. 
+
+At its most elementary level, a dynamical system is just something that evolves deterministically through time. In the context of this thesis, deterministic refers to the fact that a system evolves according to specified rules rather than based on random events. 
+Dynamical systems arise in a variety of situations. A continuous-time dynamical system describes the states for all values of the time. Specifically, if the motion of a pendulum in which the quantities such as the angular position and angular momentum are known at all times, then it is a continuous-time dynamical system. The equations of the dynamical system can take the form of one or more ordinary differential equations that determine the relevant quantities at any future time if we know the initial location and momentum. 
+In ecology, discrete-time dynamical systems are widely used to model population growth. The model in this case is a function calculating the following generation's population given the population of the previous generation. If we know the starting population, we may once again calculate the population at any time in the future. 
+
+Formally, a function $T: U \to U$, where $U$ is some set is  a \emph{discrete-time dynamical system} and its iterates $\{u,Tu,T^2u,\ldots\}$, where $T^n$ denotes the $n$-fold composition of $T$ with itself, describe the evolution of an initial condition $u\in U$ (Note that we drop the brackets and denote $T(u)$ by $Tu$ frequently for simplicity in notation).  
+
+
+
+
+
+Continuous-time dynamical systems modelled using ordinary differential equations can give rise to discrete-time dynamical systems. To see this, consider a differential equation $\dot{x} = f(x)$, $f: \mathbb{R}^n \to \mathbb{R}^n$, $n\in\mathbb{N}$ given to have a unique solution passing through 
+each point $x\in\mathbb{R}^{n}$, the flow of the equation \label{defn_flow} is defined to be a mapping $\varphi: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ that satisfies the following properties \ednote{M: Please change this or revert back to how it was defined earlier. We are describing $\varphi$ and in the first two points, it does not concern $\varphi$}
+\vspace{-8mm}
+\begin{enumerate}[noitemsep, label=\roman*.]
+  \item $x(t)$ is a solution of the differential equation,
+  \item $x(0)=x_0$, and
+  \item $\varphi(x_0,t) = x(t)$.
+\end{enumerate}
+By fixing $t=K \in (0,\infty)$, we can define the \emph{time-$K$ map} as  $T(x):= \varphi(x_0,K)$, and it is easily verified that $T\circ T(x_0) = \varphi(x_0,2K)$. In general the $m^{\mbox{th}}$ iterate of $x_0$ under $T$ would be the value of the solution of the ODE evaluated at time $mK$ with the initial condition $x_0$. 
+Thus ordinary differential equations give rise to a discrete-time dynamical system by sampling the value of $x$ at time intervals $K$ units apart. 
+
+
+A numerical discretization of a differential equation can also give rise to a discrete-time dynamical system. For instance, Euler's method approximates $\dot{x}(t)$ by $(x(t+h)-x(t))/h$; if $h$ is fixed throughout, the solution of a differential equation $\dot{x}=f(x)$ 
+can be approximated at the time instant $t+(m+1)h$ by iterating the equation 
+$$x(t+(m+1)h) = x(t+mh) + h f(x(t+mh)).$$ 
+Adopting more succinct notation by replacing $x(t+mh)$ with $u_m$, we rewrite the above equation as
+$$u_{m+1} = u_m + hf(u_m)$$
+or, in even simpler terms, as the discrete-time dynamical system with map $T(u) = u + hf(u)$, where $T$, $u$ and $f$ are understood to be as above.
+
+
+Of course, discrete-time dynamical systems need not always arise through a differential equation, and once again we may consider the field of ecology where discrete dynamical systems are often directly derived or assumed. 
+There is a school of thought that advocates discrete-time dynamical systems to be more natural for modelling real-world observations than differential equations and we refer the interested reader to \cite{saber2010introduction}. \textbf{too philosphical, or actually good?} \ednote{M: It is good! I have moved this paragraph}
+
+
+\subsection{Invariant Sets}
+
+A core concept in the study of dynamical systems is that of invariance. Given a discrete-time dynamical system $T: U \to U$, a subset $A \subset U$ is said to be an \emph{invariant set} if $T(A) =A$. 
+We also define the \emph{orbit of $T$} to be a sequence $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ obeying the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$. 
+
+
+Two examples of invariant sets include a fixed point where $Tu=u$ for  $u\in U$, and a periodic orbit, i.e., a set of iterates $\{u,Tu, T^2u,\ldots,T^pu\}$, where $T^{p+1}u=u$ for some $p$.  The entire space $U$ could be also be invariant.
+Consider for example the space $U=[0,1]$, where $Tu=4u(1-u)$ and then $U$ is invariant. \emph{(as every $u\in{U}$ can be written as $u = 4x(1-x)$ for some $x\in{U}$)}
+
+We may learn a great deal about the iterates of a dynamical system by considering the types of invariant sets of a discrete-time dynamical system.  For example, if $U=[0,1]$ has map $Tu= u/2$, then the only invariant set is $\{0\}$, and all orbits approach this invariant set as time flows in the forward direction. 
+Indeed, if a some non-zero invariant set (call it $B$) exists, then there is  some $r\in(0,1]\cap{B}$. But $r\notin{T(B)}$ since any orbit with initial value $r$ will be a decreasing sequence. Moreover, every orbit of T will be decreasing and therefore approach the value $0$ as $n\rightarrow\infty$.
+
+One may ask if every orbit approaches an invariant set? In general the answer is no, since for the dynamical system $T: \mathbb{R} \to \mathbb{R}$ defined by $Tu=2u$, any orbit that does not intersect the invariant set $\{0\}$, will not approach any invariant set. 
+
+However,  when the space $U$ is compact, all orbits approach an invariant set. This is since the set of limit points of the orbit can be shown to be invariant \cite{de2013elements}. \ednote{M: I have edited here} So, when $U$ is compact,  the $\omega$-limit set $\omega(u;T)$ of a point $u$ defined to the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$ is nonempty, and $\omega(u;T)$ is invariant. For instance, for the map $Tu=u^2$ defined on $[0,1]$ all orbits lie in the invariant set $\{1\}$ or else would would approach the invariant set $\{0\}$. 
+\ednote{B: not relevant other than being an additional example perhaps? M: Have added another simple example}.
+
+We discuss various properties of invariant sets: Invariant sets can be attracting or repelling depending on how orbits in its vicinity behave. Recall the examples $Tu =u/2$ and $Tu=2u$ defined on $\mathbb{R}$ ($\{0\}$ ``attracts" orbits) or the example, $Tu=u^2$ defined on $[0,1]$ ($\{1\}$ ``repels" orbits). We are interested in attractive invariant sets since they capture the long-term dynamics as time increases, and in particular the invariant sets that are called attractors whose definition we recall next. \begin{Definition} \rm Let $T: U \to U$, where $U$  is a metric space with metric $d$. A compact subset $A \subset U$ is said to be an attractor if it satisfies the three conditions: 
+  \vspace{-8mm}
+  \begin{enumerate}
+	\item $A$ is invariant. 
+	\item $A$ is asymptotically stable, i.e., for every $\epsilon > 0$ and for all $u$ so that $d(u,A) < \epsilon$, we have $d(T^nu,A) \to 0$ as $n\to \infty$. 
+	\item $A$ has Lyapunov stability, i.e., for every $\epsilon > 0$  there exists a $\delta(\epsilon) > 0$ so that $d(u,A) < \delta$ implies $d(T^nu,A) < \epsilon$ for all $n\ge 0$.  
+\end{enumerate}
+\end{Definition} 
+
+Indeed in our previous examples, it can be verified that the system  $Tu=u/2$ defined on  $\mathbb{R}$ and $Tu=u^2$ defined on $[0,1]$  the singleton set $\{0\}$ is an attractor.  For the system,  $Tu=1-|2u-1|$ on $[0,1]$, one may easily verify that the only attractor is the entire space $[0,1]$. This is since between any two points $u< v$ in $[0,1]$, and for any $a,b$ so that $u\le a < b \le v$, we can find an $n$ so that $T^n(a,b)=[0,1]$ (as would be explained later in this chapter). 
+
+\ednote{For let $B$ be an attractor of U. From above, we know that B is itself invariant, is asymptotically stable and has Lyapunov stability. Now suppose there is some attractor $C\subsetneq{U}=B$, so there is a $b\in{U}$ which is not in $C$. ........  M: Have changed the example}
+
+A dynamical system can have several attractors, and may also be contained in another attractor. For the example, $Tu =u^2$ on $[0,1]$, both $\{0\}$ and $[0,1]$ are attractors. It is a known result that for dynamical systems on a compact space there always exists an attractor. 
+
+The dynamics restricted to an invariant set can be complicated. For instance an invariant set could be just a single point or it could have an infinite set.    If the invariant set is infinite then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called  chaotic behaviour, and has been studied in detail over the last fifty years.
+
+% If the dynamics on the attractor are somewhat complicated in the sense that the attractor cannot be decomposed further, and if the attractor is infinite then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called a chaotic behaviour. 
+
+%If the dynamics on an attractor cannot be decomposed further and the attractor is itself also infinite, then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called chaotic behaviour. 
+
+\subsection{Chaos}
+
+\ednote{ should one add paragraphs like these? M: this is a thesis, and not a paper; the instructions sent to the external examiner regarding the thesis evaluation says that the student suggest strongly that it is good to write}
+\newline In the 1960s, a number of mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. The notions of invariance, attractivity and chaos may also bedescribed for continuous systems, and Lorenz's system comprised of a system of differential equations. The narrative of Lorenz's discovery of chaos, as well as the history of other forerunners in this subject, are fascinating. For those who are interested, we highly recommend James Gleick's book Chaos: The Making of a New Science \cite{gleick2008chaos}. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery, and describes the underlying mathematical notions for non-specialists.
+
+There are several intricately different definitions of chaos available in the literature, with each of them indicating some aspect of complexity \ednote{B:  what are we saying here? M: Devaney's definition is not the only one, there are about half a dozen definitions as well} In practice, it is not possible to verify which definition or notion does the underlying dynamical system satisfies when only data is observed from it. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances behind the complexity. Devaney's definition of chaos has three requirements, with the first being the notion  of sensitive dependence on initial conditions. 
+
+\begin{Definition} \rm 
+A dynamical system $T: U \to U$ is said to have sensitive dependence on initial conditions (SDIC) if there exists a $\delta > 0$ such that for every $u \in U$ and in every neighborhood of $u \in U$ there exists a $v\in{U}$ and an integer $N:=N{(u,v)}\in\mathbb{Z}$ such that $d(T^Nu,T^Nv)>\delta$. 	
+\end{Definition}
+
+It is important to acquire a sense of this definition as it can easily be misunderstood. It is common misconception to interpret SDIC as two close points ($u$ and $v$) that eventually become separated by a distance $\delta$ under iteration by $T$. But this is not true. To fully comprehend all the subtleties of the concept, one needs to discuss it more thoroughly by considering each sentence with care and attention, whereafter one may examine how they fit together to convey the concept of sensitive dependence. 
+\ednote{ $\leftarrow$ is this talking too simply perhaps? M: No! it is not so}. 
+
+To this end, we make 3 remarks:
+\vspace{-5mm}
+\begin{enumerate}
+  \item First, the $\delta>0$ in the definition of SDIC is independent of $u$. 
+  \item Second, in every neighborhood of $u$, we may not necessarily find all points $v$ in the neighborhood distinct from $u$ that would separate from the forward iterates of $u$. 
+  \item  Finally, $N$ depends upon $u$ and $v$ chosen, and their iterates may not separate for ever (i.e., for all $n>N$) and we allow their iterates to get arbitrarily close in the future. 
+\end{enumerate}
+
+
+  
+\ednote{M: It is probably best to see a few numerical simulations to understand SDIC. (Please use the logistic map and perhaps the trajectories of the double pendulum data). } 
+
+The second part in Devaney's definition of chaos concerns topological transitivity.
+
+\begin{Definition}
+	A dynamical system $F: U \to U$ is topologically transitive if for any pair of nonempty open sets $E_1$ and $E_2$ there exists a $n\in\mathbb{N}$ such that $T^n(E_1) \cap E_2 \not= \emptyset$. 
+\end{Definition}
+
+Topologically transitivity implies that the iterates of an open set of initial conditions gets mixed up with other open sets. On a compact metric space, it can be shown that topological transitivity also implies the existence of a point whose forward iterates are dense \cite{de2013elements}; or in other words, the orbit going through this point will be dense in the compact metric space. 
+In fact, it is topologically more likely that the choice of an arbitrary point will be one  whose iterates are almost dense. 
+% I inserted a definition here: it makes more sense to me. 
+\begin{Definition} \rm
+A subset of a topological space $U$ is said to be a meager set if it cab be written as a countable union of sets of with empty interior. The complement of the a meager set is set to be a residual set.
+\end{Definition}
+
+To be more precise (see \cite{de2013elements}), for a discrete-time dynamical system on a compact space, the set of points with dense iterates are residual, and they are typical or likely to be observed in practice. In this thesis, we assume that when data is observed from a topologically transitive system, we assume that the data arises from a dense orbit. 
+
+
+We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018introduction}.
+\begin{Definition} \rm
+	A dynamical system $T: U \to U$ is said to exhibit chaos in the sense of Devaney if it satisfies the three properties:
+	\vspace{-5mm}
+  \begin{enumerate}
+		\item $T$ has SDIC.
+		\item $T$ is topologically transitive.
+		\item The set of periodic points of $T$ are dense in $U$. 
+	\end{enumerate}
+\end{Definition}
+
+
+\begin{figure}[ht]
+  \centering
+  \begin{minipage}{.5\textwidth}
+    \centering
+\includegraphics[scale=0.18]{chaos1.png}
+    \captionof{figure}{Starting to diverge}
+    \label{fig:chaos1}
+  \end{minipage}%
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[scale=0.18]{chaos2.png}
+    \captionof{figure}{After more time-steps}
+    \label{fig:chaos2}
+  \end{minipage}
+  \end{figure}
+
+\ednote{M: Please put this picture in perspective and refer after the definition of SDIC. You can also say that you pick two positions that are slightly different but with the same angular velocity. Also in the text, say that you describe the DP in a later chapter.}
+\ednote{M: I realize that need figures in the eps format to have the commutativity diagrams compile as well. }
+
+
+\begin{Example} \rm
+  The standard tent map $Tu=1-|2u-1|$ defined on $[0,1]$ is a well known example of a dynamical system satisfying these three properties. 
+\end{Example}
+ 
+  \begin{figure}[ht]
+\includegraphics[scale=0.6]{T2.png}
+    \centering
+    \label{fig:T2tentmap}
+  \end{figure}
+
+Let us now consider why this map in the above example exhibits chaos in the sense of Devaneys. The graph of the map $T$ is piecewise linear with two straight lines, one connecting the points $(0,0)$ and $(1/2,1)$ and the other connecting $(1/2,1)$ with $(1,0)$. They form a so-called tent with base centered at $u=1/2$. The graph of the map $T^2$ comprises two symmetric tents with their base centered at $1/4$ and $3/4$.
+  % We now reason as why this map exhibits chaos in the sense of Devaney.   
+  
+  In general, the graph of  $T^k$ contains $2^{k-1}$ tents.
+Given any point $u$ and an open neighborhood $W \subset[0,1]$ of $u$, we can find $k\in\mathbb{Z}$ large enough so that $T^k(W) = [0,1]$ because we can accommodate a tent whose base is contained in $W$. \ednote{B: This last phrase doesn't make sense to me. M: The number of tents grow with $k$ and hence this is obvious; I explained in one of our meetings. Does it make sense?} This implies the existence of two points $w_1$ and $w_2$ in $W$ so that $d(T^kw_1,T^kw_2)= 1$, and by the triangle inequality  at least one of the inequalities $d(T^ku,T^kw_1)> \delta$ or $d(T^ku,T^kw_2)> \delta$ hold when $\delta\in (0,1/2)$.  So $T$ has sensitive dependence on initial conditions.  \ednote{M: It is advised not to introduced newlines in a thesis. For the presentation, yes}
+  
+  Next, let $W_1$ and $W_2$ be two nonempty open sets. Given any open set $W_1$, we can find a $k\in\mathbb{N}$ large enough so that $T^k(W_1) = [0,1]$ because we can accommodate a tent with base contained in $W$. So $T^k(W_1) \cap W_2 \not=\emptyset$, and thus $T$ has topological transitivity.
+  
+  Finally, for every open interval $(a,b)$, the graph of $T^k$ intersects the graph of the identity map on $[0,1]$. This follows from the fact established above that there exists a $k\in\mathbb{N}$ such that $T^k(a,b) = [0,1]$.If the intersection point has coordinates of the form $(p,p)$, the point $p$ is then a fixed point of $T^k$ and therefore also a periodic point of $T$. Since we have found a periodic point in the interval $W$,  the set of periodic points are dense in $T$.
+  \ednote{Expand further on reason for density. M: fixed point of $T^k$ is a periodic point, and we have found in an arbitrary interval.}
+
+
+
+
+
+
+\section{Conjugacy}
+
+We now turn our attention to the subject of conjugacy that describes when two dynamical systems are equivalent dynamically. 
+
+To show topological similarity or sameness between two metric or topological spaces, one needs to establish a homeomorphism between the two spaces. 
+However, in the study of dynamical systems defined on two spaces, establishing a homeomorphism does not indicate that the systems are (physically) related in any way.  For instance, the maps $Tu=u^2$ and $Tu=1-|2u-1|$ defined on $[0,1]$ have totally different behaviour. \ednote{"related" - in what sense am I saying it here? Physically? M: Dynamically}  To find systems that are dynamically similar, one rather needs to establish a kind of dynamical equivalence which we illustrate in a simple commutativity diagram below.
+% Giving errors
+\begin{equation}  \label{eqn_conjugacy}
+%    \[ 
+    \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+U & U\\%
+V & V.
+ %%%
+%  \ncline{1,1}{1,2}^{T} 
+%  \ncline{1,1}{2,1} <{\phi}
+%   \ncline{2,1}{2,2}^{S}
+%  \ncline{1,2}{2,2} > {\phi}
+ \end{psmatrix}
+% \]
+\end{equation} 
+
+%Composite functions
+To understand the diagram we note that if we travel ``right and then down," the diagram instructs us to use $T$ (top arrow right) first, followed by $\phi$. (right arrow downwards). Consequently the pathway amounts to finding $\phi(T(u))$. If we proceed "down and then right", the diagram instructs us to apply $\phi$ (left arrow downwards) first, and then apply $S$ (bottom arrow right). This then amounts to finding  $S(\phi(u))$. When the relationships in this diagram hold, we say $\phi(T(u))= S(\phi(u))$, and we formally denote it as $\phi \circ T=S\circ \phi$.
+
+\begin{Definition} \rm 
+  Consider the dynamical systems $T:U\to{U}$, $S:V\to{V}$ and suppose the relationship $\phi \circ T=S\circ \phi$ holds. If $\phi$ is a homeomorphism, then S is said to be conjugate to T and $\phi$ is called a conugacy. If we relax the criterion on $\phi$ and merely require $\phi$ to be continuous and surjective, $\phi$ is then a semi-conjugacy between $T$ and $S$; S is said to be semi-conjugate to T. 
+\end{Definition}
+
+\ednote{M: Saying $\phi$ is then a semi-conjugacy between $T$ and $S$ could be ambiguous as it does not specify which system is on the top in the commutativity. So please edit accodingly}
+
+
+When $S$ is conjugate to $T$, the dynamics of the two systems are in some way ''dynamically equivalent'' and specifically they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi$ a many-to-one mapping, the dynamics on $V$ provides a coarse-grained description of the dynamics on $U$ \cite{de2013elements}. When $S$ is semi-conjugate to $T$, it is also common to call $S$ a factor of $T$, or conversely that $T$ is an extension of $S$. In essence, an extension (e.g., \cite{de2013elements}) is a larger system capturing all of the important dynamics of its factor.
+
+It is a very hard or nearly an impossible task to establish the existence of a conjugacy or a semi-conjugacy $\phi$ between two systems \cite{devaney2018introduction}. However, one can verify that a function $\phi$ satisfies the commutativity diagram \ref{eqn_conjugacy}.  For example $\phi(x)=\sin(\pi x/2)^2$ is a conjugacy between two systems $Tu=1-|2u-1|$ and $Sv=4v(1-v)$  defined on $U=[0,1]$.  
+
+In establishing that two systems are conjugate (semi-conjugate) to one another, we have also shown that one may choose to work with one systems as opposed to the second and still be guaranteed to obtain information on the latter. This is incredibly useful while forecasting the future evolution of dynamical systems. 
+
+\chapter{The Learning Problem}
+
+\emph{Introduction...}
+
+Consider a relatively simple learning problem: 
+
+Given $(u_0, u_1, \ldots, u_m)$ for $m\in\mathbb{Z}$, a finite segment of an orbit of the map $T$ where $T$ is defined by the update equation $u_{n+1} = Tu_n$, forecast the values $u_{m+1}, u_{m+1}$ where the map $T$ is unknown, given that $u_m$. 
+
+A practical example of this would be - given the sequential coordinates of an object moving in space, predict the future positions of that object. However we are very rarely, if at all, presented with a problem where the entire state information is available to us in the form $u_n$ at some time-step $n\in\mathbb{N}$. Consider then a more involved learning problem:
+
+Suppose we only have the observations $\theta(u_0), \theta(u_1), \ldots, \theta(u_m)$ of the true system states $u$ in an unknown dynamical system $(U,T)$ and we wish to predict the values $\theta(u_{m+1}), \theta(u_{m+2})$. 
+
+Here we consider a continuous-time dynamical system $(U,T)$ with true state $u$ in the input space $U$ and then a measured signal $\theta$ (where $\theta(u_n)=\theta(u(t_n))$ for $n\in\mathbb{N}$. The sequence $\{x_n\}$ represents a scalar time-series and intuitively $\theta$ may be thought to represent a probe inserted into a larger system and itself measuring/extracting only a small part of the greater system state at time $t=n$. Consider for example a thermometer erected to measure the ambient temperature in a local village. This measurement function, the thermometer is capturing a single aspect, the temperature, of a grander dynamical system entailing the present weather of the surrounding area, but even more than that, it is measuring an incredibly small part of the global weather system. 
+
+From here we construct a multidimensional observable using the method of delay-coordinate stacking. 
+\textbf{move to later} Given the sequence $\{\theta_1, \theta_2, \ldots\}$, we define the variable \newline $y_n:=[\theta_n, \theta_{n-\tau}, \ldots, \theta_{n-(2d-2)\tau}, \theta_{n-(2d-1)\tau}]^{T}\in\mathbb{R}_{d}\times{1}$ where $\tau$ represents the lag and $d$ the dimension of the attractor. (We shall return to these terms shortly and their discussion may be put on hold for the time being).
+
+However, the true state $u$ of a system is seldom, if ever fully known. In almost all cases we can merely insert probes into a system to obtain partial information by measurements taken. Moreover, the process of taking a measurement itself introduces 2 additional difficulties:
+\vspace{-8mm}
+\begin{enumerate}[noitemsep, label=\roman*.]
+  \item A series of measurements over a specific time-interval is inherently a discretisation
+  procedure of the underlying continuous-time dynamical system. (Hence why we restricted our attention to discrete-time systems in the preceding section)
+  \item A probe will never be fully accurate and so the act of measurement introduces a certain
+measure of numerical noise/inaccuracy.
+\end{enumerate}
+
+More formally we may say that in the process of measuring a system, we obtain a 1-dimensional time-series $\{\theta(u(t))\}$, where $\theta:\mathbb{R}^n\to\mathbb{R}$ is a smooth observation or measurement function. This series represents a possibly noise-augmented dataset containing information of certain parts of the original system. 
+
+We may then ask ourselves the question: Is it in any way possible to retain information about the system state $x(t)$ in this temporal data-series $\theta(x(t))$? The answer is easily yes if T is known. However, neither this, nor even the exact function $\theta$ is available. 
+
+\subsection{Taken Embedding Theorem}
+
+We define first the concepts of homeomorphism and embedding:
+\begin{Definition}
+  A homeomorphism is a function $f:Z\rightarrow Y$ between two topological spaces $Z$ and $Y$ that is continuous, bijective and has a continuous inverse. 
+\end{Definition}
+
+\begin{Definition}
+  Consider a homeomorphism $f:Z\rightarrow Y$ for $Y\in X$. $Z$ is said to be embedded in $X$ by $f$.
+\end{Definition}
+
+Takens Theorem states a result that establishes a relationship between the observed and underlying dynamical systems by showing that the concetantion of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems. \textbf{Check wording} We formultate the theorem from \cite{takens1981detecting}.  
+
+\begin{Theorem} 
+	[\bf Takens Embedding Theorem (adopted from \cite{takens1981detecting}] \label{Thm_Takens}
+            Let $W$ be a compact manifold of dimension $m$, and $d\ge m$ so that $2d\in\mathbb{Z}$. It is a 
+            generic property for the pair $(T, \theta)$,  where $T:W \to W$ is
+            a smooth diffeomorphism, and $\theta:W \to \mathbb{R}$ a smooth function, that the map $\Phi_{2d,\theta}:W \to \mathbb{R}^{2d+1}$ defined on $W$ by 
+            $\Phi_{2d,\theta}(w) := (\theta(T^{-2d}w)\ldots,\theta(T^{-1}w),\theta(w))$
+            is a diffeomorphic embedding; by `smooth' we mean at least $C^2$. Consequently, there exists a map $\Ftheta: \Phi_{2d,\theta}(W) \to \Phi_{2d,\theta}(W)$ defined by 
+            \begin{equation}  \label{eqn_takens}
+              \Ftheta: (\theta(T^{-2d}w),\ldots,\theta(T^{-1}w),\theta(w)) \mapsto  (\theta(T^{-2d+1}w),\ldots,\theta(T^{-1}w),\theta(Tw))
+            \end{equation}
+           so that $(W,T)$ is topologically conjugate to 
+            $(\Phi_{2d,\theta}(W), \Ftheta)$. 
+\end{Theorem} 
+
+(In our scenario, the input space $U$ is considered the attractor.)
+
+Some explanation is beneficial. Takens establishes a delay-coordinate map $\Ftheta$ defined in \ref{eqn_takens} for $T$ the flow (\ref{defn_flow}) defined by the update equation  $Tu_n=u_{n+1}$ and $theta$ our measurement function. When confining a dynamical system to the manifold U (in which the underlying system is contained), Takens showed that if certain smoothness conditions are satisfied on $T$ and $\theta$, then the delay-coordinate map $\Ftheta$ embeds $U$ in the reconstruction space $R^{2d+1}$ \textbf{we haven't used the term reconstruction space yet, so this is falling out of the blue}, for almost every choice of measurement function $\theta$, the observable. By almost every choice here, we mean that we exclude some observations which do not give any information. To see a more precise discussion, see \textbf{xxx} for we do not concern ourselves with a further elaboration on this thesis/report.
+
+Alternatively we may also make the statement: Takens' Embedding Theorem guarantees that almost all dynamical systems can be reconstructed from just one noiseless observation sequence \textbf{this isn't obvious from the theorem's formulation, is it?} i.e. for a great number of possible observation functions $\theta$, $\Ftheta$ preserves the topology of U. \textbf{'preserving the topology' is not something we've touched on before. Perhaps I should add to previous discussion so logic flows seamlessly here}.
+
+\begin{figure}[ht]
+  \includegraphics[scale=0.3]{takensmap.png}
+  \centering
+  \label{fig:takensmap}
+\end{figure}
+
+Once again we pause and consider the graph to consolidate our understanding of the conjugacy (\textbf{are we being too simplistic?}). If we are in state $u$ and then evolve towards state $Tu$ before embedding into $\mathbb{R}^{2m-1}$, then this is equivalent to first embedding into $\mathbb{R}^{2m-1}$ and then evolving through the map $\Ftheta$, i.e. $\Phi_{2d,\theta}\circ{F}_{\theta} = T\circ\Phi_{2d,\theta}$. The map $F_theta$ is a homeomorphism as well. 
+
+Thus information about U can be retained in the time series' (or observation's) output. By preserving the topology on the manifold $U$ in the reconstruction space $X$ (\textbf{not discussed before}), we are also guaranteed the preservation of topological invariants of the manifold, of which dimensionality is one such invariant. (We note here that dimensionality will again be considered later in this project/report).
+
+\subsection{Obstacles to Takens}
+Despite the fact that the Takens' Embedding Theorem is a powerful result and provides compelling reason to believe that it is possible to accurately ()\emph{right word?}) reconstruct the underlying space, it does present some serious limitations:
+\vspace{-5mm}
+\begin{enumerate}
+\item Even if we can indeed find \Ftheta{}  our \emph{approximation} of \Ftheta{}  is a map from a larger set $\mathbb{R}^{2m+1}$ containing the embedded attractor. There are, however, no theoretical guarantees that \Ftheta{}  will keep this attractor $U$  the same.(\textbf{We haven't properly said that U is an attractor, or have we.})
+\item Takens only holds for noiseless observations. Suppose the case where \Ftheta{} was learnt, but due to measurement error or other noise we obtained the set $V$ and not the original attractor. Due to the chaotic nature of the underlying system (i.e. the fact that it has SIDC), this new system $V$ will then move in a different direction. This problem will later be eliminated by some properties of a new function $g$, namely the Unique Solution Property. 
+\item It is an unfortunate case that the functional complexity (i.e., the relative number of oscillatory graphs \cite{manjunath2021universal}) as well as stability of the embedding \Ftheta{} (\textbf{cite?})depends on the choice of observable $\theta$. This means that we may even learn a map that complicates our learning task and in so doing adds obstacles to the road to learning a conjugate map with predictive power. (\textbf{Am I talking nonsense here?})
+\end{enumerate}
+
+Another limitation owes itself to the requirement that T be a surjective map. This is not always the case in practical examples and we may consider the case of a damped double pendulum. 
+
+\textbf{Continue writing here}
+
+
+\begin{figure}[ht]
+  \includegraphics[scale=0.3]{learningfailure.png}
+  \centering
+  \label{fig:supp_learning_failure}
+  \caption{Illustration of a system having failed to learn the map}
+\end{figure}
+
+
+\textbf{Explanation continued here}
+Traalala lorem ipsum et dolore faria maria didi klapogaani koro di tolore mi strem srem krem lem lemmy bemmy bem te dem dem 
+
+\begin{figure}[h]
+  \includegraphics[scale=0.4]{temporary_damp_fig.png}
+  \centering
+  \label{fig:damped_pendulum}
+\caption{A damped pendulum}
+\end{figure}
+
+\textbf{Continue explaining here}
+
+\vspace{-1cm}
+\bibliographystyle{pnas-new}
+\bibliography{pnas}
+
+
+
+
+\end{document}
