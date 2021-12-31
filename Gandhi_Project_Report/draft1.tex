@@ -442,7 +442,7 @@
 
 % We may then ask ourselves the question: Is it in any way possible to retain information about the system state $x(t)$ in this temporal data-series $\theta(x(t))$? The answer is easily yes if T is known. However, neither this, nor even the exact function $\theta$ is available. 
 
-% \subsection{Taken Embedding Theorem}
+\subsection{Taken Embedding Theorem} \label{subs_TakensEmbedding}
 
 % We define first the concepts of homeomorphism and embedding:
 % \begin{Definition}
@@ -580,7 +580,7 @@ It is important to emphasise that a sequence satisfying the update equation abov
 
 A system may also have multiple solutions as is evidenced in the example below.
 
-\begin{Example} \label{Ex_exp}
+\begin{Example}\label{Ex_exp}
  Consider the driven system $g(u_n,x_n)=x^n$ for $X=[0,1]$, $U=\mathbb{R}$. The system has an uncountable number of solutions, as there exists a solution for every $x\in{X}$ which also passes through the point $x$ and $lim_{n\to\infty}x_n=0$, $lim_{n\to{-}\infty}x_n=1$. 
  The proof is deferred to immediately after the next paragraph.
  
@@ -589,7 +589,7 @@ A system may also have multiple solutions as is evidenced in the example below.
 As the solutions to a driven system are often considered, we next identify a subspace $X_U$ of $X$ that contains all possible solutions. To realize such a subspace of a driven system $g$, the concept of a reachable set is defined.
 
 \begin{Definition}
-  [\bf Reachable Set] \label{Dfn_ReachableSet}
+  [\bf Reachable Set]\label{Dfn_ReachableSet}
 The reachable set of a driven system $g$ is exactly the union of all the elements of all the solutions, i.e., 
 \[X_U :=\Big \{x \in X:  x = x_k \mbox{ where  $\{x_n\}$  is a solution for some  $\bar{u}$} \Big \}.\]
 The set of all reachable states at a specific time $n$ for input $\overline{u}$ is denoted by $X_n(\overline{u})$
@@ -599,12 +599,12 @@ We note that $x\in{X_n(\overline{u})}$ if and only $g$ has a solution $\{x_k\}$ 
 This will lead to a result established later, but which is worth taking note of now: \textit{$g$ being a topological contraction is equivalent to the existence of a unique entire solution.} To this end we define the notion of a topological contraction.
 
 \begin{Definition}
-  [\bf Topological Contraction] \label{Dfn_TopContr}
+  [\bf Topological Contraction]\label{Dfn_TopContr}
   A function $g:U\times{X}\to{X}$ is a topological contraction if for all $n\in\mathbb{Z}$ and all $\overline{u}\subseteq{U}$, $X_n(\overline{u})$ is a singleton subset of X.  
 \end{Definition}
 
 \begin{proof}
-  [\bf Proof of Example \ref{Ex_exp}] 
+  [\bf Proof of Example\ref{Ex_exp}] 
   To see this, we show that for every input $\overline{u}=\{u_n\}_{n\in\mathbb{Z}}$, $g(u_n,\cdot)$ is a contraction map on $X$ for every $k\in\mathbb{Z}$. 
   Indeed $g(u_n,x_n)=x^n$ depends only on the state at time $n$ and so for each input $\overline{u}$, $X_n(\overline{u})=\{x^n\}$ is a singleton subset.
   We then easily conclude that $\{x_n\}\equiv0$ is the only solution. 
@@ -613,8 +613,7 @@ This will lead to a result established later, but which is worth taking note of 
 Thus far it has been demonstrated that a system may have one or more solutions; one may ask if a driven system always has a solution and, if so, whether it satisfies certain properties such as uniqueness. 
 Should the driven system be compact, existence follows immediately as shown in the following result.
 
-%%%%%%%%%%%%%%%%%%%%%ISSUE HERE - fix before sending
-\begin{Theorem} \label{Thm_CompactExistence}
+\begin{Theorem}\label{Thm_CompactExistence}
   If $X$ is compact then for each input $\overline{u}$, there exists at least one solution to the driven system $g(\ldotp, x)$
 \end{Theorem}
 \begin{proof}
@@ -624,8 +623,10 @@ Should the driven system be compact, existence follows immediately as shown in t
 
 We may easily construct many systems with trivial solution-sets, such as $g(u,x)=x$ which has only the constant solution $x$ and so for $U=[-1,1]$, the system would have no solution if $|x|>1$. To refine the scenario, we consider only systems with unique solutions. 
 
+\subsection {Unique Solution Property}
+
 \begin{Definition}
-  [\bf Unique Solution Property)] \label{Dfn_usp}
+  [\bf Unique Solution Property] \label{Dfn_usp}
   A driven system $g$ is said to have the Unique Solution Property (USP) if for each input $\overline{u}$ there exists exactly one solution. 
   Alternatively we may formulate the USP as follows: $g$ has the Unique Solution Property if there exists a well-defined map $\Psi:{U}\to{X}$ with $\Psi({\overline{u}})$ denoting the unique solution.
 \end{Definition}
@@ -660,7 +661,7 @@ The question now becomes whether we may establish a conjugacy as presented below
   Restricting our attention more and more, we now consider a specific subclass of conjugacies.
 
   \begin{Definition} 
-    [\bf Universal Semi-Conjugacy)] \label{Def_UnivSemiConj}
+    [\bf Universal Semi-Conjugacy]\label{Def_UnivSemiConj}
     Given a driven system $g$, we  call a continuous and surjective map $h : \overleftarrow{U} \to X_U$ a universal semi-conjugacy if  diagram \ref{Scomm_h} commutes for all $v \in U$.
   \end{Definition}
 
@@ -669,9 +670,14 @@ If the universal semi-conjugacy $h$ exists (i.e. the diagram in \ref{Scomm_h} co
 Does such a function $h$ for the driven system defined above exist? If $g$ has the USP and $\Psi(u)=\{x_n\}_{n\in\mathbb{Z}}$ then $h$, defined by  $h(\cev{u}_n):=g(u_n,x_{n-1})=x_n$, will satisfy the semi-conjugacy in the graph above \ref{Scomm_h}.
 Regrettably, the mapping $h$ is not guaranteed to exist in general.
 
-Re-sketching the graph \ref{Scomm_h} above by fixing the input $v$ in $g$ and replacing $X_U$ by its left-infinite sequence space $\overleftarrow{U}$, we obtain the graph below. In this case, the function $H:\overleftarrow{U}\to\overleftarrow{X}_U$, a map that is both continuous and surjective, is called a \emph{causal mapping}. 
+Re-sketching the graph\ref{Scomm_h} above by fixing the input $v$ in $g$ and replacing $X_U$ by its left-infinite sequence space $\overleftarrow{U}$, we obtain the graph below. In this case, the function $H:\overleftarrow{U}\to\overleftarrow{X}_U$, a map that is both continuous and surjective, is called a \emph{causal mapping}. 
 
-\begin{equation}  \label{SCausal_H}
+\begin{Definition}
+  [\bf Causal Mapping]\label{Def_CausMap}
+  A continuous, surjective map $H:\overleftarrow{U}\to\overleftarrow{X}_U$ such that \[H\circ\tilde{g}_v=\sigma\circ{H}\] where $\tilde{g}_v$ maps $(\ldots, u_{-2}, u_{-1})$ to $(\ldots, u_{-2}, u_{-1}, g(v, u_{-1}))$.
+\end{Definition}
+
+\begin{equation} \label{SCausal_H}
     %    \[ 
         \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
      \everypsbox{\scriptstyle}
@@ -686,47 +692,44 @@ Re-sketching the graph \ref{Scomm_h} above by fixing the input $v$ in $g$ and re
     % \]
     \end{equation} 	
 
-  Note that $\tilde{g}_v$ maps $(\ldots, u_{-2}, u_{-1})$ to $(\ldots, u_{-2}, u_{-1}, g(v, u_{-1}))$.
-  The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: 
-
-\begin{Definition}
-  [\bf Causal Embedding]\label{Def_CausEmbed}
-  If $H:\overleftarrow{U}\to\overleftarrow{X}_U$ is also injective (in addition to being surjective and hence bijective), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$ and we refer to $H$ as a \emph{causal embedding}. 
-\end{Definition}
-
-
 
 \begin{Theorem}
   For a compactly driven system, a causal mapping $H$ exists if and only if $g$ has the USP. 
 \end{Theorem}
 \begin{proof}
   \emph{See proof from p.15 of \cite{manjunath2021universal}}
+  \textbf{Expand.}
 \end{proof}
 
-Note that even when $h$ does exist, we are not guaranteed its injectivity. Considering again example \ref{ex_halfux}, we conclude that even if $h$ were to exist, it could not be injective as $X_U=\{0\}$. 
+Note that even when $h$ does exist, we are not guaranteed its injectivity. Considering again example \ref{ex_halfux}, we see that even if $h$ were to exist, it could not be injective as $X_U=\{0\}$. 
 
 An embedding of the space $\overleftarrow{U}$   would allow one to establish topological conjugacy, which in turn provides stronger results than merely obtaining a coarse-grained representation via a causal mapping. 
 
 
-
-  Before formalising this, we make mention of the concept of the \emph{inverse-limit system} of a system $(U,T)$. In broad sweeps, the inverse-limit system of a dynamical system is a self-map on a subset of an infinite-dimensional space \textbf{(expand what exactly this is?)} where each point in the inverse-limit space corresponds to a backward orbit of the map $T$. In literature, the inverse-limit space is denoted by $\hat{U}_T\subseteq\overleftarrow{U}$. \textbf{cite from supp.koopman}. 
+  Before formalising this, we make mention of the concept of the inverse-limit system of a dynamical system $(U,T)$. 
+  In broad sweeps, the inverse-limit system of a dynamical system is a self-map on a subset of an infinite-dimensional space \textbf{(Expand)} where each point in the inverse-limit space corresponds to a backward orbit of the map $T$. In literature, the inverse-limit space is denoted by $\hat{U}_T\subseteq\overleftarrow{U}$ \cite{manjunath2021universal}. 
   The map $T$, then, induces a self-map $\hat{T}:\widehat{T}: (\ldots,u_{-2},u_{-1}) \mapsto  (\ldots,u_{-2},u_{-1},T(u_{-1}))$ on $\widehat{U}_T$
 
 \begin{Definition}
+  [\bf Causal Embedding]\label{Dfn_CausalEmbed}
   A driven system $g$ is said to causally embed the dynamical system $(U,T)$ if 
   \vspace{-8mm}
 \begin{enumerate}[noitemsep, label=\roman*.]
-  \item The diagram below commutes (i.e. $g$ is a universal semi-conjugacy),
+  \item The diagram in \ref{SCausal_H} commutes (i.e. $g$ is a universal semi-conjugacy),
   \item $H_2(\overline{u}):=(h(r\overline{u}, h(\overline{u})))$ embeds the inverse-limit space $(\hat{U}, \hat{T})$ of $(U,T)$ in $X\times{X}$.
 \end{enumerate}
 \end{Definition}
 
+The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: If $H:\overleftarrow{U}\to\overleftarrow{X}_U$ is also injective (in addition to being surjective, and hence bijective), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$ and we refer to $H$ as a \emph{causal embedding}. 
 
 \begin{Theorem}
  If $g(\ldotp,x)$ is invertible and has the USP then $H$ is a causal embedding. 
 \end{Theorem}
+\begin{proof}
+  \emph{See proof from \cite{manjunath2021universal}}  \textbf{Expand.}
+\end{proof}
 
-When g has the USP, the diagram below illustrates the operation of the the mappings h and H the mapping $h:\overleftarrow{U}\to{X_U}$ is an observable as discussed (above).  
+When g has the USP, the diagram below illustrates the operation of the the mappings $h$ and $H$. The mapping $h:\overleftarrow{U}\to{X_U}$ is an observable as discussed in an above section (\ref{TakensEmbedding}).  
 
 \begin{figure}[ht]
   \includegraphics[scale=0.3]{actionofh_H.png}
@@ -734,12 +737,20 @@ When g has the USP, the diagram below illustrates the operation of the the mappi
   \label{fig:actionh_H}
 \end{figure}
 
+The next result is of relative import but to fully comprehend its influence, some discussion still remains. Before stating it, we define a concept which will directly be shown to be equivalent to the USP.
+
+\begin{Definition}
+  [\bf Uniform Attraction Property]\label{Dfn_UAP}
+  A driven system $g$ has the Uniform Attraction Property (UAP) if, regardless of starting position, all trajectories converge to a single trajectory as time flows forward. 
+  This trajectory is also the unique solution sequence $x$ to the input sequence $u$ as mentioned above \ref{here_UAP_firstestablished}.
+\end{Definition}
+
 \begin{Theorem}
   The following statements are equivalent:
   \vspace{-8mm}
   \begin{enumerate}[noitemsep, label=\roman*.]
     \item $g$ has the USP 
-    \item $g$ is topological contraction 
+    \item $g$ is a topological contraction 
     \item $g$ has the Unique Attraction Property (UAP). 
   \end{enumerate}
 \end{Theorem}
@@ -747,46 +758,70 @@ When g has the USP, the diagram below illustrates the operation of the the mappi
   (we’ll show this)  [11] eqn.6 
 \end{proof}
 
-We have not as of yet treated the UAP, and establish the necessary result here (without proof - left to literature. Or later) so as not to break up the completeness of theorem 
+We have not as of yet treated the UAP properly, and establish the necessary result here (without proof) so as not to break up the completeness of theorem. 
 
-It is important to note here that one must be careful to avoid a choice of g which adds additional complexity to the obtained solution.  
-When the causal embedding exists for the driven system $g$, one may map an arbitrary input $u$ onto the solution space $X$ without additional distortion or information-loss.  
-Establishing an embedding removes this problem by guaranteeing that, since the systems are conjugate (semi-conjugate), $g$ does not add any (only “some”) complexity to the system.  
-It is, however, a balancing act as one also does not want to choose a function g that quenches the temporal structure in $u$ by contracting to such a degree that one loses the ability to recover information from the original system completely. To obtain this we want the reachable set of a driven system to be large enough to relate to the input.  
+\textbf{The proof of the result for the UAP is left to literature. Why? Cite.}
+
+\subsection {Choosing the driven system $g$}
+
+One must be careful to avoid a choice of $g$ which would  add complexity to the obtained solution.  
+
+When a causal embedding $H$ exists for the driven system $g$, one can map an arbitrary input ${u}$ onto the solution space $X$ without additional distortion or information-loss.  \textbf{(Cite.)} 
+When an embedding is established, the question of possible additional complexity in the solution is removed by guaranteeing that, since the systems are conjugate (semi-conjugate, (refer)), $g$ does not add any (some) complexity to the system.  
+It is, however, a balancing act as it also undesirable to choose a function $g$ that quenches the temporal structure in $u$ by contracting to such a degree that the ability to recover information from the original system is lost completely. 
+To obtain a suitably complex function $g$, it is desired that the the reachable set of a driven system  be large enough to relate to the input.  \textbf{(Expand here. It stops a bit abruptly.)}
  
-In the example above \ref{ex_halfux}, we cannot relate the input's temporal variation and the reachable set because $X_U$ consists of a single element.  
-
-The reachable set $Y_T$ of a driven system must therefore be such that we can embed the inverse-limit space of $U_T$ can be embedded in some finite self-product of the reachable set of $T$. To this end, consider the notion of State-Input (SI) Invertibility.  
+In the example above (\ref{ex_halfux}), the input's temporal variation cannot be related to the reachable set as $X_U$ consists of a single element and so little, if not no, information is encoded.  Rather, the reachable set of a driven system must therefore be such that the inverse-limit space of $U_T$ can be embedded in some finite self-product of the reachable set of $T$ \textbf{(refer or cite)}. To this end, consider the notion of State-Input (SI) Invertibility.  
 
 \begin{Definition}
-  A map $g$ is said to be SI-Invertible if $g$ is invertible for all $x\in{X}$. Alternatively, if, given $x_n$ and $x_{n-1}$, $u_n$ can be uniquely determined from $x_n=g(u_n,x_{n-1})$, then $g$ is said to be SI-invertible.
+  [\bf SI-Invertibility]\label{Dfn_SIinv}
+  A map $g$ is said to be SI-Invertible if $g$ is invertible for all $x\in{X}$. Alternatively it may be said that if, given $x_n$ and $x_{n-1}$, $u_n$ can be uniquely determined from $x_n=g(u_n,x_{n-1})$, then $g$ is said to be SI-invertible.
 \end{Definition}
  
-We make special note of a specific driven system. The function $$g(u,x)=(1-a)x+atanh(Au+\alpha{a}Bx)$$  is both SI-invertible and possesses the USP. This function $g$ is used in our implementation and is more completely discussed in chapter 5 \ref{sect5}
-The proof of these two facts is rather involved and the proof, instead of being replicated here, may be found in (cite relevant article) 
+\textbf{Explain more here.}
+
+We make special note of a specific driven system. The function 
+
+\begin{equation}  \label{eqn_driveng}
+%    \[ 
+g(u,x)=(1-a)x+a{\cdot}tanh(Au+\alpha{a}Bx)
+% \]
+\end{equation} 
 
 
-\textbf{Expand: UAP + Embedding -> perturbation isn’t an issue + we can drop left-infinite sequence.  }
 
-Despite the ease that one may work with left-infinite sequences in the realm of theory, it is impossible to obtain such a sequence in any real-life application.  One does not in practice, however, need the entire left-infinite history of the input due to the Uniform Attraction Property (UAP). The next definition is stated in an informal manner as the more rigourous definition makes use of processes, a concept which would take some amount of paper to establish and explain - something which would detract from the overarching thrust of this paper/project/thesis. \textbf{is it VERY obsious to the reader at this point what the general 'thrust' of the paper IS?} \textbf{Cite articles}
+is both SI-invertible and possesses the USP. The proof of these two facts is rather involved and  hence the proof, instead of being replicated here, may be found in (cite relevant article) 
+This specific driving function $g$ is used in our implementation and is more completely discussed in chapter \ref{sect5}
 
-\begin{Definition}
-  A driven system $g$ has the Uniform Attraction Property (UAP) if, regardless of starting position, all trajectories converge to a single trajectory as time flows forward. 
-  This trajectory is also the unique solution sequence $x$ to the input sequence $u$ as mentioned above \ref{here_UAP_firstestablished}.
-\end{Definition}
 
-Incredibly, one may then initialise a driven system with a completely arbitrary initial value $y_m\in{X}$ where $m\in\mathbb{Z}$ and the UAP then guarantees that the sequence $\{y_{m+1}, y_{m+2},\ldots\}$ satisfying $y_n=g(u_n, y_{n-1})$  with $k\geq{m}$  will uniformly approach the elements $\{x_n\}$ of the actual solution. (see [41, Theorem 1] or [11, Eqn. (18)]) 
+
+\textbf{Expand: UAP + Embedding $\rightarrow$  perturbation isn’t an issue + we can drop left-infinite sequence.  }
+
+Despite the ease that one may work with a left-infinite history in the realm of theory, it is impossible to obtain such a sequence in any real-life application.  
+One does not in practice, fortunately, need the entire left-infinite history of the input thanks to the Uniform Attraction Property (UAP). 
+The next definition is stated in an informal manner as the more rigourous definition makes use of processes, a concept which would take some amount of paper to establish and prove - an exercise which would detract from the principal thrust of this paper/project/thesis. 
+
+\textbf{Is it VERY obvious to the reader at this point what the general 'thrust' of the paper IS?} \textbf{Cite articles}
+
+Recall that the Unique Attraction Property guarantees that all trajectories \textit{(which ones?)} will converge to the same trajectory in forward time. 
+Incredibly, this permits one to initialise a driven system $g$ with an altogether arbitrary initial value $y_m\in{X}$ where $m\in\mathbb{Z}$ and the UAP guarantees that the sequence $\{y_{m+1}, y_{m+2},\ldots\}$ satisfying the relation $y_n=g(u_n, y_{n-1})$  where $k\geq{m}$  will uniformly approach the elements $\{x_n\}$ of the actual solution. (see [41, Theorem 1] or [11, Eqn. (18)]) 
  
-One may now appreciate an even more astounding result. $g$ having the USP is equivalent to the UAP and so one need not establish any additional results to ensure that the sequence uniformly approach the unique solution $\Psi$. This vastly simplifies the work needed to be done in setting up a problem to guarantee that the underlying system will be accurately 'represented' by the conjugate system. \textbf{Check this statement again to make sure it's not nonsensical.} 
+%Change the theorem above so that th.4 is split up into two parts.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \includegraphics[scale=0.4]{memloss_conttime.png}
   \centering
   \label{fig:memoryLosscont_time}
 %\caption{Approaching the true solution if g has the UAP}
 \end{figure}
 
-This also solves the problem of perturbations or noise introduced by the observable or measurement function. \textbf{(rephrase)}
+One may now appreciate an even more astounding result. $g$ having the USP is equivalent to the UAP and so one need not establish any additional results to ensure that the sequence uniformly approach the unique solution $\Psi$. This vastly simplifies the work needed to be done in setting up a problem to guarantee that the underlying system will be accurately 'represented' by the conjugate system. \textbf{Check this statement again to make sure it's not nonsensical.} 
+
+
+
+This also solves the problem of perturbations or noise introduced by the observable or measurement function. \textbf{(rephrase, expand and explain)}
+
+\subsection{The next step in Dynamics}
 
 Next we define the relation $Y_T$ induced by $(U,T)$ on $X_U\times{X_U}$ for a driven system $g$ possessing SI-invertibility.  To describe the  single-delay lag dynamics formally, we consider a dynamical system $T: U \to U$ and we define a relation on the reachable set $X_U$, i.e., a subset defined on $X_U \times X_U$ by 
 $$Y_T:=\{(x_{n-1},x_n): \{x_k\}_{k\in \mathbb{Z}} \mbox{ is a solution for some orbit of } T \mbox{ and } n \in \mathbb{Z}\}.$$ 

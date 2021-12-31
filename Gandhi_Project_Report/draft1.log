@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  29 DEC 2021 16:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.10.22)  31 DEC 2021 19:42
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1225,7 +1225,14 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 8.80824 4.40411 3.61...
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 0.0 12.0721 6.03604 3.61...
-] [3] [4
+] [3] [4]
+
+LaTeX Warning: Citation `manjunath2021universal' on page 5 undefined on input line 700.
+
+
+LaTeX Warning: Citation `manjunath2021universal' on page 5 undefined on input line 710.
+
+[5
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {12.6025 0.0 12.0002 6.00009 ...
 Non-PDF special ignored!
@@ -1234,11 +1241,6 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 1.79999 16.85422 8.42711...
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {8.2 1.79999 20.11807 10.0590...
-]
-
-LaTeX Warning: Citation `manjunath2021universal' on page 5 undefined on input line 703.
-
-[5
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {12.6025 0.0 12.0002 6.00009 ...
 Non-PDF special ignored!
@@ -1248,77 +1250,98 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 <special> ps:tx@Dict begin  tx@NodeDict begin {12.6025 1.79999 22.36662 11....
 ]
-<actionofh_H.png, id=93, 883.3pt x 491.8375pt>
+
+LaTeX Warning: Citation `manjunath2021universal' on page 6 undefined on input line 729.
+
+
+LaTeX Warning: Reference `TakensEmbedding' on page 6 undefined on input line 732.
+
+<actionofh_H.png, id=106, 883.3pt x 491.8375pt>
 File: actionofh_H.png Graphic file (type png)
 <use actionofh_H.png>
-Package pdftex.def Info: actionofh_H.png  used on input line 732.
+Package pdftex.def Info: actionofh_H.png  used on input line 735.
 (pdftex.def)             Requested size: 264.99205pt x 147.55238pt.
- [6 <./actionofh_H.png>]
 
-LaTeX Warning: Reference `here_UAP_firstestablished' on page 7 undefined on input line 775.
+LaTeX Warning: Reference `here_UAP_firstestablished' on page 6 undefined on input line 745.
 
-<memloss_conttime.png, id=111, 861.2175pt x 421.575pt>
+[6 <./actionofh_H.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 765.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 765.
+
+[7]
+<memloss_conttime.png, id=131, 861.2175pt x 421.575pt>
 File: memloss_conttime.png Graphic file (type png)
 <use memloss_conttime.png>
-Package pdftex.def Info: memloss_conttime.png  used on input line 783.
+Package pdftex.def Info: memloss_conttime.png  used on input line 812.
 (pdftex.def)             Requested size: 344.4809pt x 168.627pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[7] [8 <./memloss_conttime.png>]
+ [8 <./memloss_conttime.png>] [9]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 846.
+(hyperref)                removing `math shift' on input line 881.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 846.
+(hyperref)                removing `subscript' on input line 881.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 846.
+(hyperref)                removing `math shift' on input line 881.
 
-[9]
-<gammatemp.png, id=141, 392.46625pt x 440.64626pt>
+[10]
+<gammatemp.png, id=162, 392.46625pt x 440.64626pt>
 File: gammatemp.png Graphic file (type png)
 <use gammatemp.png>
-Package pdftex.def Info: gammatemp.png  used on input line 868.
+Package pdftex.def Info: gammatemp.png  used on input line 903.
 (pdftex.def)             Requested size: 117.74077pt x 132.19489pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 881.
+(hyperref)                removing `math shift' on input line 916.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Gamma' on input line 881.
+(hyperref)                removing `\Gamma' on input line 916.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 881.
+(hyperref)                removing `math shift' on input line 916.
 
-[10 <./gammatemp.png>]
+[11 <./gammatemp.png>]
 No file draft1.bbl.
-[11] (./draft1.aux)
+[12] (./draft1.aux)
 
 LaTeX Warning: There were undefined references.
 
-Package rerunfilecheck Info: File `draft1.out' has not changed.
-(rerunfilecheck)             Checksum: 4D1D6FC57C1ACE8E3CFB2EA7C1701958;1476.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `draft1.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `draft1.out':
+(rerunfilecheck)             Before: 32614CE907E299E05224A216F3F2D678;2048
+(rerunfilecheck)             After:  F61566664DDA19AD746CA05E06CAEC2E;2243.
  ) 
 Here is how much of TeX's memory you used:
- 36960 strings out of 478579
- 740348 string characters out of 5853456
- 1148625 words of memory out of 5000000
- 54117 multiletter control sequences out of 15000+600000
+ 36975 strings out of 478579
+ 740558 string characters out of 5853456
+ 1147809 words of memory out of 5000000
+ 54126 multiletter control sequences out of 15000+600000
  413535 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,19n,117p,1340b,872s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,19n,117p,1340b,1002s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft1.pdf (11 pages, 435962 bytes).
+Output written on draft1.pdf (12 pages, 439060 bytes).
 PDF statistics:
- 238 PDF objects out of 1000 (max. 8388607)
- 185 compressed objects within 2 object streams
- 57 named destinations out of 1000 (max. 500000)
- 92 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 259 PDF objects out of 1000 (max. 8388607)
+ 204 compressed objects within 3 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 116 words of extra memory for PDF output out of 10000 (max. 10000000)
 
