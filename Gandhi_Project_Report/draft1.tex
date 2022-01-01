@@ -737,30 +737,24 @@ When g has the USP, the diagram below illustrates the operation of the the mappi
   \label{fig:actionh_H}
 \end{figure}
 
-The next result is of relative import but to fully comprehend its influence, some discussion still remains. Before stating it, we define a concept which will directly be shown to be equivalent to the USP.
-
-\begin{Definition}
-  [\bf Uniform Attraction Property]\label{Dfn_UAP}
-  A driven system $g$ has the Uniform Attraction Property (UAP) if, regardless of starting position, all trajectories converge to a single trajectory as time flows forward. 
-  This trajectory is also the unique solution sequence $x$ to the input sequence $u$ as mentioned above \ref{here_UAP_firstestablished}.
-\end{Definition}
+The next result is of relative import but to fully comprehend its influence, some discussion still remains. We state it in part and postpone the proof.
+% Before stating it, we define a concept which will directly be shown to be equivalent to the USP.
 
 \begin{Theorem}
   The following statements are equivalent:
   \vspace{-8mm}
   \begin{enumerate}[noitemsep, label=\roman*.]
-    \item $g$ has the USP 
-    \item $g$ is a topological contraction 
-    \item $g$ has the Unique Attraction Property (UAP). 
+    \item $g$ has the USP. 
+    \item $g$ is a topological contraction.
   \end{enumerate}
 \end{Theorem}
 \begin{proof}
-  (we’ll show this)  [11] eqn.6 
+  (postponed)  [11] eqn.6 
 \end{proof}
 
-We have not as of yet treated the UAP properly, and establish the necessary result here (without proof) so as not to break up the completeness of theorem. 
+% We have not as of yet treated the UAP properly, and establish the necessary result here (without proof) so as not to break up the completeness of theorem. 
 
-\textbf{The proof of the result for the UAP is left to literature. Why? Cite.}
+% \textbf{The proof of the result for the UAP is left to literature. Why? Cite.}
 
 \subsection {Choosing the driven system $g$}
 
@@ -781,30 +775,27 @@ In the example above (\ref{ex_halfux}), the input's temporal variation cannot be
 \textbf{Explain more here.}
 
 We make special note of a specific driven system. The function 
-
-\begin{equation}  \label{eqn_driveng}
-%    \[ 
+\begin{equation}  \label{eqn_driving}
 g(u,x)=(1-a)x+a{\cdot}tanh(Au+\alpha{a}Bx)
-% \]
 \end{equation} 
-
-
-
-is both SI-invertible and possesses the USP. The proof of these two facts is rather involved and  hence the proof, instead of being replicated here, may be found in (cite relevant article) 
+is both SI-invertible and possesses the USP. The proof of these two facts is rather involved and  hence the proof, instead of being replicated here, may be found in \textbf{(cite relevant article)}
 This specific driving function $g$ is used in our implementation and is more completely discussed in chapter \ref{sect5}
 
-
-
-\textbf{Expand: UAP + Embedding $\rightarrow$  perturbation isn’t an issue + we can drop left-infinite sequence.  }
-
 Despite the ease that one may work with a left-infinite history in the realm of theory, it is impossible to obtain such a sequence in any real-life application.  
-One does not in practice, fortunately, need the entire left-infinite history of the input thanks to the Uniform Attraction Property (UAP). 
-The next definition is stated in an informal manner as the more rigourous definition makes use of processes, a concept which would take some amount of paper to establish and prove - an exercise which would detract from the principal thrust of this paper/project/thesis. 
+One does not in practice, fortunately, need the entire left-infinite history of the input thanks to the Uniform Attraction Property (UAP).
+
+\begin{Definition}
+  [\bf Uniform Attraction Property]\label{Dfn_UAP}
+  A driven system $g$ has the Uniform Attraction Property (UAP) if, regardless of starting position, all trajectories \textbf{(of what?)} converge to a single trajectory as time flows forward. 
+  This trajectory is also the unique solution sequence $x$ to the input sequence $u$ as mentioned above \ref{here_UAP_firstestablished}.
+\end{Definition}
+
+This definition is stated in a not completely rigourous manner as the more formal definition makes use of processes, a concept which would take some time to establish and detracts from the principal thrust of this paper/project/thesis. 
 
 \textbf{Is it VERY obvious to the reader at this point what the general 'thrust' of the paper IS?} \textbf{Cite articles}
 
-Recall that the Unique Attraction Property guarantees that all trajectories \textit{(which ones?)} will converge to the same trajectory in forward time. 
-Incredibly, this permits one to initialise a driven system $g$ with an altogether arbitrary initial value $y_m\in{X}$ where $m\in\mathbb{Z}$ and the UAP guarantees that the sequence $\{y_{m+1}, y_{m+2},\ldots\}$ satisfying the relation $y_n=g(u_n, y_{n-1})$  where $k\geq{m}$  will uniformly approach the elements $\{x_n\}$ of the actual solution. (see [41, Theorem 1] or [11, Eqn. (18)]) 
+As the Unique Attraction Property guarantees that all trajectories \textit{(which ones?)} will converge to the same trajectory as time moves forward. 
+Incredibly, this permits one to initialise a driven system $g$ with an altogether arbitrary initial value $y_m\in{X}$ where $m\in\mathbb{Z}$ and the UAP then guarantees that the sequence $\{y_{m+1}, y_{m+2},\ldots\}$ which satisfies the relation $y_n=g(u_n, y_{n-1})$  for  $k\geq{m}$  will uniformly approach the elements $\{x_n\}$ of the actual solution. (see [41, Theorem 1] or [11, Eqn. (18)]) 
  
 %Change the theorem above so that th.4 is split up into two parts.
 
@@ -812,21 +803,36 @@ Incredibly, this permits one to initialise a driven system $g$ with an altogethe
   \includegraphics[scale=0.4]{memloss_conttime.png}
   \centering
   \label{fig:memoryLosscont_time}
-%\caption{Approaching the true solution if g has the UAP}
+\caption{Approaching the true solution if g has the UAP}
 \end{figure}
 
-One may now appreciate an even more astounding result. $g$ having the USP is equivalent to the UAP and so one need not establish any additional results to ensure that the sequence uniformly approach the unique solution $\Psi$. This vastly simplifies the work needed to be done in setting up a problem to guarantee that the underlying system will be accurately 'represented' by the conjugate system. \textbf{Check this statement again to make sure it's not nonsensical.} 
+One may now appreciate an even more astounding result: $g$ having the USP is equivalent to the UAP. We restate the above theorem.
 
+\begin{Theorem}
+  The following statements are equivalent:
+  \vspace{-8mm}
+  \begin{enumerate}[noitemsep, label=\roman*.]
+    \item $g$ has the USP.
+    \item $g$ is a topological contraction.
+    \item $g$ has the UAP.
+  \end{enumerate}
+\end{Theorem}
+\begin{proof}
+  (We'll show this)  [11] eqn.6 
+\end{proof}
 
+One need therefore not establish any additional results to ensure that the sequence uniformly approaches the unique solution $\Psi$. This vastly simplifies the effort necessary to set up a problem in order to guarantee that the underlying system will be accurately represented by the conjugate system.
 
-This also solves the problem of perturbations or noise introduced by the observable or measurement function. \textbf{(rephrase, expand and explain)}
+This also solves the problem of perturbation/noise introduced by the observable or measurement function. Recall from before that an observable is inherently a map that discretises the underlying continuous-time system. Moreover, measurement and device error introduce mistakes. Since we are working with a chaotic system displaying sensitive dependence on initial conditions, these small errors could potentially send the trajectory into a completely different attractor. In the presence of the UAP, however, small measurement errors introduced into the system do not pose the same danger as before.
+
+\textbf{(Rephrase and/or expand)}
 
 \subsection{The next step in Dynamics}
 
 Next we define the relation $Y_T$ induced by $(U,T)$ on $X_U\times{X_U}$ for a driven system $g$ possessing SI-invertibility.  To describe the  single-delay lag dynamics formally, we consider a dynamical system $T: U \to U$ and we define a relation on the reachable set $X_U$, i.e., a subset defined on $X_U \times X_U$ by 
 $$Y_T:=\{(x_{n-1},x_n): \{x_k\}_{k\in \mathbb{Z}} \mbox{ is a solution for some orbit of } T \mbox{ and } n \in \mathbb{Z}\}.$$ 
 
-The following theorem establishes the existence of a well-defined map GT describing the single-delay dynamics of the system above. 
+The following theorem establishes the existence of a well-defined map $G_T$ describing the single-delay dynamics of the system above. 
 
 \begin{Theorem}
 If we let $G_T:Y_T\to{Y_T}$ be a map defined by the relation $(x_{n-1},x_n)\mapsto(x_n,x_{n-1})$, then $G_T$ is well-defined (and this results holds even in the absence of $g$ possessing over the USP)  
@@ -844,43 +850,55 @@ We're now getting quite close to where we want to be and our results carry more 
 
 
 Note that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ to an element in $X\times{X}$.
- 
 We now have the following (compare with \ref{SCausal_H} above):
 
-\emph{graph here causes issues currently}
-% \begin{center}
-% %    \[ 
-%       \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
-%       \everypsbox{\scriptstyle}
-%       \begin{psmatrix}
-%       \widehat{U}_T  && \widehat{U}_T \\
-%       Y_T && Y_T \\
-%       %%%
-%      %  \ncline{1,1}{1,2}^{\widehat{T}} \ncline{1,1}{2,1} <{h}
-%      %  \ncline{1,2}{2,2} > {H_2}
-%      %  \ncline{2,1}{2,2}^{G_T}
-%       \end{psmatrix}
-%      % \]
-%     \end{center}
+\begin{equation}
+  %  \[ 
+      \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+      \everypsbox{\scriptstyle}
+      \begin{psmatrix}
+      \widehat{U}_T  && \widehat{U}_T \\
+      Y_T && Y_T \\
+      %%%
+     %  \ncline{1,1}{1,2}^{\widehat{T}} \ncline{1,1}{2,1} <{h}
+     %  \ncline{1,2}{2,2} > {H_2}
+     %  \ncline{2,1}{2,2}^{G_T}
+      \end{psmatrix}
+    %  \]
+    \end{equation}
  
-\textbf{Show that $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$. }
 
-\textbf{Summarising the discussing thus far:}
-It is easy to lose onself in the symbols, so we take a moment to review our progress up until this point.
+\begin{Theorem}
+    $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$.
+\end{Theorem}
+\begin{proof}
+  \textbf{Show}
+\end{proof}
+
+
+\subsubsection*{Summarising the discussing thus far:}
+
+It is easy to lose the birds-eye view, so we take a moment to review our progress up until this point.
 
 \vspace{-8mm}
 \begin{enumerate}
-\item We are interested in a dynamical system $(U,T)$ with unknown dynamics for whichever reason.
-\item To determine information about this system $(U,T)$, we shift our focus by rather aiming to determining the dynamics of the inverse-limit system $(\widehat{U}, \widehat{T})$ which, given certain assumptions, we can guarantee to be at least semi-conjugate to $(U,T)$.
-\item If the driven system $g$ (and $\{u_n\}$ in $U$  is an orbit of $T$), we have that $G_T$ exists. 
-\item If, furthermore, $g$ may be shown to have the USP, we showed that $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$.
-\item If $T$ is also (and at this stage this is very much our hope) a homeomorphism, then $(Y_T, G_T)$ topologically conjugate to $(\widehat{U}, \widehat{T})$ in which $(U,T)$ has been embedded! 
+\item We are interested in a some dynamical system $(U,T)$ with unknown dynamics.
+\item To determine properties about this system $(U,T)$ and predict its future evolution, we determine the dynamics of the inverse-limit system $(\widehat{U}, \widehat{T})$. Given certain assumptions, we can guarantee that $(\widehat{U}, \widehat{T})$ is at least semi-conjugate to $(U,T)$.
+\item If the driven system $g$ is SI-invertible (and $\{u_n\}\in{U}$  is an orbit of $T$), the map $G_T$ exists. 
+\item If, furthermore, $g$ has the USP, $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$.
+\item If we can assume that $T$ is a homeomorphism, $(Y_T, G_T)$ is topologically conjugate to $(\widehat{U}, \widehat{T})$, an extension space of $(U,T)$
 \end{enumerate} 
-One can therefore learn the single-delay lag dynamics of the driven system states via $G_T$ with enough data thanks to the USP. This enables us to do at least 2 things: 1) Forecast future values of $x_n$ via iterates of $G_T$ (as $G_T$ can be determined. 2) Forecast future values of $u_n$. 
+
+One can therefore learn the single-delay lag dynamics of the driven system states via $G_T$ with enough data thanks to the USP/UAP. This enables us to do at least 2 things: 
+\vspace{-8mm}
+\begin{itemize}
+\item Forecast future values of $x_n$ via iterates of $G_T$ (as $G_T$ can be determined.
+\item Forecast future values of $u_n$. 
+\end{itemize} 
 
 \subsection{A discussion of $G_T$ }
 
-By establishing the existence of the map $G_T$, we’ve essentially embedded the attractor $U$ \textbf{So far we haven't really spoken about an attractor} into the higher dimensional space $X\times{X}$.
+By establishing the existence of the map $G_T$, we’ve essentially embedded the attractor $U$ \textbf{(So far we haven't really spoken about an attractor)} into the higher dimensional space $X\times{X}$. \textbf{(Why is it true that it's higher-dimensional?)}
 In layman’s terms, this ensures that there is more “dimensional room” for the underlying system’s underlying dynamics to “move”. As the dynamics aren’t as “squashed”, we might therefore hope that the dynamics of $G_T$ are in some sense simpler than that of $T$. (Taken note of the fact that $G_T$ is a homeomorphism even when $T$ is just continuous)
  
 In \emph{[Koopman]} it is illustrated in an empirical fashion in that the map $G_T$ describes dynamics which are less functionally complex than that of $T$ or of the map $\Phi_{2d,\theta}$ (as discussed above in the section on Takens). This is done by implementing a Recurrent Neural Network (RNN), but not discussed as of yet. \emph{(Add in that we'll be using Pearson coefficient?)}
