@@ -1,4 +1,6 @@
-\documentclass[12 pt]{article}
+% \documentclass[12 pt]{article}
+\documentclass[a4paper,12pt,twoside]{book}
+\pagestyle{headings}
 \usepackage[utf8]{inputenc}
 \usepackage{filecontents}
 \usepackage[many]{tcolorbox}
@@ -16,7 +18,7 @@
 \usepackage{subfigure}
 \usepackage[ntheorem]{empheq} 
 \usepackage{amsthm, amssymb, amsfonts, latexsym}
-\usepackage{pst-all}
+% \usepackage{pst-all}
 
 \usepackage{enumitem}
 
@@ -35,6 +37,7 @@
 \setlength{\headheight}{0 mm}
 
 
+\usepackage{pst-node}
 
 \newcommand{\citealtt}[1]{\citeauthor{#1},\citeyear{#1}}
 \newcommand{\myycite}[1]{\citep{#1}}
@@ -121,7 +124,7 @@
                 top=43pt,% 10pt provided by headsep
                 bottom=32pt,%
                 headheight=0pt,% No Header
-                headsep=10pt,%
+                headsep=30pt,%
                 footskip=25pt,
                 marginparwidth=38pt]{geometry}
 \RequirePackage[labelfont={bf,sf},%
@@ -156,7 +159,7 @@
 }
 
 
-\externaldocument{Supp_Koopman-0808}
+% \externaldocument{Supp_Koopman-0808}
 \begin{document}
 
 
@@ -170,7 +173,9 @@
 \date{}
 \maketitle
 
-\section{Introduction}\label{ch1}
+\tableofcontents
+
+% \chapter{Introduction}\label{ch1}
 
 % Experimenting on biological, physical, and artificial systems in order to generate a more informative dynamical model is a well-established practice in modern science. Traditional methods for modelling physical systems are based on laws of physics that are based either on empirical relationships or on intuition. For systems that evolve with time, physical laws yield mathematical equations that govern how the quantities evolve with time. However our world around is, for the most part, much more complex than that which can be distilled into elegant equations. We do not fully understand many of the more complex systems, nor do they even provide us with a good physical intuition of the underlying principles governing the dynamics.
 
@@ -210,9 +215,9 @@
 % \newline In Chapter 4, a driven dynamical system is defined and discuss the properties of a specific class of driven dynamical systems that we make use of in this thesis/report/paper. 
 % \newline Finally in Chapter 5 we show the implementation of these forecasting methods, and conclusions are provided in Chapter 6.
 
-\section{Discrete-time Dynamical Systems}\label{ch2}
+% \chapter{Discrete-time Dynamical Systems}\label{ch2}
 
-% In this chapter, we provide a brief description of what a discrete-time dynamical system is and what it means for it to exhibit chaos. We refer to \cite{devaney2018introduction, de2013elements} for more details. 
+% In this chapter, we provide a brief description of what a discrete-time dynamical system is and what it means for it to exhibit chaos. We refer to \cite{devaney2018introduction, de2013elements} for more details. \label{Dfn_DS}
 
 % At its most elementary level, a dynamical system is just something that evolves deterministically through time. In the context of this thesis, deterministic refers to the fact that a system evolves according to specified rules rather than based on random events. 
 % Dynamical systems arise in a variety of situations. A continuous dynamical system, and here specifically the motion of a pendulum, is one in which quantities such as the angular position and angular momentum are known at all times. 
@@ -246,7 +251,7 @@
 % $$u_{m+1} = u_m + hf(u_m)$$
 % or, in even simpler terms, as the discrete-time dynamical system with map $T(u) = u + hf(u)$, where $T$, $u$ and $f$ are understood to be as above.
 
-% \subsection{Invariant Sets}
+% \section{Invariant Sets}
 
 % A core concept in the study of dynamical systems is that of invariance.
 % \begin{Definition}
@@ -285,7 +290,7 @@
 
 % If the dynamics on an attractor cannot be decomposed further and the attractor is itself also infinite, then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called chaotic behaviour. 
 
-% \subsection{Chaos}
+% \section{Chaos}
 
 % \textbf{$\downarrow$ - should one add paragraphs like these?}
 % \newline In the 1960s, a number of mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. The notions of invariance, attractivity and chaos may also bedescribed for continuous systems, and Lorenz's system comprised of a system of differential equations. The narrative of Lorenz's discovery of chaos, as well as the history of other forerunners in this subject, are fascinating. For those who are interested, we highly recommend James Gleick's book Chaos: The Making of a New Science \cite{gleick2008chaos}. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery, and describes the underlying mathematical notions for non-specialists.
@@ -366,17 +371,13 @@
   
 %   Given any point $u$ and an open neighborhood $W \subseteq[0,1]$ of $u$, we can find $k\in\mathbb{Z}$ large enough so that $T^k(W) = [0,1]$ because we can accommodate a tent whose base is contained in $W$. \emph{This last phrase doesn't make sense to me.} This implies the existence of two points $w_1$ and $w_2$ in $W$ so that $d(T^kw_1,T^kw_2)= 1$, and by the triangle inequality  at least one of the inequalities $d(T^ku,T^kw_1)> \delta$ or $d(T^ku,T^kw_2)> \delta$ hold when $\delta\in (0,1/2)$. \newline So $T$ has sensitive dependence on initial conditions.  
   
-%   Next, let $W_1$ and $W_2$ be two nonempty open sets. Given any open set $W_1$, we can find a $k\in\mathbb{N}$ large enough so that $T^k(W_1) = [0,1]$ because we can accommodate a tent with base contained in $W$. So $T^k(W_1) \cap W_2 \not=\emptyset$, and thus $T$ has topological transitivity.
+  % Next, let $W_1$ and $W_2$ be two nonempty open sets. Given any open set $W_1$, we can find a $k\in\mathbb{N}$ large enough so that $T^k(W_1) = [0,1]$ because we can accommodate a tent with base contained in $W$. So $T^k(W_1) \cap W_2 \not=\emptyset$, and thus $T$ has topological transitivity.
   
 %   Finally, for every open interval $(a,b)$, the graph of $T^k$ intersects the graph of the identity map on $[0,1]$. This follows from the fact established above that there exists a $k\in\mathbb{N}$ such that $T^k(a,b) = [0,1]$.If the intersection point has coordinates of the form $(p,p)$, the point p is then a fixed point of $T^k$ and therefore also a periodic point of T. It follows that the set of periodic points are dense in T.
 %   \textbf{Expand further on reason for density.}
 % \end{Example}
 
-
-
-
-
-% \subsection{Conjugacy}
+% \section{Conjugacy}
 
 % We now turn our attention to the subject of conjugacy. 
 
@@ -412,7 +413,7 @@
 
 % In establishing that two systems are conjugate (semi-conjugate) to one another, we have also shown that one may choose to work with one systems as opposed to the second and still be guaranteed to obtain information on the latter. This is incredibly useful while forecasting the future evolution of dynamical systems. 
 
-\section{The Learning Problem}\label{ch3}
+% \chapter{The Learning Problem}\label{ch3}
 
 % \emph{Introduction...}
 
@@ -442,7 +443,7 @@
 
 % We may then ask ourselves the question: Is it in any way possible to retain information about the system state $x(t)$ in this temporal data-series $\theta(x(t))$? The answer is easily yes if T is known. However, neither this, nor even the exact function $\theta$ is available. 
 
-\subsection{Taken Embedding Theorem} \label{subs_TakensEmbedding}
+% \section{Taken Embedding Theorem} \label{sect_TakensEmbedding}
 
 % We define first the concepts of homeomorphism and embedding:
 % \begin{Definition}
@@ -487,7 +488,7 @@
 
 % Thus information about U can be retained in the time series' (or observation's) output. By preserving the topology on the manifold $U$ in the reconstruction space $X$ (\textbf{not discussed before}), we are also guaranteed the preservation of topological invariants of the manifold, of which dimensionality is one such invariant. (We note here that dimensionality will again be considered later in this project/report).
 
-% \subsection{Obstacles to Takens}
+% \section{Obstacles to Takens}
 % Despite the fact that the Takens' Embedding Theorem is a powerful result and provides compelling reason to believe that it is possible to accurately ()\emph{right word?}) reconstruct the underlying space, it does present some serious limitations:
 % \vspace{-5mm}
 % \begin{enumerate}
@@ -500,7 +501,6 @@
 
 % \textbf{Continue writing here}
 
-
 % \begin{figure}[ht]
 %   \includegraphics[scale=0.3]{learningfailure.png}
 %   \centering
@@ -508,7 +508,7 @@
 %   \caption{Illustration of a system having failed to learn the map}
 % \end{figure}
 
-
+% \emph{ADD THIS TO ERRORS IN TAKENS: NOT GUARANTEED GLOBALLY DISSIPATIVE}
 % \textbf{Explanation continued here}
 
 % \begin{figure}[h]
@@ -519,17 +519,17 @@
 % \end{figure}
 
 % \textbf{Continue explaining here}
-\newpage
+% \newpage
 
-\section{Driven Dynamical Systems to Forecast Problems} \label{ch4}
+\chapter{Driven Dynamical Systems to Forecast Problems} \label{ch4}
 
 In this chapter, we discuss results pertaining to the mapping of temporal data obtained from a discrete-dynamical system onto a different space through the notion of a driven dynamical system. 
 We also consider the conditions a driven system should have to avoid adding distortion to its state space representation, as well as then ensuring that the single-delay dynamics (SDD) are conjugate (or at least semi-conjugate to the system). 
-The SDD can then be used to forecast and reconstruct the underlying attractor. \textbf{Is this attractor assumed to exist?}
+The SDD can then be used to forecast and reconstruct the underlying attractor. \ednote{Is this attractor assumed to exist?}
 
-\subsection{Nonautonomous and Driven Dynamical Systems}
+\section{Nonautonomous and Driven Dynamical Systems}
 
-A nonautonomous dynamical system is simply a dynamical system (as defined before in \textbf{link to above}) where the input $u$ from the input space $U$, a  topological space, is time-dependent. \textbf{This means it can no longer be generated by a flow?}
+A nonautonomous dynamical system is simply a dynamical system (as defined before in \ref{Dfn_DS}) where the input $u$ from the input space $U$, a  topological space, is time-dependent.
 
 We immediately recall the figure first defined in \ref{eqn_conjugacy} and remind ourselves of our ultimate goal to forecast the evolution of an unknown nonautonomous dynamical system $(U,T)$ by constructing a conjugate system such as $(V,S)$ below.
 
@@ -623,7 +623,7 @@ Should the driven system be compact, existence follows immediately as shown in t
 
 We may easily construct many systems with trivial solution-sets, such as $g(u,x)=x$ which has only the constant solution $x$ and so for $U=[-1,1]$, the system would have no solution if $|x|>1$. To refine the scenario, we consider only systems with unique solutions. 
 
-\subsection {Unique Solution Property}
+\section {Unique Solution Property}
 
 \begin{Definition}
   [\bf Unique Solution Property] \label{Dfn_usp}
@@ -631,9 +631,16 @@ We may easily construct many systems with trivial solution-sets, such as $g(u,x)
   Alternatively we may formulate the USP as follows: $g$ has the Unique Solution Property if there exists a well-defined map $\Psi:{U}\to{X}$ with $\Psi({\overline{u}})$ denoting the unique solution.
 \end{Definition}
 
+One of the first result obtained upon defining the USP, is the fact that every solution will attract any different initial conditions towards the component parts of the solution, i.e. that the solution $\Psi$ is a non-autonomous uniform attractor. \ednote{Define Uniform Attractor before stating theorem.} 
 
-\emph{(More discussion on USP?)}
+\begin{Theorem} \label{Thm_AttractorSoln}
+  If $g$ has USP, then any solution to $g$ is a non-autonomous uniform attractor 
+\end{Theorem}
+\begin{proof}
+  \cite{Manju_Nonlinearity}
+\end{proof}
 
+\ednote{Additional discussion on USP?} 
 Having already defined the reachable set $X_U$, we pause for a moment to fix additional notation.
 Letting $\cev{u}^{n}:=(\ldots,u_{n-2} ,u_{n-1})$ be the left-infinite subsequence of an input, $\overleftarrow{U}$ then denotes all these left-infinite sequences in $U$. 
 Moreover, $\cev{u}^{n}v:=(\ldots,u_{n-2} ,u_{n-1}, v)$ is to symbolise the input up to time $n$ with $v \in U$ being the specific input value at time $n$. 
@@ -671,7 +678,7 @@ Does such a function $h$ for the driven system defined above exist? If $g$ has t
 Regrettably, the mapping $h$ is not guaranteed to exist in general.
 
 Re-sketching the graph\ref{Scomm_h} above by fixing the input $v$ in $g$ and replacing $X_U$ by its left-infinite sequence space $\overleftarrow{U}$, we obtain the graph below. In this case, the function $H:\overleftarrow{U}\to\overleftarrow{X}_U$, a map that is both continuous and surjective, is called a \emph{causal mapping}. 
-
+make special note of a 
 \begin{Definition}
   [\bf Causal Mapping]\label{Def_CausMap}
   A continuous, surjective map $H:\overleftarrow{U}\to\overleftarrow{X}_U$ such that \[H\circ\tilde{g}_v=\sigma\circ{H}\] where $\tilde{g}_v$ maps $(\ldots, u_{-2}, u_{-1})$ to $(\ldots, u_{-2}, u_{-1}, g(v, u_{-1}))$.
@@ -749,32 +756,32 @@ The next result is of relative import but to fully comprehend its influence, som
   \end{enumerate}
 \end{Theorem}
 \begin{proof}
-  (postponed)  [11] eqn.6 
+  (postponed) 
 \end{proof}
 
 % We have not as of yet treated the UAP properly, and establish the necessary result here (without proof) so as not to break up the completeness of theorem. 
 
 % \textbf{The proof of the result for the UAP is left to literature. Why? Cite.}
 
-\subsection {Choosing the driven system $g$}
+\section {Choosing the driven system $g$}
 
 One must be careful to avoid a choice of $g$ which would  add complexity to the obtained solution.  
 
-When a causal embedding $H$ exists for the driven system $g$, one can map an arbitrary input ${u}$ onto the solution space $X$ without additional distortion or information-loss.  \textbf{(Cite.)} 
+When a causal embedding $H$ exists for the driven system $g$, one can map an arbitrary input ${u}$ onto the solution space $X$ without additional distortion or information-loss.  \ednote{(Cite.)} 
 When an embedding is established, the question of possible additional complexity in the solution is removed by guaranteeing that, since the systems are conjugate (semi-conjugate, (refer)), $g$ does not add any (some) complexity to the system.  
 It is, however, a balancing act as it also undesirable to choose a function $g$ that quenches the temporal structure in $u$ by contracting to such a degree that the ability to recover information from the original system is lost completely. 
-To obtain a suitably complex function $g$, it is desired that the the reachable set of a driven system  be large enough to relate to the input.  \textbf{(Expand here. It stops a bit abruptly.)}
+To obtain a suitably complex function $g$, it is desired that the the reachable set of a driven system  be large enough to relate to the input.  \ednote{(Expand here. It stops a bit abruptly.)}
  
-In the example above (\ref{ex_halfux}), the input's temporal variation cannot be related to the reachable set as $X_U$ consists of a single element and so little, if not no, information is encoded.  Rather, the reachable set of a driven system must therefore be such that the inverse-limit space of $U_T$ can be embedded in some finite self-product of the reachable set of $T$ \textbf{(refer or cite)}. To this end, consider the notion of State-Input (SI) Invertibility.  
+In the example above (\ref{ex_halfux}), the input's temporal variation cannot be related to the reachable set as $X_U$ consists of a single element and so little, if not no, information is encoded.  Rather, the reachable set of a driven system must therefore be such that the inverse-limit space of $U_T$ can be embedded in some finite self-product of the reachable set of $T$ \ednote{(refer or cite)}. To this end, consider the notion of State-Input (SI) Invertibility.  
 
 \begin{Definition}
   [\bf SI-Invertibility]\label{Dfn_SIinv}
   A map $g$ is said to be SI-Invertible if $g$ is invertible for all $x\in{X}$. Alternatively it may be said that if, given $x_n$ and $x_{n-1}$, $u_n$ can be uniquely determined from $x_n=g(u_n,x_{n-1})$, then $g$ is said to be SI-invertible.
 \end{Definition}
  
-\textbf{Explain more here.}
+SI-invertibility promises that 'enough' information is retained when $g$ is chosen without introducing additional unwanted complexity. \ednote{Expand why this is true.} 
 
-We make special note of a specific driven system. The function 
+It is worth taking note of a specific driven system. The function 
 \begin{equation}  \label{eqn_driving}
 g(u,x)=(1-a)x+a{\cdot}tanh(Au+\alpha{a}Bx)
 \end{equation} 
@@ -791,8 +798,7 @@ One does not in practice, fortunately, need the entire left-infinite history of 
 \end{Definition}
 
 This definition is stated in a not completely rigourous manner as the more formal definition makes use of processes, a concept which would take some time to establish and detracts from the principal thrust of this paper/project/thesis. 
-
-\textbf{Is it VERY obvious to the reader at this point what the general 'thrust' of the paper IS?} \textbf{Cite articles}
+\ednote{Is it VERY obvious to the reader at this point what the general thrust of the paper is?}
 
 As the Unique Attraction Property guarantees that all trajectories \textit{(which ones?)} will converge to the same trajectory as time moves forward. 
 Incredibly, this permits one to initialise a driven system $g$ with an altogether arbitrary initial value $y_m\in{X}$ where $m\in\mathbb{Z}$ and the UAP then guarantees that the sequence $\{y_{m+1}, y_{m+2},\ldots\}$ which satisfies the relation $y_n=g(u_n, y_{n-1})$  for  $k\geq{m}$  will uniformly approach the elements $\{x_n\}$ of the actual solution. (see [41, Theorem 1] or [11, Eqn. (18)]) 
@@ -824,15 +830,14 @@ One may now appreciate an even more astounding result: $g$ having the USP is equ
 One need therefore not establish any additional results to ensure that the sequence uniformly approaches the unique solution $\Psi$. This vastly simplifies the effort necessary to set up a problem in order to guarantee that the underlying system will be accurately represented by the conjugate system.
 
 This also solves the problem of perturbation/noise introduced by the observable or measurement function. Recall from before that an observable is inherently a map that discretises the underlying continuous-time system. Moreover, measurement and device error introduce mistakes. Since we are working with a chaotic system displaying sensitive dependence on initial conditions, these small errors could potentially send the trajectory into a completely different attractor. In the presence of the UAP, however, small measurement errors introduced into the system do not pose the same danger as before.
+\ednote{(Rephrase and/or expand)}
 
-\textbf{(Rephrase and/or expand)}
-
-\subsection{The next step in Dynamics}
+\section{The next step in Dynamics}
 
 Next we define the relation $Y_T$ induced by $(U,T)$ on $X_U\times{X_U}$ for a driven system $g$ possessing SI-invertibility.  To describe the  single-delay lag dynamics formally, we consider a dynamical system $T: U \to U$ and we define a relation on the reachable set $X_U$, i.e., a subset defined on $X_U \times X_U$ by 
 $$Y_T:=\{(x_{n-1},x_n): \{x_k\}_{k\in \mathbb{Z}} \mbox{ is a solution for some orbit of } T \mbox{ and } n \in \mathbb{Z}\}.$$ 
 
-The following theorem establishes the existence of a well-defined map $G_T$ describing the single-delay dynamics of the system above. 
+The following theorem establishes the existence of a well-defined map $G_T$ describing the single-delay dynamics(SDD) of the system above. 
 
 \begin{Theorem}
 If we let $G_T:Y_T\to{Y_T}$ be a map defined by the relation $(x_{n-1},x_n)\mapsto(x_n,x_{n-1})$, then $G_T$ is well-defined (and this results holds even in the absence of $g$ possessing over the USP)  
@@ -841,8 +846,11 @@ If we let $G_T:Y_T\to{Y_T}$ be a map defined by the relation $(x_{n-1},x_n)\maps
 We're now getting quite close to where we want to be and our results carry more and more weight. Recall that $g$ is only being given inputs from the orbits of $T$.  
 
 \begin{Definition}
-  The inverse-limit space $\widehat{U}_T$, a subspace of $\overleftarrow{U}$, is defined by $$\widehat{U}_T:=\{(\ldots, u_{-2}, u_{-1}):T(u_n)=u_{n+1}\}$$ This space is well-defined since $T:U\to{U}$ is surjective by assumption. \textbf{Expand why}
+  [\bf Inverse-Limit Space]\label{Dfn_InvLimSpace}
+  The inverse-limit space $\widehat{U}_T$, a subspace of $\overleftarrow{U}$, is defined by $$\widehat{U}_T:=\{(\ldots, u_{-2}, u_{-1}):T(u_n)=u_{n+1}\}$$ 
 \end{Definition}
+
+The inverse-limit space is well-defined since $T:U\to{U}$ is surjective by assumption. \ednote{Should I explain this in more details or am  I then over-simplifiying?}
 
 \begin{Theorem}
   Graph \ref{Scomm_h} is exactly the inverse-limit system $(\hat{U}, \hat{T})$.    
@@ -852,7 +860,7 @@ We're now getting quite close to where we want to be and our results carry more 
 Note that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ to an element in $X\times{X}$.
 We now have the following (compare with \ref{SCausal_H} above):
 
-\begin{equation}
+\begin{equation} \label{Fig_inverse_limsystem}
   %  \[ 
       \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
       \everypsbox{\scriptstyle}
@@ -865,7 +873,7 @@ We now have the following (compare with \ref{SCausal_H} above):
      %  \ncline{2,1}{2,2}^{G_T}
       \end{psmatrix}
     %  \]
-    \end{equation}
+  \end{equation}
  
 
 \begin{Theorem}
@@ -876,7 +884,7 @@ We now have the following (compare with \ref{SCausal_H} above):
 \end{proof}
 
 
-\subsubsection*{Summarising the discussing thus far:}
+\section*{Summarising the discussing thus far:}
 
 It is easy to lose the birds-eye view, so we take a moment to review our progress up until this point.
 
@@ -889,71 +897,90 @@ It is easy to lose the birds-eye view, so we take a moment to review our progres
 \item If we can assume that $T$ is a homeomorphism, $(Y_T, G_T)$ is topologically conjugate to $(\widehat{U}, \widehat{T})$, an extension space of $(U,T)$
 \end{enumerate} 
 
-One can therefore learn the single-delay lag dynamics of the driven system states via $G_T$ with enough data thanks to the USP/UAP. This enables us to do at least 2 things: 
+One can therefore learn the SDD of the driven system states via $G_T$ with enough data thanks to the USP/UAP. This enables us to do at least 2 things: 
 \vspace{-8mm}
-\begin{itemize}
+\begin{itemize}[noitemsep]
 \item Forecast future values of $x_n$ via iterates of $G_T$ (as $G_T$ can be determined.
 \item Forecast future values of $u_n$. 
 \end{itemize} 
 
-\subsection{A discussion of $G_T$ }
+\section{A discussion of $G_T$ }
 
-By establishing the existence of the map $G_T$, we’ve essentially embedded the attractor $U$ \textbf{(So far we haven't really spoken about an attractor)} into the higher dimensional space $X\times{X}$. \textbf{(Why is it true that it's higher-dimensional?)}
+In the above sections, we established the map $G_T$ describing the SDD of a driven system. By establishing the existence of this map, we’ve essentially embedded the attractor $U$ \ednote{(So far we haven't really spoken about an attractor)} into the higher dimensional space $X\times{X}$. \ednote{(Why is it true that it's higher-dimensional?)}
 In layman’s terms, this ensures that there is more “dimensional room” for the underlying system’s underlying dynamics to “move”. As the dynamics aren’t as “squashed”, we might therefore hope that the dynamics of $G_T$ are in some sense simpler than that of $T$. (Taken note of the fact that $G_T$ is a homeomorphism even when $T$ is just continuous)
  
-In \emph{[Koopman]} it is illustrated in an empirical fashion in that the map $G_T$ describes dynamics which are less functionally complex than that of $T$ or of the map $\Phi_{2d,\theta}$ (as discussed above in the section on Takens). This is done by implementing a Recurrent Neural Network (RNN), but not discussed as of yet. \emph{(Add in that we'll be using Pearson coefficient?)}
+In \cite{manjunath2021universal} it is illustrated in an empirical fashion in that the map $G_T$ describes dynamics which are less functionally complex than that of $T$ or of the map $\Phi_{2d,\theta}$. This is done by implementing a Recurrent Neural Network (RNN), but not discussed as of yet. \ednote{(Add in that we'll be using Pearson coefficient?)}
  
-We opt to learn $G_T$ in an indirect manner by defining a new map $\Gamma$. It follows immediately from $G_T$’s existence that $\Gamma$ also exists. 
+We opt to learn $G_T$ in an indirect manner by defining a new map $\Gamma:(x_{n-1},x_n)\mapsto{u_n}$. It will follow immediately from $G_T$’s existence that $\Gamma$ also exists. 
 
-The reasons for taking this roundabout approach remain to be discussed, but a pat answer may be immediately given: When we have learnt $\Gamma$, we can drive the system autonomously and then we know $G_T$ anyway.
+The reasons for taking this roundabout approach remain to be discussed in \ref{subs_LearnGamma}, but a pat answer may immediately be given: When $\Gamma$ has been learnt, the system can be driven autonomously and then $G_T$ is known anyway. We formalise this with a theorem.
 
 \begin{Theorem}
-  When $x_n$ and $x_{n-1}$ are successive points on a solution obtained for input-orbit of $T$ $\{u_n\}$, then the map $\Gamma: X\times{X}\to{U}$ defined by $(x_{n-1},x_n)\mapsto{u_n}$ exists whenever $G_T$ exists [Koopman, Theorem 3c] 
+  When $x_n$ and $x_{n-1}$ are successive points on a solution obtained for input-orbit of $T$ $\{u_n\}$, then the map $\Gamma: X\times{X}\to{U}$ defined by $(x_{n-1},x_n)\mapsto{u_n}$ exists whenever $G_T$ exists 
 \end{Theorem}
+\begin{proof}
+  From [Koopman, Theorem 3c] 
+\end{proof}
 
-\begin{Definition}
- The projection mapping $\pi_i$ is defined as follows: $$\pi_1:(a_1,a_2)\to{a_1}$$ and $$\pi_2:(a_1,a_2)\to{a_2}$$ 
-\end{Definition}
+Projection mappings $\pi_i$ are defined in the traditional meaning where a $k$-dimensionalvector is projected to it's $i^{th}$ component such that $$\pi_i:(a_1,a_2, \ldotp, a_{k-1}, a_k)\to{a_i}$$
 
-We now have the graph below:
+% \begin{Definition}
+%   [\bf Projection Mapping]\label{Dfn_ProjMap}
+%  The projection mapping $\pi_i$ is defined as follows: $$\pi_1:(a_1,a_2)\to{a_1}$$ and $$\pi_2:(a_1,a_2)\to{a_2}$$ 
+% \end{Definition}
 
-\begin{figure}[ht]
+The graph in equation \ref{Fig_inverse_limsystem} is then extended as below:
+
+\begin{figure}[ht] \label{Fig_Gamma}
   \includegraphics[scale=0.3]{gammatemp.png}
   \centering
   \label{fig:conjugacy_with_Gamma}
 \end{figure}
 
-And a final set of equations - equations that have been constructed from data!
+The problem finally simplifies to the issue of learning the map $\Gamma$ and combining this with the projection mapping $\pi_2$ and the function $g$, which will be known. A final set of equations is obtained - equations that have been entirely constructed from data.
 \begin{eqnarray}
 	u_{k+1} &=& \pi_1 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k) \label{Seqn_u}\\
 	x_{k+1} &=& \pi_2 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k). \label{Seqn_x}
 \end{eqnarray}
 
-The problem thus simplifies to the issue of learning the map $\Gamma$ and combining this with the projection mapping $\pi_2$ and the function $g$, which will be known.
 
-\subsection{Advantages of learning $\Gamma$}
 
-Why are we going such a lengthy roundabout route, one may immediately ask. Why not just learn the map $G_T$ from the get-go? On the surface, this seems to be an arbitrarily chosen path with no real reason for the choice made, so we take a pause again and discuss our reasoning for learning Gamma.
+\section{Advantages of learning $\Gamma$} \label{subs_LearnGamma}
+
+One may immediately ask why we opt to take such a roundabout route; why not just learn the map $G_T$ from the get-go? On the surface, this seems to be an arbitrary decision path with no real reasoning, so we take a pause again and discuss the motivation for learning Gamma.
 There are a number of distinct advantages. 
 
-Learning $\Gamma$ saves computational resources. This follows from the fact that the input $u_n$ at time $n$ lies in a low-dimensional subspace of the high-dimensional subspace $X\times{X}$ due to the fact that it is zero-padded. 
+Learning $\Gamma$ saves computational resources. This is due to the fact that the input $u_n$ lies in a lower-dimensional subspace of the high-dimensional space $X\times{X}$. In practice, if the input is of a  lower dimension, one may easily embed it into the space $X\times{X}$ by padding the vector $u_n$ with zeroes.
+
+\textbf{Can we discuss how to put this across well? I would like to add it in as I think it beneficial to the discussion.}
+
+Moreover, two types of stability are achieved when $g$ has the USP. 
+
 
 Input- and parameter-related stability is achieved if $g$ has the USP
-\newline \emph{Define the two types of stabilities}
+\newline \emph{Define/Explain the two types of stabilities}
 \newline \emph{Sentence on $u$, $v$, tails, USP and product topology}
-\newline If we opt to work with $Y-T$, errors can occur. \emph{Expand}
-\newline $\Gamma$ is more stable. \emph{Explain why}
+\newline If we opt to work with $Y_T$, errors can occur. Expand
+\newline $\Gamma$ is more stable. Explain why.
 
-Global dissipativity prevents large numerical errors due to input data. $\Gamma$ is globally dissipative (\emph{Define}) whereas $G_T$ is not guaranteed to be. IF we were to rather learn $G_T$, we would risk having exactly the same problems arise that could arise also for Takens. \textbf{\emph{ADD THIS TO ERRORS IN TAKENS: NOT GUARANTEED GLOBALLY DISSIPATIVE}}
-\newline \emph{Expand here ...}
+Thirdly, $\Gamma$ is globally dissipative whereas $G_T$ is not guaranteed to be(\emph{Cite}). \ednote{Add linking sentence.} Global dissipativity prevents large numerical errors due to input data.
 
-\emph{Where to add:If $g$ has USP, then any solution to $g$ is a non-autonomous uniform attractor}
+The $\omega$-limit set $\omega(u;T)$ of a point $u$ is defined to be the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$. This set is nonempty, and $\omega(u;T)$ is invariant. \textbf{(Change)}
+
+\begin{Definition}
+  [\bf Global Dissipativity]\label{Dfn_GlobalDiss}
+	We say a dynamical system $(Z,f)$ is globally dissipative if there exists a nonempty proper closed subset $B$ of $Z$  so that for all $x\in Z\setminus B$, (i). $\omega(x;f) \subset B$  and (ii).  $B$ is positively invariant that is $f(B) \subset B$. We call any such closed subset $B$ a trapping set of $f$. 
+\end{Definition}
+
+If a system is not globally dissipative, neglibly small errors result in major errors which thus induce predictions to fail utterly. If one learns $G_T$ directly, we are in danger of replicating the problems arising for Takens. 
+
+
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Implementation} \label{sect5}
+\chapter{Implementation} \label{sect5}
  
  
 

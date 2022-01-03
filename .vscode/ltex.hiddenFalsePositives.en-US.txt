@@ -1,0 +1,2 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QAn input-driven system is understood to be a nonautonomous, discretised dynamical system on the state space \\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
+{"rule":"MASS_AGREEMENT","sentence":"^\\QProcess Consider the subspace \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

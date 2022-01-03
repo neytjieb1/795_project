@@ -1,0 +1,842 @@
+\documentclass[12pt, oneside]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+
+
+\usepackage{amsmath, amssymb, amsthm, latexsym, bm,enumerate, fancyhdr, tikz,afterpage, float}
+\usepackage{graphics,graphicx,geometry}
+\usepackage{hyperref,color}
+%beamer uses these
+\usepackage{etex}
+\usepackage{epsfig, subfigure, psfrag}
+%\usepackage[]{hyperref}
+\usepackage[english]{babel}
+\usepackage{multimedia}
+\usepackage[all]{xypic}
+\usepackage{alltt}
+\usepackage[numbers,square,sort&compress]{natbib}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.markings}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{mathtools}
+
+\usepackage[framemethod=tikz]{mdframed}
+%color definitions
+
+%berné added
+\usepackage{pst-node}
+%\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\colorlet{darkgreen}{green!50!black}
+\definecolor{darkblue}{rgb}{0, 0, .6}
+\definecolor{midnightblue}{rgb}{.2, .2, .7}
+\definecolor{grey}{rgb}{.7, .7, .7}
+\definecolor{Red}{rgb}{.9,0,0}
+\definecolor{Blue}{rgb}{0,0,.9}
+\definecolor{Green}{rgb}{0,.9,0}
+
+\newenvironment{greenblock}[3]{%
+  \setbeamercolor{block body}{bg=structure!10,fg=black}
+  \setbeamercolor{block title}{bg=green!20,fg=black}
+  \begin{block}{#1}}{\end{block}}
+
+\newenvironment{redblock}[3]{%
+  \setbeamercolor{block body}{bg=red!10,fg=black}
+  \setbeamercolor{block title}{bg=red!20,fg=black}
+  \begin{block}{#1}}{\end{block}}
+
+%%% more color definitions
+
+\colorlet{lightred}{red!30!white}
+\colorlet{lightblue}{blue!30!white}
+\colorlet{lightyellow}{yellow!30!white}
+\colorlet{keylime}{green!10!white}
+\colorlet{darkgreen}{green!50!black}
+
+\def\docolor#1#2{\textcolor{#1}{#2}}
+\def\highlight#1{\docolor{blue}{#1}}
+\def\underscore#1{\underline{#1}}
+\def\boldify#1{{\bfseries #1}}
+
+
+\restylefloat{figure}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{nt}[thm]{Note}
+\newtheorem{exs}[thm]{Examples}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+%\theoremstyle{remark}
+\newtheorem*{ex}{Example}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem*{keg}{Key example}
+\newtheorem*{keyeg}{Key example}
+\newtheorem*{term}{Terminology}
+\newtheorem*{notn}{Notation}
+\newcommand{\mt}{}
+\newcommand{\del}{\ensuremath{\backslash}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+% \newcommand{\beq}{\begin{eqnarray}}
+% \newcommand{\eeq}{\end{eqnarray}}
+% \newcommand{\beqn}{\begin{eqnarray*}}
+% \newcommand{\eeqn}{\end{eqnarray*}}
+\newcommand\ix[1]{#1\index{#1}}
+\newcommand{\ls}{\leqslant}
+\newcommand{\gs}{\geqslant}
+\newcommand\lset[2]{\left\{\left.#1\ \right|\ #2\right\}}
+\newcommand\rset[2]{\left\{#1\ \left|\ #2\right.\right\}}
+\newcommand{\ol}{\overline}
+\newcommand{\mbb}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\bbfq}{\mathbb{F}_q}
+\newcommand\bbp{\mathbb{P}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbf}{\mathbb{F}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bba}{\mathbb{A}}
+\newcommand{\mcal}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\CC}{\mcal{C}}
+%\newcommand{\CD}{\mbox{$\cal D$}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\CE}{\mcal{E}}
+\newcommand{\CF}{\mcal{F}}
+\newcommand{\CG}{\mcal{G}}
+\newcommand{\CO}{\mcal{O}}
+%\newcommand\weight{\operatorname{weight}}
+\newcommand{\wt}{\operatorname{weight}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\columnrank}{\operatorname{column~rank}}
+\newcommand{\rowrank}{\operatorname{row~rank}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\ifff}{\Longleftrightarrow}
+\newcommand{\ham}{\operatorname{Ham}}
+\newcommand{\tran}{^\textup{T}}
+\newcommand{\li}{linearly independent}
+\newcommand{\ld}{linearly dependent}
+\newcommand{\sgn}[1]{\ensuremath{\mathrm{sgn}(#1)}}
+\newcommand{\krn}[1]{\ensuremath{\mathrm{Ker}(#1)}}
+\newcommand{\ch}[1]{\ensuremath{\mathrm{char}(#1)}}
+ \newcommand{\jmod}[2]{\mbox{ $\equiv #1$}\mbox{ \rm (mod $#2$)}}
+\newcommand{\group}[2]{\ensuremath{(#1,\, #2)}}
+\newcommand{\ring}[3]{\ensuremath{\langle #1,\, #2,\, #3 \rangle}}
+\newcommand{\gl}[2]{\ensuremath{\mathrm{GL}(#1,\, #2)}}
+%\newcommand\ex[1]{\emph{#1}\index{#1|btemp}}
+\newenvironment{pfenum}{\begin{proof}\indent\begin{enumerate}\vspace{-\topsep}}{\qedhere\end{enumerate}\end{proof}}
+\makeatletter
+\def\imod#1{\allowbreak\mkern10mu({\operator@font mod}\,\,#1)}
+\makeatother
+
+\pagestyle{fancy}
+\fancyhead[L]{Draft 1}
+% \fancyhead[C]{Algebra}
+\fancyhead[R]{\leftmark}
+
+% \fancypagestyle{plain}{
+% \fancyhead[L]{WTW 381}
+% \fancyhead[C]{Algebra}
+% \fancyhead[R]{\leftmark}}
+
+\renewcommand{\sectionmark}[1]{\markboth{\thesection.\ #1}{}}
+
+\renewcommand{\headrulewidth}{0.4pt}
+
+\addtolength{\headheight}{\baselineskip}
+
+\sloppy
+
+\begin{document}
+
+
+\title{Title}
+
+
+\author{B. Nortier\\
+% {\small \it Department of Mathematics \& Applied Mathematics, University of Pretoria, Pretoria 0028} \\ {\small Email: u17091820@tuks.co.za \& } \\
+}
+\date{2021}
+\date{}
+\maketitle
+
+\begin{abstract}
+Abstract goes here.
+\end{abstract}
+
+
+% {\bf Keywords} Data-driven dynamical systems, Koopman Operator, Causal Embedding, Nonautonomous Dynamical Systems. 
+
+% \newpage
+
+\section{Introduction}
+Traditional methods for modelling physical systems involves deriving governing equations by
+considering the world and discover some fundamental relationships between encountered
+quantities and phenomena. These fundamental relationships are then expressed mathematically and
+used as the foundations to derive more complicated relationships. Consider the example of
+Newton’s law F=ma
+However our world around is, for the most part, much more complex than that which can be
+distilled into elegant equations. Many of the more complex systems we don’t fully understand, nor
+even have good physical intuition of.
+To complicate this – many of the physical phenomena we observe in nature are chaotic.
+Mathematically, this would imply what we call sensitive dependence on initial conditions. Despite
+having highly similar initial conditions, differing orbits will diverge quickly and by such a large degree
+that it becomes seemingly impossible to retrace them steps back to the origin conditions.The
+presence of the smallest of computational noise or measurement error makes long-term pointwise
+prediction very difficult to minimise.
+We may however exploit the environment of data-overload we currently find ourselves in. This is
+one where an incredible amount of information is being gathered and generated on a daily basis.
+Alongside this we have also witnessed the advent of greater computing power and storage.
+This project work focusees on constructing governing models for real-world systems in some sense
+‘blindly’, by making use of the abundance of information we have at our disposal. An advantage of
+this approach is the fact that we need only make a very few starting assumptions about the system
+we choose to investigate, allowing the methodology it to be greatly generalised. In establishing 
+topological conjugacy between underlying systems we can then, amongst others, establish long-
+term accurate results.
+
+By solidifying the mathematical underpinnings of our theory, we may guarantee having the ability to
+construct models with predictive power ranging from molecular biology to neuroscience.
+The goal of the methodology described here is to be able to predict the dynamics into the future by
+constructing a model that will accurately mimic the dynamics of a system and hence also provide a
+framework for future evolution of a dynamical system.\\
+
+\emph{Additional to Intro?}\\
+Examples in literature attempting to forecast data from such systems abound: One could model the
+unobserved states as stochastic quantities. Or one could map the data to a higher-dimensional space
+by means of delayed-time map of observations and then hope to see some of the the unobserved
+characteristics of the data revealed.
+
+\newpage
+
+
+\section{Possible addition or Post-introduction:}
+
+\emph{Expand on non-autonomous systems, their unique challenges and chaotic dynamics?} 
+
+Long-term consistency while modeling \textbf{chaotic} dynamical systems is an issue. When systems have 
+sensitive dependence on initial conditions, negligible numerical errors multiply within a very short 
+time gap to the point that it becomes unfeasible to track specific orbits.
+We’ll focus on case where attractor is present.
+
+\section{Setup and Learning Problem}
+
+Consider a relatively simple learning problem:
+
+Given ($u_{0}$, $u_{1}$, …, $u_{m}$), forecast um+1, um+2, …, given that $u_{n}$ is defined by relation  $u_{n+1} = Tu_{n}$. 
+
+
+However, T is unknown.
+
+
+More involved learning problem: We have $\theta$(u0), $\theta$(u1), …, $\theta$(um) in an unknown dynamical system (U,T). 
+Forecast $\theta$(um+1), $\theta$(um+2)
+
+
+
+\textbf{Now consider a more refined scenario:}
+\begin{enumerate}
+  \item  a continuous time system with true state u in U (input space)
+  \item Measured signal = $x_{n}$ (where: $x_{n}$ homeo x(u(tn)) + $\eta_{n}$ <-- noise 
+\end{enumerate}
+
+We have a scalar time-series.
+
+We construct multi-dimensional observable 
+
+How? 
+\begin{enumerate}
+  \item Delay-coordinates: Given {x1,x2,$\ldots$}: define $x_{n}$ = [$x_{n}$,$x_{n}$-$\tau$,$\ldots$, $x_{n}$-(d-2)$\tau$,$x_{n}$-(d-1)$\tau$].T $\in\mathbb{R}^{d}$ 
+  \item $\tau$=lag
+  \item d=embedding dimension (park those two for now)
+\end{enumerate}
+
+
+Given: $x' = f(x)$ where $x(t)\in\mathbb{R}$  (x(t) are the states, f is assumed smooth)
+
+Define flow: $\Phi$(x(t0),M)=x(t0+M), $\Phi$:U$\times$R $\rightarrow$ U 
+
+we can relate the two:  
+
+d/dt$\Phi$ (x(t0),t) = d/dt x(t0+M) = f(x(t0+M)) =f($\Phi$(x(t0),t)
+
+Now define time-map $\Phi$M : x(t0+M)= $\Phi$T(x(t0)) 
+
+i.e. x(t0+kM) = $\Phi$k 
+
+M(x(t0))= $\Phi$M$\circ$ $\Phi$M $\circ$$\ldots$$\circ$ $\Phi$M(x(t0) = k-fold composition 
+
+BUT: we only get to see a 1D time series $\theta$(x(t)), where $\theta$: R 
+
+N$\rightarrow$R is a smooth observation/measurement function. 
+
+Can information about the system state x(t) be retained in this time series data $\theta$(x(t))? 
+
+If we know f, then easily. But we don’t.
+
+
+\textbf{However: Takens’ theorem gives some hope by saying yes! }
+
+
+\subsection{Some side-questions}
+\emph{Let’s talk about the fact that the manifold U is an attractor etc? Takens only holds for attractors, so
+that is then why we immediately “restrict” U by only considering the subset containing the attractor
+right? (ie. Only consider the space occupied by attractor. This is then why we demand that U is
+compact and T surjective?
+What about density of attractors? (1)}
+
+$\ldots$
+
+\section{Takens Theorem}
+\begin{enumerate}
+  \item What's that?
+  \begin{enumerate}
+        \item Takens defines delay-coord-map F$\theta$
+        \begin{enumerate}
+              \item F$\theta$ : [$\theta$(T-2du), $\ldots$ , $\theta$(T-1u), $\theta$(u)] $\rightarrow$ [$\theta$(T-2d+1u), $\ldots$ , $\theta$(T-1u), $\theta$(Tu)]
+              \item Where T is flow T$u_{n-1}$ = $u_{n}$ (previously our flow was $\Phi$)
+              \item $\theta$ is measurement function,
+        \end{enumerate}  
+        \item When confining DS to manifold U (in which system is contained), Takens showed
+        that, if certain smoothness conditions are satisfied on T and $\theta$ then delay-coord
+        map F$\theta$ is embedding of U onto the reconstruction space for \emph{almost every
+        choice(2)} of measurement function $\theta$ (the observable)
+        \item Or alternatively: Takens' embedding theorem guarantees that almost all
+        dynamical systems can be reconstructed from just one noiseless observation
+        sequence.
+        \item i.e. for great number of possible observation functions $\theta$, F$\theta$ preserves the
+        topology of U
+        \item \emph {See Graph 1 }
+        \begin{enumerate}
+          \item If we are in a state u, and then evolve towards state Tu before  embedding into R(2m+1), then it is the same as embedding into R(2m+1) and then evolving through the map F$\theta$
+        \end{enumerate}
+        \item Thus: information about U can be retained in the time series’ (observation)
+        output. By preserving the topology of the manifold U in the reconstruction space
+        X, topological invariants of manifold are preserved, of which dimensionality is
+        one (again considered later important later. (3)
+  \end{enumerate}
+  \item Problems with Takens
+  \begin{enumerate}
+    \item Even if we can find F$\theta$, our approximation of F$\theta$ is a map from a larger set R2m+1
+    containing the embedded attractor. No theoretical guarantees that F$\theta$ will keep
+    this attractor the same. (should have defined attractor earlier?)
+    \item Takens only holds for noiseless observations.
+        \begin{enumerate}
+          \item Assume F was learnt but due to measurement error/noise we get V, not an attractor, then will tend somewhere else. This problem will later be removed by some properties of g (USP/UAP)
+        \end{enumerate}
+    \item Takens only holds if T is invertible. 
+    \item  Functional complexity and stability of embedding F$\theta$ depend on choice of  observable $\theta$
+  \end{enumerate}
+\end{enumerate}
+
+
+Now: Although we cannot necessarily find a map T:U $\rightarrow$ U, there does exist a map from
+$\Phi$: $\Phi$2d,f(um) $\rightarrow$ $\Phi$2d,f(um+1) whenever U is a manifold of dimension less than d (should we say more
+about d?)
+
+\emph{Graph 2}
+(In sketch: W==U )
+
+\textbf{We’re one step closer to recovering information about the system states}
+
+
+
+\section{Problem}
+
+We're trying to approximate a map that might not even exist.
+
+
+\emph{Goal:} 
+predict dynamics into future and construct model from data which mimics dynamics.
+
+
+\section{So how do we guarantee existence?}
+
+\begin{enumerate}
+  \item Assumptions
+  \begin{enumerate}
+      \item assume a compact, discrete time, dynamical system (U,T) (implicitly T cts)
+      \begin{enumerate}
+          \item T must be surjective. (This is important, we return to it later)  
+      \end{enumerate}
+      \item  A driven dynamical system g, who takes input in U. (implicitly g is cts)
+      \begin{enumerate}
+         \item g will be randomly initiated neural net <--  wil explain why later
+        \item  g($u_{n}$-1, $x_{n}$-1) = $x_{n}$
+      \end{enumerate}
+      \item Bi-infinite sequence u <-- physically: running for long time
+  \end{enumerate}
+
+  \item We can easily show existence of the function g:
+  \begin{enumerate}
+    \item   g = identity on X 
+    \newline But then: g ignores the input u and any constant bi-infinite sequence would be a solution to input u.
+    \item  However this gives trivial soln, can we find something better?
+    \item  Define: reachable soln space XU, entire solutions, YT
+    \begin{enumerate}
+      \item Give own example of entire sol'n
+      \item \emph{Graph 3}
+    \end{enumerate}
+  \end{enumerate}
+  \item Choosing g
+  \begin{enumerate}
+      \item Choosing g st “not quench temporal structure in u”
+      \item(4)
+      \item  g must be cts, invertible (for SI-invertibility)
+      \item Specific w.r.t tanh:
+       \newline \emph{Describe set of all solutions of g for given input u}
+  \end{enumerate}
+\end{enumerate}
+
+
+\section{Can we show uniqueness of an entire solution?}
+
+\emph{Graph 4}
+
+\begin{enumerate}
+  \item UAP: regardless of starting position, all trajectories converge to a single trajectory. This
+  trajectory is the unique solution sequence x to the input sequence u from the previous
+  slide.
+  \item  USP: \emph{insert more info here}
+  \begin{enumerate}
+      \item The USP - we can start the system anywhere and in time it will forget
+      \item  No new complexity
+      \item USP $\equiv$ g is topological contraction $\equiv$ UAP (we’ll show this) 
+      \begin{enumerate}
+            \item 1. Define topological contraction      
+      \end{enumerate}
+  \end{enumerate}
+  \item but infinite sequences are difficult to manage
+  \begin{enumerate}
+      \item   i. If both SI-invertibility and USP hold for g, then our causal mapping becomes much simpler: we can drop the infinite sequence to focus only on the most recent two terms. (Call it H2)
+      \newline \textbf{AND} H2 becomes embedding    
+  \end{enumerate}
+\end{enumerate}
+
+\section{Establishing Embedding and Conjugacy}
+
+\begin{enumerate}
+        \item Define: Embedding, Causal Embedding, Topological Conjugacy
+        \begin{enumerate}
+            \item Explain conjugacy more perhaps?  
+        \end{enumerate}
+        \item \emph{Graph 5}
+        \item SI-invertibility, guaranteeing us the function $G_{T}$ on X$\times$X. <--- theoretical basis to try approximate!
+        \item If g is SI-invertible and {$u_{n}$} in U is an orbit of T then:
+        \begin{enumerate}
+          \item   $G_{T}$ exists
+          \item if g also has USP then (YT, $G_{T}$) top.semi-conjug to ($\hat{U}$, $\hat{T}$)
+          \item if T:U $\rightarrow$ U is homeo then (YT, $G_{T}$) is top.conjug to ($\hat{U}$, $\hat{T}$) and top.conjug to (U,T) so g is causal embedding
+          \item WE can learn single-delay dynamics
+          \begin{enumerate}
+            \item forecast future values of $G_{T}$
+            \item forecast future values of $u_{n}$
+          \end{enumerate}
+        \end{enumerate}
+        \item Question: why can one learn single-delay lag dynamics of the driven states through $G_{T}$
+        with \textbf{enough} data?
+\end{enumerate}
+
+
+\section{Why $G_{T}$?} 
+
+Why do we do this?
+
+\begin{enumerate}
+  \item Essentially embed attractor into higher dimensional space X$\times$X.
+  \item  Hence: more `dimensional room' for the dynamics to move, and we might hope
+  that the dynamics of $G_{T}$ is in some sense simpler than that of T.
+  \newline \textbf{OR} 
+  \newline  Embed into state space with much higher dimension s.t. unobserved features of sequential iput data ($u_{n}$) can emerge in ($x_{n}$)
+\end{enumerate}
+
+\section{Progression to $\Gamma$ma instead of $G_{T}$}
+
+\begin{enumerate}
+  \item Define $\Gamma$:($x_{n}$-1, $x_{n}$) $\rightarrow$ $u_{n}$
+  \begin{enumerate}
+      \item Existence? $\Gamma$ exists when G exists  
+  \end{enumerate}
+  \item New conjugacy  
+  \newline \emph{Graph 6}
+  \item Why not $G_{T}$?
+  \begin{enumerate}
+    \item dimension on which $G_{T}$ is defined can be high (wasn’t it the goal to increase dimension?)
+    \item  If we know $\Gamma$ then we can drive the system autonomously. 
+    \newline  And then we know $G_{T}$ anyway
+    \item Also: numerical errors could accumulate  when working
+    \newline \emph{Graph 7}
+  \end{enumerate}
+\end{enumerate}
+
+
+
+\section{Programmatically} 
+\begin{enumerate}
+  \item Implementation
+  \begin{enumerate}
+    \item Explain the choice of g
+    \item Explain DC, SDD, MDD, AMDD
+    \item Sparse matrices
+    \item Explain why RNN is chosen (above, for example, FNN)
+  \end{enumerate}
+  \item Some Examples
+  \begin{enumerate}
+    \item Double Pendulum successes
+    \item Data dying down (ie. Not surjective and make more remarks here on surjectivity as promised in the beginning)
+    \item Attractors from previous article such as Lorenz, Henon
+    \item Other attractors I’ve experimented with.
+  \end{enumerate}
+\end{enumerate}
+
+
+\section{Comparison with/Mention of previous work}
+
+\begin{enumerate}
+  \item Mention previous work, such as SyndiPi, and that it doesn’t work
+  \item  Data-driven approaches alongside machine-learning algorithms have outperformed the classic delay-coordinate embedding as formulated by Takens in the prediction of chaotic dynamical systems’ evolution.
+\end{enumerate}
+
+\section{Further Work}
+
+MD
+
+
+\section{More things to Add}
+\emph{Unsure here whether it's important}
+
+\begin{enumerate}
+  \item Defining attractors
+  \item Instability due to perturbation and how prevented
+  \item Defining a process?
+  \item \emph{Graph 8}
+  \item State contractions and their importance
+  \item  More actual theorems
+  \item Worry:
+  \begin{enumerate}
+    \item  So far I have very little “mathematical” theorems or proofs. Is this a problem
+    \newline This will, however, probably be added when expanding on attractors and USP
+  \end{enumerate}
+  \item Should I show/state that USP == UAP (equivalent)?
+  
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+% \section{Definitions}
+
+% \begin{dfn}{Discrete-time autonomous system}
+%   A discrete-time autonomous system on a state space $X$ is given by the map $g:X\mapsto{X}$, where the dynamics are generated by compositions of $g$ with itself.
+% \end{dfn}
+
+% The system evolves according to the equation $x_{n} = g(x_{n-1})$ for $n\geq1$ and generates the sequence
+% $\ldots, x_{-1}, x_{0}, x_{1},\ldots$.
+
+% \begin{dfn}{Discrete-time nonautonomous systems}
+%     A discrete-time nonautonomous system on a state space $X$ is then a collection of continuous maps ${g_n}$ such that $g_n:X\mapsto{X}$ satisfying the equation
+%     $x_{n} = g_{n-1}(x_{n-1})$ at each timestep $n$.
+% \end{dfn}
+
+% Now consider a subset of this discretised version of nonautonomous systems in which external factors are taken into account.
+
+% \begin{dfn}{Input-driven system}
+%   An input-driven system is understood to be a nonautonomous, discretised dynamical system on the state space $X$ consisting of an input, or driving, sequence, 
+%   ${u_{n}}\subset{U}$ and a continuous function $g:U\times{X}\mapsto{X}$ such that at time $n$ the state $x_{n}$ is determined by $x_{n}=g(u_{n-1}, x_{n-1})$
+% \end{dfn}
+
+% \begin{rmk}
+%   $g^{n}$ denotes the self-composition of the function $g:U\times{X}\mapsto{X}$ n times.  
+% \end{rmk}
+
+
+
+
+
+% \begin{dfn}
+% Discrete-time state space models of the form 
+% \begin{equation}
+%     x_{n+1} = g(u_{n}, x_{n})
+% \end{equation}
+% \begin{equation}
+%     y_{n+1} = f(x_{n+1}),
+% \end{equation}
+% where $n \in \mathbb{Z}, u_{n}$ belongs to an input space $U$ and state $x_{n}$ belonging to a state space $X, g: U \times X \rightarrow X$, and a measurement $f:X \rightarrow Y$
+% \end{dfn}
+
+% \begin{dfn}
+% The dynamics on $X$ are generated by the update equation $x_{n+1} = g(u_{n},x_{n}$
+% \end{dfn}
+
+% \begin{dfn} {Entire solution} \\
+% Given a driven system $g$ and an input $\overline{u}$, we call a sequence $\{x_{n}\}_{n\in\mathbb{Z}})$ an entire-solution, or just a solution, if it satisfies the update equation $x_{n+1} = g(u_{n},x_{n}$ for all $n\in\mathbb{Z}$
+% \end{dfn}
+
+% \begin{dfn} {Entire solution of process a $\phi$} \\
+%   An entire solution of a process $\phi$ on the state space $X$ is a sequence $\{x_{n}\}_{n\in\mathbb{Z}}$ where $x_{n}\in{X}$ for all $n\in\mathbb{Z}$ and 
+%   $\phi(n,m,x_{n})=x_{n}$ whenever $n\leq{m}$.
+% \end{dfn}
+
+% \begin{dfn} {$\phi$-Invariant Set}
+%   The set $\mathbb{A} = \{A_{n} : A_{n} \subset X\}$ where $\mathbb{A}_{m}\subset X$ for all $m$ and $\phi(n,m,A_{m})=A_{n}$ for $n\geq{m}$.
+% \end{dfn} 
+
+% \begin{rmk}
+%   Note: when we speak of g, then we refer implicitly to the entire underlying dynamical system.
+% \end{rmk}
+
+% The infinite product space $\overline{Y}$ is defined as follows: $\overline{Y}:=\prod_{i=-\infty}^{\infty}{Y_{i}}$ such 
+% that $Y_{i} \equiv$.
+
+% \begin{dfn} {Unique Solution Property} \\
+% A driven system $g$ has the unique solution property (USP) if for each input $\overline{u}$ there exists exactly one solution. \\
+% Expressed more rigourously, we may state that $g$ has the USP if there exists a well-defined map $\Psi:\overline{U}\mapsto\overline{X}$.
+% $\Psi(\overline{u})$ then represents the unique entire solution when the input is $\overline{u}$. 
+% % Alternatively, g has the USP if there exist a well-defined map $\Psi$ between the infinite product space $\overline{U}$ and $\overline{X}$, where $\overline{Y}:=\prod_{i=-\infty}^{\infty} Y_{i}$ and $Y_{i}\equivY$ so that $\Psi(\overline{u})$ denotes the unique solution obtained from the input $\overline{u}$.
+
+% \end{dfn}
+
+% \begin{dfn}
+% Echo State Property or Topological Contraction
+% \end{dfn}
+
+% \begin{thm}{Contraction Mapping Theorem}
+%   $f:M\rightarrow M$ where $(M,d)$ is a metric space then $\exists k\in[0,1]$ such that (s.t.) $\forall{x,y}\in\mathbb{R}$ we have
+%   $d(f(x),f(y)) \leq d(x,y)$
+% \end{thm}
+
+% \begin{dfn}
+% Dissipative System
+% \end{dfn}
+
+% \begin{dfn} {Basin of Attraction }
+% Basin of Attraction for a stable fixed point
+% \end{dfn}
+
+% \begin{dfn}
+% Local Irreducible Attractor
+% \end{dfn}
+
+% \begin{dfn}
+% Pullback Attractor
+% \end{dfn}
+
+% \begin{dfn}
+% Forward Attractor
+% \end{dfn}
+
+% \begin{dfn}
+% Uniform Attraction Property:
+% $\forall \epsilon \exists N \in \mathbb{N} s.t. \forall y_{0} \in X \forall \overline{u}\in\overline{U}, d(x_{n}, y_{n})<\epsilon holds for n>\mathbb{N}.$ Here $y_{n+1}:=g(u_{n},y_{n})$ for $n\geq0$ and $\{x_{n}\}$ is a solution for input $\overline{u}$
+% \end{dfn}
+
+% \begin{dfn}
+%     $\hat{U}_{T} = $ the space of all left-infinite T-orbits = $\{(\ldots, u_{-2}, u_{-1} : Tu_{n} = u_{n+1})\}$
+% \end{dfn}
+
+% \begin{dfn}
+% Left-Infinite Sequence Space $\overleftarrow{U}$ where 
+
+% $\overline{Y}:=\prod_{i=-\infty}^{\infty} Y_{i}$ and
+% $Y_{i} \equiv Y$ equipped with the product topology.
+
+% \end{dfn}
+
+% \begin{dfn}
+% The left-infinite fragment of any bi-infinite input sequence $\overline{u}$ is denoted by $ \overleftarrow {u}^{n}:=($\ldots$,u_{n-2}, u_{n-1})$
+% \end{dfn}
+
+% \begin{dfn}
+% The reachable set of a driven system ${g}$ is the union of all elements of all possible solutions. \\
+% $X_{U} := \{ x \in X : \exists$ a solution $\{x_{n}\}$ for some $\overline{u}$ and $x=x_{k}$ for some $k \in \mathbb{Z}$
+% \end{dfn}
+
+% \begin{rmk}
+% An input value is denoted as $v$.
+% \end{rmk}
+
+% \begin{dfn}
+%   Orbit of T
+% \end{dfn}
+
+% \begin{dfn}
+%   \begin{equation}
+%     Y_{T} = \{ (x_{n-1}, x_{n}) : \{x_{k}\}  \textrm{is a solution of some orbit of} T \}  
+%   \end{equation}
+% \end{dfn} 
+
+% \begin{rmk}
+%   The following notation is used:\\
+%   $\overleftarrow{u} = (\ldots, u_{-2}, u_{-1})$ \newline
+%   $\overleftarrow{u}^{n} = (\ldots, u_{n-2}, u_{n-1})$
+% \end{rmk}
+
+% % \begin{def}
+% % The update of the input is defined as $u_n$. 
+% % \end{def}
+
+% \begin{dfn}
+% The input up to time $n$ with an input $v$ at time $n$ is denoted 
+% $\overleftarrow{u}^{n}v:=(\dots,u_{n-2}, u_{n-1}, v)$.
+% \end{dfn}
+
+
+% \begin{dfn}
+% H is a causal mapping if $H:\overleftarrow{U}\rightarrow\overleftarrow{X}_{U}$ is a continuous and surjective map such that 
+% \end{dfn}
+
+% \begin{dfn}{Topological Conjugacy}
+% A homeomorphism between two dynamical systems (U,T) and (V,S) is a a function $\phi:U\rightarrow V$ such that $\phi\circ\ T = S\circ\phi$.\\ We then say that 
+% (V,S) is \emph{topologically conjugate} to (U,T).
+% \end{dfn}
+
+% When $\phi$ is merely continuous and not a homeomorphism, we call the map a topological semi-conjugacy. This many-to-one relationship guarantees at least a 
+% coarse-grained depiction of the original system.
+
+% \begin{dfn}
+%   Universal Semi-Conjugacy: A map $h:\overleftarrow{X}\rightarrow X_{U}$ which is continuous and surjective s.t. $\forall v\in U$ the diagram commutes: \\
+%   \textbf{XXX}
+%   \end{dfn}
+
+% \begin{dfn}{Embedding}
+% A homeomorphism $f:Z\rightarrow Y$ for $Y\in X$. \\
+% We then say that $Z$ is embedded in $X$ by $f$
+% \end{dfn}
+
+% \begin{dfn}{Observable}
+% A one-dimensional time-series $y(t)=\phi(x(t))$, where $\phi:\mathbb{R}^{n}\rightarrow\mathbb{R}$ is a smooth so-called observation or measurement function.
+% \end{dfn}
+
+% \begin{dfn} {Process}\\
+%   Consider the subspace $\mathbb{Z}_{\leq}^{2} := {(n,m) : n,m \in \mathbb{Z}, n\geq{m}}$. \\
+%   The process $\phi$ is a mapping $\phi:\mathbb{Z}_{\leq}^{2}\times{X}\mapsto{X}$ satisfying the following:
+%   \begin{enumerate}
+%     \item $\phi(m,m,x)=x $ \quad for all $ m\in\mathbb{Z}, x\in{X}$
+%     \item  $\phi(n,m,x)= \phi(n,k,\phi(k,m,x)) \quad $ for all $ m,k,n \in\mathbb{Z}$ where $m\leq{k}\leq{n}$, $x\in{X}$
+%     \item $\phi(n,m,\dot)$ is continuous on $X \forall{n,m}$ 
+%   \end{enumerate}
+% \end{dfn} 
+
+% % Process: Two-parameter semigroup formalism (10,15) defined for nonautonomous systems
+
+% \begin{thm}
+%   A nonautonomous system $g_{n}$ on $X$ exists if and only if a process $\phi$ on $X$ exists.
+% \end{thm}
+
+% The proof is almost trivial:
+% \begin{proof}
+%   A process $\phi$ on $X$ generates a nonautonomous system $\{g_{n}\}$ if we define $g_{n}(x):=\phi(n+1,n,x)$. In so doing we obtain the 
+%   system state $x_{n}$ at time $n$ by $\phi(n,m,x)$ where $x_{0}$ was the initial state at time $m$.
+  
+%   Conversely, the nonautonomous system  with $\{g_{n}\}$ generates a process $\phi$ on $X$ if  we define as follows: 
+%   $\phi(m,m,x):=x$ and $\phi(n,m,x):= g_{n-1}\circ{\ldots}\circ{g_{m}(x)} = x_{n}$.   
+% \end{proof}
+
+% % the nonautonomous system $(X, g)$
+
+% \begin{dfn} {Flow} \\
+%   The unique global solution $\Phi(t,x_{0})$  of $x'=f(x)$ passing through some $x_{0}$ at $t=0$ where
+%    $\Phi$ satisfies the following properties:
+%    \begin{enumerate}
+%     \item $\phi(0,x_0)=x_{0}$
+%     \item $\phi(t,x_{0})$ is continuous on its domain
+%     \item $\Phi(t+s,x_{0})=\Phi(t,\Phi(s,x_{0}))$
+%    \end{enumerate}
+% \end{dfn}
+
+% It follows that $\Phi(t,x_{0})$ attains the value $x_t$ at time $t$, and so we may define the function 
+% $T(x_0):=\Phi(M,x_{0})$ , which can be referred to as the \emph{Time-T Map}. 
+% \newline
+
+% Now consider the following: \\
+% \begin{equation}
+%   T\circ{T(x_0)} = T\circ{\Phi(M,x_{0})} = \Phi(M,\Phi(M,x_{0})) = \Phi(2M,x_{0}) = T^{2}(x_0)
+% \end{equation}
+
+% In general then: {  $T^{n}(x_{0}) = $ the value of the solution after  nxM  time-units} and any solution $(x_k)$in U is of 
+% the form ${x, Tx, T^{2}x, \ldots}$, i.e. it satisfies the difference equation 
+% \begin{equation}
+%   x_{k+1} = T(x_k)
+% \end{equation}
+
+
+
+
+% \begin{dfn}{Dynamical System} \\
+% A tuple $(U,T)$ for an attractor/state space U which is a compact metric space and a function T that is not necessarily continuous.
+% \end{dfn} 
+
+
+% It may easily be verified that if T is obtained from a flow, then T is a homeomorphism. \emph{CITATION}\\
+
+% One can also assume, without loss of generality, that T is surjective. To see this, consider 
+% $\ldots$  \emph{CITATION}
+
+
+% The evolution of a dynamical system may happen smoothly over time or over discrete time-units. Though evolution in nature occurs
+% in a continuous fashion, we may only observe this change in discrete-time due to the fact that we can only gather data through
+% observations at specific intervals of time. It is thus necessary to discretise the system. \emph{(which automatically arise per dis-
+% cretization in simulations on digital computers).}
+
+
+
+% \bigskip
+% Assume that the system has state $u$ in the input space $X$. We cannot directly observe u, (for if we did then this project would 
+% be superfluous). Rather, we have some observed signal $(x_{n})$ of the form
+% \begin{equation}
+% x_{n} = x(u)(t_n) + \nu_{n}
+% \end{equation}
+% for measurement noise $\nu{n}$.
+
+% Measurement noise can be a great hindrance to accurate reconstruction of the system and could even become indistinguishable from a random time series. 
+% \emph{The case of low-D data from high-D system}
+
+
+
+% \subsection{Functions}
+
+% \begin{equation}
+%     \Gamma: Y_{T} \mapsto {U} \textrm{ s.t. } \Gamma:(x_{n-1}, x_{n}) \mapsto u_{n}
+% \end{equation}
+
+% \begin{equation}
+%   \hat{T}(\overleftarrow{u_n}) = \hat{T}(\ldots, u_{-2}, u_{-1})
+%   % & = (\ldots, u_{-2}, u_{-1}, Tu_{-1}) 
+%   % & = (\ldots, u_{-2}, u_{-1}, u_{0})
+% \end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \bigskip
+% \newpage
+
+
+
+
+
+% \bigskip
+
+
+
+\end{document}

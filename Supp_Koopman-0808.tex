@@ -1,0 +1,1244 @@
+\documentclass[12 pt]{article}
+\usepackage{graphicx}
+\usepackage{harpoon}
+%\usepackage{apacite} 
+\usepackage{color} 
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mdframed}
+%\usepackage[authoryear]{natbib}
+\usepackage{hyperref, url}
+\usepackage[show]{ed}
+%\usepackage{subfigure}
+\usepackage[ntheorem]{empheq} 
+\usepackage{amsthm, amssymb, amsfonts, latexsym}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[utf8]{inputenc}
+
+\usepackage{subcaption}
+
+
+\setlength{\parskip}{1.7em}
+\setlength{\parindent}{0em}
+\usepackage[ntheorem]{empheq}
+%\setlength{\baselineskip}{20pt}
+
+\setlength{\textwidth}{429.75499pt}
+\setlength{\textheight}{643.20255pt}
+\setlength{\oddsidemargin}{5 mm}
+\setlength{\evensidemargin}{5 mm}
+\setlength{\topmargin}{0 mm}
+\setlength{\headsep}{0 mm}
+\setlength{\headheight}{0 mm}
+
+
+
+\newcommand{\citealtt}[1]{\citeauthor{#1},\citeyear{#1}}
+\newcommand{\myycite}[1]{\citep{#1}}
+
+\mathchardef\mhyphen="2D
+
+%\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
+
+\renewcommand{\thefigure}{S\@arabic\c@figure}
+
+\usepackage{pst-node}
+\usepackage{auto-pst-pdf}
+\usepackage{tikz-cd} 
+
+
+
+\makeatletter
+\DeclareRobustCommand{\cev}[1]{%
+  \mathpalette\do@cev{#1}%
+}
+\newcommand{\do@cev}[2]{%
+  \fix@cev{#1}{+}%
+  \reflectbox{$\m@th#1\vec{\reflectbox{$\fix@cev{#1}{-}\m@th#1#2\fix@cev{#1}{+}$}}$}%
+  \fix@cev{#1}{-}%
+}
+\newcommand{\fix@cev}[2]{%
+  \ifx#1\displaystyle
+    \mkern#20mu
+  \else
+    \ifx#1\textstyle
+      \mkern#20mu
+    \else
+      \ifx#1\scriptstyle
+        \mkern#26mu
+      \else
+        \mkern#26mu
+      \fi
+    \fi
+  \fi
+}
+
+\makeatother
+
+\newcommand{\xcm}{\epsfxsize=3.1cm}
+\newcommand{\fig}[1]{\epsfbox}
+% \newcommand{\bp}{\begin{minipage}{3.1cm}}
+% \newcommand{\ep}{\end{minipage}}
+
+
+
+\newtheorem{Definition}{Definition}[]
+%\newmdtheoremenv{Theorem}{Theorem}[]
+\newtheorem{Theorem}{Theorem}[]
+\newtheorem{Lemma}{Lemma}[]
+\newtheorem{Proposition}{Proposition}[]
+\newtheorem{Corollary}{Corollary}[]
+\newtheorem{Remark}{Remark}[]
+\newtheorem{Conjecture}{Conjecture}[]
+
+
+\makeatletter 
+\renewcommand{\thefigure}{\@arabic\c@figure}
+\makeatother
+\usepackage{xr}
+
+\externaldocument{Draft_penultimate}
+
+\begin{document}
+
+\title{Supporting Information for: Universal set of Observables for the Koopman Operator through Causal Embedding}
+\author{G Manjunath and A de Clercq\\
+{\small \it Department of Mathematics \& Applied Mathematics, University of Pretoria, Pretoria 0028} \\ {\small Email: manjunath.gandhi@up.ac.za \& decle029@umn.edu} \\}
+\date{}
+\date{}
+\maketitle
+
+
+
+
+This supporting information document is meant to serve three purposes: (i). to provide a detailed motivation and include an additional explanation of some ideas in the main article (ii). mathematical proofs of results claimed in the main article (iii). more details of the methods of the numerical results in the main article.  
+
+
+\section{Detailed Motivation}
+Performing experimental measurements 
+on  biological, physical, and artificial systems to obtain 
+a more informative dynamical model has been well established in modern-day science. The practical purpose of obtaining high fidelity models is not only for minimizing the point-wise prediction error. Although better prediction indeed helps both manage better service interruptions and resource management, models that have long-term consistency  in their time-averaged characteristics
+are useful for understanding the response of statistical properties of the perturbations of models that have potentially distinguished applications, for instance in climate science (e.g., \cite{majda2010high,ghil2020physics} and references therein). 
+Although attempts made to build model equations from complex data such as sunspot cycles date back to the 1920s in \cite{yule1927vii}, a major breakthrough came through the Takens embedding theorem \cite{takens1981detecting} that
+made state-space reconstruction a valuable tool for any kind of analysis.  Often experimental measurements from such systems are not directly the system's states, but a univariate time-series whose span is smaller than the underlying system's dynamics.  Takens embedding theorem, under some generic conditions,  establishes the learnability of a system that is created out of concatenating sufficiently large previous observations of a dynamical system into a vector (called a delay coordinate map). The system determined by such vectors is equivalent (topologically conjugate) to the system from which the observed time-series was derived.  While this topological result ensures an alternate representation of the underlying system, the quality of the representation remains sensitive to various parameters, and importantly stability. The main reason why stability affects performance is that there is no guarantee that the embedding in the reconstruction space does  not lead to globally dissipative dynamics although it is locally conservative. In the absence of global dissipativity, small errors lead to major errors before predictions can totally fail (schematic in Fig.~\ref{Fig_Takens}). 
+Theoretical conditions under which the geometry of the attractor can be preserved (e.g.,\cite{eftekhari2018stabilizing}) are not adequate for attractor reconstruction in practice.
+Moreover, global approximation techniques that find a single map to fit the data often work well only when the data can be fit by functions with low functional complexity, i.e., functions that have relatively fewer oscillatory graphs. An example, where neural networks often failing to learn a representation of the underlying attractor   is illustrated in   \cite{principe1992prediction} and in this article in Fig.~\ref{Fig_learnt_takens}. 
+
+
+Although not theoretically assuring accurate reconstruction as in Takens delay embedding, the more recent approaches in machine learning that employ the reservoir computing techniques \cite{jaeger2004harnessing, lu2018attractor} and data-driven algorithms based on Koopman's theory \cite{koopman1932dynamical,budivsic2012applied}  have shown greater quantitative accuracy in forecasting dynamical systems than what has been achieved through delay-embedding alone. The prominent idea in reservoir computing approaches is to transform the available temporal data into another higher dimensional space through the dynamics of a driven dynamical system (e.g., \cite{Manju_ESP,manjunath2020stability}).  Often, the driven dynamical system is an arbitrary network with recurrent connections, and its state is post-processed to fit the prediction task by adopting very few connections in the network rather than rigging the entire connectivity in the network from data.  Although there is no theoretical framework that guarantees the existence of a post-processing function, it is approximated typically by linear regression. These methods often give good short-term predictions for some specific systems \cite{jaeger2004harnessing, lu2018attractor}, albeit with adaptations. Unfortunately, the well-cited literature barring perhaps \cite{herteux2020breaking,Manju_IEEE,wu2018statistical, faranda2019boosting} in this field does not consider a broad class of chaotic dynamical systems where they fail. 
+
+
+The idea behind forecasting using 
+Koopman's theory is to transform the observed data generated from an unknown dynamical system into a new space or a new coordinate system so that the induced dynamics in the new coordinate system can be approximated by a more simple set of equations, for instance by a linear system of equations. The well-known algorithms like Dynamic Mode Decomposition and Extended-Dynamic Mode Decomposition \cite{schmid2010dynamic,williams2015data} involve a priori determination of a Koopman invariant subspace obtained by a handpicked choice of observables. If the observables and the Koopman invariant subspace they determine are not adequate enough to capture some essential dynamics, the resultant approximation to the Koopman operator is poor, and hence the qualitative behavior like the phase portrait of the forecasted data veers down to a different one in a very few time-steps.  In any case, linear systems in finite dimensions cannot be topologically equivalent to a chaotic map, and hence such methods are limited in performance while modeling complex/chaotic data.   
+
+Balancing model complexity with accuracy has recently led to the idea of sparse representations where the vector field of a differential equation that describes the dynamics is approximated by an optimal linear combination of a very few functions (determined through sparse regression) that are `possibly nonlinear'  from a chosen library. Such representations have yielded not only accurate prediction results for some classes of chaotic systems but can be used to build simpler model equations from data e.g., the popular SINDy algorithms in \cite{brunton2016discovering, champion2019data}. However, if the library is not big enough to span the vector field, then long-term consistent modeling is not possible for complex data. 
+ Besides requiring data obtained at high sampling rates since derivatives are approximated another crucial issue is that the method requires full knowledge of the underlying state space variables that govern the underlying system which is rare in many real-world scenarios. 
+
+Library free approaches such as combining delay-embedding and Koopman theory allow to build intermittently forced linear models \cite{brunton2017chaos,
+ champion2019discovery} combining delay embedding and Koopman theory.  However, unlike Takens embedding, the existing reservoir computing or data-driven methods do not ensure finding an equivalent (conjugate) model of the data. In the case of Koopman analysis,  by capturing a portion of the spectrum like the eigenvalues \cite{budivsic2012applied,korda2020data} of the operator when they exist, only a topological semi-conjugacy can be obtained (see Section~\ref{Sec_Prelim}). Although there is  talk about finding  faithful representations in the Koopman framework leading to topological conjugacy \cite{mezic2020koopman}
+there is currently no framework that guarantees existence or a method to find them. 
+
+On the positive side, through  generalization of Takens embedding  (e.g., \cite{sauer1991embedology,stark1999delay,robinson2010dimensions,gutman2018embedding}, and notably \cite[Theorem 1]{gutman2018embedding}, generic continuous-time-lagged observations of attractors of homeomorphisms on compact spaces have been shown  sufficient for attractor reconstruction. On preserving the geometry of the reconstructed attractor, some recent theoretical and empirical studies suggest that it may be possible to construct delay embeddings that are not only homeomorphic or diffeomorphic to the original system but nearly isometric \cite{sauer1991embedology, baraniuk2009random}.  Isometric embeddings for instance obtained by the Nash embedding theorem help preserving local neighborhoods of points on the attractor, a geometric feature desired during forecasting and reconstructing attractors. More recent studies are suggestive that with large enough time-lagged observations
+\cite{eftekhari2018stabilizing, yair2017reconstruction}, isometric embeddings can be obtained. 
+
+
+With the objective of getting close to an isometric embedding through large, perhaps infinite, time-lagged observations we employ a driven (dynamical) system with the ability to causally embed a dynamical system so as to transform the entire left-infinite history of the temporal data onto just a pair of points (in practice, a pair of finite-dimensional vectors) in a different space. 
+Remarkably, we find that such infinite-delay maps induced by such driven systems determine the observables for the Koopman operator of the inverse-limit system (e.g., \cite{ingram2011inverse}) of the dynamical system generating the data.  
+This, in conclusion, gives a topological conjugacy to the dynamical systems arising 
+from the discretization of ordinary differential equations, or more generally homeomorphisms. The conjugacy determines a finite faithful representation raised in \cite{mezic2020koopman}. Remarkably, the observables in the faithful representation are universal, in the sense that they remain unchanged and all the driven system does is to restrict the observables to a new subspace of the inverse-limit system once the underlying dynamical system is changed.  This not only solves a highly pursued problem in finding a set of observables for the Koopman operator needed for theoretically precise forecasting dynamical systems but also prevents expert human intuition or machine optimization needed for choosing observables or a library of functions specific to a dynamical system.
+
+
+Furthermore, we obtain \emph{exact} equations from the data of a dynamical system, the data could be the actual states or obtained as observations in Takens delay-embedding. The equations are determined after learning a map from the data and have several auxiliary variables. Since the driven system that appears in these equations has mathematically proven stability properties \cite{manjunath2013echo, grigoryeva2018echo}, the forecasting results show greater stability to noise and parameters although it introduces auxiliary variables. Empirical evidence shows that a linearity measure like a Pearson correlation coefficient points at reduced functional complexity while learning the dynamics in the state space of the driven system.  
+We demonstrate long-term topological 
+consistency (attractor is learnt)
+and statistical consistency (density of the orbits) of the models obtained through data from standard benchmark chaotic systems and also on systems that show intermittency -- Type I intermittency is a feature of transition to turbulence and convection in confined spaces \cite{pomeau1980intermittent}, seismic data \cite{bottiglieri2007off} and anomalous diffusion in biology \cite{klages2013weak} and are extremely difficult to model from data.  In summary, we learn the action of the Koopman operator on observables of the inverse-limit system of the underlying dynamical system, and these observables are determined by a driven system and data. 
+This in turn helps obtain exact equations from data and thus robust high-fidelity models.
+
+%that has several auxiliary variables but has the advantage of long-term topological and statistical consistency while forecasting dynamical systems. 
+
+
+
+
+
+
+
+\section{Preliminaries} \label{Sec_Prelim}
+
+%We map the input $\{u_n\}$ onto a different space for predicting.  If the other space is higher-dimensional data often unfolds.  After mapping $\{u_n\}$ to $\{x_n\}$, we want to know that $\{x_n\}$ has all the information that can generate $\{u_n\}$, but nothing more -- to illustrate why we are interested in this for forecasting, and contextualize our methodology we recall Takens delay embedding and the idea of learning the Koopman's operator. 
+
+A dynamical system in this work is a tuple $(U,T)$ where $U$ is a compact metric space and $T: U \to U$ is a function (that is not necessarily continuous). Henceforth, we consider only surjective dynamical systems, i.e., systems for which $T$ is surjective. In fact, if $A$ is any invariant set, i.e., if $T(A):=\cup_{u\in A} Tu = A$,  then $T$ is surjective on $A$, so if $T$ is not surjective to start with we can restrict the non-transient dynamics to an invariant set.  We call any sequence $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ that obeys the update equation, $u_{n+1}=Tu_n$ where $n \in \mathbb{Z}$ as an orbit of $T$. Subsets of $\mathbb{R}^d$ are endowed with the standard topology induced from 
+$\mathbb{R}^d$.  The $n$-fold composition of a self-map $f$ on any space is denoted by $f^{(n)}$. The $\omega$-limit set $\omega(x;f)$ of a point $x$ is the collection of limit points of the sequence $\{x,f(x),f^{2}(x),\ldots\}$; note that when $f$ is defined on a compact space, $\omega(x;f)$ is always non-empty. Throughout, if $F: X \to Y$ is any function, and $Z$ is a subset of $X$, for brevity of notation we denote the restriction of $F$ on $Z$, $F_{|Z}$ by just $F$ when the context is clear. 
+
+
+
+ A core concept in dynamical systems theory is the notion of equivalent dynamical systems.
+Finding an equivalent dynamical system to $(U,T)$ means finding another dynamical system $(V,S)$ so that there exists a homeomorphism $\phi:U \to V$ with the property that  $\phi \circ T=S\circ \phi$. Such a map $\phi$ is called a  conjugacy and we say that $(V,S)$ is conjugate to $(U,T)$. If we relax the condition on $\phi$ where, instead of having a homeomorphism, we only require $\phi$ to be continuous, then we call $\phi$ a semi-conjugacy and say the systems are semi-conjugate. A system being conjugate to the original means that there is a one-to-one correspondence between the two systems, whereas a semi-conjugacy when it is many-to-one mapping provides a coarse-grained description of the original system. When  $(V,S)$ is semi-conjugate to $(U,T)$ then it is customary to say that $(V,S)$ is a factor of $(U,T)$ or that $(U,T)$ is an  extension of $(V,S)$. When the underlying spaces are clear, we just say $S$ is a factor of $T$ or $T$ is an extension of $S$. 
+
+
+
+
+
+
+
+\section{Takens Delay Embedding}
+The Takens Delay Embedding Theorem establishes that concatenating a sufficiently large number of previous observations of a dynamical system into a vector (schematic in Fig. ~\ref{Fig_Takens}) can generate a map between the vectors under some conditions. We recall the theorem from \cite{takens1981detecting} below.  
+
+
+\begin{Theorem} 
+	[\bf Takens Embedding Theorem (adopted from \cite{takens1981detecting}] \label{Thm_Takens}
+            Let $W$ be a compact manifold of dimension $m$, and $d\ge m$ so that $2d$ is an integer. It is a 
+            generic property for the pair $(T, \theta)$,  where $T:W \to W$ is
+            a smooth diffeomorphism, and $\theta:W \to \mathbb{R}$ a smooth function, the map $\Phi_{2d,\theta}:W \to \mathbb{R}^{2d+1}$ defined on $W$ by 
+            $\Phi_{2d,\theta}(w) := (\theta(T^{-2d}w)\ldots,\theta(T^{-1}w),\theta(w))$
+            is a diffeomorphic embedding; by `smooth' we mean at least $C^2$. Consequently, there exists a map $F_\theta: \Phi_{2d,\theta}(W) \to \Phi_{2d,\theta}(W)$ defined by $$F_\theta: (\theta(T^{-2d}w),\ldots,\theta(T^{-1}w),\theta(w)) \mapsto 
+            (\theta(T^{-2d+1}w),\ldots,\theta(T^{-1}w),\theta(Tw))$$
+           so that $(W,T)$ is topologically conjugate to 
+            $(\Phi_{2d,\theta}(W), F_\theta)$. 
+\end{Theorem} 
+
+The map $\Phi_{2d,\theta}$ is called the delay-coordinate map. 
+There are now various relaxations on the hypotheses required for such a map $F_\theta$ to exist in recent works using the central idea of using a delay-coordinate map 
+$\Phi_{2d,\theta}$ to embed an attractor. 
+The map $F_\theta$ can be learnt through a finite segment of an orbit of $F_{\theta}$, and any such learnt map $\widetilde{F}_{\theta}$ would also accept arguments that are outside $\Phi_{2d,\theta}(W)$ as well. 
+The above theorem does not guarantee that the set $\Phi_{2d,\theta}(W)$ is an attractor of the system defined by the map $\widetilde{F}_{\theta}$ (See Fig.~\ref{Fig_Takens}). 
+When $\Phi_{2d,\theta}(W)$ is not an attractor, as schematically illustrated in Fig.~\ref{Fig_Takens}),  a small amount of error  could leave an iterate of $\widetilde{F}_{\theta}$  outside $\Phi_{2d,\theta}(W)$. This could then result in the future iterates under $\widetilde{F}_{\theta}$ moving far away from $\Phi_{2d,\theta}(W)$ resulting in erroneous prediction. 
+
+To demonstrate such fragility in forecasting, we consider the evolution of the image of the time-series obtained by an observation of the Lorenz system under the delay-coordinate map with a delay equal to $10$. 
+Specifically, if $(w_n)$ denote the samples of the Lorenz System (as in \eqref{Seq_Lor}), with $(w_{n,x}),(w_{n,y}),$ and $(w_{n,z})$ denoting the $x,y,$ and $z$ coordinates of $(w_n),$
+then we consider the observation 
+$\theta_n=\theta(w_n)=\frac{1}{10}(\sin(0.1w_{n,x})+\sin(0.1w_{n,y})+\sin(0.1w_{n,z})).$
+The map $F_\theta$ is thus the mapping $(\theta_{n-10},\cdots,\theta_{n-1}) \mapsto (\theta_{n-9},\cdots,\theta_{n})$, which we approximate using a feedforward neural network.
+To illustrate the failure in forecasting after having learnt $\widetilde{F}_{\theta}$, we plot the three main principal component of the iterates $\widetilde{F}_{\theta}$ (in blue), and the 
+three main principal component of the delay coordinates $\Phi_{2d,\theta}(T^{(k)}w)$ (in red) in  Fig.~\ref{Fig_learnt_takens}). 
+ 
+
+
+
+\title{Figure was here}
+% \begin{center}
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=16cm]{Fig_Takens.png}
+% \caption{Schematic of employing the Takens embedding and the consequence of how iterates of $\widetilde{F}_\theta$ could slip out of $\Phi_{\theta,2d}(W)$.}
+% \label{Fig_Takens}
+%  \end{figure}
+% \end{center}
+
+In practice, data-driven algorithms and other machine learning algorithms outperform Takens embedding often. 
+
+
+\title{Figure was here}
+% \begin{center}
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=16cm]{Fig_F_smart.png}
+% \caption{Illustration of the failure to learn $\widetilde{F}_{\theta}$ accurately. The map $\widetilde{F}_{\theta}$ was constructed 
+% by actually learning $(\theta_{n-2d-1}, \cdots \theta_{n-1}) \mapsto \theta_n$ through a Vanilla feedforward neural network;  plotted are the principal component of trajectories of $\widetilde{F}_{\theta}$ of randomly initialised points (in blue), and the 
+% three principal component of the delay coordinates $\Phi_{2d,\theta}(T^{(k)}w)$ (in red). The data and observation $\theta$ is identical to that in the \cite[Fig.~\ref{Fig_1}C]{Main_article}, and a delay of 10 was used. }
+% \label{Fig_learnt_takens}
+%  \end{figure}
+% \end{center}
+
+
+%\ednote{(I strictly did not approximate $F_\theta$ using NN's. I learnt a map $F: (x_{n-d}, \cdots x_{n-1}) \mapsto x_n$ then constructed $F_\theta$ using $(\pi_2,\pi_3\, \cdots, F)(x_{n-d}, \cdots x_{n-1})=(x_{n-d+1}, \cdots x_{n})$. Please let me know if I should explain this thoroughly. The vanilla approximation using NNs is Fig\_F\_stupid.png) M: Please see the caption now.}
+%Stability is desirable while modeling because rarely experimental measurements determine the exact values, so a physically meaningful feature of a mathematical model should exhibit persistence under small perturbations. Incidentally, the USP always satisfies this robustness to noise, that is small perturbations of inputs lead to small changes in the solution $\{x_n\}$ (see Theorem **). Another important criterion is that when a finite segment of the temporal input $(u_{n-m}\ldots,u_{n-2},u_{n-1})$ is fed into the system instead of the entire-left input $\cev{x_n}$, the system at time $n$ should be closer to the state $x_n$, and this closeness should have some uniformity for all inputs and data lengths $m$. Remarkably, USP is equivalent to the uniform attraction property (UAP) that ensures that not only do all states approach $X_U$, but they approach specific trajectories (solutions) within $X_U$, and they approach at a rate which does not fall below a certain threshold (see Theorem ***).
+
+
+%This work is about forecasting observed trajectories from dynamical systems without recourse to the underlying equations of motion.  
+
+%\title{A Theory for Precise Forecasting: Koopman's Operators and Causal Embedding}
+
+
+
+%\author{G. Manjunath \\{\small \it Department of Mathematics \& Applied Mathematics, University of Pretoria, Pretoria 0028} \\ {\small Email: manjunath.gandhi@up.ac.za } \\}
+\date{}
+\date{}
+\maketitle
+
+
+
+
+\section{Koopman Operator and Forecasting} \label{Sec_Koopman}
+
+Given a dynamical system $(U,T)$, and a vector space $V$ of observables $f$ whose domain is $U$, the operator $\mathcal{K}: V \to V$ so that 
+$\mathcal{K} f = f \circ T$ holds is called the Koopman operator.  If one knows the action of the Kooopman operator on an observable $f$, then since 
+$\mathcal{K} f(u) = f(T(u))$ and likewise $\mathcal{K} f(Tu) = f(T^{(2)}u)$, one can forecast the observed values $(f(Tx), f(T^{(2)}u), f(T^{(3)}u),\ldots)$. Often 
+for an analysis or approximation of the Koopman operator, the space of observables $V$ is a Banach space or a Hilbert space over the field of complex numbers. In this case a complex number $\lambda \in \mathbb{C}$ and an associated $\phi \in V$ is called an eigenvalue and eigenfunction respectively if $\mathcal{K} \phi = \lambda \phi$. Thus, when $\phi$ is an eigenfunction associated with $\lambda$, then it follows from \cite{schmid2010dynamic,tu2013dynamic,williams2015data} that the following diagram commutes: 
+
+\begin{equation}  \label{comm_phi}
+%    \[ 
+    \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+U & U\\%
+ \phi(U) & \phi(U)
+ %%%
+ \ncline{1,1}{1,2}^{T} \ncline{1,1}{2,1} <{\phi}
+ \ncline{1,2}{2,2} > {\phi}
+ \ncline{2,1}{2,2}^{u\mapsto\lambda u}
+ \end{psmatrix}
+% \]
+\end{equation} 
+and hence the dynamical system $(\phi(U), F_\lambda: u \mapsto \lambda u)$ is topologically semi-conjugate to $(U,T)$. So every eigenvalue captures a coarse-grain description of $(U,T)$, and the representation gains physical meaning when the eigenfunctions are non-constants. Finding non-constant eigenfunctions is difficult even while the map $T$ is known. However, they can be determined from data (e.g., \cite{schmid2010dynamic,williams2015data}). One of the central ideas in using Koopman's theory for forecasting dynamical systems is to obtain a collection of observables $\mathbf{f}=\{f_1,\ldots,f_N\}$ so that the resultant dynamics from $\mathbf{f}(u) \mapsto \mathbf{f}(Tu)$ can be approximated by a map, say $F$  with a lower functional complexity exploiting the fact that $\mathcal{K}$ is linear in $V$. The choice of the $L^p$ space considered determines the spectrum \cite{eisner2015operator} of the Koopman operator $\mathcal{K}$, and when it is a Hilbert space, and the span of the observables is invariant under $\mathcal{K}$, one can capture a portion of the spectrum of $\mathcal{K}$ through $F$. More specifically eigenvalues of $F$ would belong to the spectrum of  $\mathcal{K}$ (e.g., \cite{williams2015data,korda2020data}). The interesting feature of such approximation is that $F$ (in fact its matrix representation) can be derived from the observed data $\{f_i(T^{(k)}u)\}_{0\le k \le m, 1\le i\le N}$. However, there are many potential issues: (i).  the span of arbitrarily chosen observables is not necessarily invariant under the Koopman operator (ii) one does not know how to expand the set of observables to capture more eigenvalues and concomitantly retaining invariance under the Koopman operator (iii). Above all, there is no guarantee that the Koopman operator has relevant eigenvalues for approximating the salient feature of the dynamics of the underlying system.  For example, non-isolated eigenvalues and/or continuous spectra of the Koopman operator are a feature of many complex systems especially those which exhibit chaos (e.g., \cite{korda2020data}). 
+
+%In any case, since $S$ may not be invariant under $\mathcal{K}$, it is an open question on how to choose observables that gives an invariant subspace that good approximation to such systems. 
+
+Sparse identification of nonlinear dynamical systems (SINDy)
+\cite{brunton2016discovering,champion2019data} overcomes the difficulty with linear approximations considerably -- rather than aiming at capturing eigenvalues, an optimal linear combination of elements in a pre-determined library is determined from the observed data to approximate the vector field of the unknown dynamical systems. The main disadvantage of this method is that the method requires full knowledge of the underlying state space variables that govern the underlying system which is rare in many real-world scenarios. Further, when the library is not big enough to span the vector field, then long-term consistent modeling is not possible for complex data.  For instance, if the library comprises polynomials and rational functions good approximations are obtainable only if the underlying system has polynomial and rational nonlinearities, and can fail when the underlying system has a nonrational and nonpolynomial term \cite{pan2018long}. Also since time-derivatives are found, one needs data at a very high sampling rate with lower noise. 
+
+
+Library free approaches such as combining delay-embedding and Koopman theory allows to build intermittently forced linear models \cite{brunton2017chaos,champion2019discovery}.  However, unlike Takens embedding, the existing reservoir computing or data-driven methods do not guarantee an equivalent (conjugate) model of the data.  Recently, Igor Mezi\'{c} proposed the idea \cite{mezic2020koopman} of learning the action of the Koopman operator on a finite set of observables $\mathbf{f}= (f_1,f_2,\ldots,f_N)$ so that we can find a map $G$ so that $\mathbf{f}$ is a topological conjugacy between $T$ and $G$, i.e., we determine $(\mathbf{f},G)$ so that the following diagram commutes: 
+\begin{equation}  \label{comm_h2}
+%    \[ 
+    \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+U & U\\%
+ \mathbf{f}(U) & \mathbf{f}(U).
+ %%%
+ \ncline{1,1}{1,2}^{T} \ncline{1,1}{2,1} <{\mathbf{f}}
+  \ncline{2,1}{2,2}^{G}
+ \ncline{1,2}{2,2} > { \mathbf{f}}
+ \end{psmatrix}
+% \]
+\end{equation} 
+When such commutativity holds,  the author in \cite{mezic2020koopman} calls $(\mathbf{f},G)$ a finite faithful representation of the dynamical system. Finding a finite faithful representation would avoid approximating the Koopman operator but would instead enable to learn the action of the Koopman operator on the set of observables determined by $\mathbf{f}$. In essence, we can abandon the whole idea of approximating the spectrum of the Koopman operator while forecasting.
+In this work we approach to solve the problem of finding a finite faithful representation of the inverse-limit system of a dynamical system \cite{ingram2011inverse} which is an extension of the original system $(U,T)$; extensions always contain the spectrum of their factors \cite{eisner2015operator}. Also, we observe that employing observables from inverse-limit systems would help us forecast a system that is greatly sensitive to the distant past much more than the immediate past.
+
+
+
+
+\section{Driven Systems: Some Basics}
+
+
+A driven system comprises an input metric space $(U,d_U)$, a compact metric (state) space $(X,d)$ and a {\bf continuous function} $g: U \times X \to X$. For brevity, we refer to $g$ as a driven system with all underlying entities quietly understood.  
+
+
+A bi-infinite sequence $\bar{u}=\{u_n\}_{n \in \mathbb{Z}} \subset U$ which we call an input, induces a sequence of self-maps $\{g(u_n,\cdot)\}_{n\in \mathbb{Z}}$ defined on $X$, and  the dynamics on $X$ generated through this sequence os self-maps is given by the  update equation $x_{n+1}=g(u_n,x_n)$. 
+
+
+Given a driven system $g$ and an input $\bar{u}$, we call a sequence $\{x_n\}$ a solution if it satisfies  $x_{n+1}=g(u_n,x_n)$ for all $n\in \mathbb{Z}$. We denote a solution obtained by $\bar{u}$ as $\{x_n(\bar{u})\}$.
+
+We next identify a subspace $X_U$ of $X$ that contains all possible solutions. To realize such a subspace of a driven system $g$, we define 
+the \textit{reachable set} of the driven system $g$ to be the union of all the elements of all the solutions, i.e., 
+$$X_U :=\Big \{x \in X:  x = x_k \mbox{ where  $\{x_n\}$  is a solution for some  $\bar{u}$} \Big \}.$$
+
+
+
+
+For example, when $U=[0,1]$ and $X=[0,1]$, for the driven system 
+$g(u,x) := \frac{ux}{2}$ regardless of any input sequence in $U$, $x_n\equiv 0$ for $n \in \mathbb{Z}$ is the only solution of $g$, and hence the reachable set $X_U=\{0\}$. Also for example, when  $U=[0,1]$ and $X=[0,1]$, $g(u,x)=x$ regardless of any input sequence in $U$, all constant sequences contained in $X$ are solutions of $g$, and hence the reachable set $X_U=X$. 
+
+
+In both these examples, we have hit somewhat extreme cases that are not useful, and we would need the reachable set to be relatable to the temporal input; we will make precise of what we mean by ``relatable" later in Definition~\ref{Def_UC}. To restrict to our attention to more useful cases, we  say $g$ is SI-invertible if $g(\cdot,x):U \to X$ is invertible for all $x$, i.e., if the current state $x_n$ and the future state $x_{n+1}$ are given, then the current input $u_n$ can be uniquely determined, since  the inverse of   $g(\cdot,x_n)$ exists. For instance, consider a recurrent neural network (RNN) with  $N$ artifical neurons and $U \subset \mathbb{R}^N$
+and $X=[-1,1]^N$ (the cartesian product of $N$ copies of $[-1,1]$) given by
+\begin{equation} \label{Seq_RNN}
+	g(u,x) = (1-a)x + a\overline{\tanh}(Au + \alpha Bx),
+\end{equation}
+where $A$ is a $N \times N$ matrix with input connections called the input matrix. The matrix $B$ is also of dimension $N \times N$ representing the strength of the interconnections called a reservoir matrix, and $a$ and $\alpha$ are real-valued parameter that are normally called  leak rate and scaling of the reservoir 
+ $B$ respectively and $\overline{\tanh}(*)$ is (the nonlinear activation) $\tanh$ performed component-wise on $*$.  The RNN accepts inputs as vectors with $N$ elements, and if an input $v_n$ is of dimension $K<N$, it can be embedded into $\mathbb{R}^N$, for instance one can pad $N-K$ zeroes to obtain an input of dimension $N$ i.e., $v_n \mapsto (v^1_n,v^2_n,\ldots,v^K_n,0,0,\ldots 0) = u_n$. Since  given $x_{n+1}$ and $x_n$, we can recover $u_n$ by
+\begin{equation} \label{eqn_SI_RNN}
+u_n := A^{-1}\bigg(\overline{\tanh}^{^{-1}}\frac{1}{a}\Big(x_{n+1}-(1-a)x_n\Big) \bigg) - \alpha B x_n
+\end{equation}
+$g$ in \eqref{Seq_RNN} is SI-invertible. 
+
+
+We now describe the set of all solutions of $g$ for a given input $\bar{u}$ in the nonautonomous dynamical systems setting (e.g., \cite{kloeden2011nonautonomous, Manju_ESP}). Suppose a driven system $g$ has been fed input values $u_{m},u_{m+1},\ldots,u_{n-1}$ starting at time $m$. Then the map $g$ transports a state-value $x\in X$ at time $m$ to give a state-value $g_{u_{n-1}}\circ \cdots \circ g_{u_{m}}(x)$ at time $n$.    
+
+Formally, for every choice of  $\bar{u} = (\ldots,u_{-1},u_0,u_1,\ldots)$, we define for all pair of integers $m\le n$, the function that `transports' a system state at $x$ at time $m$ through the inputs $u_{m}, u_{m+1}, \dots u_{n-1}$ 
+to the state at time $n$ given by a composition-operator called a process by several authors (e.g.,\cite{kloeden2011nonautonomous}) by the map $\phi_{\bar{u}}: \mathbb{Z}^2_{\ge} \times X \to X$, where $\mathbb{Z}^2_{\ge} := \{ (n,m) : n \ge m, n,m \in \mathbb{Z} \}$ and
+\begin{align} \label{eq_Process}
+  \phi_{\bar{u}}(n,m,x) := \begin{cases}
+        x \quad \quad \quad \quad \quad \quad \quad \text\quad \quad \quad \quad \quad \quad \:\text{ if $n=m$,}
+        \\
+        g_{u_{n-1}}\circ \cdots \circ g_{u_{m+1}} \circ g_{u_{m}}(x)  \quad \: \: \: \: \;\;\text{ if }  m< n.
+        \end{cases}
+\end{align} 
+
+Since $g(u,x):X \to X$,  it easily follows that $\phi_{\bar{u}}(n,m-1,X) \subset \phi_{\bar{u}}(n,m,X)$ (see \cite{Manju_ESP} \cite{manjunath2020stability}), and since $\phi$ is continuous in the variable $x$, these sets are all closed. Further, since $X$ is compact the nested intersection  \begin{equation} \label{SSeqn_xn}
+X_n(\bar{u}) := \bigcap_{m<n} \phi_{\bar{u}}(n,m,X)
+\end{equation}
+is nonempty when $X$ is nonempty. 
+
+The set $X_n(\bar{u})$ denotes the set of all reachable states at time $n$ if the input is $\bar{u}$. It is a well known result in nonautonomous dynamical systems literature (e.g., \cite{kloeden2011nonautonomous,Manju_ESP,manjunath2014dynamics}) that  $x\in X_n(\bar{u})$ if and only if there is a solution $\{x_k\}$ of $g$ with input $\bar{u}$ so that $x_n = x$. Thus in the special case where we have a topological contraction in \eqref{SSeqn_xn} where $X_n(\bar{u})$ is a singleton subset of $X$ for each $n$ and $\bar{u}$, then we have exactly one entire-solution for each $n$. 
+
+
+\section{Universal Semi-Conjugacy and the Causal Embedding Theorem}
+Since the state $x_{n+1}$ of a driven system $g$ at time $n+1$ depends on both the input value $u_n$ and the state value $x_n$ at time $n$, we consider a question on whether the ``complexity" in a solution is exclusively contributed by the input or if the sequence of maps $\{g_{u_{n}}(\cdot)\}_{n\in \mathbb{Z}}$ also contributes to the complexity in the solution. In the case of autonomous systems on $X$, i.e., for a self-map $f:X \to X$, the general feature of complex dynamics is that the sequence $\{f^{(n)} \}$ of self-compositions is not equicontinuous. So the question in the case of non-autonomous system $\{g_{u_{n}}(\cdot)\}_{n\in \mathbb{Z}}$ is not just about equi-continuity, but something more general since the input is involved. 
+
+
+
+To illustrate the idea behind the question, consider an example of a numerical simulation of a solution of a RNN (as in \eqref{Seq_RNN}) with two different parameter sets (see Fig.~\ref{Fig_Complexity}).  A coordinate of a solution is plotted in red and blue for the two parameters and the input sequence is shown in black. As it may be observed, the coordinate of the solution shown in red seems to just follow the input in its temporal variation, while that in blue has wild behavior with an oscillatory envelope. We say that the driven system has introduced new additional complexity to the solution indicated in blue that was not there in the input. In order to mathematically describe the scenario of  $\{g_{u_{n}}(\cdot)\}$ not adding on to the complexity to the solution we consider  a definition in Definition~\ref{Def_UC}. 
+We denote $\cev{u}^{n}:=(\ldots,u_{n-2} ,u_{n-1})$ and $\overleftarrow{U}$ denote all the left-infinite sequences in $U$. 
+Symbolically we let $\cev{u}^{n}v:=(\ldots,u_{n-2} ,u_{n-1}, v)$ denote the input up to time $n$ with $v \in U$ being the input value at time $n$. This introduction of a new input at time $n$ can be described by a mapping $\sigma_v:   
+\cev{u}^{n} \mapsto \cev{u}^{n}v$. We would like to talk of continuity of functions defined  on the space of left-infinite sequences contained in $U$ hence we adopt the notation: if $Y$ is a metric space then we denote the product space
+$\overleftarrow{Y} := \prod_{i=-\infty}^{-1} Z_i$
+ where $Z_i \equiv Y$ and equip this space with the product topology, and consider the definition of the universal semi-conjugacy. 
+
+ \title{Figure was here}
+% \begin{center}
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=10cm]{Fig_Complexity_label.png}
+% \caption{A coordinate of a simulated solution $(x_0,x_1,\ldots,x_{5000})$ of a RNN in \eqref{Seq_RNN}   plotted in red (with parameter-set $a=1$, $\alpha=0.99$) and blue ($a=0.99$ and $\alpha=1.05$) while the choice of matrices $A$ and $B$ are the same.}
+% \label{Fig_Complexity}
+%  \end{figure}
+% \end{center}
+
+
+
+
+\begin{Definition} \rm \label{Def_UC}
+ Given a driven system $g$, we  call a continuous and surjective map $h : \overleftarrow{U} \to X_U$ a universal semi-conjugacy if the following diagram commutes for all $v \in U$:
+	\begin{equation}  \label{Scomm_h}
+%    \[ 
+    \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+ \overleftarrow{U} & \overleftarrow{U}\\%
+ X_U & X_U.
+ %%%
+ \ncline{1,1}{1,2}^{\sigma_v} \ncline{1,1}{2,1} <{h}
+ \ncline{1,2}{2,2} > {h}
+ \ncline{2,1}{2,2}^{g(v,\cdot)}
+ \end{psmatrix}
+% \]
+\end{equation} 	
+	\end{Definition}
+	
+We next say a driven system $g$ has the unique solution property (USP) if for each input $\bar{u}$ there exists exactly one solution. In other words, $g$ has the USP if there exists a well-defined solution-map $\Psi$ so that $\Psi(\bar{u})$ denotes the unique solution obtained from the input $\bar{u}$.  In our context, the USP is equivalent to saying $g$ is a topological contraction, i.e., each $X_n(\bar{u})$ is a singleton subset of $X$ for all $n \in \mathbb{Z}$ and all $\bar{u}$. The USP notion is independent of SI-invertibility.  
+	
+
+The left-finite sequence $\cev{u}:= (\ldots,u_{-2},u_{-1})$ belonging to $\overleftarrow{U}$
+can also be used to equivalently define USP. Consider $\Pi_{n=-\infty}^{n=+\infty} U_i$, where $U_i \equiv U$. 
+Since  any left-infinite portion of an element of  
+$\Pi_{n=-\infty}^{n=+\infty} U_i$
+is an element of $\overleftarrow{U}$,
+we can express the definition of the USP more succinctly by  denoting $\mathcal{E}(\cev{u}) := X_0(\bar{u})$, and then say that $g$ has the USP if $\mathcal{E}(\cev{u})$ is a singleton subset for all $\cev{u} \in \overleftarrow{U}$. We call $\mathcal{E}$ the encoding function. 
+
+
+We denote the
+collection of all nonempty closed subsets of $X$ by $\mathsf{H}_X$. On $\mathsf{H}_X$ we employ the Hausdorff metric defined by
+$d_H(A,B) := \max (dist(A,B) , dist(B,A)) = \inf\{ \epsilon : A
+\subset B_\epsilon(B) \: \: \& \: \:B\subset B_\epsilon(A) \}$, where
+$B_\epsilon(A): = \{ x \in X : d(x,A) < \epsilon\}$ is the open
+$\epsilon$-neighborhood of $A$.
+ We could treat the encoding function $\mathcal{E}(\cdot)$  and describe its continuity by treating it either as a multivalued function of $\cev{u}$ or as a regular function taking values in the space of nonempty compact subsets $\mathsf{H}_X$.  In particular when $X$ is a compact metric space the continuity notions become equivalent (e.g., \cite[Theorem 1, p. 126]{berge1997topological}).   Henceforth, we consider the continuity of $\mathcal{E}(\cdot)$ a $\mathsf{H}_X$-valued function $f$, with of course $\mathsf{H}_X$ being equipped with the Hausdorff metric. When $\mathcal{E}(\cdot)$ is a singleton subset of $X$ then it is always continuous as a set-valued function
+  (e.g., \cite{manjunath2020stability,Manju_Nonlinearity}).  We define the subspace of $\mathsf{H}_X$ that contains the singleton subsets of $X$ by $\mathsf{S}_X$.
+ 
+ 
+ 
+ We borrow the following facts from \cite[Section 3]{manjunath2020stability}: {\bf (F1).} If $\mathcal{E}(\cev{v})$ is a singleton subset of  $X$ then $\mathcal{E}(\cdot)$ is continuous at $\cev{v}$.  To state our theorem, we define the subspace of $\mathsf{H}_X$ that contains the singleton subsets of $X$ by $\mathsf{S}_X$, and define the mapping $i: (X,d) \to (\mathsf{S}_X,d_H)$  by $i(a) = \{a\}$. 
+Clearly $i$ is invertible. Note that $i$ is an isometry since \begin{eqnarray*}d_H(i(a),i(b)) &=& \max \bigg( \sup_{a \in \{a\}} d(a,b), \sup_{b \in \{b\}} d(b,a) \bigg) \\& =& \max(d(a,b),d(b,a)) = d(a,b).\end{eqnarray*}
+	
+
+We recall results from \cite{Manju_IEEE, Manju_Nonlinearity} and state them in a way to suit the context here.  
+
+
+%Hencewhen $n=0$, we denote $\mathcal{E}(\cev{u}) = X_n(\bar{u})$ and call it the encoding of the left-infinite sequence $\cev{u}$.
+
+
+
+
+\begin{Theorem}{{\bf (Universal Semi-Conjugacy Theorem.)}}
+ \label{Thm_UCT}
+            Let $g$ be a driven system.  Then $g$ induces a universal semi-conjugacy $h: \overleftarrow{U} \to X_U$ if  $g$ has the unique solution property (USP), i.e., for every input $\{u_n\}$ there exists exactly one entire-solution. Moreover, $h(\dots,u_{k-2},u_{k-1})=x_k$, where $\{x_n\}$ is the solution of $g$. 
+            \end{Theorem}
+            
+{\bf Proof. } Let $h(\dots,u_{k-2},u_{k-1}):=x_k$, where $\{x_n\}$ is the solution for any input whose left-infinite sequence is
+            $(\dots,u_{k-2},u_{k-1})$. Hence $h(\cev{u}^k) = \mathit{i}^{-1}(\mathcal{E}(\cev{u}^k))$. By definition of $\mathcal{E}$, we find (the required commutativity in the diagram in \eqref{Scomm_h}) through the deduction: 
+\begin{eqnarray*}
+g_v\circ \mathit{i}^{-1} \circ \mathcal{E}(\cev{u}) & = & \mathit{i}^{-1} \circ \mathcal{E}(\cev{u}v), \\
+& =& \mathit{i}^{-1} \circ \mathcal{E}(\sigma_v(\cev{u})).
+\end{eqnarray*}
+
+It remains to be shown that $h$ is surjective and continuous. 
+By definition of $X_U$,  it follows that $h(\overleftarrow{U})=X_U$ and hence $h$ is surjective. Also since
+ $h = \mathit{i}^{-1} \circ \mathcal{E}$, and $\mathcal{E}$ is continuous and $\mathit{i}^{-1}$ is continuous as it is an isometry, the function $h$ is continuous.  $\blacksquare$
+
+
+Interestingly, the converse of the above result is also true \cite[Lemma 5]{Manju_Nonlinearity}.  The map $g(v, \cdot)$ in \eqref{Scomm_h} actually depends on $v$. In general, it is not possible to find a map on $X_U$ that is independent of $v$ so that the diagram in \eqref{Scomm_h} commutes. However, when the inputs originate from a dynamical 
+system, we can restrict $h$ to a subspace of $\overleftarrow{U}$ and we then can establish a $v$-independent map when the \textit{single-delay lag dynamics} is considered on a subset of $X_U \times X_U$. To describe the  single-delay lag dynamics formally, we consider a dynamical system $T: U \to U$ and we define a relation on the reachable set $X_U$, i.e., a subset defined on $X_U \times X_U$ by 
+$$Y_T:=\{(x_{n-1},x_n): \{x_k\}_{k\in \mathbb{Z}} \mbox{ is a solution for some orbit of } T \mbox{ and } n \in \mathbb{Z}\}.$$ 
+
+The following result shows that $T$ induces a self-map $G_T$ on $Y_T$ and its iterates describes the single-delay lag dynamics.
+
+\begin{Theorem} \label{Thm_GT_Exists}
+Let $g$ be a driven system that is SI-invertible, and $(U,T)$ be a dynamical system. Consider the subspace $Y_T$ of $X_U \times X_U$ to be the tuple arising from two successive points of any solution of $g$, i.e.,
+$$Y_T:=\{(x_{n-1},x_n): \{x_k\}_{k\in \mathbb{Z}} \mbox{ is a solution for some orbit of } T \mbox{ and } n \in \mathbb{Z}\}.$$ Then we have a well-defined map $G_T: Y_T \to Y_T$ defined by $G_T : (x_{n-1},x_n) \mapsto (x_n,x_{n+1})$. Consequently, the mapping $(x_{n-1},x_n) \mapsto u_{n}$ is well-defined when $x_{n-1}$ and $x_n$ are successive points on a solution obtained for an input 
+$\{u_n\}$ that is an orbit of $T$.
+\end{Theorem}
+
+{\bf Proof.} Since $x_n=g(u_{n-1},x_{n-1})$ and $g(\cdot,x):U \to X$ is invertible, we have 
+\begin{equation}
+u_{n-1} = g_{*,x_{n-1}}^{-1}(x_n),
+\end{equation}
+where  $g_{*,x}^{-1}$ is the inverse of the map $g(\cdot,x):U \to X$. Using this in $x_{n+1}=g(u_n,x_n)=g(Tu_{n-1},x_n)$, we have $x_{n+1}=g(Tg_{*,x_{n-1}}^{-1}(x_n),x_n)$. Therefore, there exists a function $\theta_T: (x_{n-1},x_n) \mapsto x_{n+1}$. As a consequence we can define a map $G_T : (x_{n-1},x_n) \mapsto 
+(x_n,x_{n+1})$ by 
+\begin{equation} \label{eqn_GT}
+	G_T: (x_{n-1},x_n) \mapsto 
+(x_n,\theta_T(x_{n-1},x_n)). 
+\end{equation}
+Lastly, since $u_{n-1} = g_{*,x_{n-1}}^{-1}(x_n)$ and $u_{n} = Tu_{n-1}$, there exists a mapping $(x_{n-1},x_{n}) \mapsto u_n$.
+$\blacksquare$
+
+
+\begin{Definition} \rm
+	If $(U,T)$ is a dynamical system then we call $(Y_T,G_T)$ the dynamical system induced by $g$. 
+\end{Definition}
+
+
+
+The natural question that arises is if we can obtain a relationship like a topological conjugacy or a semi-conjugacy between the single-delay lag dynamics described by $(Y_T, G_T)$ and $(U,T)$. The answer is affirmative when $g$ has the USP but indirect. We can establish such a conjugacy/semi-conjugacy with what we call the inverse-limit system of $(U,T)$ that we explain next.
+
+
+Roughly, the inverse-limit system of $(U,T)$ comprises a self-map on a subset of an infinite dimensional
+space (e.g.,  the Hilbert cube) where each point in the inverse-limit space corresponds to a backward orbit. 
+Formally, any dynamical system $(U,T)$  determines a nonempty subspace $\widehat{U}_T$ of $\overleftarrow{U}$ given by \begin{equation}
+\label{eqn_Inv}
+ \widehat{U}_T: = \{(\ldots,u_{-2},u_{-1}) : Tu_{n} = u_{n+1} \},
+\end{equation} 
+and $\widehat{U}_T$ is equivalent to the inverse-limit space of $(U,T)$ or the natural extension of $(U,T)$ in the  literature (e.g., \cite{ingram2011inverse}). Note that the inverse-limit space is well-defined since we have assumed that $T: U \to U$ is surjective. It is customary to write the inverse-limit space as a space comprising right-infinite sequences in the literature instead of left-infinite sequences that we have considered in \eqref{eqn_Inv}. 
+
+
+The map $T$ also induces a self-map $\widehat{T}$ on 
+$\widehat{U}_T$ defined by  $\widehat{T}: (\ldots,u_{-2},u_{-1}) \mapsto 
+(\ldots,u_{-2},u_{-1},T(u_{-1}))$.  
+We refer to the dynamical system $(\widehat{U}_T,\widehat{T})$ as the inverse-limit system of $(U,T)$.
+The inverse-limit system is an extension of $(U,T)$, since
+\begin{equation}  \label{comm_inv}
+%    \[ 
+    \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 2.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+ \widehat{U}_T & \widehat{U}_T\\%
+U &  U,
+ %%%
+ \ncline{1,1}{1,2}^{ \widehat{T}} \ncline{1,1}{2,1} <{\pi_{-1}}
+ \ncline{1,2}{2,2} > {\pi_{-1}}
+ \ncline{2,1}{2,2}^{T}
+ \end{psmatrix}
+% \]
+\end{equation}
+holds where $\pi_{-1}(\ldots,u_{-2},u_{-1}) = u_{-1}$. Further, the inverse-limit systems do not  introduce any new complexity into the dynamics in the sense the topological entropies of $(U,T)$ and $(\widehat{U}_T,\widehat{T})$ are identical \cite{bowen1970topological}. Also, $(U,T)$  satisfies several other topological properties \cite{liang1993dynamical} if and only if $(\widehat{U}_T,\widehat{T})$ does. 
+
+
+
+
+ 
+
+
+%When the input to the driven system $g$ is an orbit of $(U,T)$, and we consider the value of the solution $x_n$ at time $n$, the value of $x_n$ would have been influenced by a left-infinite orbit $(\ldots,u_{n-2},u_{n-1})$ which belongs to $\widehat{U}_T$. 
+
+For our analysis with inputs being restricted to be orbits of $T$, and particularly while dealing with left-infinite spaces as in \eqref{Scomm_h}, it 
+ is sufficient to restrict  the system on the top in \eqref{Scomm_h} to the inverse-limit system 
+$(\widehat{U}_T, \widehat{T})$. This is since the new input value at any time would be the image of the previous value under $T$, i.e., if $u_{-1}$ is the current input value, then $Tu_{-1}$ is the next input value. Hence $\sigma_v(\cev{u})$ in \eqref{Scomm_h} is
+$\sigma_{Tu_{-1}}(\cev{u})$ and this is equal to  $\widehat{T}(\cev{u})$. Note that if $\{x_k(\bar{u})\}$ is a solution, then $x_n$ would have been influenced only by the left-infinite sequence $(\ldots,u_{n-2},u_{n-1})$ which belongs to $\widehat{U}_T$. 
+In this setting of inputs originating from a dynamical system $(U,T)$, we establish a relationship between the inverse-limit system of $(U,T)$ and its induced dynamical system $(Y_T,G_T)$:
+
+
+\begin{Theorem}{{\bf (Causal Embedding Theorem.)}}
+ \label{Thm_CET}
+	Let $g$ be a driven system that is SI-invertible and has the USP. Let $h$ denote the universal semi-conjugacy and $H_2(\overleftarrow{u}) := (h(r\overleftarrow{u}),h(\overleftarrow{u}))$, where $r$ is the right-shift $r: (\cdots, u_{-2},u_{-1}) \mapsto 
+  (\cdots, u_{-3},u_{-2})$.  Let $(\widehat{U}_T, \widehat{T})$  be the inverse-limit system of any dynamical system $(U,T)$. 
+ The function $H_2$ restricted to $\widehat{U}_T$ is a topological semi-conjugacy between the inverse-limit system 
+  $(\widehat{U}_T, \widehat{T})$  and the induced dynamical system  
+  $(Y_T,G_T)$, i.e., the following diagram commutes
+\begin{equation} \label{comm_H_CET}
+\psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+ \widehat{U}_T & \widehat{U}_T\\%
+ Y_T &  Y_T.
+ %%%
+ \ncline{1,1}{1,2}^{\widehat{T}} \ncline{1,1}{2,1} <{H_2}
+ \ncline{1,2}{2,2} > {H_2}
+ \ncline{2,1}{2,2}^{G_T}
+ \end{psmatrix}
+ \end{equation}
+or in other words, $(Y_T, G_T)$ is a factor of  $(\widehat{U}_T, \widehat{T})$. Further, if $T:U \to U$ is a homeomorphism, then $H_2$ embeds $\widehat{U}_T$ in $X_U \times X_U$, and hence
+$(Y_T, G_T)$ is conjugate to $(\widehat{U}_T, \widehat{T})$.
+\end{Theorem}
+
+{\bf Proof. } From Theorem~\ref{Thm_UCT}, we know that $h$ is continuous and the following diagram commutes:  \begin{equation}  \label{comm_h_repeat}
+%    \[ 
+    \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+ \overleftarrow{U} & \overleftarrow{U}\\%
+ X_U & X_U.
+ %%%
+ \ncline{1,1}{1,2}^{\sigma_v} \ncline{1,1}{2,1} <{h}
+ \ncline{1,2}{2,2} > {h}
+ \ncline{2,1}{2,2}^{g(v,\cdot)}
+ \end{psmatrix}
+% \]
+\end{equation}
+
+Consider the inverse-limit space $\widehat{U}_T \subset \overleftarrow{U}$, and a bi-infinite orbit $\bar{u}$ of $T$. The left-infinite segment $\cev{u} = (\ldots,u_{-2},u_{-1})$ then belongs to $\widehat{U}_T$. If we restrict the map $\sigma_v$ to $\widehat{U}_T$, and select $v=Tu_{-1}$, then we have 
+$\sigma_v(\ldots,u_{-2},u_{-1})=\sigma_{Tu_{-1}}(\ldots,u_{-2},u_{-1})=\widehat{T}(\ldots,u_{-2},u_{-1})$.
+Let $(x_{n-1},x_n) \in Y_T$. Without loss of generality, let $n=0$, i.e., $(x_{-1},x_0) \in Y_T$. By definition of $Y_T$, there exists an orbit $\{u_k\}$ of $T$  for which $\{x_n\} = \Psi(\{u_k\})$ 
+so that $(x_{-1},x_0) \in Y_T$ (recall $\Psi$ is the solution map). Also by Theorem~\ref{Thm_UCT}, and since $T$ is surjective, $h(\cev{u}) = x_0$ and $h(r\cev{u}) = x_{-1}$ where $\cev{u} = (\ldots,u_{-2},u_{-1})$ is the left-infinite segment of the orbit $\{u_k\}$. 
+Hence $H_2: \widehat{U} \to Y_T$ is surjective. 
+ Since $h$ and $r$ are continuous, it follows that $H_2$ is also continuous. 
+Also, since $h\circ \widehat{T}(\cev{u}) = x_1$, we have $H_2 \circ \widehat{T}(\cev{u}) =  (x_{0},x_{1}) = G_T(x_{-1},x_{0})$. Using all of these in \eqref{comm_h_repeat},  the diagram in \eqref{comm_H_CET} commutes, and $(Y_T,G_T)$ is a factor of $(\widehat{U}_T, \widehat{T})$. 
+
+It remains to be shown whenever $T$ is a homeomorphism  then $H_2$ does not map two distinct points in $\widehat{U}_T$ to the same point. Suppose there exists two orbits $\{u_k\}$ and $\{v_k\}$ so that $\cev{u} \not= \cev{v}$ and
+$H_2(\cev{u}) = H_2(\cev{v})$. This means that the solutions $\{x_k\} = \Psi(\{u_k\})$ and $\{y_k\}= \Psi(\{v_k\})$ are such that $(x_{-1},x_0) = 
+(y_{-1},y_0)$. Since $g$ is SI-invertible, this implies $u_{-1}=v_{-1}$. Since $T$ is a homeomorphism, $u_{-1}$ and $v_{-1}$ have the same left-infinite history which implies $\cev{u} = \cev{v}$. Hence when $T$ is a homeomorphism, $H_2$ embeds $\widehat{U}_T$ in $X_U \times X_U$. By definition of $Y_T$, $H_2( \widehat{U}_T) = Y_T$ and hence $H_2: \widehat{U}_T \to Y_T$ is a homeomorphism. Thus $(Y_T,G_T)$ is topologically conjugate to $(\widehat{U}_T, \widehat{T})$. $\blacksquare$
+
+
+
+\begin{Corollary} \label{Coroll}
+Let $X\subset \mathbb{R}^N$, and $[H_2]$ denote the collection of all component functions of $H_2:\widehat{U}_T \to Y_T$ each of which that maps $X$ into $\mathbb{R}^2$. 
+        	If $\mathcal{K}$ denotes the Koopman operator of the dynamical system $(\widehat{U}_T, \widehat{T})$ then $([H_2], G_T)$ is a finite-dimensional faithful representation and, for each $f_i \in [H_2]$,   $\mathcal{K} f_i = \pi_i \circ G_T \circ H_2$, where  $\pi_i$ picks the $i^{\mathit{th}}$ component function of $H_2 :\widehat{U}_T \to X_U \times X_U$.
+\end{Corollary}
+
+{\bf Proof. } If $\pi_i$ picks the $i^{\mathit{th}}$ component function of $H_2$ then $f_i = \pi_i \circ H_2$. When the diagram in \eqref{comm_h_repeat}  commutes, we have $H_2 \circ \widehat{T} =G_T \circ H_2$. By composing $\pi_i$ on both sides, we have implies $f_i \circ \widehat{T} = \pi_i \circ G_T \circ H_2$. But by definition of $\mathcal{K}$, $f_i \circ \widehat{T} = \mathcal{K} f_i$. Hence, $\mathcal{K} f_i  = \pi_i \circ G_T \circ H_2$ when $\mathcal{K}$ is the Koopman operator of $\widehat{T}$.  $\blacksquare$
+
+
+The reader may note that when $g$ is a RNN as in \eqref{Seq_RNN} and if  $\{f_1,\ldots,f_N\}$ denotes the $N$ component functions of $H_2(\cev{u}^n)$ then each $f_i(\cev{u}^n)$ pairs the $i^{\mathit{th}}$ coordinate of $x_{n-1}$, i.e., the state of the $i^{\mathit{th}}$ node at time $n-1$ with the state of $i^{\mathit{th}}$ node at time $n$ ($i^{\mathit{th}}$ coordinate of $x_n$) where $x_n = h(\cev{u}^n)$, and thus $f_i$'s define a set of $\mathbb{R}^2$-valued observables  of the inverse-limit space $(\widehat{U}, \widehat{T})$. According to the definition of a faithful representation \cite{mezic2020koopman} made in Section~\ref{Sec_Koopman}, $\mathbf{f}$ the collection of component functions of $H_2$ and the map $G_T$ together form a finite faithful representation of $(\widehat{U}, \widehat{T})$. 
+
+
+
+
+
+
+\begin{Definition} \rm
+	We say a driven system $g$ \emph{causally embeds} a dynamical system $(U,T)$ if it satisfies the two properties: (i) a universal semi-conjugacy exists, i.e.,  the diagram in \eqref{Scomm_h} commutes (and thus, \eqref{Scomm_imp} also commutes) (ii)  $H_2(\cev{u}) := (h(r\cev{u}),h(\cev{u}))$ embeds the inverse-limit space $\widehat{U}_T$ in $X \times X$. \end{Definition} 
+
+Since when $g$ is SI-invertible and has the USP then $H_2: \overleftarrow{U}_T \to Y_T$  is a homeomorphism, $H_2$ can embed the inverse-limit space $(\widehat{U}, \widehat{T})$ of any dynamical system in $X \times X$, and thus causally embed any dynamical system as long as its inverse-limit space is contained in $\overleftarrow{U}$. 
+Synoptically,  restricting $H_2$ to inverse-limit spaces of different dynamical systems contained in $\overleftarrow{U}$ establishes semi-conjugacies/conjugacies  between  $G_T$ and those inverse-limit spaces. 
+ Thus one does not need to change $g$ to learn $G_T$ when the dynamical system that drives it changes.  Bringing out this fact is a theoretical advancement that drives us to obtain a universal set of observables for learning the Koopman operator \cite{koopman1932dynamical} of any $(\widehat{U}_T, \widehat{T})$ as long as $\widehat{U}_T$ is contained in $\overleftarrow{U}$.
+
+%\eqref{comm_h_repeat} in  Theorem~\ref{Thm_UCT} finite-faithful representation in \eqref{comm_h2}, the following diagram commutes:\begin{equation*}
+%    \[   \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=1.3cm, colsep = 1.1cm, shortput =tablr}\everypsbox{\scriptstyle} \begin{psmatrix} \widehat{U}_T & \widehat{U}_T\\% H_2(\widehat{U}_T) & H_2(\widehat{U}_T)\\
+ %%% \ncline{1,1}{1,2}^{\widehat{T}} \ncline{1,1}{2,1} <{[H_2]} \ncline{1,2}{2,2} > {[H_2]}\ncline{2,1}{2,2}^{G_T}\end{psmatrix}
+% \]\end{equation*}  $\blacksquare$
+
+
+\section{Equations from Data and Forecasting}
+
+Since two successive points $(x_{n-1},x_n)$ of a solution of $g$ with an input $\bar{u}$ lie in $Y_T$, one can learn the single-lag dynamics of the driven states through the map $G_T: (x_{n-1},x_{n}) \mapsto (x_n,x_{n+1})$ from a sufficiently large finite set of data points $(x_0,x_1)$ , $(x_1,x_2), \ldots, (x_{m-1},x_m)$. Once having a learnt version of $G_T$, one can iterate  to forecast two successive points on a solution corresponding to $\bar{u}$.  Forthwith, one can also predict the input value $u_n$, since two successive states $x_n$ and $x_{n+1}$ determine $u_n$ since $g$ is SI-invertible \eqref{eqn_g*}. We recall that $g$ is SI-invertible,  any two successive values of the solution $(x_n,x_{n+1})$  determine $u_n$ uniquely since \begin{equation} \label{eqn_g*}
+u_n=g_{*,x_{n}}^{-1}(x_{n+1})
+\end{equation}
+where  $g_{*,x}^{-1}$ is the inverse of the map $g(\cdot,x):U \to X$. 
+In summary, if $G_T$ is learnt without errors, prediction would be exact whenever $H_2$ causally embeds $(U,T)$, or else the predicted value of $u_n$ would be an approximation to it obtained from the system $(Y_T,G_T)$ that is semi-conjugate to $(\widehat{U}_T,\widehat{T})$.  
+
+
+
+We empirically illustrate that the single-lag dynamics described by $G_T$ is less functionally complex than learning $T$. We consider an RNN as in \eqref{Seq_RNN} with the USP, and by varying the dimensions of $X$ (i.e., the neurons) in the RNN we measure the functional complexity of the resultant single-delay dynamics. 
+Empirically (see Table~\ref{Table_FC}), increasing the dimension of $X$ is found to increase the linear relationship (or intuitively reduce the functional complexity of $G_T$) that is measured as a generalization of the Pearson correlation coefficient to random vectors (e.g., \cite{puccetti2019measuring}) between 
+$(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$. 
+If $\Sigma_{a}$ and $\Sigma_{b}$ denotes the covariance matrices of the vectors $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$ respectively, and if $\Sigma_{ab}$ denotes the covariance matrix between the vectors $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$, then the multidimensional correlation coefficient is computed by using the traces of these matrices:
+$$
+    \rho= \frac{\text{tr}({\Sigma_{ab}})}{\text{tr}({\sqrt{\Sigma_a\Sigma_b}})}.
+$$
+This multidimensional correlation coefficient satisfies most of the well-known properties of the one-dimensional Pearson coefficient. In particular, $\rho=\pm 1$ if and only if $Y\overset{d}{=}AX+b$ for some invertible matrix $A$ and vector $b$. Hence $\rho$, and in practice, the estimator $\hat{\rho}$, can be used 
+to measure the linear relationship between two random vectors of the same dimension and thus serves as an indicator of functional complexity. 
+
+
+
+
+We remark that the estimation of such linear relationship in (see Table~\ref{Table_FC}) obtained by sample correlations alone is justified whenever $\{u_n\}$ is a realization of an ergodic process since then when $g$ has the USP, any solution $\{x_n\}$ is also a realization of an ergodic process \cite{manjunath2014dynamics}. In the ergodic input case the generalized Pearson correlation coefficient  (between $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$) is independent of $n$. 
+
+
+\begin{center}
+\begin{table}
+    \scalebox{0.75}{\begin{tabular}{|c|c| c c |} 
+        \hline
+        Input & Dimension of $X$ & $u_n$ vs $u_{n+1}$ 
+        & $\begin{bmatrix}
+            x_{n-1}\\
+            x_n
+        \end{bmatrix}$ vs $\begin{bmatrix}
+            x_n\\
+            x_{n+1}
+        \end{bmatrix}$ \\
+        \hline
+        \hline
+        $(w_n)$ is the Lorenz states, sampled every 0.1 timestamps. & & &\\
+        \multirow{3}{*}{$u_n=\frac{1}{100}w_n$} & 10 &0.9311  & 0.9731\\
+            & 100 &  & 0.9934\\
+            & 1000 & & 0.9930\\
+            
+        \multirow{3}{*}{$u_n=\frac{1}{10}(\sin(0.1w_{n,x})+\sin(0.1w_{n,y})+\sin(0.1w_{n,z}))$} 
+            & 10 &0.8401  & 0.9392\\
+            & 100 & & 0.9616\\
+            & 1000 & & 0.9737\\
+        \hline
+        \hline 
+        $(w_n)$ comes from the H\'enon map: & & &  \\
+         {$w_{n+1}  = \begin{bmatrix} 1 - 1.4w_{n,x}^2+w_{n,y} \\
+                0.3 w_{n,y}\end{bmatrix}$} & & & \\
+        \multirow{3}{*}{$u_n = w_n - \overline{w}$} 
+            & 10 &-0.2996  & 0.4278\\
+            & 100 &  & 0.5733\\
+            & 1000 & & 0.4953\\
+        \hline
+        \hline 
+        $(w_n)$ comes from a Pomeau-Manneville map: & & & \\
+        {$ w_{n+1}  = \begin{cases} 
+            w_n(1+2^{0.6}w_n^{0.6}) & \text{ if } w_n\leq 0.5\\
+            2w_n-1 & \text{ if } 0.5 < w_n
+        \end{cases}$} & & & \\
+        \multirow{3}{*}{$u_n = w_n - \overline{w}$} 
+            & 10 &0.6943  & 0.9260\\
+            & 100 & & 0.9542\\
+            & 1000 & &  0.9669\\
+        \hline
+        \hline 
+        $(w_n)$ comes from the Logistic map: & & & \\
+        {$ w_{n+1}  = 4w_n(1-w_n)$} & & & \\
+        \multirow{3}{*}{$u_n = w_n - 0.5$} 
+            & 10 &-0.0314  & 0.5577\\
+            & 100 &  & 0.7150\\
+            & 1000 & & 0.7826\\
+        \hline
+        % \hline 
+        % $(w_n)$ comes from an intermittent H\'enon map: & & &  \\
+        %  {$w_{n+1}  = \begin{bmatrix} w_{n,y} \\
+        %         -0.015w_{n,x}+1.76+w_{n,y}^2\end{bmatrix}$} & & & \\
+        % \multirow{3}{*}{$u_n = \frac{1}{10}(w_n - \overline{w})$} 
+        %     & 10 &-0.5135 & 0.5121\\
+        %     & 100 & & 0.5098\\
+        %     & 1000 & & 0.4466\\
+        % \hline
+    \end{tabular}}
+    \caption{Multidimensional Correlation Coefficients $\rho$ to indicate a general reduction in the functional complexity of the map $G_T$ that arises from a RNN. Each row corresponds to a different dynamical system used in the experiments in \cite{Main_article}. In the second column corresponds to the dimension of $X$ (number of artificial neurons) in the RNN used. 
+    The numerical estimate of $\rho$ for the relevant vectors is plotted in the last two columns. The reader can compare the linear relationship between $u_n$ vs $T(u_{n})$ and the linear relationship $\begin{bmatrix}
+            x_{n-1}\\
+            x_n
+        \end{bmatrix}$ vs $G_T \left( \begin{bmatrix}
+            x_{n-1}\\
+            x_n
+        \end{bmatrix}\right)$. The dimension of the RNN from \eqref{Seq_RNN} is also given, showcasing that increasing the dimension of the driven system typically yields a map $G_T$ of lower functional complexity.} \label{Table_FC}
+    \end{table}
+\end{center}
+
+
+
+
+Having observed that learning the single-delay dynamics entails the learning of a less functional complex map, we also note that Theorem~\ref{Thm_GT_Exists} there exists a well-defined map $(x_{n-1},x_n) \mapsto u_{n}$ when $(x_{n-1},x_n) \in Y_T$. We denote this map by $\Gamma$.   
+
+
+
+%In principle,  feeding an orbit of $(U,T)$ to a driven system that is SI-invertible and has USP enables learning the map $G_T$  from the simulated solution so that the diagram printed in black in \eqref{Scomm_imp} commutes. 
+ 
+
+
+
+
+Hence,  one can learn $G_T$ indirectly by first learning the map $\Gamma: (x_{n-1},x_{n}) \mapsto u_n$. Then clearly $(\Gamma, \pi_2)(x_{k-1},x_{k}) =(u_k,x_k)$ where $\pi_2 : (a,b) \mapsto b$ is the coordinate projection. Next, $(\pi_2,g)(u_k,x_k) = (x_{k},x_{k+1})$. Therefore, we can rewrite the commutativity in \eqref{Scomm_h} to include the map $\Gamma$ as:
+
+ \begin{equation}  \label{Scomm_imp}
+%    \[ 
+    \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=1.3cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+ \widehat{U}_T & \widehat{U}_T\\%
+ H_2(\widehat{U}_T) & H_2(\widehat{U}_T)\\
+ & \textcolor{red}{U \times X}
+ %%%
+ \ncline{1,1}{1,2}^{\widehat{T}} \ncline{1,1}{2,1} <{H_2}
+ \ncline{1,2}{2,2} > {H_2}
+ \ncline{2,1}{2,2}^{G_T}
+ \psset{linecolor=red}
+ \textcolor{red}{\ncline{2,1}{3,2}<{(\Gamma,\pi_2)}}
+ \ncline{3,2}{2,2}>{\textcolor{red}{(\pi_2,g)}}.
+ \end{psmatrix}
+% \]
+\end{equation} 
+
+Since, $(\pi_2,g)(u_k,x_k) = (x_{k},x_{k+1})$  (see the vertical line in red in \eqref{Scomm_imp} or that in Fig.~\ref{Fig_1}A) -- we can realize  the mapping $(u_k,x_k) \mapsto (x_{k},x_{k+1})$ by feeding $u_k$ back to the driven system (a schematic in Fig.~\ref{Fig_RCN}). Thus, we obtain  iterative roots of $G_T$,  i.e., $G_T = (\pi_2,g) \circ (\Gamma,\pi_2)$.  This equivalent representation of $G_T$ entails another map (see the vertical line in red and the diagonal line in red in that order in Fig.~\ref{Fig_1}A),   $S: (u_k,x_k) \mapsto (u_{k+1},x_{k+1})$ defined by 
+ \begin{eqnarray}
+	u_{k+1} &=& \pi_1 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k) \label{Seqn_u}\\
+	x_{k+1} &=& \pi_2 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k). \label{Seqn_x}
+\end{eqnarray}
+The expressions \eqref{Seqn_u}-\eqref{Seqn_x} are equations constructed from data! We digress to note that for a system with the USP, we can replace $h(\cev{u}^k)$ by $x_k$ in \eqref{Seqn_u} to obtain
+$$
+u_{k+1} = \pi_1 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,h(\cev{u}^k)),
+$$ 
+which is a nonlinear difference equation that only refers to the variable $U$. 
+Thus the variable $x_k$ acts as an auxiliary variable in the system defined by $S$.  
+
+There are advantages of employing \eqref{Seqn_u}-\eqref{Seqn_x} instead of learning $G_T$. First,  we can save resources by learning $\Gamma$ instead of learning the map $G_T$ on a subset of a very large dimensional space $X \times X$.
+This is since in practice $u_n$ is an isometrically embedded image (due to the zero-padding)  of the actual input $v_n$, and since $v_n$  lies in a space with a much lower dimension than $X$ to learn $\Gamma$, it is sufficient to learn the map $(x_{n-1},x_{n}) \mapsto v_n$.  
+
+Secondly, if $\cev{u}$ and say its noisy version $\cev{v}$ are nearby then their tails are permitted to be significantly different in the product topology. In that case, $h(\cev{u})$ and $h(\cev{v})$ are nearby owing to the continuity of $h$ due to the USP \cite{manjunath2020stability}, and thereby provides robustness to input noise. The continuity in the product topology can be interpreted as follows: when the noise in the input that occurs in the distant past is mitigated by the driven system as time flows. Such robustness to the input noise in the driven system is called input-related stability in \cite{manjunath2020stability}. More precisely, when there is input-related stability $h(\cev{u})$ is affected to an arbitrarily small extent by that left-infinite segment of the past of the input beyond some arbitrarily large but finite time  \cite[Theorem 3.1]{manjunath2020stability}. Further, when a parameter $\lambda$ is such that $\lambda \mapsto g_\lambda$ is continuous, the universal semi-conjugacy  $h_\lambda$ is also continuous with respect to the parameter $\lambda$. This is referred to as parameter-related stability \cite[Theorem 3.2]{manjunath2020stability}, a consequence of the USP.
+
+
+ Lastly, learning $G_T$ directly would lead to the same risk as learning a map after employing delay coordinates in Takens embedding where global dissipativity is not guaranteed (see Fig.~\ref{Fig_Takens} and Fig.~\ref{Fig_GTplus}). This is especially crucial when the underlying dynamical system $T$ exhibits chaos, in which case $G_T$ also would exhibit chaos. This is since $\widehat{T}$ inherits chaos since it is an extension of $T$, and when  $G_T$ is conjugate to $\widehat{T}$, $G_T$ also exhibits chaos. Global approximation of maps that exhibit chaos is numerically stable when it is locally conservative on an invariant set and globally dissipative lest would often lead to errors. An empirical illustration would follow in Fig.~\ref{Fig_Glob_Diss}). First, we formally define  global dissipativity and  elaborate with a detailed analysis. 
+ 
+
+%Thirdly, If $T$ is chaotic, then $\widehat{T}$ is also chaotic and the map $S$ on a domain $D$ contained in $U \times X$ is also chaotic. This entails a small open ball of initial conditions contained in $D$ to grow quickly in time. Separately,  due to either noise in the input or due to approximation of $\Gamma$ by its learnt version, the noise could expand the domain of the map $S$ beyond $D$. We note that $g$ can be designed so that the solutions of $g$ lie always in the compact space $X$ regardless of the expansion of the input space $U$ (for e.g., \eqref{eq_RNN}). Hence the dynamics that spills far beyond $D$ can be quenched by a saturation function like in the RNN in \eqref{eq_RNN}. This restricts the growth of the error while forecasting \ednote{M: Will include a figure in the supp}. With an RNN in \eqref{eq_RNN}, the set $H_2(\widehat{U}_T)$ can be made to expand by setting $\alpha$ large enough while retaining the USP \cite{Supp}) so that the quenching gets close to the boundary of the domain of $S$.  
+
+%We make an analysis to show that the expansion $(\pi_2,g^+) \circ (\Gamma_{exp},\pi_2)$ is globally dissipative, thereby obtaining some degree of stability when small computational errors are made, a feature was lacking with Takens delay embedding. 
+
+ 
+\begin{Definition} \rm
+	We say a dynamical system $(Z,f)$ is globally dissipative if there exists a nonempty proper closed subset $B$ of $Z$  so that for all $x\in Z\setminus B$, (i). $\omega(x;f) \subset B$  and (ii).  $B$ is positively invariant that is $f(B) \subset B$. We call any such closed subset $B$ a trapping set of $f$. 
+\end{Definition}
+
+It is obvious when $(Z,f)$ is globally dissipative, every invariant set or attractor of $f$ would be contained in a trapping set $B$. In fact one can find that $\bigcap_{n=1}^\infty f^{(n)}B$ is an
+attractor.  
+
+An expansion of a set $A$ contained is a fattening of $A$ that is also closed. Formally, an expansion of a set $A \subset \mathbb{R}^n$ ($A \subset \mathbb{R}^n \times \mathbb{R}^n$) is any closed subset $A^+ \subset \mathbb{R}^n$ ($A^+ \subset \mathbb{R}^n \times \mathbb{R}^n$) that  contains $A$. 
+Given a function $f$ defined on $A$, we denote a function $f^+$ to be some continuous function that preserves $f$ on $A$ and also leaves $A^+$ positively-invariant. Formally, suppose $f$ is a continuous function defined on $A$, then $f^+$ denotes a choice of a continuous function defined on $A^+$ so that $f^+(a)=f(a)$ for all $a \in A$, and  $f^+(A^+) \subset A^+$. Now if $(A^+,f^+)$ is globally dissipative with a trapping set contained in $A$, then the forward asymptotic behavior of the orbits under $f^+$ and $f$ would be identical. Our aim is to show that a system $(Y_T^+, (\pi_2,g^+) \circ (\Gamma_{exp},\pi_2))$ that is a learnt version of $(Y_T,(\pi_2,g) \circ (\Gamma,\pi_2))$ can have global dissipativity, and hence their forward asymptotic dynamics are identical; $\Gamma_{exp}$ would be defined in the discussion later. Note that we have assumed that the dynamics of the learnt version has the same dynamics of $(\pi_2,g) \circ (\Gamma,\pi_2)$ on $Y_T$, and the purpose of this discussion is to analyse what can happen if the iterates of $G_T$ slip on to  $Y_T^+$ due to transient or noise at isolated moments in the input. 
+
+
+
+First we would consider the map $G_T: Y_T \to Y_T$. 
+Suppose successive iterates of  of $(x_{n-1},x_{n})$ under $G_T$ is employed to forecast successive values of a solution of $g$ contained in $Y_T$, then these iterates would remain in $Y_T$. However, in practice, due to noise at some moment, an iterate could slip beyond $Y_T$ and into an 
+expansion $Y_T^+$; for instance $Y_T^+$ in this case could be 
+$$Y_T^+ : = \mbox{Closure}\bigg(Y_T \cup \cup_{n > 0 } (y_{n-1},y_{n})\bigg),$$  where $y_i$ is an approximation of $x_i$.  
+In practice, a function like a feedforward neural network that is made to learn $G_T$ would also accept a value outside $Y_T$ as an argument.  So in practice, we have a map $G_T^+$ on an expansion $Y_T^+$. In general, $Y_T$ need not be an attractor of $G_T^+: Y_T^+ \to Y_T^+$, or more generally there is no guarantee that $(Y_T^+,G_T^+)$ is globally dissipative. Especially for chaotic maps, a map $G_T^+$ could continue to show sensitive dependence on initial conditions on $Y_T^+\setminus Y_T$ as well, which could take the iterates of $G_T^+$ further away from $Y_T$, and hence forecasting leads to large errors (see Fig.~\ref{Fig_GTplus} for a schematic, and an empirical illustration in the figure on the left in Fig.~\ref{Fig_Glob_Diss}). If we learn $\Gamma$ instead of $G_T$, then the system $(Y_T^+, (\pi_2,g^+) \circ (\Gamma_{exp},\pi_2))$ which is what we realise in practice while learning $(\pi_2,g) \circ (\Gamma,\pi_2)$ in \eqref{Scomm_imp} turns out to be globally dissipative (Theorem~\ref{Thm_GD}) under some conditions on $g$; here $\Gamma_{exp}$ denotes some function defined on $Y_T^+$ that agrees with $\Gamma$ on $Y_T$. In summary, by feeding the predicted values of the input into the driven system $g$ during forecasting as in Fig.~\ref{Fig_RCN} or more formally, as indicated in  \cite[Fig.~\ref{Fig_1}A]{Main_article}, the iterates under   
+$(Y_T^+, (\pi_2,g^+) \circ (\Gamma_{exp},\pi_2))$ would not wander far away from the iterates of $(\pi_2,g) \circ (\Gamma,\pi_2)$ in practice. (for a schematic see Fig.~\ref{Fig_Takens2} and for 
+an empirical illustration see the figure on the right in Fig.~\ref{Fig_Glob_Diss}).
+
+
+\title{Figure was here}
+% \begin{center}
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=16cm]{Fig_GT_plus}
+% \caption{Schematic to explain the errors that could occur if $G_T$ is learnt to forecast values in $Y_T$.}
+% \label{Fig_GTplus}
+%  \end{figure}
+% \end{center}
+
+
+Before proving  Theorem~\ref{Thm_GD}, we deal with how $\Gamma$ can be learnt reliably from successive points on a simulated solution. Note that for obtaining an actual solution,  the entire left-infinite input has to be fed to the driven system. When $g$ has the USP, the solutions of $g$ can be recognized as non-autonomous uniform attractors \cite{Manju_Nonlinearity}, that is each solution attracts all other initial conditions towards the components of the solution, and moreover, this attractivity is uniform for all solutions -- uniform attraction property \cite{Manju_Nonlinearity}, which we state next.  Recall that when $A$ and $B$ belong to  $\mathsf{H}_X$, the quantity 
+$dist(A,B):= \inf\{ \epsilon : A
+\subset B_\epsilon(B)\}$ is the Hausdorff semi-distance between $A$ and $B$.
+ 
+\begin{Definition} \rm \label{Def_UAP}
+Let $g$ be a driven system. Then $g$ is said to have the uniform attraction property (UAP) if for each $\bar{u} \in \overleftarrow{U}$ the process $\phi_{\bar{u}}$	is such that 
+there exists a sequence of singleton subsets  $\{A_k(\bar{u})\}$ of $X$ so that $\phi_{\bar{u}}(k,k-j,A_k(\bar{u})) = A_{k+1}(\bar{u})$ and 
+\begin{equation} \label{eq_UAP}
+	\lim_{j\to \infty} \sup_k \sup_{\bar{u}} dist\Big( \phi_{\bar{u}}(k,k-j,X), A_k(\bar{u})\Big) = 0.
+\end{equation}
+\end{Definition}
+It is a result in \cite[Theorem 1]{Manju_Nonlinearity} that the UAP is equivalent to the USP. Now, clearly, when $g$ has the USP, the sequence of subsets that satisfy Definition~\ref{Def_UAP} are subsets containing the elements of the solution $\Psi(\bar{u})$.  Hence from  \eqref{eq_UAP}, we have 
+$$ 
+	\lim_{j\to \infty}  \sup_k \sup_{\bar{u}} d\Big( \phi_{\bar{u}}(k,k-j,y), x_k(\bar{u})\Big) = 0,
+$$
+for all $y \in X$, and where  $\{x_k(\bar{u})\} = \Psi(\bar{u})$.  By replacing $k$ by $k+j$, we obtain 
+\begin{equation} \label{Seqn_uniform}
+	\lim_{j\to \infty}  \sup_k \sup_{\bar{u}} d\Big( \phi_{\bar{u}}(k+j,k,y), x_{k+j}(\bar{u})\Big) = 0,
+\end{equation}
+for all $y \in X$, and where  $\{x_k(\bar{u})\} = \Psi(\bar{u})$. This in turn implies for any $\bar{u}$, and $k \in \mathbb{Z}$ and any pair $y_1,y_2 \in X$
+\begin{equation} \label{Seqn_uniform2}
+	\lim_{j\to \infty} 
+	\max\Bigg(d\Big(\phi_{\bar{u}}(k+j-1,k,y_1), x_{k+j-1}(\bar{u})\Big),
+	d\Big(\phi_{\bar{u}}(k+j,k,y_2), x_{k+j}(\bar{u})\Big)\Bigg) = 0,
+\end{equation}
+where  $\{x_k(\bar{u})\} = \Psi(\bar{u})$.
+
+
+The limit in \eqref{Seqn_uniform2} ensures that if we initialize the driven system
+with an arbitrary initial value $y_m \in X$, then the sequence $y_{m+1}, y_{m+2}, y_{m+3},...$ satisfying $y_{k+1}= g(u_k,y_k)$ for $k \geq m$ approximates the actual solution $\{x_n\}$ \textit{uniformly} (see \eqref{eq_UAP}). To be precise, given $\epsilon>0$ (independent of $y_m$) there is an integer $n$ so that the distance between  $x_{n+i}$ and $y_{n+i}$ is less than $\epsilon$ for all $i\ge 0$, where $\{x_m\} = \Psi(\bar{u})$  and $y_{n+i}$ is generated by $y_{k+1} = g(u_k,y_k)$ for $k\ge m$. Thus by leaving out a few values of $y_i$ (termed as washing out initial conditions in the RC literature \cite{jaeger2004harnessing}), for practical purposes the subsequent values of $y_i$ are indistinct from the actual solution values. In contrast, the Takens delay embedding theorem in \cite{takens1981detecting} does not guarantee embedding a subset of the manifold as an attractor (recall Fig.~\ref{Fig_Takens}). 
+
+
+
+We next elaborate on the conditions on $g^+$ so that $(Y_T^+, (\pi_2,g^+) \circ (\Gamma_{exp},\pi_2))$ is globally dissipative.   Now suppose $g^+$ is such that  $g^+(U^+\times X^+) \subset X$. An example of this is the RNN in \eqref{Seq_RNN}. In this case all solutions of $g^+$ would lie within $X=[-1,1]^N$ thanks to the $\tanh$ function. Hence $Y_T^+$, an expansion of $Y_T$ would be always contained in $X \times X$. Next, let $U^+ = \Gamma_{exp}(Y_T^+)$ be an expansion of $U$, where $\Gamma_{exp}$ is the learnt version of $\Gamma$ with domain $Y_T^+$.  Clearly, $U^+$ is compact since $X$ is compact and $\Gamma_{exp}$ is continuous.  In this scenario, if $g^+$ has the USP, then it turns out that the product of the reachable set $X_{U^{+}} \times X_{U^{+}}$ is a trapping set of the map $(\pi_2,g^+) \circ (\Gamma_{exp},\pi_2)$ as indicated in Fig.~\ref{Fig_GD}. As promised a formal proof is in Theorem~\ref{Thm_GD}. 
+
+
+%Then $(\pi_2,g) \circ (\Gamma_{exp},\pi_2)(x_1,x_2) \subset X \times X$. Hence $Y_T^+$ would be always contained in $X$. Next, let $U^+$ denote $\Gamma_{exp}(Y_T^+)$, where $\Gamma_{exp}(x_1,x_2) = \Gamma(x_1,x_2)$ and $\Gamma_{exp}$ is the map obtained after learning $\Gamma$, and let $U^+ = \Gamma_{exp}(Y_T^+)$.  Hence $(Y_T^+,(\pi_2,g^+) \circ (\Gamma_{exp},\pi_2))$ is well-defined. To discuss the  global dissipativity of $(Y_T^+,(\pi_2,g^+) \circ (\Gamma_{exp},\pi_2))$, we first adopt a definition from \cite{Manju_Nonlinearity}. 
+
+
+%The next result shows that $X_{U^{+}} \times X_{U^{+}}$ is a trapping set for the system $(Y_T^+,(\pi_2,g^+) \circ (\Gamma_{exp},\pi_2))$ making it globally dissipative. Since $X_{U^{+}} \times X_{U^{+}}$ would contain $Y_T$, we have some degree of stability while we learn since $(Y_T^+,(\pi_2,g^+) \circ (\Gamma_{exp},\pi_2))$  would map an initial condition outside $X_{U^{+}} \times X_{U^{+}}$ towards it (see schematic in Fig.~\ref{Fig_GD}). 
+
+
+\title{Figure was here}
+% \begin{center}
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=12cm]{Fig_GD}
+% \caption{Schematic to illustrate the effect of global dissipativity.}
+% \label{Fig_GD}
+%  \end{figure}
+% \end{center}
+
+
+
+
+
+
+%Thus $\lim_{j\to \infty}  \sup_k d\Big( \phi_{\bar{u}}(k,k-j,y), x_k(\bar{u})\Big) = 0$ for all $\bar{u}$ and $y \in X$.  By replacing $k$ by $k+j$, we get  $\lim_{j\to \infty}  \sup_k d\Big( \phi_{\bar{u}}(k+j,k,y), x_{k+j}(\bar{u})\Big) = 0$for all $\bar{u}$ and $y \in X$.Thus $\lim_{j\to \infty} d\Big( \phi_{\bar{u}}(k+j,k,y), X_U\Big) = 0$ for all $\bar{u}$  $y \in X$ and $k \in \mathbb{Z}$, since the reachable set contains all the components of a solution. This in turn implies\begin{equation} \label{eqn_product}$\lim_{j\to \infty}  \max( d\Big( \phi_{\bar{u}}(k+j-1,k,y_1), X_U\Big),d\Big( \phi_{\bar{u}}(k+j,k,y_2), X_U\Big) ) = 0$ for all $\bar{u}$  $y_1,y_2 \in X$ and $k \in \mathbb{Z}$.\end{equation}
+
+\begin{Theorem} \label{Thm_GD}
+If $g^+$ is such that $g^+ : U^+ \times X^+ \to X$ and has the USP then $(\pi_2,g^+) \circ (\Gamma_{exp},\pi_2)$ is globally dissipative with $X_{U^{+}} \times X_{U^{+}}$ being a trapping set. 
+\end{Theorem}
+
+{\bf Proof. } By definition $(\pi_2,g^+) \circ (\Gamma_{exp},\pi_2)$ is a self-map on $Y_T^+$. For brevity of notation, set $f := (\pi_2,g^+) \circ (\Gamma_{exp},\pi_2)$. To prove the theorem, we  show that  $\omega((y_1,y_2);f) \subset X_{U^{+}} \times X_{U^{+}}$. 
+
+
+Fix $(y_{-1},y_0) \in Y_T^+$. Let $u_0 := \Gamma_{exp}(y_{-1},y_{0})$. In general denote $u_i := \Gamma_{exp}(f^{(i)}(y_{-1},y_0))$. 
+ So under the repeated iterations of $f$ we also find an input sequence $\{u_0,u_1,u_2,\ldots \subset  U^+\}$. Let $\bar{u}$ be the bi-finite sequence contained in $U^+$ so that its right infinite sequence matches with $\{u_1u_2,\ldots\} \subset  U^+$. Let $\phi_{\bar{u}}^+$ be the composition operator of $g^+$ with input ${\bar{u}}$. Then 
+ by definition of $\bar{u}$, we have $f(y_{-1},y_{0}) =  (y_0,\phi_{\bar{u}}^+(1,0,y_{0})) = (\phi_{\bar{u}}^+(0,0,y_{0}),\phi_{\bar{u}}^+(1,0,y_{0}))$.
+ In general, for all $j>0$,  $$f^{(j)}(y_{-1},y_{0}) =   
+ \Big(\phi_{\bar{u}}^+(j-1,0,y_0), \phi_{\bar{u}}^+(j,0,y_0)\Big).$$
+ 
+ 
+ 
+Let $\{x_k\} :=  \Psi(\bar{u})$. By definition of the reachable set $X_{U^{+}}$,   $(x_{k},x_{k+1}) \in X_{U^{+}} \times X_{U^{+}}$ for all $k \in \mathbb{Z}$. The product  $X_{U^{+}} \times X_{U^{+}}$ is compact since by definition $X_{U^{+}}$ is compact. Hence to prove that 
+ $\omega((y_1,y_2); f)\subset X_{U^{+}} \times X_{U^{+}}$ it is sufficient if we show that 
+$f^{(j)}(y_{-1},y_0) \to (x_{j-1},x_{j})$ as $j \to \infty$. Recalling \eqref{Seqn_uniform2}, we have  for all $k \in \mathbb{Z}$, and $(z_1,z_2)$,  $$\lim_{j\to \infty}\max\Bigg(d\Big(\phi_{\bar{u}}^+(k+j-1,k,z_1), x_{k+j-1}(\bar{u})\Big),
+	d\Big(\phi_{\bar{u}}^+(k+j,k,z_2), x_{k+j}(\bar{u})\Big)\Bigg) = 0.$$  
+ In particular by setting $k=0$, $z_1=z_2=y_0$, we have 
+ $$\lim_{j\to \infty}\max\Bigg(d\Big(\phi_{\bar{u}}^+(j-1,0,y_0), x_{j-1}(\bar{u})\Big),
+	d\Big(\phi_{\bar{u}}^+(j,0,y_0), x_{j}(\bar{u})\Big)\Bigg) = 0$$ which implies  $f^{(j)}(y_{-1},y_{0}) \to (x_{j-1},x_{j})$ as $j \to \infty$. 
+$\blacksquare$
+
+Figure~\ref{Fig_Glob_Diss} illustrates the importance of Theorem~\ref{Thm_GD} where we plot the three principal components of different evolution of the states after learning $G_T$. The principal components of $(G_T^{(n)}(y_0,y_1))$ for different randomly initialized values of $(y_0,y_1)$ is plotted on the left. On the right is plotted the vectors $(x_{n-1},x_n)$ where $(x_n)$ is the solution to the actual data, i.e. it satisfies the update equation $x_{n+1}=g(x_n,u_n)$. 
+The Lorenz data from the main article (\cite[Fig.~\ref{Fig_1}B]{Main_article}) was used in the update equation and learn $G_T$. 
+
+% and this was used to construct $G_T := (\pi_2,g) \circ (\Gamma,\pi_2)$. Plotted are the first three principal components of the trajectories in space $X_{U^+}\times X_{U^+}$. Randomly initialized points were driven using $G_T^+$, and this is compared with the trajectory of the system as it is being driven by the actual input data. It can be clearly seen that the randomly initialized trajectories tend toward the same attractor as the driven system, illustrating global dissipativity. This is in stark contrast to Figure \ref{Fig_Delay_Lorenz} where the Takens map $F_\theta$ was learnt and which completely fails to learn the attractor. \ednote{I added this paragraph. Please see.}
+
+
+%In view of the theorem, the reader may compare the result in Theorem~\ref{Thm_GD}, we can summarize the causal embedding property and the advantage of learning $\Gamma$ in Fig.~\ref{Fig_Takens2} (the reader may compare this with Fig.~\ref{Fig_Takens}). 
+
+Intuitively from Fig.~\ref{Fig_GD}, if the  diameter of the set $Y_T$ gets larger, the diameter of $X_{U^{+}} \times X_{U^{+}}$ gets larger as well. 
+A larger diameter of $X_{U^{+}} \times X_{U^{+}}$ would ensure that the subset indicated in yellow in Fig.~\ref{Fig_GD} would shrink in size since the set $X_{U^{+}} \times X_{U^{+}}$ is always contained in the compact set $X \times X$ when $g^+:(U^+ \times X^+) \to X$. This prevents large errors during forecasting while trajectories slip out of it. To get the diameter of $Y_T$ larger we must make $g(u,\cdot)$  not ``too contractive" -- recall the examples that $g(u,x) = ux/2$ would have $Y_T$  to be a set with a single point $\{0\} \times \{0\}$.  In the case of a RNN as in \eqref{Seq_RNN}, a large diameter of $Y_T$ can be realized by setting $\alpha$ that is large enough so that it also simultaneously satisfies the USP (see \cite{manjunath2020stability} for a detailed study).  In summary, when we employ learning $\Gamma$ instead of learning $G_T$, the commutativity as indicated in  Fig.~\ref{Fig_Takens2} holds. The reader may compare this with Fig.~\ref{Fig_Takens}. In the discussion above, we have not considered the effect of errors made while learning $\Gamma$. This would entirely depend on the functional complexity of the map and the sophisticated method to find it. 
+
+\title{Figure was here}
+% \begin{center}
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=12cm]{Fig_GD_Commutativity.png}
+% \caption{Causal embedding and global dissipativity together. Compare this with Fig.~\ref{Fig_Takens}}
+% \label{Fig_Takens2}
+%  \end{figure}
+% \end{center}  
+ 
+%Consider a driven system $g$ defined on $U\subset \mathbb{R}$ and $X=[-1,1]$$$g(u,x) = \alpha \overline{\tanh}(u+x),$$where $\alpha \in (0,1)$. Suppose we consider $U= \mathbb{R}$, since $\alpha \in (0,1)$, it is possible to find a $y \in X$ so that there exists no $u \in \mathbb{R}$ and $x \in X$ so that $g(u,x) = y$. Hence $g$ is not surjective and there exists a nonempty open subset of $X$ that does not intersect with the image of $g$ under $(\mathbb{R},X)$. We want to capture driven systems that show this phenomenon through a formal definition.  We say $\tilde{U}$ to be an enlargement of $U \mathbb{R}^N$ if $U \subset \tilde{U} \subset \mathbb{R}^N$ and $\tilde{g}$, the extension of $g$ is such that  $(\tilde{U},X)$, and $\tilde{g}: (\tilde{U},X) \to X$.  We say $g$ is not completely reachable with respect to some enlargement $\tilde{U}$ of $U \in \mathbb{R}^N$, if the extension $\tilde{g}$ is such that $X \setminus \tilde{g}(\tilde{U},X)$ contains a nonempty open-subset of $X$.  
+
+
+%Now suppose, while learning the map $\Gamma$, we make an error and this results in learning an extension $\tilde{Gamma}$ on an enlargement $\tilde{Y_T}$. Suppose $\tilde{U} = \tilde{\Gamma}(\tilde{Y_T}$ is an enlargement of $U$. 
+
+%\begin{Theorem} Suppose the driven system $\tilde{g}: \tilde{U} \times X \to X$ has the USP and also not completely reachable, then the extension $\tilde{R}_T$ is globally dissipative. \end{Theorem} {\bf Proof. } We need to find a compact set $A \subset \tilde{Y}_T$ so that for all $z\in \tilde{Y}_T\setminus A$ we have $\omega(z; \tilde{R}_T) \subset A$. {\bf Claim:} The set $A=X_{\tilde{U}}$ is non-empty and compact.{\bf Claim:} For all $z \in X \setminus X_{\tilde{U}}$, $\omega(z; \tilde{R}_T) \subset A$.$\blacksquare$
+
+%Finally, when a parameter $\lambda$ is such that $\lambda \mapsto g_\lambda$ is continuous the universal semi-conjugacy  $h_\lambda$ is also continuous with respect to the parameter $\lambda$. This is referred to as parameter-related stability \cite[Theorem 3.2]{manjunath2020stability}, a consequence of the USP.
+
+ 
+
+%The solutions of $g$ are non-autonomous uniform attractors, that is each solution attracts all other initial conditions towards the components of the solution, and this attractivity is uniform for all solutions -- uniform attraction property \cite{Manju_Nonlinearity}.  This also ensures that if we initialize the driven systemwith an arbitrary initial value $y_m \in X$, then the sequence $y_{m+1}, y_{m+2}, y_{m+3},...$ satisfying $y_{k+1}= g(u_k,y_k)$ for $k \geq m$ approximates the actual solution $\{x_n\}$ \textit{uniformly}. To be precise, given $\epsilon>0$ (independent of $y_m$) there is an integer $n$ so that the distance between  $x_{n+i}$ and $y_{n+i}$ is less than $\epsilon$ for all $i\ge 0$, where $\{x_m\} = \Psi(\bar{u})$  and $y_{n+i}$ is generated by $y_{k+1} = g(u_k,y_k)$ for $k\ge m$. This is a property of $g$ and hence the same convergence to the actual solution holds after learning $\Gamma$ in \eqref{Seqn_u}-\eqref{Seqn_x}. In contrast, the Takens delay embedding theorem in \cite{takens1981detecting} does not guarantee a stable embedding, and in particular the attractor embedded is not necessarily an attractor in the reconstructed  space. Theoretical conditions under which a kind of stable embedding can be obtained depends actually on the observables used in the delay-coordinate mapping \cite{eftekhari2018stabilizing}. 
+
+\title{Figure was here}
+% \begin{center}
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=0.7\linewidth]{Fig_Lorenz_Aut.png}
+% \caption{Empirical illustration of why global dissipativity as in Theorem \ref{Thm_GD} is important. Plotted are the three principal components of the trajectories of randomly initialised points (blue) obtain through iterating a learnt version of $G_T$ as against the trajectory $(x_{n-1},x_n)$ (red) of the driven states that is obtained when the Lorenz data is fed into the system; data used for learning $G_T$ was that used in the simulation in \cite[Fig.~\ref{Fig_1}B]{Main_article} }
+% \label{Fig_Glob_Diss}
+%  \end{figure}
+% \end{center}
+
+\section{Delay Coordinates as Inputs} \label{Sec_DC}
+
+We next consider a more general problem of learning a dynamical system when only observations of an orbit are available. Explicitly, if $(W,T)$ is a dynamical system with dynamics generated by $w_{n+1}=Tw_n$, and if $\theta:W \to \mathbb{R}$ is an observable, then the task is to learn a system that is topologically conjugate to $(W,T)$ and predict $\theta(w_{m+1}),\theta(w_{m+2}),...$ using the data $\theta(w_{0}),\theta(w_{1}),\ldots,\theta(w_{m})$.  
+Suppose the input from the delay-coordinate map $\Phi_{\theta,2d}(\theta(w_{n})) := (\theta(w_{n-2d}),\ldots,\theta(w_{n-1}),\theta(w_{n}))$ is fed into the driven system as $u_n$ and Takens delay embedding theorem (see Theorem~\ref{Thm_Takens}) holds, in which case, there exists a homeomorphism  $F_\theta: \Phi_{\theta,2d}(\theta(w_{n})) \mapsto \Phi_{\theta,2d}(\theta(w_{n+1}))$. Hence if the input values $u_n := \Phi_{\theta,2d}(\theta(w_{n}))$ are fed to a driven system $g$ that is SI-invertible and has USP, the induced dynamical system $(Y_F,G_F)$ would be topologically conjugate to the inverse-limit space of
+$(\Phi_{\theta,2d}(W), F_\theta)$ due to Theorem~\ref{Thm_CET}, and one could forecast $u_n,u_{n+1},\ldots$, and hence the values $\theta(w_n), \theta(w_{n+1}),\ldots$. The advantage of feeding delay-coordinates to a driven system is that the embedding is stable in the sense of global dissipativity that we have described in Theorem~\ref{Thm_GD}. From the Koopman operator standpoint, when $X \subset \mathbb{R}^N$, the component functions of $H_2$ are the set of observables 
+of the inverse-limit system of $(\Phi_{\theta,2d}(W), F)$ on which the action of the Koopman operator can be learnt from data. 
+
+One of the perplexities of employing the delay coordinate map is that the required delay to embed the attractor is not known.  In the case when the required delay is not known, we demonstrated appealing numerical results (\cite[Fig.~\ref{Fig_1}D]{Main_article}) where the theory is based on a conjecture below.
+
+\begin{Conjecture} \label{Conject} Let $g$ be a driven system that is SI-invertible and has the USP. Let $(W,T)$ be a dynamical system and $\theta: W \to \mathbb{R}$ 
+be an observable so that Takens delay embedding theorem holds and the 
+the component functions of $H_2$  can embed $$\Theta(\widehat{W}_T) := 
+\{(\ldots, \theta(w_{-2}),\theta(w_{-1})) : w_{n+1} = T w_n\}$$  in $X_U \times X_U,$.  Then there exists a homeomorphism on $ \widetilde{\mathcal{F}}_{\theta}$ on  $\Theta(\widehat{W}_T)$ and a 
+self-map $G_{\Theta,T}$ on   $H_2(\Theta(\widehat{W}_T))$ so that the  following diagram commutes:
+\begin{equation}  \label{comm_Takens}
+%    \[ 
+    \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+ \Theta(\widehat{W}_T) &  \Theta(\widehat{W}_T)\\%
+  H_2(\Theta(\widehat{W}_T)) &  H_2(\Theta(\widehat{W}_T))
+ %%%
+ \ncline{1,1}{1,2}^{\widetilde{\mathcal{F}}_{\theta}} \ncline{1,1}{2,1} <{H_2}
+ \ncline{1,2}{2,2} > {H_2}
+ \ncline{2,1}{2,2}^{G_{\Theta,T}}.
+ \end{psmatrix}
+% \]
+\end{equation} 
+
+\end{Conjecture}
+
+If the conjecture is true then one  can learn the single-delay lag dynamics $G_{\Theta,T}$ 
+ by feeding  $\theta(w_{0}),\theta(w_{1}),\ldots,\theta(w_{m})$ into the driven system $g$ as before to forecast $\theta(w_{m}),\theta(w_{m+11}),\ldots,$.  The premise as to why the conjecture can be true can explained as follows. If Takens embedding theorem for  the system $(W,T)$ and the observable $\theta$, then it easily follows that there is a homeomorphism $$\widetilde{\mathcal{F}}_{\theta} : = (\ldots, \theta(w_{k-2}),\theta(w_{k-1})) \mapsto (\ldots, \theta(w_{k-1}),\theta(w_{k})).$$ Next, it can be shown that the component functions of $H_2$ are also sufficiently smooth \cite[Theorem III.1]{grigoryeva2020chaos} when $g$ has the USP and is sufficiently smooth.  If $U$ is a smooth manifold of dimension $M$, and there are at least $2M+1$ component functions of $H_2$ that are generic in the sense of Whitney's embedding theorem --  then  $H_2$ would embed $\Theta(\widehat{W}_T)$ in $X_U \times X_U$. In this case, $G_{\Theta,T} : (x_{n-1}, x_n) \mapsto (x_{n}, x_{n+1})$ exists and is given by $G_{\Theta,T} = H_2 \circ \widetilde{\mathcal{F}}_{\theta} \circ H_2^{-1}$. However, it is an open question whether there are enough independent component functions in $H_2$ that are generic in the sense of Whitney so that $H_2$ embeds $\Theta(\widehat{W}_T)$.  The only result the authors are currently aware of is that there are enough independent functions in  the universal semi-conjugacy $h$ (actually $h$ restricted to $\Theta(\widehat{W}_T)$)  that makes $h$ a limit point of embeddings in the sense of Whitney \cite[Corollary 2.3.2]{hart2019embedding}; $h$ true turns out to be the so-called echo state map in \cite{hart2019embedding}. 
+ 
+
+
+\section{Methods and Forecasting Results} \label{Sec_Methods}
+
+
+We demonstrate numerical results after learning the map $\Gamma$ and using equations \eqref{Seqn_u}--\eqref{Seqn_x} for forecasting. 
+We realize $g$ through a RNN of the type \eqref{Seq_RNN} with the causal embedding property. Regardless of how the map $\Gamma$ is learnt and implemented, we call a system with a RNN that implements $g$ in \eqref{Seqn_u}--\eqref{Seqn_x} as a \emph{recurrent conjugate network} (RCN) in view of $G_T$ being conjugate/semi-conjugate to the inverse-limit system as in \eqref{Scomm_imp}. A schematic of a RCN is shown in Fig.~\ref{Fig_RCN}. Throughout, the matrices $A$ and $B$ in the RNN are randomly initialized, and in particular, we set the spectral radius of the matrix $\alpha B$ to be $\alpha$ by using a matrix $B$ with spectral radius  $1$. For $\alpha$ sufficiently small, usually in $(0,1)$, RNNs have the USP and this can also be verified empirically (using the parameter-stability plot in \cite{manjunath2020stability}) when needed. Unless mentioned otherwise, we retain the same parameter values  $a=0.5$ and $\alpha=0.99$ as in \cite{Main_article} in the experiments. We describe the systems employed in \cite{Main_article} for the experiments  in detail and also supplement them with more numerical results. 
+
+
+\title{Figure was here}
+% \begin{center}
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=16cm]{Fig_RCN.png}
+% \caption{Schematic of a RCN with  three nodes in a RNN: (the print in red indicates the connections made to run in the autonomous mode)}
+% \label{Fig_RCN}
+%  \end{figure}
+% \end{center}
+
+
+
+
+%By observing driven systems states with a finite segment of an input, one gets an approximation to a solution fragment as well. The approximation to the solution gets accurate as the length increases 
+
+%By collecting finite set of data points $(x_0,x_1)$ , $(x_1,x_2), \ldots, (x_{m-1},x_m)$ belonging to $Y_T$, 
+
+ 
+In our RCN implementation, we learn $\Gamma: (x_n,x_{n-1}) \mapsto u_n$ by first obtaining the principal components of the states $x_n$ and then 
+learning a feedforward network (NN) on these principal components with the target $u_n$. The principal components are used only for an efficient state representation possibly to reduce the errors while learning and is not for a lossy approximation since all principal components are used.  To be explicit, we denote the matrix with the first $N$ states of the network data as row vectors by $X_{1:N}$. If $X_{1:N}=U\Sigma P^T$ denotes the singular value decomposition of $X_{1:N}$, then the principal component matrix is given by $P$ and the principal components are given by 
+ $Z_{1:N}=X_{1:N}P.$
+These principal components are used to train a feedforward neural network. If we denote the row vectors of $Z_{1:N}$ by 
+$z_i^T, i=1,2,\cdots,N$ and the neural network by $NN$, then we learn an approximation of the map
+$NN: (z_{n-1},z_n) \mapsto  u_n.
+$
+We use the learnt approximation of $NN$ to approximate $\Gamma$ since 
+$$
+NN\left( \begin{bmatrix} 
+P^Tx_{n-1} \\
+P^Tx_n
+\end{bmatrix}
+\right) = NN \circ 
+\begin{bmatrix}
+P^T & 0 \\
+0 & P^T 
+\end{bmatrix}\begin{bmatrix}
+x_{n-1}\\
+x_n
+\end{bmatrix} = u_n = \Gamma(x_{n-1},x_n).
+$$
+
+The feedforward neural network is implemented in {\it Python} using the {\it Keras} \cite{chollet2015keras} library built on {\it Tensorflow}. 
+Throughout our experiments, the network is constructed with 12 hidden layers with a layer dimension equal to 128. The activation function on the hidden layers is the {\it ReLU } function built into {\it Keras}, whereas the output layer has a {\it tanh} output. Note that the output of the {\it tanh} activation function lies within $(-1,1)$, so before training, the sequence $(u_n)$ needs to be re-scaled as to fit inside $(-1,1)$. We typically accomplish this by first subtracting the mean $\overline{u}$, and then multiplying the input by a scalar so that the input range is inside $[-0.5,0.5]$ so as to keep the range of $(u_n)$ well within the bounds of the {\it tanh} function.
+
+Training is accomplished using the {\it Adam optimizer}, optimizing the {\it Mean Squared Error} loss function. We train the network three times, using three different learning rates for the {\it Adam optimizer} equal to 0.001,0.0001, and 0.00001. Each time we learn $\Gamma$, we use 150 training epochs and a batch size of 128. 
+
+
+ Chaotic systems form an abstraction of complex behaviors in large-dimensional systems. Hence, chaotic systems provide an amiable set of toy examples on which to test our forecasting theory behind causal embedding. We now describe the chaotic system used in the numerical simulations in the main article \cite{Main_article}. The well-known system of ordinary differential equations developed by Edward Lorenz:
+\begin{align} 
+\label{Seq_Lor}
+\begin{split}
+    \dot{x} &= \sigma(x-y) \\
+    \dot{y} &= x(\rho -z) -y \\
+    \dot{z} &= xy - \beta z,    
+\end{split}
+\end{align}
+with parameters $\sigma=10, \beta=8/3$ and $\rho=28$ exhibits chaos.  We sample the flow of this Lorenz system by using numerical integration techniques (implemented using the {\it SciPy} library's ODE solver \cite{2020SciPy-NMeth}), and in our experiment we use a step size of $0.1$ between successive samples.   Next, we consider the discrete time dynamical system driven by the (full) logistic map, given by: 
+\begin{align}
+    \begin{split}
+        \label{Seq_log}
+         v_{n+1} &= 4v_n(1-v_n).
+    \end{split}
+\end{align}
+Note that the logistic map is not invertible, which means the theory (Theorem~\ref{Thm_CET}) only guarantees a semi-conjugacy.
+For chaotic systems, even negligible errors in estimating $\Gamma$ would make it hard to minimize the long-term point-wise prediction error. However long-term topological consistency can be achieved: the orbit of the prediction lies on the attractor.  
+
+The behavior of deterministic dynamical systems can alternatively be described macroscopically (e.g., \cite{lasota2013chaos}). This study involves describing how the density of an ensemble of initial conditions evolves upon iterating the map on such an ensemble.  A useful tool is the Perron Frobenius operator that determines the evolution of an initial density \cite{lasota2013chaos}.  An important concept in studying stochastic dynamics is the notion of an invariant density $p$ that is a fixed point of the Perron Frobenius operator and when it exists it can determine the visitation frequency of typical orbits to any (measurable) set.   We refer the reader to \cite{lasota2013chaos} for more details.
+The accuracy of the reconstructed or forecasted data relies on how the statistical properties like the invariant density  are retained by the forecasted data.  In the main article, we exhibited invariant densities of the logistic map \cite[Fig.~\ref{Fig_1}]{Main_article}. The invariant density of the full logistic map  on $[0,1]$ is found to be $\frac{1}{\pi\sqrt{x(1-x)}}$ (e.g., \cite{lasota2013chaos}.). There exist arbitrary small perturbations of the map $T$ under which the invariant density is much different than that of the invariant density of the logistic map, i.e., there is a non-smooth change in the invariant density. In more technical terms the map $T$ lacks the linear response \cite{baladi2014linear}. Despite this statistical instability, our forecasting results from the RCNs show greater numerical accuracy while the invariant density was simulated (see Fig.~\ref{Fig_1}E). Wherever we cannot graphically illustrate the reconstructed invariant density of a higher dimensional system like the Lorenz system, we tabulate the Wasserstein distance (Table~\ref{Tbl_Wass}) 
+between the numerically found densities of the actual and predicted. In this case, we use the 1-Wasserstein distance \cite{dobrushin1970prescribing} which is a metric between one-dimensional probability distributions, implemented programmatically through the {\it SciPy } library \cite{2020SciPy-NMeth}. In addition, we exhibit the cumulative distribution functions (Figure \ref{Fig_CDF}) of the various coordinates of the numerical experiment in  \cite[Fig.~\ref{Fig_1}B]{Main_article}. 
+
+
+\begin{center}
+\begin{table}
+    \scalebox{0.75}{\begin{tabular}{|c | c c c c c c|} 
+        \hline
+        Time-steps &1000 &2000 &5000 & 10000&20000 &50000 \\
+        \hline
+        \hline
+        $(w_n)$ is the Lorenz states, sampled every 0.1 timestamps. & & & & & &\\
+        {$u_n=\frac{1}{100}w_n$} & & & & & & \\
+        $x$-coordinate & 0.0088& 0.0144& 0.0211& 0.0329&0.0452 &0.0686\\
+        $y$-coordinate & 0.0088& 0.0144& 0.0211& 0.0329& 0.0452&  0.0686\\
+        $z$-coordinate & 0.0022& 0.0065& 0.0136& 0.0204& 0.0285&0.0715\\
+            
+        \hline
+    \end{tabular} }
+    \caption{Wasserstein distances between each coordinate of the forecasted and the actual data. The table illustrates long-term consistency - the data point distribution remains close even after 50,000 prediction steps. Furthermore, it showcases the learnt attractor being close to the actual one.} \label{Tbl_Wass}
+    \end{table}
+\end{center}
+
+
+
+\title{Figure was here}
+% \begin{figure}
+%     \centering
+%     \minipage{0.33\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{Fig_cdf-x.png}
+%         \includegraphics[width=\linewidth]{Fig_hist-x.png}
+%         \caption*{$x$-coordinate}
+%     \endminipage\hfill
+%     \minipage{0.33\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{Fig_cdf-y.png}
+%         \includegraphics[width=\linewidth]{Fig_hist-y.png}
+%         \caption*{$y$-coordinate}
+%     \endminipage\hfill
+%     \minipage{0.33\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{Fig_cdf-z.png}
+%         \includegraphics[width=\linewidth]{Fig_hist-z.png}
+%         \caption*{$z$-coordinate}
+%     \endminipage
+%     \caption{Distributions of the coordinates of the learnt system (blue) and the actual Lorenz system (red). The top row shows the empirical cumulative distribution function (CDF) of each coordinate, and the bottom row their respective histograms. These graphs were constructed by predicting the Lorenz system 50,000 steps into the future, illustrating the long-term consistency and accuracy of the learnt system.}
+%     \label{Fig_CDF}
+% \end{figure}
+  
+
+
+We next illustrate the forecasting results obtained by feeding the delay-coordinates of an observation  of \eqref{Seq_Lor} in Figure \ref{Fig_Delay_Lorenz}.
+We consider observations $\theta(w_{0}),\theta(w_{1}),\ldots,\theta(w_{m})$ from a  dynamical system determined  by sampling the flow of the Lorenz system $(W,T)$, and where $\theta:W \to \mathbb{R}$ is an observation -- observation we use is the $x$-coordinate of \eqref{Seq_Lor}. The delay-coordinates $\Phi_{\theta,2d}(\theta(w_{n})) := (\theta(w_{n-2d}),\ldots,\theta(w_{n-1}),\theta(w_{n}))$ is fed into the driven system as $u_n$ and the attractor is learnt by learning a map $(x_{n-1},x_{n}) \mapsto w_n$. The original and reconstructed attractor for the Lorenz system is shown in Fig.~\ref{Fig_Delay_Lorenz}. To obtain this result, data $(w_n)$ is generated from the Lorenz system, sampled every 0.1 time-steps. The input into the network is the 10-delayed first coordinate of $(w_n)$, scaled down to fit inside $[-0.5,0.5]$. Specifically $u_n = \frac{1}{100}  (w^{(n-9)}_x,w^{(n-8)}_x,\cdots ,w^{(n)}_x )$. Training of $\Gamma$ was accomplished using 2000 data points, after discarding the first 500 to allow the RNN to forget its initial state. 
+
+\title{Figure was here}
+% \begin{center}
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=0.9\linewidth]{Fig_Lorenz_Delay.png}
+% \caption{RCN learnt Lorenz attractor in the three dimensional-Euclidean space obtained by feeding delay-coordinates as the input.}
+% \label{Fig_Delay_Lorenz}
+%  \end{figure}
+% \end{center}
+
+
+One of the great challenges in learning dynamics comes from those systems where the present is greatly sensitive to the distant past much more than the immediate past, that is the past does not pass away.   Examples of systems that show intermittency occurs in dynamical systems whenever the system appears to switch back and forth between two qualitatively different behaviors. 
+We consider a type of intermittency (type-I intermittency) that has been found difficult to forecast, one in which the orbits slowly drift from a fixed/periodic point and then move to a chaotic regime but then return to the slowly drifting neighborhood of the fixed point. The time spent by the orbit in a neighborhood of the fixed/periodic point  depends rather sensitively on how closely the system entered its vicinity and the length of this slow drifting phase is unpredictable. Such intermittency is a feature of transition to turbulence and convection in confined spaces \cite{pomeau1980intermittent}, earthquake occurence \cite{bottiglieri2007off},  and anamolous diffusion in biology \cite{klages2013weak}. We consider an invertible map of type-I intermittency in the constant-J sub-families of the H\`enon maps: \cite{kaplan1992return}
+\begin{align}
+    \begin{split}
+        \label{Seq_Hen}
+        w_{n+1}  = \begin{bmatrix} w_{n,y} \\
+                -Jw_{n,x}+\mu+w_{n,y}^2\end{bmatrix}.
+    \end{split}
+\end{align}
+The parameters $J$ and $\mu$ can be adjusted to alter the  intermittent behavior, and in our case, we used $J=0.015$ and $\mu=1.76$ in our experiment in \cite[Fig.~\ref{Fig_2}A,B,C]{Main_article}.
+We next consider the non-invertible Pomeau-Manneville family of maps \cite{pomeau1980intermittent} in which the intermittency is more pronounced:
+\begin{align}
+    \begin{split}
+        \label{Seq_PM}
+w_{n+1}= \begin{cases} 
+            w_n(1+2^{\gamma}w_n^{\gamma}) & \text{ if } w_n\leq 0.5\\
+            2w_n-1 & \text{ if } 0.5 < w_n,
+        \end{cases}
+    \end{split}
+\end{align}
+where $0<\gamma<1$. A larger value of $\gamma$ makes the on-off intermittent behaviour more pronounced, and in the main article we had employed $\gamma=0.6$.
+
+The change in qualitative behavior as the parameter $\gamma$ in the Pomeau-Manneville map is tuned is illustrated in Fig.~ \ref{Fig_Interm}. In the main article, we opted to keep the hyperparameters for our choice of RNN in \eqref{Seq_RNN} constant.  We note that we are able to obtain results for maps with stronger intermittency by increasing the parameter $\alpha$ in the RNN slightly greater than $1$ in \eqref{Seq_RNN}. On an intuitive level, this makes the size (diameter) of $Y_T^+$ larger.   With $\alpha=1.2$ instead of $\alpha=0.99$ in \cite{Main_article}, we can obtain both topological and statistical consistency while forecasting for even more pronounced intermittency. 
+
+Authors in \cite{gaspard1988sporadicity} have called the behavior exhibited by such intermittent maps as sporadicity that ``fills in a gap between multi-periodic and chaotic dynamical behaviors or equivalently between predictable and random patterns".  Approximations of the Koopman operators of such dynamical systems or feedforward neural network-based approaches are amnesiacs regarding their distant past. We have demonstrated that RCNs can reconstruct the attractor of a map in the Pomeau-Manneville family \cite[Fig. ~\ref{Fig_2}D]{Main_article}. This can be attributed to the fact that RCNs can remember nostalgically the distant past as we consider observables of the inverse-limit systems. 
+
+
+
+\title{Figure was here}
+% \begin{figure}
+%     \centering
+%     \minipage{0.49\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{Fig_PM6_phase.png}
+%         \includegraphics[width=\linewidth]{Fig_PM6_hist.png}
+%         \includegraphics[width=\linewidth]{Fig_PM6.png}
+%         \caption*{$\gamma=0.6$}
+%     \endminipage\hfill
+%     \minipage{0.49\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{Fig_PM7_phase.png}
+%         \includegraphics[width=\linewidth]{Fig_PM7_hist.png}
+%         \includegraphics[width=\linewidth]{Fig_PM7.png}
+%         \caption*{$\gamma=0.7$}
+%     \endminipage\hfill
+%     \minipage{0.49\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{Fig_PM8_phase.png}
+%         \includegraphics[width=\linewidth]{Fig_PM8_hist.png}
+%         \includegraphics[width=\linewidth]{Fig_PM8.png}
+%         \caption*{$\gamma=0.8$}
+%     \endminipage
+%     \caption{Forecasting results of the Pomeau-Manneville maps.
+%      In each of these cases, training was accomplished using the standard RCN from \eqref{Seq_RNN}, differing from the main article \cite{Main_article} only in setting $\alpha=1.2$ instead of $\alpha=0.99$. Also, we use 5000 data points for training, after discarding the first 1000 data points.}
+%     \label{Fig_Interm}
+% \end{figure}
+
+
+We also show the effectiveness of our methods to forecast physical data of temperatures across South Africa that shows variations on multiple time scales. Data considered for forecasting is the real-world weather data observed at weather stations and then interpolated using physical models to allow for finer detail. In particular, the data is the {\it ERA5 hourly data on single levels collected from 1979}  available from {\it the Copernicus Climate Change Service (C3S) Climate Data Store (CDS)} \cite{era5data}, and we use the temperature 2 meters above the earth's surface and mean sea level pressure data sampled every 6 hours. The data takes the form of a grid of $65 \times 105$ data points, where grid points refer to a location in South Africa. Due to computational constraints, we scale down the resolution by only considering the 5th data point in each dimension, leaving a grid of size $13 \times 21$ (see top-panel Fig.~\ref{Fig_Clim}). Note that associated with each grid point, there are two numbers: the temperature (in {\it K}), and the Pressure (in {\it Pa}).  For each time-step, we unroll the grid into two vectors of length 173 $(= 13\times 21)$ each. After normalizing each vector by subtracting the mean and scaling down, we stack these vectors atop each other. This final vector of length 546 is fed as input to the network. 
+
+As training, we use 26,000 data points, the first 1000 of which are discarded to allow the RCN to forget its initial state values. At a 6-hour sample rate, this translates to training on around 12 year's worth of climate data from late 2005 to 2017. We then use the trained network to predict 5,000 time-steps into the future,  which is roughly 3 years, ending in April 2021. 
+Fig.~\ref{Fig_Clim} illustrates the result of the prediction of the temperatures (which is of interest to us). As can be seen, even though the short-term prediction quickly fails (bottom panel of Fig.~\ref{Fig_Clim}), long-term characteristics of the data set have been modeled with the seasonal variation in temperature of the predicted and actual data clearly visible (middle panel of Fig.~\ref{Fig_Clim}). This is despite using only one in five samples from the dataset in our experiment due to computational constraints. 
+
+\title{Figure was here}
+% \begin{figure}[h!]
+%     \centering
+%     \minipage{0.49\linewidth}
+%         \centering
+%         \includegraphics[width=0.9\linewidth]{Fig_Fine_Temp.png}
+%         \caption*{A temperature data point}
+%     \endminipage\hfill
+%     \minipage{0.49\linewidth}
+%         \centering
+%         \includegraphics[width=0.9\linewidth]{Fig_Coarse_Temp.png}
+%         \caption*{Low-resolution data point that is derived}
+%     \endminipage 
+    
+%     \includegraphics[width=0.9\linewidth]{Fig_Ave_Temp_Long.png}
+%     \includegraphics[width=0.9\linewidth]{Fig_Ave_Temp_Short.png}
+%     \caption{Forecasting average temperature (in Kelvin) across South Africa. 
+%     Top-panel: data point from the data set, and derived low resolution data point to minimize computational time. 
+%      Middle and Bottom Panels: Mean of the predicted temperature vector on each time-step for 5000 steps and for the first 300 time-steps}
+%     \label{Fig_Clim}
+% \end{figure}
+
+
+\section{Conclusions}
+ Finding a set of observables of data that determine a less functionally complex learnable map so that its dynamics in the observed space gets closer to that of the action of the Koopman operator on the observables has been pursued by many researchers for the last decade. In practice, however, the Koopman operators of complex and chaotic systems tend to have significantly more complicated spectral properties (e.g., non-isolated eigenvalues and/or continuous spectra) hindering the performance of data-driven approximation techniques that capture only a portion of the spectrum (e.g., \cite{budivsic2012applied,korda2020data}). Also, in the temporal domain, approximations of the Koopman operators of the underlying dynamical systems are amnesiacs regarding their distant past. 
+  Here, we show a driven dynamical system that can causally embed dynamical systems is capable of determining a set of observables of the inverse-limit system of the underlying dynamical system and learning the Koopman operator rather than learning an approximation of it. 
+ In particular, we produce a topological conjugacy (semi-conjugacy) between the single-delay lag dynamics of the driven system's data and the underlying homeomorphism (non-invertible map that can be discontinuous) dynamical system. 
+ 
+ 
+ This methodology induces equations from data. In particular, we have shown that for data arising from a self-map on a compact metric space,  a first-order system of difference equations with auxiliary variables or a single difference equation of infinite order can be obtained.  The states of the driven system are affected to an arbitrarily small extent by that left-infinite segment of the past of the input beyond some arbitrarily large but finite time thanks to the continuity of the universal semi-conjugacy of the driven system. As a consequence finite length of input data is adequate for forecasting. Empirically it is found that the map with the single-delay lag dynamics has a stronger linear relationship and intuitively less functional complexity than the map that describes the data or the map the delay coordinates induce.  As a consequence, through the use of recurrent conjugate networks (RCNs),  we obtain exceptional forecasting results with long-term topological and statistical consistency which is illustrated on chaotic maps and data showing intermittency. 
+The robustness of forecasting against external noise is also observed.
+
+
+%  Mapping temporal data into a new phase space through a driven (dynamical) system that can causally embed a dynamical system lies at the heart of obtaining the equations, and the single-lag dynamics in the new phase space is topologically conjugate or semi-conjugate to the system generating the input depending on whether the input is generated by a homeomorphism or a non-invertible map. Thus we achieve learning the action of the Koopman operator itself rather than approximating it. 
+
+
+The advantage over other known data-driven approaches is not only long-term consistency, but it does not need expert human intuition or physical insights to decide on observables and library functions that are commonly employed in data-driven approaches. This is very useful in high-dimensional forecasting tasks where such insights are rare. 
+ The performance of such data-driven approaches is affected in the absence of such physical precognition, and when one overcomes it through combining delay-embedding techniques still exact reconstruction is lacking.
+Hence, whenever high-fidelity models are needed, the RCNs out-perform such data-driven methods considering that the step size of a discretization can be even up to {\bf 100 times} than that have been used in some algorithms like SINDy and other echo state network methods. Lastly, and remarkably, we do not have to resort to finding new observables or guessing the library of governing equations for new temporal datasets as the observables induced by the driven systems are universal. 
+
+
+
+From the perspective of the reservoir computing approaches, we show the existence of a learnable map in a RCN if single-delay lag dynamics is chosen. Although learning a function that the single-delay dynamics entails is more computationally expensive than performing a simple linear regression as in a customary echo state network training, we overcome extensive ad hoc adaptations, like introducing feedback conditions and other parameters, which make the art of training in reservoir computing methods a craft rather than a science.  
+The driven system in the RCN  has proven properties of robustness to perturbations of the input and parameters in the system, making these networks attractive for hardware implementations. The theory of causally embedding a dynamical system is general and hence does not depend on a particular choice of the driven system. A future exploration into designing more sophisticated driven dynamical systems to reduce the functional complexity of the map that the single-delay dynamics entails could help in furthering the accuracy that we have obtained with a RCN.
+
+
+
+
+{\bf Data availability.}  All the data used is either computer-generatable or obtained from publicly accessible sources. 
+
+{\bf Code availability.} The Python/Matlab code employed for all the simulations in the supplement is also submitted.
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{pnas_supp}
+
+
+\end{document}
+
+
+% DISCUSSION: EdNote1, discuss reference to figure 1: small errors lead to major errors
+% Talk about how to present code... Too much to fit into a few lines
+% \omega not added?
+
+
+
