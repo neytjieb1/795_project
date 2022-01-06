@@ -7,5 +7,7 @@ project795/
 *.aux
 *.log
 *.out
-*.synctex.qz
+*.synctex.gz
 *.toc
+Loose_Late/*
+*-eps-converted-to.pdf
