@@ -1,5 +1,5 @@
-% \documentclass[12 pt]{article}
-\documentclass[a4paper,12pt,twoside]{book}
+% \documentclass[a4paper,12pt,twoside]{book}
+\documentclass[a4paper,12pt,twoside]{report}
 \pagestyle{headings}
 \usepackage[utf8]{inputenc}
 \usepackage{filecontents}
@@ -172,7 +172,6 @@
 \date{}
 \date{}
 \maketitle
-
 \tableofcontents
 
 
@@ -344,7 +343,7 @@ To illustrate the concept of SDIC, we present two examples - one from Mathematic
   The logistic map(LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r<4$ is of particular interest to us as it is classically used to illustrate the influence of chaos on a system \textbf{(Cite)}. Below are plotted the first 75 iterates of the LM for $r=3.7$ and $x_0=0.2$ with an adjustment of 0.001 in $x_0$ and then $r$.
 
   \begin{figure}[ht]
-    \includegraphics[scale=0.45]{log_sdic.eps}
+    \includegraphics[scale=0.45]{_log_sdic.eps}
         \centering
         \label{fig:log_sdic}
         \captionof{figure}{Logistic Map for $r=3.7$, $x_0=0.2$}
@@ -366,7 +365,7 @@ To illustrate the concept of SDIC, we present two examples - one from Mathematic
 
 \begin{figure}[ht]
   \centering
-\includegraphics[scale=0.8]{dp_sdic.eps}
+\includegraphics[scale=0.8]{_dp_sdic.eps}
     \captionof{figure}{Three double pendulum heads with initial angle differing by 0,025 radians}\label{fig:dp_sdic}
   \end{figure}
 
@@ -412,7 +411,7 @@ We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018i
   We now reason as to why this is true. The graph of the map $T$ is piecewise linear with two straight lines, one connecting the points $(0,0)$ and $(\frac{1}{2},1)$ and the other connecting $(\frac{1}{2},1)$ with $(1,0)$. They form a so-called tent with base centered at $u=1/2$. The graph of the map $T^2$ comprises two symmetric tents with their base centered at $1/4$ and $3/4$. See Figure \ref{fig:T2tentmap}
 
   \begin{figure}[ht]
-    \includegraphics[scale=0.6]{T2.png}
+    \includegraphics[scale=0.6]{_tentmap_2.eps}
         \centering
         \captionof{figure}{Three double pendulum heads with initial angle differing by 0,025 radians}\label{fig:T2tentmap}
   \end{figure}
@@ -555,7 +554,7 @@ Below we reproduce Figure 1 from \cite{Supp}.
 %Alternatively we may also make the statement: Takens' Embedding Theorem guarantees that almost all dynamical systems can be reconstructed from just one noiseless observation sequence \textbf{this isn't obvious from the theorem's formulation, is it?} i.e. for a great number of possible observation functions $\theta$, $\Ftheta$ preserves the topology of U. \textbf{'preserving the topology' is not something we've touched on before. Perhaps I should add to previous discussion so logic flows seamlessly here}.
 
 \begin{figure}[ht]
-  \includegraphics[scale=0.25]{takensmap.png}
+  \includegraphics[scale=0.25]{_takensmap.png}
   \centering
   \captionof{figure}{Schematic of Takens Embedding Theorem's usage and consequence of how iterates \ldots }
   \label{fig:takensmap}
@@ -587,17 +586,16 @@ It is a fact that Takens' Embedding Theorem is both a powerful result and that i
 
 
 \begin{figure}[ht]
-  \includegraphics[scale=0.3]{learningfailure.png}
+  \includegraphics[scale=0.3]{_learningfailure.png}
   \centering
   \label{fig:supp_learning_failure}
   \caption{Illustration of a system having failed to learn the map}
 \end{figure}
 
-
 \textbf{Explanation continued here}
 
-\begin{figure}[h]
-  \includegraphics[scale=0.4]{temporary_damp_fig.png}
+\begin{figure}[ht]
+  \includegraphics[scale=0.4]{_dp_dying.eps}
   \centering
   \label{fig:damped_pendulum}
 \caption{A damped pendulum}
@@ -740,6 +738,43 @@ Available definitions and theorems concerning the echo state property, however, 
 A greater discussion is presented in \cite{jaeger2001echo}
 a particular stability concept for which a number of equivalent definitions are available \cite{jaeger2001echo}.
 
+In most of the reservoir computing (RC) literature, the idea of memory-loss or fading memory popularly called
+the echo state property (ESP) is treated as a stability property of the system valid
+for all inputs. In such a case, the ESP guarantees that the entire past history of the
+input determines the state of the system precisely, i.e., there is no possibility of two
+or more reachable states at any given point in time [5] if the entire past values of the
+input have influenced the dynamics. The formal definition linking ESP intrinsically
+to an input is available in [4].
+
+In the context of information processing, when a driven system g has a causal em-
+bedding, it helps carry over any input ū onto the solution space without distortion or
+loss of information. This is a very important feature, and the current discrete-time
+state space models used in reservoir computing do not exploit the causal embedding.
+We intend to demonstrate the utility of these theoretical results in a future work
+directed at applications.
+
+For natural systems, say, for instance, when the human brain is viewed as a driven
+system where a time-varying external stimulus (for instance, a visual stimulus) is
+an input, the input can be causally embedded into the nervous system without the
+need for a particular structure that is custom-made for each stimulus as long as
+the system has the USP. From the perspective of perturbation of an autonomous
+dynamical system, if the resulting nonautonomous system has the USP, then the
+temporal structure of noise relates to the dynamics on a nonautonomous uniform
+attractor through a topological semi-conjugacy or a conjugacy.
+
+The continuity of E reflects on whether small changes in u ~ would result in a ‘propor-
+tionate’ response in the solution space – a notion of input related stability as defined in \cite{Manju_ESP}
+
+To understand
+how solutions become sensitive to a perturbation of the input for systems without
+USP, we define a stability notion that describes how the collection of all solutions
+obtained from an input ū are mapped onto the solution space.
+
+Sufficient to consider continuity of encoding map.
+
+owing to the USP of the driven system $g$ one gains input-related, parameter-related stability \cite{manjunath2020stability}
+
+------
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 Having already defined the reachable set $X_U$, we pause for a moment to fix additional notation.
@@ -893,9 +928,16 @@ Simultaneously, it does guarantee us that the important information encoded in p
 
 It is worth taking note of a specific driven system. The function 
 \begin{equation}  \label{eqn_driving}
-g(u,x)=(1-a)x+a{\cdot}tanh(Au+\alpha{a}Bx)
+  g(u,x) = (1-a)x + a\overline{\tanh}(Au + \alpha Bx)
 \end{equation} 
-is both SI-invertible and possesses the USP. The proof of these two facts is rather involved and  hence the proof, instead of being replicated here, may be found in \textbf{(cite relevant article)}
+is both SI-invertible and possesses the USP. 
+One may easily show that $g$ is SI-invertible by recovering $u_n$ by 
+\begin{equation} \label{eqn_SI_RNN}
+  u_n := A^{-1}\bigg(\overline{\tanh}^{^{-1}}\frac{1}{a}\Big(x_{n+1}-(1-a)x_n\Big) \bigg) - \alpha B x_n
+  \end{equation}
+  for $x_{n-1}, x_n$ known.
+
+The proof of these $g$ possessing the USP is rather involved and hence the proof, instead of being replicated here, may be found in \textbf{(cite relevant article)}
 This specific driving function $g$ is used in our implementation and is more completely discussed in chapter \ref{sect5}
 
 Despite the ease that one may work with a left-infinite history in the realm of theory, it is impossible to obtain such a sequence in any real-life application.  
@@ -942,6 +984,10 @@ One need therefore not establish any additional results to ensure that the seque
 This also solves the problem of perturbation/noise introduced by the observable or measurement function. Recall from before that an observable is inherently a map that discretises the underlying continuous-time system. Moreover, measurement and device error introduce mistakes. Since we are working with a chaotic system displaying sensitive dependence on initial conditions, these small errors could potentially send the trajectory into a completely different attractor. 
 In the presence of the UAP, however, small measurement errors introduced into the system do not pose the same danger as before since the trajectories will eventually tend towards the actual solution.
 \ednote{(B: Complete enough?)}
+\textbf{From the perspective of perturbation of an autonomous
+dynamical system, if the resulting nonautonomous system has the USP, then the
+temporal structure of noise relates to the dynamics on a nonautonomous uniform
+attractor through a topological semi-conjugacy or a conjugacy.}
 
 \section{The next step in Dynamics}
 
@@ -970,6 +1016,8 @@ The inverse-limit space is well-defined since $T:U\to{U}$ is surjective by assum
 
 Note that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ to an element in $X\times{X}$.
 We now have the following (compare with \ref{SCausal_H} above):
+
+\textbf{NB NB NB - Causal Embedding Theorem! - Th.4}
 
 \begin{equation} \label{Fig_inverse_limsystem}
   %  \[ 
@@ -1043,13 +1091,13 @@ Projection mappings $\pi_i$ are defined in the traditional meaning where a $k$-d
 The graph in equation \ref{Fig_inverse_limsystem} is then extended as below:
 
 \begin{figure}[ht] \label{Fig_Gamma}
-  \includegraphics[scale=0.3]{gammatemp.png}
+  \includegraphics[scale=0.3]{_gammatemp.png}
   \centering
   \label{fig:conjugacy_with_Gamma}
 \end{figure}
 
 The problem finally simplifies to the issue of learning the map $\Gamma$ and combining this with the projection mapping $\pi_2$ and the function $g$, which will be known. A final set of equations is obtained - equations that have been entirely constructed from data.
-\begin{eqnarray}
+\begin{eqnarray}\label{eqns_from_data}
 	u_{k+1} &=& \pi_1 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k) \label{Seqn_u}\\
 	x_{k+1} &=& \pi_2 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k). \label{Seqn_x}
 \end{eqnarray}
@@ -1091,17 +1139,104 @@ If a system is not globally dissipative, neglibly small errors result in major e
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \chapter{Implementation} \label{sect5}
+\chapter{Implementation} \label{ch5}
  
- 
+In this section we turn to the implementation of the function $G_T$ by discussing a method to learn the function $\Gamma$. We then indicate where this implementation differs from previous work done by (\cite{manjunath2021universal}) and show that our results do hold water by considering the Pearson correlation coefficient. \ednote{(this sentence needs to be changed) Are you talking of MDD? Or the sparse matrix?.} 
+Finally, we present and discuss some numerical results for a focus system of this project: the double pendulum. We also consider other chaotic attractors.
+
+\section{Implementing $G_T$}
+The map $G_T$ is implemented by applying the functions $\Gamma$, $g$ and the projection function $\pi_2$ in the relevant order. To reach this point, one must first learn $\Gamma$.
+After 1.normalising the data to ensure it lies within the interval $|x| < 1$ and has zero mean value, we 2.drive the system with external input through the function $g$.
+
+From before (\eqref{eqn_driving}): $ g(u,x)=(1-a)x+a{\cdot}\tanh(Au+\alpha{a}Bx)$. Remember that $g$ is SI-invertible. $A$ is the so-called “input matrix” and $B$ the “reservoir matrix”. 
+
+We make use of a Recurrent Neural Network (RNN) in our implementation. RNN's are widely used in the literature for discrete-time processing and are considered to be discrete-time version of continuous dynamical systems modelling a network of neurons. (\textbf{Cite.})
+A complete discussion of the RNN is outside the scope of this thesis, so we only present the details necessary to the current discussion. For information, (\textbf{Cite, Cite, Cite}) may be consulted.
+
+If the RNN we will be using in the next step has $N$ neurons, then $A$ and $B$ are each $N\times{N}$ matrices. Inputs $u_n$ of dimension $K < N$ are padded by zeroes to obtain an input of dimension $N$.
+
+No need for entire left-infinite history of input: An arbitrary initialisation of the system with initial values and the driving of the system with the function $g$ means that the generated values will come to approximate the actual solution’s elements in a uniform manner thanks to the UAP.
+
+We then 3.set up/prepare the RNN. Utilising a network $N$ neurons (the same $N$ as in the dimensions of the matrices $A,B$). Training is accomplished using the Adam Optimiser where the MSE loss function is optimised. The system is trained several times(in our case 4) with incrementally smaller learning rates on each run (0.001 and thereafter divided by 10 at each run). 
+\ednote{Please present the number of layers in the network, number of neurons in each layer and the length of the training validation and testing for learning Gamma.}
+
+We then reach the prediction step. Making use of $g$'s SI-invertibility and $g$ as defined in \eqref{eqn_driving}, we have the following expression for $u_n$ replicated from~\eqref{eqn_SI_RNN}.
+\begin{equation*}
+  u_n := A^{-1}\bigg(\overline{\tanh}^{^{-1}}\frac{1}{a}\Big(x_{n+1}-(1-a)x_n\Big) \bigg) - \alpha B x_n
+\end{equation*}
+    
+The two model equations for learning from data (\eqref{eqns_from_data}) also allows us to determine what the state $x_{n+1}$ at time $n+1$ will be. 
+We specifically remind ourselves of \[x_{k+1}=\pi_2 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k)\]
+
+\section{Changes in this thesis/project/report to previous work of~\cite{manjunath2021universal}}
+
+We made several changes which gave improved results:
+\vspace{-8mm}
+\begin{enumerate}
+\item Using Delay Coordinates (DC) when driving the system vs. using Single/Multi Delay Dynamics (SDD/MDD) after driving (and before training). Explain/show why these two methods are equivalent. \ednote{Would MDD  be not computationally intensive ? So may be you just explain if you can’t show it.}
+\item Sparse matrix implementation. Slight improvement in some scenarios, but not fantastic. \ednote{Did it not help you a great deal with the DP forecasting?}
+
+(Possible paragraph here/later on implementing sparsity of A/B: Generate sparse matrix that is also well-conditioned and correctly scaled matrix.)
+\item Density of matrices A/B (separate from sparse matrix implementation) \ednote{Is it the probability distributions of the entries in A and B?}
+\end{enumerate}
+
+\section{Numerical simulations}
+\subsection{Double Pendulum}
+\begin{itemize}
+  \item What it is. 
+  \item Why it's chaotic
+  \item How data was generated for this. (noiseless)
+  \item Why data dying down doesn't work (ie. Not surjective)
+  \item Other possibilities
+\end{itemize}
+
+The Double Pendulum consists of two pendulums fastened to one another such that the system moves as a whole. The first (or higher pendulum) is attached to a fixed point while the second is attached to the endpoint of the first. (See below)
+
+\begin{figure}[ht] \label{Fig_Gamma}
+  \includegraphics[scale=0.25]{_dbl_Pend.png}
+  \centering
+  \label{fig:conjugacy_with_Gamma}
+\end{figure}
+
+An ideal system is assumed where the rods are massless and no friction in the pivots are considered.
+One is easily reminded of the Lorenz system, another three-equation deterministic model which exhibits chaotic behaviour.
+The scalar equations of motion are presented below and were derived with the use of Newtonian physics and can be found in \textbf{(Cite.)}
+
+\begin{eqnarray}
+\theta_{1}^{''} = \frac{-g(2m_1+m_2)\sin{\theta_1} - m_{2}g\sin(\theta_1 - 2\theta_2) -2\sin(\theta_1-\theta_2)m_2({\theta_{2}'}^{2}L_2 + \theta_{1}^{2}L_{1}\cos(\theta_1 - \theta_2))}{L_1(2m_1+m_2-m_2\cos({2\theta_1 -2\theta_2}))}
+\\
+\theta_{2}^{''} = \frac{ 2\sin(\theta_1-\theta_2)(\theta_{1}'^2 L_1 (m_1+m_2) + g(m_1+m_2)\cos{\theta_1} + \theta_{2}'^2 L_2 m_2 \cos(\theta_1 - \theta_2))}{L_2(2m_1+m_2-m_2\cos({2\theta_1 -2\theta_2}))}
+\end{eqnarray}
+
+This second-order system was then converted into a first-order system by defining the first derivatives as separate values.`'
+
+\subsection{Other attractors I’ve experimented with: Clifford \& Thomas}
+We follow the methodology presented in \cite{manjunath2021universal} but opt to consider different attractors this time. 
+
+\begin{itemize}
+\item Thomas:
+\begin{eqnarray}\label{eqns_thomas}
+  u_x = \sin(y) - \beta{x} \\
+  u_y = \sin(z) - \beta{y} \\
+  u_z = \sin(x) - \beta{z}
+\end{eqnarray}
+
+\item Clifford:
+\begin{equation}\label{eqn_clifford}
+  \frac{\sin(ay) + c\cos(ax)}{\sin(bx)+d\cos(by)}
+\end{equation}
+\end{itemize}
+
+
+\section{Generalized Pearson correlation coefficient for the DP and other attractors}
+\textbf{Insert table: D.Pendulum, Lorenz, Others (Clifford \& Thomas)}
 
 
 
-\vspace{-1cm}
-\bibliographystyle{pnas-new}
-\bibliography{pnas}
 
+\chapter{Conclusion}\label{ch6}
 
+The driven states $x_{n-1},x_n)$ holds the information of the left-infinite history of the input. Furthermore, there is some evidence that the inverse-limit space (not system) seems to distinguish two dynamical systems that are not topologically conjugate for a class of systems in the sense their inverse-limit spaces are not homeomorphic to each other.  So the relation $Y_T$, which is homeomorphic to the inverse-limit system, may be unique to a class of systems. (The reference is a paper on Ingram’s Conjecture by Marcy Barge, Henk Bruin and Sonja Stimac. ) Further investigation is needed. 
 
 
 \end{document}

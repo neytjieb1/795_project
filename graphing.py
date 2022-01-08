@@ -19,8 +19,10 @@ import matplotlib.pyplot as plt
 # plt.savefig("T2.png")
 # plt.show()
 
-plt.plot(X1, Tn(54, X1))  #52=close, 53=line
+plt.plot(X1, Tn(2, X1), 'forestgreen')  #52=close, 53=line
+plt.savefig('tentmap_2.svg', format='svg', dpi=1000)
 plt.show()
+
 
 # plt.plot(X3, T(X3), '-k')
 # plt.show()

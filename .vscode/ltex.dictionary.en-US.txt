@@ -4,3 +4,4 @@ discretise
 nonautonomous
 whereafter
 conjugacy
+initialisation
