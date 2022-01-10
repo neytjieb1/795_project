@@ -22,6 +22,8 @@
 
 \usepackage{enumitem}
 \usepackage{multirow}
+\usepackage{longtable}
+\usepackage[export]{adjustbox}
 
 \setlength{\parskip}{1.7em}
 \setlength{\parindent}{0em}
@@ -236,7 +238,7 @@ Continuous-time dynamical systems modelled using ordinary differential equations
 each point $x\in\mathbb{R}^{n}$, call it $x(t)$ where $x(0)=x_0$. 
 
 \begin{Definition}
-  [\bf Flow of an Equation] \label{Dfn_Flow}
+  [\bf Flow of an Equation] \label{Dfn_Flow}\rm
   The flow of the equation  $\dot{x} = f(x)$  is defined to be a mapping $\varphi: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ where $\varphi(x_0,t)= x(t)$ for the solution $x(t)$ with $x(0)=x_0$ 
 \end{Definition}
 
@@ -265,13 +267,13 @@ There is a school of thought that advocates discrete-time dynamical systems to b
 
 A core concept in the study of dynamical systems is that of invariance. 
 \begin{Definition}
-  [\bf Invariant Set] \label{Dfn_InvariantSet}
+  [\bf Invariant Set]\label{Dfn_InvariantSet}\rm
   Given a discrete-time dynamical system $T: U \to U$, a subset $A \subset U$ is said to be an \emph{invariant set} if $T(A) =A$. 
 \end{Definition}
 
 We also define the orbit of a function $T$.
 \begin{Definition}
-  [\bf Orbit of $T$] \label{Dfn_Orbit}
+  [\bf Orbit of $T$]\label{Dfn_Orbit}\rm
   The orbit of $T$ is to be defined the sequence $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ obeying the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$. 
 \end{Definition}
 
@@ -295,8 +297,8 @@ Invariant sets have various properties. Invariant sets can be attracting or repe
 Recall the examples $Tu =u/2$ and $Tu=2u$ defined on $\mathbb{R}$ (where $\{0\}$ ``attracts" orbits) or the example, $Tu=u^2$ defined on $[0,1]$ (where $\{1\}$ ``repels" orbits). We are interested in attractive invariant sets since they capture the long-term dynamics as time increases. 
 In particular we are interested in those invariant sets named attractors.
 
-\begin{Definition} 
-  [\bf Attractor] \label{Dfn_Attractor}
+\begin{Definition}
+  [\bf Attractor]\label{Dfn_Attractor}\rm
   Let $T: U \to U$, where $U$  is a metric space with metric $d$. A compact subset $A \subset U$ is said to be an attractor if it satisfies the three conditions: 
   \vspace{-8mm}
   \begin{enumerate}
@@ -326,8 +328,8 @@ In the 1960s, a number of mathematicians and mathematically interested scientist
 There are several intricately different definitions of chaos available in the literature \textbf{(Cite)}, with each of them indicating some aspect of complexity. %\ednote{B:  what are we saying here? M: Devaney's definition is not the only one, there are about half a dozen definitions as well}  
 In practice, it is not possible to verify which definition or notion does the underlying dynamical system satisfies when only data is observed from it. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances behind the complexity. Devaney's definition of chaos has three requirements, with the first being the notion  of sensitive dependence on initial conditions. 
 
-\begin{Definition}
-  [\bf {Sensitive Dependence on Initial Conditions}] \label{Dfn_SDIC}
+\begin{Definition}\rm
+  [\bf {Sensitive Dependence on Initial Conditions}]\label{Dfn_SDIC}\rm
 A dynamical system $T: U \to U$ is said to have sensitive dependence on initial conditions (SDIC) if there exists a $\delta > 0$ such that for every $u \in U$ and in every neighborhood of $u \in U$ there exists a $v\in{U}$ and an integer $N:=N{(u,v)}\in\mathbb{Z}$ such that $d(T^Nu,T^Nv)>\delta$. 	
 \end{Definition}
 
@@ -379,15 +381,15 @@ To illustrate the concept of SDIC, we present two examples - one from Mathematic
 The second part in Devaney's definition of chaos concerns topological transitivity.
 
 \begin{Definition}
-  [\bf {Topologically Transitive}] \label{Dfn_TopTrans}
+  [\bf {Topologically Transitive}]\label{Dfn_TopolTrans}\rm
 	A dynamical system $F: U \to U$ is topologically transitive if for any pair of nonempty open sets $E_1$ and $E_2$ there exists a $n\in\mathbb{N}$ such that $T^n(E_1) \cap E_2 \not= \emptyset$. 
 \end{Definition}
 
 Topologically transitivity implies that the iterates of an open set of initial conditions gets mixed up with other open sets. On a compact metric space, it can be shown that topological transitivity also implies the existence of a point whose forward iterates are dense \cite{de2013elements}; or in other words, the orbit going through this point will be dense in the compact metric space. 
 In fact, it is topologically more likely that the choice of an arbitrary point will be one  whose iterates are almost dense. 
 
-\begin{Definition} 
-  [\bf {Meager Set}] \label{Dfn_Meager Set}
+\begin{Definition}
+  [\bf {Meager Set}]\label{Dfn_Meager Set}\rm
 A subset of a topological space $U$ is said to be a meager set if it can be written as a countable union of sets of with empty interior. The complement of the a meager set is set to be a residual set.
 \end{Definition}
 
@@ -396,7 +398,7 @@ To be more precise (see \cite{de2013elements}), for a discrete-time dynamical sy
 
 We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018introduction}.
 \begin{Definition}
-  [\bf {Devaney's Chaos}]\label{Dfn_ChaosDec}
+  [\bf {Devaney's Chaos}]\label{Dfn_ChaosDec}\rm
 	A dynamical system $T: U \to U$ is said to exhibit chaos in the sense of Devaney if it satisfies the three properties:
 	\vspace{-5mm}
   \begin{enumerate}
@@ -463,8 +465,8 @@ V & V.
 %Composite functions
 To understand the diagram we note that if we travel ``right and then down," the diagram instructs us to use $T$ (top arrow right) first, followed by $\phi$. (right arrow downwards). Consequently the pathway amounts to finding $\phi(T(u))$. If we proceed "down and then right", the diagram instructs us to apply $\phi$ (left arrow downwards) first, and then apply $S$ (bottom arrow right). This then amounts to finding  $S(\phi(u))$. When the relationships in this diagram hold, we say $\phi(T(u))= S(\phi(u))$, and we formally denote it as $\phi \circ T=S\circ \phi$.
 
-\begin{Definition}  
-  [\bf {Conjugacy \& Semi-Conjugacy}]\label{Dfn_Conjugate}
+\begin{Definition}\rm  
+  [\bf {Conjugacy \& Semi-Conjugacy}]\label{Dfn_Conjugate}\rm
   Consider the dynamical systems $T:U\to{U}$, $S:V\to{V}$ and suppose the relationship $\phi \circ T=S\circ \phi$ holds. If $\phi:U\to{V}$ is a homeomorphism, then $S$ is said to be conjugate to $T$ and $\phi$ is called a conjugacy. If we relax the criterion on $\phi$ and merely require $\phi$ to be continuous and surjective where $\phi:U\to{V}$, then $\phi$ is a semi-conjugacy between $T$ and $S$ where T has domain $U$ and S has domain $V$; S is said to be semi-conjugate to T. 
 \end{Definition} 
 
@@ -524,13 +526,13 @@ $\Phi_{k,\theta}(w) := (\theta(T^{-k}w)\ldots,\theta(T^{-1}w),\theta(w))$.  The 
 \section{Taken Embedding Theorem}
 
 We define first the concepts of homeomorphism and embedding:
-\begin{Definition}
-  [\bf {Homeomorphism}]\label{Dfn_homeo}
+\begin{Definition}\rm
+  [\bf {Homeomorphism}]\label{Dfn_homeo}\rm
   A homeomorphism is a function $f:Z\rightarrow Y$ between two topological spaces $Z$ and $Y$ that is continuous, bijective and has a continuous inverse. 
 \end{Definition}
 
 \begin{Definition}
-  [\bf {Embedding}]\label{Dfn_embed}
+  [\bf {Embedding}]\label{Dfn_embed}\rm
   Consider a homeomorphism $f:Z\rightarrow Y$ for $Y\subset X$. $Z$ is said to be embedded in $X$ by $f$.
 \end{Definition}
 
@@ -730,58 +732,18 @@ One of the first result obtained upon defining the USP, is the fact that every s
 If $g$ has the USP, then any solution to $g$ is a uniform attractor in the nonautonomous dynamical systems literature \cite{Manju_Nonlinearity}. The discussion on nonautonomous attractors is beyond the scope of this thesis and we refer the reader to \cite{Manju_ESP, esann2012ids} for further reading. 
 
 % \ednote{M: You can omit the theorem, and just say it is a uniform attractor in the nonautonomous dynamical systems literature \cite{Manju_Nonlinearity}, and say the discussion on nonautonomous attractors is beyond the scope of the thesis.}
-\textbf{NEED TO PARAPHRASE}
-\newline In our context, $g$ having the USP is equivalent to $g$ being a topological contraction \cite{manjunath2021universal}, or alternatively that $g$ exhibits the Echo State Property(ESP). 
-In \cite{Manju_ESP} the echo state property is a key for the design and training of recurrent neural networks within the paradigm of reservoir computing.
-Available definitions and theorems concerning the echo state property, however, are of little practical use because they do not relate the network response to temporal or statistical properties of the driving input.
+% Paraphrased.
+ In our context, $g$ having the USP is equivalent to $g$ being a topological contraction \cite{manjunath2021universal}, or alternatively that $g$ exhibits the Echo State Property (ESP). 
 
-A greater discussion is presented in \cite{jaeger2001echo}
-a particular stability concept for which a number of equivalent definitions are available \cite{jaeger2001echo}.
+This property is used to describe the concept of fading memory or memory-loss in the majority of literature within the field reservoir computing (RC) \textbf{(Citation)}. 
+$g$ having the ESP guarantees that the entire left-infinite history of an input will determine exactly the current system state; there is only ever the possibility of a single reachable state at a given instance of time \cite{jaeger2001echo}
+The ESP is also often discussed in terms of a stability property that holds for all inputs of a system~\cite{manjunath2020stability} and, furthermore, plays a key role in the design and training of recurrent neural networks within the field of RC \cite{Manju_ESP}.
 
-In most of the reservoir computing (RC) literature, the idea of memory-loss or fading memory popularly called
-the echo state property (ESP) is treated as a stability property of the system valid
-for all inputs. In such a case, the ESP guarantees that the entire past history of the
-input determines the state of the system precisely, i.e., there is no possibility of two
-or more reachable states at any given point in time [5] if the entire past values of the
-input have influenced the dynamics. The formal definition linking ESP intrinsically
-to an input is available in [4].
+Defined formally, the ESP is intrinsically linked to an input (see \cite{Manju_ESP}) Unfortunately, definitions and results concerning the ESP do not have much practical use since a relationship of the network's response to the temporo-statistical properties of the input is not directly described. A more detailed presentation may be found in~\cite{jaeger2001echo}.
 
-In the context of information processing, when a driven system g has a causal em-
-bedding, it helps carry over any input ū onto the solution space without distortion or
-loss of information. This is a very important feature, and the current discrete-time
-state space models used in reservoir computing do not exploit the causal embedding.
-We intend to demonstrate the utility of these theoretical results in a future work
-directed at applications.
+\section{Next section? \ednote{I feel a break is necessary here, but would hear from you what your thoughts are.}}
 
-For natural systems, say, for instance, when the human brain is viewed as a driven
-system where a time-varying external stimulus (for instance, a visual stimulus) is
-an input, the input can be causally embedded into the nervous system without the
-need for a particular structure that is custom-made for each stimulus as long as
-the system has the USP. From the perspective of perturbation of an autonomous
-dynamical system, if the resulting nonautonomous system has the USP, then the
-temporal structure of noise relates to the dynamics on a nonautonomous uniform
-attractor through a topological semi-conjugacy or a conjugacy.
-
-The continuity of E reflects on whether small changes in u ~ would result in a ‘propor-
-tionate’ response in the solution space – a notion of input related stability as defined in \cite{Manju_ESP}
-
-To understand how solutions become sensitive to a perturbation of the input for systems without USP, we define a stability notion that describes how the collection of all solutions obtained from an input ū are mapped onto the solution space.
-
-Sufficient to consider continuity of encoding map.
-
-owing to the USP of the driven system $g$ one gains input-related, parameter-related stability \cite{manjunath2020stability}
-
-Historically, data have been transformed into a different space for processing to gain some advantages. For example, according to Vapnik–Chervonenkis theory (e.g., [16]) mapping data into a higher dimension often provides much greater classification power. 
-Mapping temporal data through a delay-coordinate mapping in Takens delay embedding uncovers hidden information [17]. In data-driven modeling employing Koopman’s theory (e.g., [18]–[20]), 
-approximating the dynamics of a dynamical system through a linear dynamicalsystem in a higher dimensional space is often possible by mapping the data samplewise into the higher dimensional space
-
-we first note that when T is not invertible, the dynamics of (U, T ) is only topologically semi-conjugate to $(\hat{U}, \hat{T})$ and hence the dynamics in $(\hat{U}, \hat{T})$ could have additional complexity.
-
-
-
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-Having already defined the reachable set $X_U$, we pause for a moment to fix additional notation.
+Having already defined the reachable set $X_U$, we now pause for a moment to fix additional notation.
 Letting $\cev{u}^{n}:=(\ldots,u_{n-2} ,u_{n-1})$ be the left-infinite subsequence of an input, $\overleftarrow{U}$ then denotes all these left-infinite sequences in $U$. 
 Moreover, $\cev{u}^{n}v:=(\ldots,u_{n-2} ,u_{n-1}, v)$ is to symbolise the input up to time $n$ with $v \in U$ being the specific input value at time $n$. 
 The introduction of a new input at time $n$ can be described by a mapping $\sigma_v:   \cev{u}^{n} \mapsto \cev{u}^{n}v$. 
@@ -806,7 +768,7 @@ as presented below for the driven system $g$.
   \end{equation} 	
 
 
-  Restricting our attention more and more, we now consider a specific subclass of conjugacies.
+  Continuing to refine our attention, we proceed to consider a specific subclass of conjugacies.
 
   \begin{Definition} 
     [\bf Universal Semi-Conjugacy]\label{Def_UnivSemiConj}
@@ -821,7 +783,6 @@ Note that even when $h$ does exist, we are not guaranteed its injectivity. Consi
 
 Re-sketching the commutativity diagram \ref{Scomm_h} above by fixing the input $v$ in $g$ and replacing $X_U$ by its left-infinite sequence space $\overleftarrow{U}$, we obtain the diagram below. In this case, the function $H:\overleftarrow{U}\to\overleftarrow{X}_U$, a map that is both continuous and surjective, is called a \emph{causal mapping}. 
 
-\textbf{make special note of a} %\ednote{something you want to fill?} }
 \begin{Definition}
   [\bf Causal Mapping]\label{Def_CausMap}
   A continuous, surjective map $H:\overleftarrow{U}\to\overleftarrow{X}_U$ such that \[H\circ\tilde{g}_v=\sigma\circ{H}\] where $\tilde{g}_v$ maps $(\ldots, u_{-2}, u_{-1})$ to $(\ldots, u_{-2}, u_{-1}, g(v, u_{-1}))$.
@@ -850,7 +811,7 @@ Re-sketching the commutativity diagram \ref{Scomm_h} above by fixing the input $
   See \cite[Th.3]{manjunath2013echo}.
 \end{proof}
 
-\textbf{When considering the map $H$, we once again restrict our focus of $H$ to the function $H_2(\overline{u}):=(h(r\overline{u}, h(\overline{u})))$. }
+\textbf{We direct our attention to the function $H_2(\overline{u}):=(h(r\overline{u}, h(\overline{u})))$. }
 
 An embedding of the space $\overleftarrow{U}$  in $\overleftarrow{U}$ would allow one to establish topological conjugacy, which in turn provides stronger results than merely obtaining a coarse-grained representation via a causal mapping \cite{M: I feel this is very confusing to the reader as the co-domain of causal mapping is the left-infinite space and , so please omit if possible. You can just say we want to restrict inputs to the left-infinite orbits of a dynamical system and then explore conjugacy instead of a mere semi-conjugacy}. 
 
@@ -1199,6 +1160,7 @@ We made several changes which gave improved results:
 \end{enumerate}
 
 \section{Numerical simulations}
+In this section we showcase numerical results pertaining to 3 attractors that were simulated using the methodology described in the previous chapters. We first consider a simple physical system.
 \subsection{Double Pendulum}
 
 The Double Pendulum consists of two pendulums fastened to one another such that the system moves as a whole. The first (or higher pendulum) is attached to a fixed point while the second is attached to the endpoint of the first. (See below)
@@ -1209,7 +1171,7 @@ The Double Pendulum consists of two pendulums fastened to one another such that 
   \label{fig:conjugacy_with_Gamma}
 \end{figure}
 
-This system has four variables: angle and angular velocity of each pendulum rod. An ideal system is assumed where the rods are massless and no friction in the pivots are considered.
+The system has four variables: angle and angular velocity of each pendulum rod. An ideal system is assumed where the rods are massless and no friction in the pivots are considered.
 The scalar equations of motion are derived using Newtonian physics and can be found in \cite{DPFormulas}. The second-order system is converted to a first-order ODE and solved using the Runge-Kutta numerical method. 
 
 This system is a classical example of a system exhibiting chaos. \textbf{Cite.}
@@ -1230,31 +1192,71 @@ This system is a classical example of a system exhibiting chaos. \textbf{Cite.}
 \subsection{Other attractors I’ve experimented with: Clifford \& Thomas}
 We follow the methodology presented in \cite{manjunath2021universal} but opt to consider different attractors this time. 
 
-\begin{itemize}
-\item Thomas:
+\subsubsection{Thomas' Cyclically Symmetric Strange Attractor}
+Thomas' Cyclically Symmetric Strange Attractor, a 3D attractor proposed in 1999 by Ren\'e Thomas in \cite{ThomasAttractor}, is described by a set of three equations which is distinctly reminiscent of the Lorenz system, another deterministic three-equation model exhibiting chaotic behaviour.It has a single parameter $\beta$ and has been shown to transition to chaotic behavious when $\beta<0.208186$~\cite{Thomas_BetaParameter}.
 \begin{eqnarray}\label{eqns_thomas}
-  u_x = \sin(y) - \beta{x} \\
-  u_y = \sin(z) - \beta{y} \\
-  u_z = \sin(x) - \beta{z}
+  x_{n+1} = \sin(y_n) - \beta{x_n} \\
+  y_{n+1} = \sin(z_n) - \beta{y_n} \\
+  z_{n+1} = \sin(x_n) - \beta{z_n}
 \end{eqnarray}
 
-\item Clifford:
-\begin{equation}\label{eqn_clifford}
-  \frac{\sin(ay) + c\cos(ax)}{\sin(bx)+d\cos(by)}
-\end{equation}
-\end{itemize}
+The behaviour of the system with a $\beta$-parameter value of 0.1056 is simulated by scaling it to fit inside the interval $[-1,1]$ and both perturbed with noise as well as leaving it intact. Specifically the noise is obtained from a normally distribution with mean 0 and standard deviation 0.05, which translates approximately to *dB.
+ A sequence of 3000 observations in the clear and noisy data-set respectively is fed into the system with 300 entries discarded before predicting the next 9000 entries. 
 
-One is easily reminded of the Lorenz system, another three-equation deterministic model which exhibits chaotic behaviour.
+\begin{figure}[ht]
+  \centering
+  \minipage{0.5\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Thomas_nonoise.eps}
+    \caption*{True and predicted trajectories in the absence of noise.}
+  \endminipage\hfill
+  \minipage{0.5\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{ThomasNoisy.eps}
+    \caption*{True and predicted trajectories for noise added.}
+  \endminipage
+\end{figure}
+
+The RNN was initialised as follows: The dimension of the network is set equal to 500 neurons and 12 hidden layers of dimension 64 each were initialised. Training is realised through 150 epochs of batch sizes of 128 each; the map is learnt via the Adam Optimiser using finer and finer learning rates (0.001 and then divided by 10 at every iteration).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.35]{Thomas_1.eps}\caption*{Predicted trajectories for the attractor demonstrate empirically the ability to predict the evolution of the trajectory for the next ~100 timesteps}
+  \includegraphics[scale=0.5]{Thomas_3.eps}\caption*{Represented here the learnt (blue) and actual (red) densities of the first coordinate of the dataset.}
+\end{figure}
 
 
-\section{Generalized Pearson correlation coefficient for the DP and other attractors}
+\subsubsection{Fractal Dream Attractor}
 
+Another 2-equation discrete-time map named the Fractal Dream Attractor, or more commonly known as the Pickover Map (first discovered by Clifford A. Pickover and discussed in his fascinating book "Chaos in Wonderland"\cite{PickoverChaos}), was also considered.
+\begin{eqnarray}\label{eqns_clifford}
+  {x_{n+1}=\sin(ay_n) + c\cos(ax_n)} \\
+  {y_{n+1}=\sin(bx_n)+d\cos(by_n)}
+\end{eqnarray}
 
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=1.0\textwidth,left]{Clifford_1.eps}
+  \caption*{These graphs were constructed by predicting the Clifford system 15000 steps into the future and in so doing illustrating the long-term consistency and accuracy of the learnt system. As perceived here, we are able to lock on to the trajectory of the Clifford map almost exactly for the first 25 steps.}
+  \minipage{0.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{Clifford_2.eps}
+  \endminipage\hfill
+  \minipage{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Clifford_3.eps}
+  \endminipage
+  \caption{The bottom row, left, shows a plot of the true attractor(red) and the predicted values(blue). Bottom row, right, shows the distribution of the first coordinate of the learnt system (blue) and the actual Clifford system (red). }
+  \label{Fig_Clifford}
+\end{figure}
 
-\textbf{Insert table: D.Pendulum, Lorenz, Others (Clifford \& Thomas)}
+\section{Generalized Pearson Correlation}
+\ednote{B: Need to change heading here.}
+
+\textbf{Pearson Introduction}
 
 \begin{center}
-  \begin{table}
+  \begin{table} 
       \scalebox{0.75}
       {\begin{tabular}{|c|c| c c |} 
           \hline
@@ -1280,7 +1282,7 @@ One is easily reminded of the Lorenz system, another three-equation deterministi
               & 1000 & & 0.9737\\
           \hline
           
-          \hline 
+          \hline
           $(w_n)$ comes from the Thomas Attractor (for $\beta=0.1056$): & & & \\
           {$w_{n+1}= \begin{bmatrix} \sin(w_{n,y}) - \beta{w_{n,x}} \\
               u_y = \sin(w_{n,z}) - \beta{w_{n,y}} \\
@@ -1291,7 +1293,7 @@ One is easily reminded of the Lorenz system, another three-equation deterministi
               & 1000 & & 0.999901 \\
           \hline
           
-          \hline
+          \hline 
           $(w_n)$ comes from Noise-Added Thomas Attractor (for $\beta=0.1056$): & & & \\
           {$w_{n+1}= \begin{bmatrix} \sin(w_{n,y}) - \beta{w_{n,x}} \\
               u_y = \sin(w_{n,z}) - \beta{w_{n,y}} \\
@@ -1321,8 +1323,7 @@ One is easily reminded of the Lorenz system, another three-equation deterministi
               & 10 & -0.21713 & 0.78719 \\
               & 100 & &  0.8334 \\
               & 1000 & & 0.84854 \\
-          \hline
-  
+          \hline  
           \hline 
           $(w_n)$ comes from the Logistic map: & & & \\
           {$ w_{n+1}  = 4w_n(1-w_n)$} & & & \\
@@ -1331,7 +1332,6 @@ One is easily reminded of the Lorenz system, another three-equation deterministi
               & 100 &  & 0.7150\\
               & 1000 & & 0.7826\\
           \hline
-
           \hline
           $(w_n)$ comes from the Svensson Attractor \\ (for $a = -1.7; b = 1.8; c = -1.9; d = -0.4$): & & & \\
           {$w_{n+1}= \begin{bmatrix} d\sin(aw_{n,x}) - \sin(bw_{n,y}) \\ 
@@ -1341,7 +1341,13 @@ One is easily reminded of the Lorenz system, another three-equation deterministi
                 & 100 & &  0.63310 \\
                 & 1000 & & 0.71151 \\
           \hline
-        
+          \hline
+          $(w_n)$ comes from the DP \\ (for ): & & & \\
+          \multirow{3}{*}{$u_n = w_n-\overline{w}$}
+                & 10 & 0.99141 & 0.98916\\
+                & 100 & &  0.99238 \\
+                & 1000 & & 0.99278 \\
+          \hline        
       \end{tabular}} %\ednote{http://paulbourke.net/fractals/peterdejong/}
 
       \caption{Multidimensional Correlation Coefficients $\rho$ to indicate a general reduction in the functional complexity of the map $G_T$ that arises from a RNN. Each row corresponds to a different dynamical system used in the experiments in \cite{Main_article}. In the second column corresponds to the dimension of $X$ (number of artificial neurons) in the RNN used. 
@@ -1352,8 +1358,8 @@ One is easily reminded of the Lorenz system, another three-equation deterministi
               x_{n-1}\\
               x_n
           \end{bmatrix}\right)$. The dimension of the RNN from \eqref{Seq_RNN} is also given, showcasing that increasing the dimension of the driven system typically yields a map $G_T$ of lower functional complexity.} \label{Table_FC}
-      \end{table}
-  \end{center}
+      \end{table}\label{tbl_attractorsPearson}
+\end{center}
   
 
 

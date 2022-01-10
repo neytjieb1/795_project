@@ -2,7 +2,8 @@
 articles/
 writeup.*
 text.txt
-Supp_Koopman-0808.tex
+Supp_Koopman-0808*
+!Supp_Koopman-0808.text
 project795/
 *.aux
 *.log

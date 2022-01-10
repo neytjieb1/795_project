@@ -23,9 +23,9 @@ A nonautonomous dynamical system is simply a dynamical system (as defined before
 
 To-Do
 - EPS format
-- Discussion on DP 
-- Definitions add \rm
 - Add observables
+- adjust table to longtable
+- Intro adjust for proofs
 
 
 p.32
