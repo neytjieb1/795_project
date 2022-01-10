@@ -21,6 +21,7 @@
 % \usepackage{pst-all}
 
 \usepackage{enumitem}
+\usepackage{multirow}
 
 \setlength{\parskip}{1.7em}
 \setlength{\parindent}{0em}
@@ -264,12 +265,15 @@ There is a school of thought that advocates discrete-time dynamical systems to b
 
 A core concept in the study of dynamical systems is that of invariance. 
 \begin{Definition}
-  [\bf Invariant Set] \label{Dfn_Flow}
+  [\bf Invariant Set] \label{Dfn_InvariantSet}
   Given a discrete-time dynamical system $T: U \to U$, a subset $A \subset U$ is said to be an \emph{invariant set} if $T(A) =A$. 
 \end{Definition}
 
-We also define the \emph{orbit of $T$} to be a sequence $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ obeying the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$. 
-
+We also define the orbit of a function $T$.
+\begin{Definition}
+  [\bf Orbit of $T$] \label{Dfn_Orbit}
+  The orbit of $T$ is to be defined the sequence $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ obeying the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$. 
+\end{Definition}
 
 Two examples of invariant sets include a fixed point where $Tu=u$ for  $u\in U$, and a periodic orbit, i.e., a set of iterates $\{u,Tu, T^2u,\ldots,T^pu\}$, where $T^{p+1}u=u$ for some $p\in\mathbb{Z}$.  The entire space $U$ could be also be invariant.
 Consider for example the space $U=[0,1]$, where $Tu=4u(1-u)$ and then $U$ is invariant (as every $u\in{U}$ can be written as $u = 4x(1-x)$ for some $x\in{U}$).
@@ -319,7 +323,7 @@ The dynamics restricted to an invariant set can be complicated. For instance an 
 % \ednote{ should one add paragraphs like these? M: this is a thesis, and not a paper; the instructions sent to the external examiner regarding the thesis evaluation says that the student suggest strongly that it is good to write}
 In the 1960s, a number of mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. The notions of invariance, attractivity and chaos may also be described for continuous systems, and Lorenz's system comprised of a system of differential equations. The narrative of Lorenz's discovery of chaos, as well as the history of other forerunners in this subject, are fascinating. For those who are interested, we highly recommend James Gleick's book Chaos: The Making of a New Science \cite{gleick2008chaos}. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery, and describes the underlying mathematical notions for non-specialists.
 
-There are several intricately different definitions of chaos available in the literature \textbf{(Cite)}, with each of them indicating some aspect of complexity. \ednote%{B:  what are we saying here? M: Devaney's definition is not the only one, there are about half a dozen definitions as well}  
+There are several intricately different definitions of chaos available in the literature \textbf{(Cite)}, with each of them indicating some aspect of complexity. %\ednote{B:  what are we saying here? M: Devaney's definition is not the only one, there are about half a dozen definitions as well}  
 In practice, it is not possible to verify which definition or notion does the underlying dynamical system satisfies when only data is observed from it. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances behind the complexity. Devaney's definition of chaos has three requirements, with the first being the notion  of sensitive dependence on initial conditions. 
 
 \begin{Definition}
@@ -614,8 +618,8 @@ The SDD can then be used to forecast and reconstruct the underlying system.
 \section{Nonautonomous and Driven Dynamical Systems}
 
 \begin{Definition}
-  [\bf Nonautonomous Dynamical System (adopted from~\cite{Manju_ESP}))] \label{Dfn_Soln}\rm
-  A nonautonomous dynamical system (NDS) on a space $X$ is simply a dynamical system comprising a family of maps $\{g_n\}_{n \in \mathbb{Z}}$ where $g_n(\ldotp):=g(u_n,\ldotp):X\to{X}$ is continuous. Each $g_n$ arises as a consequence of an input $u_n$ from the input space $U$, a topological space.  \ednote{Does the reader immediately remember/know what is meant by a dynamical system?}
+  [\bf Nonautonomous Dynamical System (adopted from~\cite{Manju_ESP}))] \label{Dfn_NDS}\rm
+  A nonautonomous dynamical system (NDS) on a space $X$ is simply a dynamical system comprising a family of maps $\{g_n\}_{n \in \mathbb{Z}}$ where $g_n(\ldotp):=g(u_n,\ldotp):X\to{X}$ is continuous. Each $g_n$ arises as a consequence of an input $u_n$ from the input space $U$, a topological space. 
 \end{Definition}
 
 We immediately recall the figure first defined in \eqref{eqn_conjugacy}  and remind ourselves of our ultimate goal to learn a system that is conjugate to an underlying or unknown dynamical system $(U,T)$ by making use of the measurements obtained from  the unknown system.
@@ -673,36 +677,34 @@ A system may also have multiple solutions as is evidenced in the example below.
 \begin{Example}\label{Ex_exp} \rm 
  Consider the driven system $g(u_n,x_n)=x^n$ for $X=[0,1]$, $U=\mathbb{R}$. The system has an uncountable number of solutions, as there exists a solution for every $x\in{X}$ which also passes through the point $x$ and $lim_{n\to\infty}x_n=0$, $lim_{n\to{-}\infty}x_n=1$. 
  The proof is deferred to immediately after the next paragraph (see~\ref{rem_proofEx}).
- 
 \end{Example}
 
 As the solutions to a driven system are often considered to be an important entity \cite{M: edited the sentence here}, we next identify a subspace $X_U$ of $X$ that contains all possible solutions. To realize such a subspace of a driven system $g$, the concept of a reachable set is defined.
 
 \begin{Definition}
   [\bf Reachable Set]\label{Dfn_ReachableSet}\rm
-The reachable set of a driven system $g$ is exactly the union of all the elements of all the solutions, i.e., 
+The reachable set of a driven system $g$ is exactly the union of all the elements of all the (entire) solutions, i.e., 
 \[X_U :=\Big \{x \in X:  x = x_k \mbox{ where  $\{x_n\}$  is a solution for some  $\bar{u}$} \Big \}.\]
 The set of all reachable states at a specific time $n$ for input $\overline{u}$ is denoted by $X_n(\overline{u})$
 \end{Definition}
 
-We note that $x\in{X_n(\overline{u})}$ if and only $g$ has a solution $\{x_k\}$ for $x_n=x$ and input $\overline{u}$. \textbf{(Cite)}.
+The reachable set itself can defined independently from the fact that $g$ does or does not have the ESP/USP. We note that $x\in{X_n(\overline{u})}$ if and only $g$ has a solution $\{x_k\}$ for $x_n=x$ and input $\overline{u}$. \textbf{(Cite)}.
 
 $X_n$ is exactly the set of points $x$ through which some entire solution $\Psi$ passes at time $n$.
 
-This will lead to a result established later, but which is worth taking note of now: \textit{$g$ being a topological contraction is equivalent to the existence of a unique entire solution.} To this end we define the notion of a topological contraction. \ednote{M: I do not think you need the definition of a topological contraction unless it is defined through a process. Please note that you have defined $X_n(\bar{u})$ differently than what was in the earlier works. Now it is just the collection of solution values at time $n$ with the input $\bar{u}$ and topological contraction is just paraphrasing the USP definition. B: Is it better to then just leave out the entire sentence?}
- 
+This will lead to a result established later, but which is worth taking note of now: \textit{$g$ being a topological contraction is equivalent to the existence of a unique entire solution.}
 
-\begin{Definition}
-  [\bf Topological Contraction]\label{Dfn_TopContr}\rm
-  A function $g:U\times{X}\to{X}$ is a topological contraction if for all $n\in\mathbb{Z}$ and all $\overline{u}\subset{U}$, $X_n(\overline{u})$ is a singleton subset of $X$.  
-\end{Definition}
+% \begin{Definition}
+%   [\bf Topological Contraction]\label{Dfn_TopContr}\rm
+%   A function $g:U\times{X}\to{X}$ is a topological contraction if for all $n\in\mathbb{Z}$ and all $\overline{u}\subset{U}$, $X_n(\overline{u})$ is a singleton subset of $X$.  
+% \end{Definition}
 
 \begin{Remark}
   [\bf Proof of Example~\ref{Ex_exp}] \label{rem_proofEx} \rm
   To see this, we show that for every input $\overline{u}=\{u_n\}_{n\in\mathbb{Z}}$, $g(u_n,\cdot)$ is a contraction map on $X$ for every $k\in\mathbb{Z}$. 
   Indeed $g(u_n,x_n)=x^n$ depends only on the state at time $n$ and so for each input $\overline{u}$, $X_n(\overline{u})=\{x^n\}$ is a singleton subset.
   We then easily conclude that $\{x_n\}\equiv0$ is the only solution. 
-\end{Remark}
+\end{Remark} \ednote{B: Is this sufficient?}
 
 Thus far it has been demonstrated that a system may have one or more solutions; one may ask if a driven system always has a solution and, if so, whether it satisfies certain properties such as uniqueness. 
 Should the driven system be compact, existence follows immediately as shown in the following result.
@@ -711,9 +713,7 @@ Should the driven system be compact, existence follows immediately as shown in t
  Let $g$ be a driven system.  If $X$ is compact then for each input $\overline{u}$, there exists at least one solution to the driven system $g(\ldotp, x)$
 \end{Theorem}
 \begin{proof}
-  \textbf{I've muddled myself here.}
-  % Consider an input $\overline{u}={\{u_n\}}_{n\in\mathbb{Z}}\subset{U}$ and driven system $g:U\times{X}\to{X}$  generating a sequence ${\{x_n\}}_{n\in\mathbb{Z}}$ in the compact space $X$ \ednote{This statement is not correct.}. 
-  % Since $X$ is a metric space, it follows immediately from a well-known result in Analysis (\textbf{Cite}) that $\{x_n\}$ has a convergent subsequence which then is a solution.  \ednote{This is not a valid proof. Please refer to the proof existence of a solution in \cite{Manju_ESP}.}
+  May be found in \cite{kloeden2011nonautonomous, manjunath2014dynamics, manjunath2013echo}
 \end{proof}
 
 One may easily construct many systems with trivial solution-sets, such as $g(u,x)=x$ which has only the constant solution $x$ and so for $U=[-1,1]$, the system would have no solution if $|x|>1$. To refine the scenario, we consider only systems with unique solutions. 
@@ -765,16 +765,20 @@ attractor through a topological semi-conjugacy or a conjugacy.
 The continuity of E reflects on whether small changes in u ~ would result in a ‘propor-
 tionate’ response in the solution space – a notion of input related stability as defined in \cite{Manju_ESP}
 
-To understand
-how solutions become sensitive to a perturbation of the input for systems without
-USP, we define a stability notion that describes how the collection of all solutions
-obtained from an input ū are mapped onto the solution space.
+To understand how solutions become sensitive to a perturbation of the input for systems without USP, we define a stability notion that describes how the collection of all solutions obtained from an input ū are mapped onto the solution space.
 
 Sufficient to consider continuity of encoding map.
 
 owing to the USP of the driven system $g$ one gains input-related, parameter-related stability \cite{manjunath2020stability}
 
-------
+Historically, data have been transformed into a different space for processing to gain some advantages. For example, according to Vapnik–Chervonenkis theory (e.g., [16]) mapping data into a higher dimension often provides much greater classification power. 
+Mapping temporal data through a delay-coordinate mapping in Takens delay embedding uncovers hidden information [17]. In data-driven modeling employing Koopman’s theory (e.g., [18]–[20]), 
+approximating the dynamics of a dynamical system through a linear dynamicalsystem in a higher dimensional space is often possible by mapping the data samplewise into the higher dimensional space
+
+we first note that when T is not invertible, the dynamics of (U, T ) is only topologically semi-conjugate to $(\hat{U}, \hat{T})$ and hence the dynamics in $(\hat{U}, \hat{T})$ could have additional complexity.
+
+
+
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 Having already defined the reachable set $X_U$, we pause for a moment to fix additional notation.
@@ -843,18 +847,25 @@ Re-sketching the commutativity diagram \ref{Scomm_h} above by fixing the input $
   For a compactly driven system, a causal mapping $H$ exists if and only if $g$ has the USP. 
 \end{Theorem}
 \begin{proof}
-  \emph{See proof from p.15 of \cite{manjunath2021universal}}
-  \textbf{Expand.}
+  See \cite[Th.3]{manjunath2013echo}.
 \end{proof}
 
-\textbf{When considering the map $H$, we once again restrict restrict our focus of $H$ to the function $H_2(\overline{u}):=(h(r\overline{u}, h(\overline{u})))$. }
+\textbf{When considering the map $H$, we once again restrict our focus of $H$ to the function $H_2(\overline{u}):=(h(r\overline{u}, h(\overline{u})))$. }
 
 An embedding of the space $\overleftarrow{U}$  in $\overleftarrow{U}$ would allow one to establish topological conjugacy, which in turn provides stronger results than merely obtaining a coarse-grained representation via a causal mapping \cite{M: I feel this is very confusing to the reader as the co-domain of causal mapping is the left-infinite space and , so please omit if possible. You can just say we want to restrict inputs to the left-infinite orbits of a dynamical system and then explore conjugacy instead of a mere semi-conjugacy}. 
 
 
 Before formalising this, we make mention of the concept of the inverse-limit system of a dynamical system $(U,T)$. 
-  In broad sweeps, the inverse-limit system of a dynamical system is a self-map on a subset of an infinite-dimensional space \textbf{(Expand)} where each point in the inverse-limit space corresponds to a backward orbit of the map $T$. Following \cite{manjunath2021universal}, the inverse-limit space is denoted by $\widehat{U}_T\subset \overleftarrow{U}$, and defined as $\widehat{U}_T\subset: = \{ (\ldots,u_{-2},u_{-1}): Tu_{i} = u_{i+1}$. 
-  The map $T$, then, induces a self-map $\widehat{T}: (\ldots,u_{-2},u_{-1}) \mapsto  (\ldots,u_{-2},u_{-1},T(u_{-1}))$ on $\widehat{U}_T$.
+These spaces are noteworthy as their topology can help one ascertain much about the original system \cite{Manju_IEEE}. The topological structure for inverse-limit systems of chaotic dynamical systems is complicated, so we relegate further discussion to \cite{kennedy2008inverse_limit, ingram2011inverse}.
+In broad sweeps, the inverse-limit space of a dynamical system is a self-map on a subset of an infinite-dimensional space where each point in the inverse-limit space corresponds to a backward orbit of the map $T$. 
+Following \cite{manjunath2021universal, ingram2011inverse}:
+
+\begin{Definition}
+  [\bf Inverse-Limit Space, Inverse-Limit System]\label{Dfn_InverseL}\rm
+ The subset $\widehat{U}_T\subset \overleftarrow{U}$ defined by \[\widehat{U}_T: = \{ (\ldots,u_{-2},u_{-1}): Tu_{i} = u_{i+1}\]is called the inverse-limit space of $(U,T)$.
+ The self-map $\widehat{T}$  induced by $T$ on $\widehat{U}_T$  is defined by \[\widehat{T}: (\ldots,u_{-2},u_{-1}) \mapsto  (\ldots,u_{-2},u_{-1},T(u_{-1}))\] and the resulting dynamical system $(\widehat{U_T}, \widehat{T})$ is called the inverse-limit system of $(U,T)$.
+\end{Definition}
+
 
 \begin{Definition}
   [\bf Causal Embedding]\label{Dfn_CausalEmbed}\rm
@@ -872,7 +883,7 @@ The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overle
  If $g(\ldotp,x)$ is invertible and has the USP then $H$ is a causal embedding. 
 \end{Theorem}
 \begin{proof}
-  \emph{See proof from \cite{manjunath2021universal}}  \textbf{Expand.}
+  See \cite{manjunath2021universal}.
 \end{proof}
 
 When $g$ has the USP, the diagram below illustrates the operation of the the mappings $h$ and $H$. The mapping $h:\overleftarrow{U}\to{X_U}$ is an observable as discussed in an above section (\ref{TakensEmbedding}).  
@@ -883,7 +894,7 @@ When $g$ has the USP, the diagram below illustrates the operation of the the map
   \label{fig:actionh_H}
 \end{figure}
 
-The next result is of relative import but to fully comprehend its influence, some discussion still remains. We state it in part and postpone the proof.
+The next result is of relative import but to fully comprehend its influence, some discussion still remains. We state it in part here.
 % Before stating it, we define a concept which will directly be shown to be equivalent to the USP.
 
 \begin{Theorem}
@@ -894,13 +905,11 @@ The next result is of relative import but to fully comprehend its influence, som
     \item $g$ is a topological contraction.
   \end{enumerate}
 \end{Theorem}
-\begin{proof}
-  (postponed) 
-\end{proof}
+% \begin{proof}
+%   (postponed) 
+% \end{proof}
 
 % We have not as of yet treated the UAP properly, and establish the necessary result here (without proof) so as not to break up the completeness of theorem. 
-
-% \textbf{The proof of the result for the UAP is left to literature. Why? Cite.}
 
 \section {Choosing the driven system $g$}
 
@@ -926,19 +935,20 @@ SI-invertibility promises that 'enough' information is retained when $g$ is chos
 In obtaining an SI-invertible function, therefore, we are guaranteed a system which will not lose so much information about its previous states in the forward-flow of time that one may not make any credible claims as to the original system's behaviour and properties. 
 Simultaneously, it does guarantee us that the important information encoded in previous inputs is indeed preserved.
 
-It is worth taking note of a specific driven system. The function 
+It is worth at this stage taking note of a specific driven system in the form of a discrete state-space model that has acquired some adherence in applications \cite{Manju_IEEE} and especially those pertaining to Echo State Networks and ESP. The function 
+
 \begin{equation}  \label{eqn_driving}
   g(u,x) = (1-a)x + a\overline{\tanh}(Au + \alpha Bx)
 \end{equation} 
-is both SI-invertible and possesses the USP. 
+is both SI-invertible and, if $\alpha\beta<1$, also possesses the USP. 
 One may easily show that $g$ is SI-invertible by recovering $u_n$ by 
 \begin{equation} \label{eqn_SI_RNN}
   u_n := A^{-1}\bigg(\overline{\tanh}^{^{-1}}\frac{1}{a}\Big(x_{n+1}-(1-a)x_n\Big) \bigg) - \alpha B x_n
   \end{equation}
   for $x_{n-1}, x_n$ known.
 
-The proof of these $g$ possessing the USP is rather involved and hence the proof, instead of being replicated here, may be found in \textbf{(cite relevant article)}
-This specific driving function $g$ is used in our implementation and is more completely discussed in chapter \ref{sect5}
+The proof that the map $g$ possesses the USP is rather involved and hence, instead of being replicated here, may be found in \cite[Th.2]{manjunath2013echo }
+This specific driving function $g$ is used in our implementation and is discussed more completely in chapter \ref{sect5}
 
 Despite the ease that one may work with a left-infinite history in the realm of theory, it is impossible to obtain such a sequence in any real-life application.  
 One does not in practice, fortunately, need the entire left-infinite history of the input thanks to the Uniform Attraction Property (UAP).
@@ -952,7 +962,7 @@ One does not in practice, fortunately, need the entire left-infinite history of 
 This definition is stated in a not completely rigourous manner as the more formal definition makes use of processes, a concept which would take some time to establish and detracts from the principal thrust of this project. 
 \ednote{B: Is it very obvious to the reader at this point what the general thrust of the paper is?}
 
-As the Unique Attraction Property guarantees that all trajectories \ednote{(B: which ones?)} will converge to the same trajectory as time moves forward. 
+As the Unique Attraction Property guarantees that all trajectories will converge to the same trajectory as time moves forward. 
 Incredibly, this permits one to initialise a driven system $g$ with an altogether arbitrary initial value $y_m\in{X}$ where $m\in\mathbb{Z}$ and the UAP then guarantees that the sequence $\{y_{m+1}, y_{m+2},\ldots\}$ which satisfies the relation $y_n=g(u_n, y_{n-1})$  for  $k\geq{m}$  will uniformly approach the elements $\{x_n\}$ of the actual solution (See \cite[Th.11,]{Manju_Nonlinearity} or \cite[Eqn.18]{Supp}).
  
 %Change the theorem above so that th.4 is split up into two parts.
@@ -966,7 +976,7 @@ Incredibly, this permits one to initialise a driven system $g$ with an altogethe
 
 One may now appreciate an even more astounding result: $g$ having the USP is equivalent to the UAP. We restate the above theorem.
 
-\begin{Theorem}
+\begin{Theorem}\label{thm_usp-contr-uap}
   The following statements are equivalent:
   \vspace{-8mm}
   \begin{enumerate}[noitemsep, label=\roman*.]
@@ -976,7 +986,7 @@ One may now appreciate an even more astounding result: $g$ having the USP is equ
   \end{enumerate}
 \end{Theorem}
 \begin{proof}
-  (We'll show this)  [11] eqn.6 
+  May be found in \cite[Th.1]{Manju_Nonlinearity}
 \end{proof}
 
 One need therefore not establish any additional results to ensure that the sequence uniformly approaches the unique solution $\Psi$. This vastly simplifies the effort necessary to set up a problem in order to guarantee that the underlying system will be accurately represented by the conjugate system.
@@ -984,10 +994,7 @@ One need therefore not establish any additional results to ensure that the seque
 This also solves the problem of perturbation/noise introduced by the observable or measurement function. Recall from before that an observable is inherently a map that discretises the underlying continuous-time system. Moreover, measurement and device error introduce mistakes. Since we are working with a chaotic system displaying sensitive dependence on initial conditions, these small errors could potentially send the trajectory into a completely different attractor. 
 In the presence of the UAP, however, small measurement errors introduced into the system do not pose the same danger as before since the trajectories will eventually tend towards the actual solution.
 \ednote{(B: Complete enough?)}
-\textbf{From the perspective of perturbation of an autonomous
-dynamical system, if the resulting nonautonomous system has the USP, then the
-temporal structure of noise relates to the dynamics on a nonautonomous uniform
-attractor through a topological semi-conjugacy or a conjugacy.}
+% \textbf{From the perspective of perturbation of an autonomous dynamical system, if the resulting nonautonomous system has the USP, then the temporal structure of noise relates to the dynamics on a nonautonomous uniform attractor through a topological semi-conjugacy or a conjugacy.}
 
 \section{The next step in Dynamics}
 
@@ -1039,7 +1046,7 @@ We now have the following (compare with \ref{SCausal_H} above):
     $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$.
 \end{Theorem}
 \begin{proof}
-  \textbf{Show}
+  See \cite[Th.3, Th.4]{manunath2021universal}
 \end{proof}
 
 
@@ -1063,12 +1070,21 @@ One can therefore learn the SDD of the driven system states via $G_T$ with enoug
 \item Forecast future values of $u_n$. 
 \end{itemize} 
 
+% Below is reproduced a pictorial representation of the relationship between different entities and properties. \textbf{(Cite SIG_25May)}
+% Below is reproduced a pictorial representation of the relationship between the different entities and their properties.
+
+\begin{figure}[ht]
+  \includegraphics[scale=0.3]{_summarypictorial.png}
+  \centering
+  \label{fig:fig_pictorialSummary}
+\end{figure}
+
 \section{A discussion of $G_T$ }
 
 In the above sections, we established the map $G_T$ describing the SDD of a driven system. By establishing the existence of this map, we’ve essentially embedded the attractor $U$ (recall from \ref{attractor_U}) into the higher dimensional space $X\times{X}$.
 In layman’s terms, this ensures that there is more “dimensional room” for the underlying system’s underlying dynamics to “move”. Since the dynamics aren’t as “squashed”, we might therefore hope that the dynamics of $G_T$ are in some sense simpler than that of $T$. (Taken note of the fact that $G_T$ is a homeomorphism even when $T$ is just continuous)
  
-In \cite{manjunath2021universal} it is illustrated in an empirical fashion in that the map $G_T$ describes dynamics which are less functionally complex than that of $T$ or of the map $\Phi_{2d,\theta}$. This is done by implementing a Recurrent Neural Network (RNN), but not discussed as of yet. \ednote{(B: Add in that we'll be using Pearson coefficient?)}
+In \cite{manjunath2021universal} it is illustrated in an empirical fashion in that the map $G_T$ describes dynamics which are less functionally complex than that of $T$ or of the map $\Phi_{2d,\theta}$. This is done by implementing a Recurrent Neural Network (RNN), which is discussed in~\ref{ch5}. \ednote{(B: Should I add in that we'll be using Pearson coefficient?)}
  
 We opt to learn $G_T$ in an indirect manner by defining a new map $\Gamma:(x_{n-1},x_n)\mapsto{u_n}$. It will follow immediately from $G_T$’s existence that $\Gamma$ also exists. 
 
@@ -1078,7 +1094,7 @@ The reasons for taking this roundabout approach remain to be discussed in \ref{s
   When $x_n$ and $x_{n-1}$ are successive points on a solution obtained for input-orbit of $T$ $\{u_n\}$, then the map $\Gamma: X\times{X}\to{U}$ defined by $(x_{n-1},x_n)\mapsto{u_n}$ exists whenever $G_T$ exists 
 \end{Theorem}
 \begin{proof}
-  The proof may be found in~\cite[Th. 3c]{manjunath2021universal}.
+  See \cite[Th. 3c]{manjunath2021universal}.
 \end{proof}
 
 Projection mappings $\pi_i$ are defined in the traditional meaning where a $k$-dimensional vector is projected to it's $i^{th}$ component such that $$\pi_i:(a_1,a_2, \ldotp, a_{k-1}, a_k)\to{a_i}$$
@@ -1090,10 +1106,10 @@ Projection mappings $\pi_i$ are defined in the traditional meaning where a $k$-d
 
 The graph in equation \ref{Fig_inverse_limsystem} is then extended as below:
 
-\begin{figure}[ht] \label{Fig_Gamma}
+\begin{figure}[ht]
   \includegraphics[scale=0.3]{_gammatemp.png}
   \centering
-  \label{fig:conjugacy_with_Gamma}
+  \label{fig:temp_Gamma}
 \end{figure}
 
 The problem finally simplifies to the issue of learning the map $\Gamma$ and combining this with the projection mapping $\pi_2$ and the function $g$, which will be known. A final set of equations is obtained - equations that have been entirely constructed from data.
@@ -1109,31 +1125,35 @@ The problem finally simplifies to the issue of learning the map $\Gamma$ and com
 One may immediately ask why we opt to take such a roundabout route; why not just learn the map $G_T$ from the get-go? On the surface, this seems to be an arbitrary decision path with no real reasoning, so we take a pause again and discuss the motivation for learning Gamma.
 There are a number of distinct advantages. 
 
-Learning $\Gamma$ saves computational resources. This is due to the fact that the input $u_n$ lies in a lower-dimensional subspace of the high-dimensional space $X\times{X}$. In practice, if the input is of a  lower dimension, one may easily embed it into the space $X\times{X}$ by padding the vector $u_n$ with zeroes.
+In the first place, Learning $\Gamma$ saves computational resources. This is due to the fact that the input $u_n$ lies in a lower-dimensional subspace of the high-dimensional space $X\times{X}$ and we can learn $\Gamma$ on a small subset of the space. In practice, if the input is of a  lower dimension, one may easily embed it into the space $X\times{X}$ by padding the vector $u_n$ with zeroes.
 
-\textbf{Can we discuss how to put this across well? I would like to add it in as I think it beneficial to the discussion.}
+Secondly, the function $\Gamma$ is known to be stable. Learning Gamma makes use of equations \ref{eqns_from_data} which in turn employs $g$, a function possessing the USP, and offers distinct advantages with regards to stability in the presence of perturbation. It is desirable that inputs that differ only slightly would have only ‘slight’ effects on the output of the system. Moreover, one would hope to prevent numerical errors originating from input and measurement noise (see~\cite[Th. 5]{manjunath2021universal}). 
+As the data fed into the system is a function of both the input given and the parameters of the system itself (i.e. the value a, $\alpha$ in $\tanh$), we investigate both input-related and parameter-related stability. Both these notions are defined by way of the continuity of an encoding map of an input and design parameter respectively in \cite{manjunath2020stability}.\
 
-Moreover, two types of stability are achieved when $g$ has the USP. 
-
-
-Input- and parameter-related stability is achieved if $g$ has the USP
-\newline \emph{Define/Explain the two types of stabilities}
-\newline \emph{Sentence on $u$, $v$, tails, USP and product topology}
-\newline If we opt to work with $Y_T$, errors can occur. Expand
-\newline $\Gamma$ is more stable. Explain why.
-
-Thirdly, $\Gamma$ is globally dissipative whereas $G_T$ is not guaranteed to be(\emph{Cite}). \ednote{B: Add linking sentence.} Global dissipativity prevents large numerical errors due to input data.
-
-The $\omega$-limit set $\omega(u;T)$ of a point $u$ is defined to be the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$. This set is nonempty, and $\omega(u;T)$ is invariant. \textbf{(Change)}
-
-\begin{Definition}
-  [\bf Global Dissipativity]\label{Dfn_GlobalDiss}\rm
-	We say a dynamical system $(Z,f)$ is globally dissipative if there exists a nonempty proper closed subset $B$ of $Z$  so that for all $x\in Z\setminus B$, (i). $\omega(x;f) \subset B$  and (ii).  $B$ is positively invariant that is $f(B) \subset B$. We call any such closed subset $B$ a trapping set of $f$. 
-\end{Definition}
-
-If a system is not globally dissipative, neglibly small errors result in major errors which thus induce predictions to fail utterly. If one learns $G_T$ directly, we are in danger of replicating the problems arising for Takens. 
+Informally, we may consider input-related stability as concerned with the question of whether or not small variations in input would result in small responses.   
+If two inputs $u$ and $u_noisy$ are close in the product topology, then their tails could differ greatly due to the metric's insensitivity to the differences in sequence's tails.
+ However if the system has the USP then the function $h$ is continuous and so $h(u), h(u_noisy)$ remain near – maintaining a measure of robustness to input and measurement noise.\cite{manjunath2021universal}.
+In a similar fashion, parameter-related stability is obtained thanks to a result \cite[Lemma 3.2]{manjunath2020stability} relating this form of stability with the ESP (which is here equivalent to the USP).
 
 
+% Secondly,  due to $g$ possessing the USP, both input- and parameter-related stability~\cite{manjunath2020stability} is obtained, which in turn prevents numerical errors that caused by input and measurement noise (see~\cite[Th. 5]{manjunath2021universal}). 
+
+\begin{figure}[ht]
+  \includegraphics[scale=0.4]{_AutovsDriven.eps}
+  \centering
+  \label{fig:learningFailure}
+  \captionof{figure}{Illustrating empirically the importance of global dissipativity. Plotted below the three principal components of randomly initiated trajectories of a learnt version of $G_T$ versus the trajectory $(x_{n-1}, x_n)$(grey) of driven stated obtained from the Thomas Attractor's data (see below). }
+\end{figure}
+
+\ednote{B: Would you please help me with the writing here? Otherwise I shall leave this out.}
+\emph{Thirdly, $\Gamma$ is globally dissipative whereas $G_T$ is not guaranteed to be~\cite{manjunath2021universal}). 
+Global dissipativity prevents large numerical errors due to input data.If a system is not globally dissipative, neglibly small errors result in major errors which thus induce predictions to fail utterly. If one learns $G_T$ directly, we are in danger of replicating the problems arising for Takens. }
+
+% The $\omega$-limit set $\omega(u;T)$ of a point $u$ is defined to be the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$. This set is nonempty, and $\omega(u;T)$ is invariant. \textbf{(Change)}
+% \begin{Definition}
+%   [\bf Global Dissipativity]\label{Dfn_GlobalDiss}\rm
+% 	We say a dynamical system $(Z,f)$ is globally dissipative if there exists a nonempty proper closed subset $B$ of $Z$  so that for all $x\in Z\setminus B$, (i). $\omega(x;f) \subset B$  and (ii).  $B$ is positively invariant that is $f(B) \subset B$. We call any such closed subset $B$ a trapping set of $f$. 
+% \end{Definition}
 
 
 
@@ -1141,31 +1161,29 @@ If a system is not globally dissipative, neglibly small errors result in major e
 
 \chapter{Implementation} \label{ch5}
  
-In this section we turn to the implementation of the function $G_T$ by discussing a method to learn the function $\Gamma$. We then indicate where this implementation differs from previous work done by (\cite{manjunath2021universal}) and show that our results do hold water by considering the Pearson correlation coefficient. \ednote{(this sentence needs to be changed) Are you talking of MDD? Or the sparse matrix?.} 
+In this section we turn to the implementation of the function $G_T$ by discussing a method to learn the function $\Gamma$. We then indicate where this implementation differs from previous work done by (\cite{manjunath2021universal}) and empirically show that the SDD of $G_T$ are less functionally complex than $\Phi_{k, \theta}$ or $T$ by considering the Pearson correlation coefficient. 
 Finally, we present and discuss some numerical results for a focus system of this project: the double pendulum. We also consider other chaotic attractors.
 
 \section{Implementing $G_T$}
-The map $G_T$ is implemented by applying the functions $\Gamma$, $g$ and the projection function $\pi_2$ in the relevant order. To reach this point, one must first learn $\Gamma$.
-After 1.normalising the data to ensure it lies within the interval $|x| < 1$ and has zero mean value, we 2.drive the system with external input through the function $g$.
+The map $G_T$ is implemented by applying the functions $\Gamma$, $g$ and the projection function $\pi_2$ in the relevant order as described by the equations~\ref{eqns_from_data}. To reach this point, one must first learn $\Gamma$.
+After first normalising the data to ensure it lies within the interval $|x| < 1$ and has zero mean value, we continue by driving the system with external input through the function $g$.
 
-From before (\eqref{eqn_driving}): $ g(u,x)=(1-a)x+a{\cdot}\tanh(Au+\alpha{a}Bx)$. Remember that $g$ is SI-invertible. $A$ is the so-called “input matrix” and $B$ the “reservoir matrix”. 
+From \eqref{eqn_driving} we know that $ g(u,x)=(1-a)x+a{\cdot}\tanh(Au+\alpha{a}Bx)$. Recall that $g$ is SI-invertible. %Adopting the terminology of \cite{manjunath2021universal}, $A$ is called the “input matrix” and $B$ the “reservoir matrix”. 
 
 We make use of a Recurrent Neural Network (RNN) in our implementation. RNN's are widely used in the literature for discrete-time processing and are considered to be discrete-time version of continuous dynamical systems modelling a network of neurons. (\textbf{Cite.})
-A complete discussion of the RNN is outside the scope of this thesis, so we only present the details necessary to the current discussion. For information, (\textbf{Cite, Cite, Cite}) may be consulted.
+A complete discussion of RNN's is outside the scope of this thesis, so we present only the details necessary to the current discussion. For information, (\textbf{Cite, Cite, Cite}) may be consulted. We implement our RNN in the \emph{Python} programming language and making use of the \emph{Scipy} and \emph{Tensorflow} libraries.
 
-If the RNN we will be using in the next step has $N$ neurons, then $A$ and $B$ are each $N\times{N}$ matrices. Inputs $u_n$ of dimension $K < N$ are padded by zeroes to obtain an input of dimension $N$.
+If the RNN we will be using in the next step has $N$ neurons, then $A$ and $B$ are each $N\times{N}$ matrices. Inputs $u_n$ of dimension $K < N$ are padded by zeroes to obtain an input of dimension $N$. As we do not need the entire left-infinite history of input, an arbitrary initialisation of the system with initial values followed by the driving of the system with the function $g$ means that the generated values will approach the actual solution’s elements in a uniform manner thanks to the UAP. \textbf{(Cite.)}
 
-No need for entire left-infinite history of input: An arbitrary initialisation of the system with initial values and the driving of the system with the function $g$ means that the generated values will come to approximate the actual solution’s elements in a uniform manner thanks to the UAP.
-
-We then 3.set up/prepare the RNN. Utilising a network $N$ neurons (the same $N$ as in the dimensions of the matrices $A,B$). Training is accomplished using the Adam Optimiser where the MSE loss function is optimised. The system is trained several times(in our case 4) with incrementally smaller learning rates on each run (0.001 and thereafter divided by 10 at each run). 
-\ednote{Please present the number of layers in the network, number of neurons in each layer and the length of the training validation and testing for learning Gamma.}
+Thirdly we prepare the network. Utilising a network $N$ neurons (the same value $N$ as in the dimensions of the matrices $A,B$). Training is done using the Adam Optimiser where the MSE loss function is optimised. The system is trained several times(in our case 4) with incrementally smaller learning rates on each run (0.001 and thereafter divided by 10 at each run). 
+Additional parameters such as the number of network-layers, neurons per layer and training-length are presented case-by-case below.
 
 We then reach the prediction step. Making use of $g$'s SI-invertibility and $g$ as defined in \eqref{eqn_driving}, we have the following expression for $u_n$ replicated from~\eqref{eqn_SI_RNN}.
 \begin{equation*}
   u_n := A^{-1}\bigg(\overline{\tanh}^{^{-1}}\frac{1}{a}\Big(x_{n+1}-(1-a)x_n\Big) \bigg) - \alpha B x_n
 \end{equation*}
     
-The two model equations for learning from data (\eqref{eqns_from_data}) also allows us to determine what the state $x_{n+1}$ at time $n+1$ will be. 
+The two model equations for learning from data (\eqref{eqns_from_data}) allows us to determine what the state $x_{n+1}$ at time $n+1$ will be. 
 We specifically remind ourselves of \[x_{k+1}=\pi_2 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k)\]
 
 \section{Changes in this thesis/project/report to previous work of~\cite{manjunath2021universal}}
@@ -1182,13 +1200,6 @@ We made several changes which gave improved results:
 
 \section{Numerical simulations}
 \subsection{Double Pendulum}
-\begin{itemize}
-  \item What it is. 
-  \item Why it's chaotic
-  \item How data was generated for this. (noiseless)
-  \item Why data dying down doesn't work (ie. Not surjective)
-  \item Other possibilities
-\end{itemize}
 
 The Double Pendulum consists of two pendulums fastened to one another such that the system moves as a whole. The first (or higher pendulum) is attached to a fixed point while the second is attached to the endpoint of the first. (See below)
 
@@ -1198,17 +1209,23 @@ The Double Pendulum consists of two pendulums fastened to one another such that 
   \label{fig:conjugacy_with_Gamma}
 \end{figure}
 
-An ideal system is assumed where the rods are massless and no friction in the pivots are considered.
-One is easily reminded of the Lorenz system, another three-equation deterministic model which exhibits chaotic behaviour.
-The scalar equations of motion are presented below and were derived with the use of Newtonian physics and can be found in \textbf{(Cite.)}
+This system has four variables: angle and angular velocity of each pendulum rod. An ideal system is assumed where the rods are massless and no friction in the pivots are considered.
+The scalar equations of motion are derived using Newtonian physics and can be found in \cite{DPFormulas}. The second-order system is converted to a first-order ODE and solved using the Runge-Kutta numerical method. 
 
-\begin{eqnarray}
-\theta_{1}^{''} = \frac{-g(2m_1+m_2)\sin{\theta_1} - m_{2}g\sin(\theta_1 - 2\theta_2) -2\sin(\theta_1-\theta_2)m_2({\theta_{2}'}^{2}L_2 + \theta_{1}^{2}L_{1}\cos(\theta_1 - \theta_2))}{L_1(2m_1+m_2-m_2\cos({2\theta_1 -2\theta_2}))}
-\\
-\theta_{2}^{''} = \frac{ 2\sin(\theta_1-\theta_2)(\theta_{1}'^2 L_1 (m_1+m_2) + g(m_1+m_2)\cos{\theta_1} + \theta_{2}'^2 L_2 m_2 \cos(\theta_1 - \theta_2))}{L_2(2m_1+m_2-m_2\cos({2\theta_1 -2\theta_2}))}
-\end{eqnarray}
+This system is a classical example of a system exhibiting chaos. \textbf{Cite.}
 
-This second-order system was then converted into a first-order system by defining the first derivatives as separate values.`'
+% \begin{eqnarray}
+% \theta_{1}^{''} = \frac{-g(2m_1+m_2)\sin{\theta_1} - m_{2}g\sin(\theta_1 - 2\theta_2) -2\sin(\theta_1-\theta_2)m_2({\theta_{2}'}^{2}L_2 + \theta_{1}^{2}L_{1}\cos(\theta_1 - \theta_2))}{L_1(2m_1+m_2-m_2\cos({2\theta_1 -2\theta_2}))}
+% \\
+% \theta_{2}^{''} = \frac{ 2\sin(\theta_1-\theta_2)(\theta_{1}'^2 L_1 (m_1+m_2) + g(m_1+m_2)\cos{\theta_1} + \theta_{2}'^2 L_2 m_2 \cos(\theta_1 - \theta_2))}{L_2(2m_1+m_2-m_2\cos({2\theta_1 -2\theta_2}))}
+% \end{eqnarray}
+
+\begin{itemize}
+  \item Why data dying down doesn't work (ie. Not surjective)
+  \item Parameter Values \& Success
+\end{itemize}
+
+
 
 \subsection{Other attractors I’ve experimented with: Clifford \& Thomas}
 We follow the methodology presented in \cite{manjunath2021universal} but opt to consider different attractors this time. 
@@ -1227,16 +1244,123 @@ We follow the methodology presented in \cite{manjunath2021universal} but opt to 
 \end{equation}
 \end{itemize}
 
+One is easily reminded of the Lorenz system, another three-equation deterministic model which exhibits chaotic behaviour.
+
 
 \section{Generalized Pearson correlation coefficient for the DP and other attractors}
+
+
+
 \textbf{Insert table: D.Pendulum, Lorenz, Others (Clifford \& Thomas)}
 
+\begin{center}
+  \begin{table}
+      \scalebox{0.75}
+      {\begin{tabular}{|c|c| c c |} 
+          \hline
+          Input & Dimension of $X$ & $u_n$ vs $u_{n+1}$ 
+          & $\begin{bmatrix}
+              x_{n-1}\\
+              x_n
+          \end{bmatrix}$ vs $\begin{bmatrix}
+              x_n\\
+              x_{n+1}
+          \end{bmatrix}$ \\
+          \hline
+          
+          \hline
+          $(w_n)$ is the Lorenz states, sampled every 0.1 timestamps. & & &\\
+          \multirow{3}{*}{$u_n=\frac{1}{100}w_n$} & 10 &0.9311  & 0.9731\\
+              & 100 &  & 0.9934\\
+              & 1000 & & 0.9930\\
+              
+          \multirow{3}{*}{$u_n=\frac{1}{10}(\sin(0.1w_{n,x})+\sin(0.1w_{n,y})+\sin(0.1w_{n,z}))$} 
+              & 10 &0.8401  & 0.9392\\
+              & 100 & & 0.9616\\
+              & 1000 & & 0.9737\\
+          \hline
+          
+          \hline 
+          $(w_n)$ comes from the Thomas Attractor (for $\beta=0.1056$): & & & \\
+          {$w_{n+1}= \begin{bmatrix} \sin(w_{n,y}) - \beta{w_{n,x}} \\
+              u_y = \sin(w_{n,z}) - \beta{w_{n,y}} \\
+          u_z = \sin(w_{n,x}) - \beta{w_{n,z}} \end{bmatrix}$} & & & \\
+          \multirow{3}{*}{$u_n = w_n - \overline{w}$}
+              & 10 & 0.99989 & 0.999886 \\
+              & 100 & &  0.999913 \\
+              & 1000 & & 0.999901 \\
+          \hline
+          
+          \hline
+          $(w_n)$ comes from Noise-Added Thomas Attractor (for $\beta=0.1056$): & & & \\
+          {$w_{n+1}= \begin{bmatrix} \sin(w_{n,y}) - \beta{w_{n,x}} \\
+              u_y = \sin(w_{n,z}) - \beta{w_{n,y}} \\
+          u_z = \sin(w_{n,x}) - \beta{w_{n,z}} \end{bmatrix}$} & & & \\
+          \multirow{3}{*}{$u_n = w_n - \overline{w}$}
+              & 10 & 0.9994 & 0.99985 \\
+              & 100 & &  0.99991 \\
+              & 1000 & & 0.999895\\
+          \hline
+          
+          \hline
+          $(w_n)$ comes from the Thomas Attractor (for $\beta=0.208186$): & & & \\
+          {$w_{n+1}= \begin{bmatrix} \sin(w_{n,y}) - \beta{w_{n,x}} \\
+              u_y = \sin(w_{n,z}) - \beta{w_{n,y}} \\
+          u_z = \sin(w_{n,x}) - \beta{w_{n,z}} \end{bmatrix}$} & & & \\
+          \multirow{3}{*}{$u_n = w_n - \overline{w}$}
+              & 10 & 0.99982 & 0.99981\\
+              & 100 & &  0.999851 \\
+              & 1000 & & 0.99984 \\
+          \hline
+  
+          \hline
+          $(w_n)$ comes from the Clifford Attractor \\ (for $a = -1.7; b = 1.8; c = -1.9; d = -0.4$): & & & \\
+        {$w_{n+1}= \begin{bmatrix} \sin(aw_{n,y}) + c\cos(aw_{n,x}) \\ 
+                                                                    \sin(bw_{n,x})+d\cos(bw_{n,y}) \end{bmatrix}$} & & & \\
+          \multirow{3}{*}{$u_n = w_n-\overline{w}$}
+              & 10 & -0.21713 & 0.78719 \\
+              & 100 & &  0.8334 \\
+              & 1000 & & 0.84854 \\
+          \hline
+  
+          \hline 
+          $(w_n)$ comes from the Logistic map: & & & \\
+          {$ w_{n+1}  = 4w_n(1-w_n)$} & & & \\
+          \multirow{3}{*}{$u_n = w_n - 0.5$} 
+              & 10 &-0.0314  & 0.5577\\
+              & 100 &  & 0.7150\\
+              & 1000 & & 0.7826\\
+          \hline
+
+          \hline
+          $(w_n)$ comes from the Svensson Attractor \\ (for $a = -1.7; b = 1.8; c = -1.9; d = -0.4$): & & & \\
+          {$w_{n+1}= \begin{bmatrix} d\sin(aw_{n,x}) - \sin(bw_{n,y}) \\ 
+                                                                      c\cos(aw_{n,x})+\cos(bw_{n,y}) \end{bmatrix}$} & & & \\
+            \multirow{3}{*}{$u_n = w_n-\overline{w}$}
+                & 10 & -0.2243 & 0.49698 \\
+                & 100 & &  0.63310 \\
+                & 1000 & & 0.71151 \\
+          \hline
+        
+      \end{tabular}} %\ednote{http://paulbourke.net/fractals/peterdejong/}
+
+      \caption{Multidimensional Correlation Coefficients $\rho$ to indicate a general reduction in the functional complexity of the map $G_T$ that arises from a RNN. Each row corresponds to a different dynamical system used in the experiments in \cite{Main_article}. In the second column corresponds to the dimension of $X$ (number of artificial neurons) in the RNN used. 
+      The numerical estimate of $\rho$ for the relevant vectors is plotted in the last two columns. The reader can compare the linear relationship between $u_n$ vs $T(u_{n})$ and the linear relationship $\begin{bmatrix}
+              x_{n-1}\\
+              x_n
+          \end{bmatrix}$ vs $G_T \left( \begin{bmatrix}
+              x_{n-1}\\
+              x_n
+          \end{bmatrix}\right)$. The dimension of the RNN from \eqref{Seq_RNN} is also given, showcasing that increasing the dimension of the driven system typically yields a map $G_T$ of lower functional complexity.} \label{Table_FC}
+      \end{table}
+  \end{center}
+  
 
 
 
 \chapter{Conclusion}\label{ch6}
 
-The driven states $x_{n-1},x_n)$ holds the information of the left-infinite history of the input. Furthermore, there is some evidence that the inverse-limit space (not system) seems to distinguish two dynamical systems that are not topologically conjugate for a class of systems in the sense their inverse-limit spaces are not homeomorphic to each other.  So the relation $Y_T$, which is homeomorphic to the inverse-limit system, may be unique to a class of systems. (The reference is a paper on Ingram’s Conjecture by Marcy Barge, Henk Bruin and Sonja Stimac. ) Further investigation is needed. 
+The driven states $(x_{n-1},x_n)$ holds the information of the left-infinite history of the input. Furthermore, there is some evidence that the inverse-limit space (not system) seems to distinguish two dynamical systems that are not topologically conjugate for a class of systems in the sense their inverse-limit spaces are not homeomorphic to each other.  So the relation $Y_T$, which is homeomorphic to the inverse-limit system, may be unique to a class of systems. (The reference is a paper on Ingram’s Conjecture by Marcy Barge, Henk Bruin and Sonja Stimac. ) Further investigation is needed. 
 
 
 \end{document}

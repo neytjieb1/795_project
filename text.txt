@@ -25,3 +25,9 @@ To-Do
 - EPS format
 - Discussion on DP 
 - Definitions add \rm
+- Add observables
+
+
+p.32
+p.28
+p.25
