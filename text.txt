@@ -47,3 +47,150 @@ A nonautonomous dynamical system is simply a dynamical system (as defined before
 % \end{eqnarray}
 
 Another limitation owes itself to the requirement that T be a surjective map. This is not always the case in practical examples and we may consider the case of a damped double pendulum \ednote{M: Please remove the paragraph as well. We do not overcome this problem. You can add this in the next Chapter where you need T to be surjective or else you could include this at the begining of this chapter where you explain the forecasting problem.}
+
+Memory-loss may occur for 2 reasons (PROC_SCI)
+- 2 trajectories merge and in time they effectively evolve as a single trajectory (contractive systems)
+- SDIC: small errors multiply quickly in time and in practice it is virtually impossible to track a single trajectory in a chaotic system
+
+
+As technology has advanced over the past century, humanity’s ability to record and manipulate rich, complex data in order to produce forecasts has profoundly increased. 
+Collecting measurements from underlying artificial, natural, and physical systems through observables to realise a dynamical model with greater descriptive power is well-established in present-day science.
+
+A key to the success of these techniques is the fact that dynamics discerned from the observed space can often be characterised by a mapping of much lower functional complexity when compared to the map describing the unknown underlying system. 
+
+Takens theorem and the numerous generalizations (e.g., [5, 6, 7, 8, 8]) thereof is one such method establishing (under some generic conditions) the learnability of a system produced by creating a delay-coordinate vector from a sufficiently large number of previous observations of a dynamical system. This system is topologically conjugate to the system from which the observed time-series was obtained.
+
+A critical concern of this method is the requirement of full knowledge of the variables of the underlying state space that govern the complex dynamical system one is interested in. In real-world conditions this intelligence is seldom available and one must depend heavily on human expertise and insight. 
+
+Each discrete-time state space model has at its core a driven dynamical system. In this project, it has been shown that an input originating from a compact space entailing exactly one solution (i.e., if the driven system has the USP) is equivalent to representing information without distortion, a concept which was formalised by establishing a causal mapping’s existence.
+
+The established results are general, implying that any driven dynamical system with specific properties can give rise to a causal mapping, 
+% answering the question of why random choices of driven systems actually work in information processing methods in [4, 5].
+
+In particular, we have a topological conjugacy (semi-conjugacy) between the data comprising the 11single-delay lag dynamics of a driven system’s and the underlying homeomorphic dynamical system.
+
+Finite-length input data is sufficient for forecasting as driven system states are influenced only in an almost negligibly small manner by the left-infinite segment of the past of the input beyond some arbitrarily large but finite time (a result which holds due to the universal semi-conjugacy of a driven system’s continuity)
+
+
+Viewed through the lens reservoir computing approaches, we have also demonstrated that when single-delay dynamics are utilised, a learnable map in a reservoir computing network certainly exists.
+
+Moreover, such a driven system within a reservoir computing network enjoys certain proven qualities pertaining to the robustness w.r.t input- and parameter-perturbation. Accordingly, we are able to preserve the quality of a representation that would otherwise remain sensitive to various fluctuations, rendering the learning of the system’s dynamics wholly unpredictable. In addition, we obtain the robustness of the system against external noise, a phenomenon which is observed for the Fractal Dream Attractor.
+
+Finally, we consider some physical systems to observe the methodology in practice and verify that we can indeed predict the future evolution of chaotic systems such as the double pendulum. Empirical evidence shows that a linearity measure like a Pearson correlation coefficient points at reduced functional complexity while learning the dynamics in the state space of the driven system
+
+
+From a philosophical outlook of science, this project has aimed to establish a juncture between rationalism (the theory of nonautonomous dynamical systems) and empiricism (machine learning) to yield results profitable to the discipline of Applied Mathematics. This was done by showing that dynamics in an observed space can be established as topologically conjugate to the underlying system. As a result of the topological conjugacy, deep learning techniques are then subsequently applied to physically such equations from the data.
+
+In so doing, we acquire models of high fidelity that provide exceptional forecasting results on chaotic data that exhibit both statistical and topological consistency in the long run.
+
+
+
+
+
+
+
+
+
+
+
+
+Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Since Poincaré’s pioneering work, we have had over a hundred years of the profound
+theory of dynamical systems that allows analysing tractable models. 
+
+When observed data originates from a dynamical system, we solve a theoretical problem in data-driven forecasting that entails equations from data and exceptionally long-term consistent models in the absence of good physical intuition of the underlying system. 
+
+Balancing model complexity with accuracy has recently led to the idea of sparse representations where the vector field of a differential equation that describes the dynamics is approximated by an optimal linear combination of a very few functions (determined through sparse regression) that are ‘possibly nonlinear’ from a chosen library.
+
+Such representations can be used to build simpler model equations from data e.g., the popular SINDy algorithms in [?, ?]. However, if the library is not big enough to span the vector field, then long-term consistent modeling is not possible for complex data.
+
+Remarkably, we do not have to resort to finding new observables or guessing the library of governing equations for every new temporal datasets as the observables induced by the driven systems are universal.
+
+Although better forecasts do help better manage service interruptions and resource management, a model with long-term consistency concerning time-averaged characteristics is useful for understanding the response to changes in the statistical properties of the perturbations of models that have potentially distinguished applications, for instance in climate science (e.g., [1, 2] and references therein). 
+Attempts made to build model equations from complex data such as sunspot cycles date back to the 1920s in [3], but a major breakthrough came through the Takens embedding theorem [4]
+
+The Takens embedding theorem and their various generalizations (e.g., [5, 6, 7, 8, 8]), under some generic conditions, establish the learnability of a system that is created out of concatenating sufficiently large previous observations of a dynamical system into a vector (called delay coordinates). The system determined by such vectors is equivalent (topologically conjugate) (e.g., [9]) to the system from which the observed time-series was derived. 
+
+Besides exact reconstruction when conjugacy holds, we have the universality of observables, equations from data, and robustness to input noise. All this helps in obtaining high-fidelity models that give exceptional forecasting results with long-term topological and statistical consistency on chaotic data
+
+
+Similar to the delay coordinate maps being universal observables in Takens delay embedding, the observables we determine are universal, and hence do not need to be changed while the underlying system is changed. 
+They are determined by a class of driven systems that are comparable to those used in reservoir computing, but which also can causally embed a dynamical system, 
+
+
+
+In particular, if the driven system has the unique solution property and is also invertible for each fixed state-variable, it induces an infinite-delay observable through which one can obtain the coordinate mappings of a function (a causal embedding) that embeds sequential data contained in a compact input space in the solution space of driven system’s state space.
+
+Also, the map that describes the single-delay lag dynamics is not found in other reservoir computing algorithms.
+
+Of course, this is not a generalization of Taken’s embedding, and when the input is a coordinate of an orbit of another smooth dynamical system, rigorous research is needed to determine whether the hidden states are reconstructed as in Takens embedding.
+
+Often, experimental measurements of dynamical systems are not directly the system’s states, but a univariate time-series whose span is smaller than the underlying system’s dynamics. 
+
+Finding observables that can empirically reduce the functional complexity of the map to be learned, and at the same time, theoretically guarantee exact reconstruction in the new phase space is an open challenge. 
+
+
+Second goal: demonstrate the usefulness and power of concepts and insights from the field of nonautonomous dynamical systems.
+
+
+
+Empirically it is found that the map with the single-delay lag dynamics has a stronger linear relationship and intuitively less functional complexity than the map that describes the data or the map the delay coordinates induce. As a consequence, through the use of recurrent conjugate networks (RCNs), we obtain exceptional forecasting results with long-term topological and statistical consistency which is illustrated on chaotic maps.
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+
+This methodology induces equations from data. 
+
+From the perspective of the reservoir computing approaches, we show the existence of a learnable map in a RCN if single-delay lag dynamics is chosen.
+
+The driven system in the RCN has proven properties of robustness to perturbations of the input and parameters in the system, making these networks attractive for hardware implementations.
+
+Alternatively, if the data is mapped onto a higher-dimensional space through a time-delay observation map, the unobserved coordinates of the data source may get revealed. For instance, if the observed data is a partial 21scalar observable of motion along an attractor of a smooth dynamical system, Takens embedding could hold.
+
+there is an attractor containing the invariant set so that small errors do not lead to the future iterates completely veering off from the invariant set before predictions totally fail [11, Fig. 1 and Fig. 2].
+
+Recurrent neural networks (RNNs) are successfully employed in processing information from temporal data.
+
+we obtain exact equations from the data of a dynamical system, the data could be the actual states or obtained as observations in Takens delay-embedding. The equations are determined after learning a map from the data and have several auxiliary variables. Since the driven system that appears in these equations has mathematically proven stability properties [?, ?], the forecasting results show greater stability to noise and parameters although it introduces auxiliary variables. 
+
+
+======================================
+% An embedding of the space $\overleftarrow{U}$  in $\overleftarrow{U}$ would allow one to establish topological conjugacy, which in turn provides stronger results than merely obtaining a coarse-grained representation via a causal mapping \ednote{M: I feel this is very confusing to the reader as the co-domain of causal mapping is the left-infinite space and , so please omit if possible. You can just say we want to restrict inputs to the left-infinite orbits of a dynamical system and then explore conjugacy instead of a mere semi-conjugacy}. 
+It is of interest to ascertain whether $\widehat{T}$ and $G_T$ are related\ednote{B: Should I expand more here?}, and we accordingly consider a candidate-function $H_2{\overline{}} := (h(r\overline{u}, h(\overline{u})))$ which maps the entirety of a left-infinite sequence to some element in $X\times{X}$. 
+
+Before formalising this in the next theorem~\ref{Thm_CET}, we make mention of the concept of the inverse-limit system of a dynamical system $(U,T)$. 
+
+Equipped as we are, we formalise the relationship between the maps $G_T$ and $\widehat{T}$:
+
+\begin{Theorem}
+  [\bf Causal Embedding Theorem (adopted from \cite{Supp})]
+  % {\bf (Causal Embedding Theorem.)}
+ \label{Thm_CET}
+	Let $g$ be a driven system with SI-invertibility and the USP. Let $h$ denote the universal semi-conjugacy and $H_2(\overleftarrow{u}) := (h(r\overleftarrow{u}),h(\overleftarrow{u}))$, where $r$ is the right-shift map. 
+ Let $(\widehat{U}_T, \widehat{T})$  be the inverse-limit system of a dynamical system $(U,T)$. 
+ Then the restriction of $H_2$ to $\widehat{U}_T$ is a topological semi-conjugacy between the inverse-limit system $(\widehat{U}_T, \widehat{T})$ 
+and the induced dynamical system  $(Y_T,G_T)$, i.e., the following diagram commutes
+\begin{equation} \label{comm_H_CET}
+\psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+ \widehat{U}_T & \widehat{U}_T\\%
+ Y_T &  Y_T.
+ %%%
+%  \ncline{1,1}{1,2}^{\widehat{T}} \ncline{1,1}{2,1} <{H_2}
+%  \ncline{1,2}{2,2} > {H_2}
+%  \ncline{2,1}{2,2}^{G_T}
+ \end{psmatrix}
+ \end{equation}
+or in other words, $(Y_T, G_T)$ is a factor of  $(\widehat{U}_T, \widehat{T})$. Further, if $T:U \to U$ is a homeomorphism, 
+then $H_2$ embeds $\widehat{U}_T$ in $X_U \times X_U$, and hence $(Y_T, G_T)$ is conjugate to $(\widehat{U}_T, \widehat{T})$.
+\end{Theorem}
+\begin{proof}
+  May be found as the proof of~\cite[Th.4]{Supp}
+\end{proof}
+
+$g$ having SI-invertibility and the $USP$ then immediately guarantees at least a semi-conjugacy between the systems $(Y_T, G_T)$ and $(\widehat{U}_T, \widehat{T})$.

@@ -24,6 +24,7 @@
 \usepackage{multirow}
 \usepackage{longtable}
 \usepackage[export]{adjustbox}
+% $f\arrowvert_A$ To restrict functions
 
 \setlength{\parskip}{1.7em}
 \setlength{\parindent}{0em}
@@ -584,7 +585,7 @@ If we can learn the map $F_\theta$, from sufficient number of data points of $\{
 
 %Thus information about U can be retained in the time series' (or observation's) output. By preserving the topology on the manifold $U$ in the reconstruction space $X$ (\textbf{not discussed before}), we are also guaranteed the preservation of topological invariants of the manifold, of which dimensionality is one such invariant. (We note here that dimensionality will again be considered later in this project).
 
-\section{Practical Issues of Takens theorem}
+\section{Practical Limitations to Takens' Theorem}
 
 It is a fact that Takens' Embedding Theorem is both a powerful result and that it provides compelling reason to believe that one could conceivably reconstruct accurately a system conjugate to the underlying system. Nonetheless, it does present some serious practical limitations:
 \vspace{-5mm}
@@ -599,6 +600,8 @@ It is a fact that Takens' Embedding Theorem is both a powerful result and that i
 The Takens embedding theorem does not guarantee global dissipativity.
 \ednote{B:Links with~\ref{subs_LearnGamma} in discussion of dissipativity of $\Gamma$.  Sir, I'm not sure how to write this here - I think it a beneficial point to make so as to set the stage for the later discussion in ~\ref{subs_LearnGamma}, but I am unsure there as well.}
 
+
+\ednote{Include note on learning failure because of sensitivity as in graph commented out?}
 % \begin{figure}[ht]
 %   \includegraphics[scale=0.3]{_learningfailure.eps}
 %   \centering
@@ -724,7 +727,7 @@ Should the driven system be compact, existence follows immediately as shown in t
 
 One may easily construct many systems with trivial solution-sets, such as $g(u,x)=x$ which has only the constant solution $x$ and so for $U=[-1,1]$, the system would have no solution if $|x|>1$. To refine the scenario, we consider only systems with unique solutions. 
 
-\section {Unique Solution Property}
+\section{Unique Solution Property}
 
 \begin{Definition}
   [\bf Unique Solution Property] \label{Dfn_usp}\rm
@@ -755,6 +758,7 @@ Having already defined the reachable set $X_U$ as the set of all elements of all
 Defining $\cev{u}^{n}:=(\ldots,u_{n-2} ,u_{n-1})$ as the left-infinite subsequence of an input up until time $n$, $\overleftarrow{U}$ is then the notation for all these left-infinite sequences in $U$. 
 Moreover, $\cev{u}^{n}v:=(\ldots,u_{n-2} ,u_{n-1}, v)$ will symbolise the input up to time $n$ with $v \in U$ being the specific input value at time $n$. 
 The introduction of a new input at time $n$ can be described by the mapping $\sigma_v:   \cev{u}^{n} \mapsto \cev{u}^{n}v$. 
+The right-shift map, $r\overleftarrow{U}\to\overleftarrow{U}$, of an input sequence is defined $r: (\cdots, u_{-2},u_{-1}) \mapsto(\cdots, u_{-3},u_{-2})$
 
 The goal now assumes the form of the question on our ability to establish a semi-conjugacy as presented below for the driven system $g$. 
 %\ednote{M: I have changed it to a semi-conjugacy since conjugacy amounts to asking a infinite-dimensional space $\overleftarrow{U}$ to be embedded in $X_U$ which is not possible.} 
@@ -816,18 +820,32 @@ Re-sketching the commutativity diagram \ref{Scomm_h} above by fixing the input $
 \begin{proof}
   See~\cite[Th.3]{manjunath2013echo}.
 \end{proof}
-To establish whether $\widehat{T}$ and $G_T$ are related, we consider the the function $H_2{\overline{}} := (h(r\overline{u}, h(\overline{u})))$. $H_2$ send the entirety of a left-infinite sequence to some element of $X\times{X}$.
+
+The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: 
+If the causal mapping $H:\overleftarrow{U}{\to}{\overleftarrow{X}_U}$ is injective (in addition to being surjective), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$. \ednote{Explain why $H_{-1}$ is continuous} and we refer to $H$ as a \emph{causal embedding} 
+% \ednote{M : Causal embedding a dynamical system is different from the definition of causal embedding, so please edit/delete this paragraph and the next theorem and also in the remaining part till Section 1.2}. 
+% \begin{Theorem}
+%  If $g(\ldotp,x)$ is invertible and has the USP then $H$ is a causal embedding. 
+% \end{Theorem}
+% \begin{proof}
+%   See \cite{manjunath2021universal}.
+% \end{proof}
+When $g$ has the USP, the diagram below (adopted from~\cite{Manju_Nonlinearity}) illustrates the operation of the mappings $h$ and $H$. The mapping $h:\overleftarrow{U}\to{X_U}$ is also considered an observable as mentioned in the introduction of Chapter \ref{ch3}).  
+
+\begin{figure}[ht]
+  \includegraphics[scale=0.3]{_actionofh_H.eps}
+  \centering
+  \captionof{figure}{Ladder-like behaviour of $h$ and $H$ to illustrate the causal mapping. }
+  \label{fig:actionh_H}
+\end{figure}
 
 
-% An embedding of the space $\overleftarrow{U}$  in $\overleftarrow{U}$ would allow one to establish topological conjugacy, which in turn provides stronger results than merely obtaining a coarse-grained representation via a causal mapping \ednote{M: I feel this is very confusing to the reader as the co-domain of causal mapping is the left-infinite space and , so please omit if possible. You can just say we want to restrict inputs to the left-infinite orbits of a dynamical system and then explore conjugacy instead of a mere semi-conjugacy}. 
 
-
-
-% Before formalising this, we make mention of the concept of the inverse-limit system of a dynamical system $(U,T)$. 
-We would like to restrict inputs to the left-infinite orbits of a dynamical system and accordingly explore the possibility of establishing a conjugacy instead of merely obtaining a semi-conjugacy.
-These spaces are noteworthy as their topology can help one ascertain much about the original system \cite{Manju_IEEE}. The topological structure for inverse-limit systems of chaotic dynamical systems is complicated, so we relegate further discussion to \cite{kennedy2008inverse_limit, ingram2011inverse}.
-In broad sweeps, the inverse-limit space of a dynamical system is a self-map on a subset of an infinite-dimensional space where each point in the inverse-limit space corresponds to a backward orbit of the map $T$. 
-Following \cite{manjunath2021universal, ingram2011inverse}:
+We wish to explore the possibility of establishing a conjugacy rather than a mere semi-conjugacy and therefore are interested in the restriction of inputs to the left-infinite orbits of a dynamical system.
+The left-infinite orbit spaces are significant because a great amount of information about the original system can be gleaned from their topological structure~\cite{Manju_IEEE}. 
+The formal topological structure for the so-called inverse-limit space of chaotic dynamical systems is complicated, and further discussion is relegated to~\cite{kennedy2008inverse_limit, ingram2011inverse}.
+Broadly, we may conceive of the inverse-limit space of a dynamical system as a self-map on a subset of an infinite-dimensional space where each point in the inverse-limit space corresponds to a backward orbit of the map $T$. 
+Following~\cite{manjunath2021universal, ingram2011inverse} we provide a definition:
 
 \begin{Definition}
   [\bf Inverse-Limit Space, Inverse-Limit System]\label{Dfn_InverseL}\rm
@@ -835,51 +853,7 @@ Following \cite{manjunath2021universal, ingram2011inverse}:
  The self-map $\widehat{T}$  induced by $T$ on $\widehat{U}_T$  is defined by \[\widehat{T}: (\ldots,u_{-2},u_{-1}) \mapsto  (\ldots,u_{-2},u_{-1},T(u_{-1}))\] and the resulting dynamical system $(\widehat{U_T}, \widehat{T})$ is called the inverse-limit system of $(U,T)$.
 \end{Definition}
 
-\begin{Definition}
-  [\bf Causal Embedding]\label{Dfn_CausalEmbed}\rm
-  A driven system $g$ is said to causally embed the dynamical system $(U,T)$ if 
-  \vspace{-8mm}
-\begin{enumerate}[noitemsep, label=\roman*.]
-  \item The diagram in \ref{Scomm_h} commutes (i.e. $h$ is a universal semi-conjugacy),
-  \item $H_2(\overline{u}):=(h(r\overline{u}, h(\overline{u})))$ embeds the inverse-limit space $(\widehat{U}_T, \hat{T})$ of $(U,T)$ in $X\times{X}$.
-\end{enumerate}
-\end{Definition}
-
-The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: 
-If $H:\overleftarrow{U}{\to}{\overleftarrow{X}_U}$ is also injective (in addition to being surjective, and hence bijective), 
-it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$. %and we refer to $H$ as a \emph{causal embedding} 
-% \ednote{M : Causal embedding a dynamical system is different from the definition of causal embedding, so please edit/delete this paragraph and the next theorem and also in the remaining part till Section 1.2}. 
-
-% \begin{Theorem}
-%  If $g(\ldotp,x)$ is invertible and has the USP then $H$ is a causal embedding. 
-% \end{Theorem}
-% \begin{proof}
-%   See \cite{manjunath2021universal}.
-% \end{proof}
-
-When $g$ has the USP, the diagram below (adopted from~\cite{Manju_Nonlinearity}) illustrates the operation of the mappings $h$ and $H$. The mapping $h:\overleftarrow{U}\to{X_U}$ is also considered an observable as mentioned in the introduction of Chapter \ref{ch3}).  
-
-\begin{figure}[ht]
-  \includegraphics[scale=0.3]{_actionofh_H.png}
-  \centering
-  \captionof{figure}{Progressive actions of $h$ and $H$ to illustrate the causal mapping. }
-  \label{fig:actionh_H}
-\end{figure}
-
-The next result is of relative import but to fully comprehend its influence, some discussion still remains. We state it in part here.
-% Before stating it, we define a concept which will directly be shown to be equivalent to the USP.
-
-\begin{Theorem}
-  The following statements are equivalent:
-  \vspace{-8mm}
-  \begin{enumerate}[noitemsep, label=\roman*.]
-    \item $g$ has the USP. 
-    \item $g$ is a topological contraction.
-  \end{enumerate}
-\end{Theorem}
-% \begin{proof}
-%   (postponed) 
-% \end{proof}
+The inverse-limit space is well-defined since T : U →U is surjective by assumption.
 
 
 \section{Choosing the driven system $g$}
@@ -887,7 +861,7 @@ The next result is of relative import but to fully comprehend its influence, som
 The driving function $g$ cannot be chosen in a frivolous manner as it could possibly complicate our work. Specifically, one must be careful to avoid a choice of $g$ which would  add complexity to the obtained solution.  
 
 When a causal embedding $H$ exists for the driven system $g$, one can map an arbitrary input ${u}$ onto the solution space $X$ without additional distortion or information-loss \textbf{(Cite.)}.
-When an embedding is established, the question of possible additional complexity in the solution is removed by guaranteeing that, since the systems are conjugate (semi-conjugate, \textbf{(refer)}), $g$ does not add any (some) complexity to the system.  
+Established such an embedding eliminates the question of possible additional complexity in the solution by guaranteeing that, since the systems are conjugate (semi-conjugate, \textbf{(refer)}), $g$ does not add any (some) complexity to the system.  
 
 It is, however, a balancing act as it also undesirable to choose a function $g$ that quenches the temporal structure in $u$ by contracting to such a degree that the ability to recover information from the original system is lost completely.
 In the above example (\ref{ex_halfux}), the input's temporal variation cannot be related to the reachable set since $X_U$ consists of a single element; little, if not no, information is encoded.
@@ -977,25 +951,49 @@ The following theorem establishes the existence of a well-defined map $G_T$ desc
 If we let $G_T:Y_T\to{Y_T}$ be a map defined by the relation $(x_{n-1},x_n)\mapsto(x_n,x_{n-1})$, then $G_T$ is well-defined (and this results holds even in the absence of $g$ possessing over the USP)  
 \end{Theorem}
 
-We're now getting quite close to where we want to be and our results carry more and more weight. Recall that $g$ is only being given inputs from the orbits of $T$.  
+% Recall that $g$ is only being given inputs from the orbits of $T$.  
 
-\begin{Definition}
-  [\bf Inverse-Limit Space]\label{Dfn_InvLimSpace}\rm
-  The inverse-limit space $\widehat{U}_T$, a subspace of $\overleftarrow{U}$, is defined by $$\widehat{U}_T:=\{(\ldots, u_{-2}, u_{-1}):T(u_n)=u_{n+1}\}$$ 
-\end{Definition}
+It is of interest to ascertain whether $\widehat{T}$ and $G_T$ are related\ednote{B: Should I expand more here?}, and we consequently introduce  the function $H_2{\overline{}} := (h(r\overline{u}, h(\overline{u})))$ mapping the entirety of a left-infinite sequence to some element in $X\times{X}$. 
+Indeed, it may be shown that $g$ having SI-invertibility and the USP immediately guarantees the existence of at least a semi-conjugacy between the systems $(Y_T, G_T)$ and $(\widehat{U}_T, \widehat{T})$.
+This is formalised in Causal Embedding Theorem, which we state next:
 
-The inverse-limit space is well-defined since $T:U\to{U}$ is surjective by assumption.
+\begin{Theorem}
+  [\bf Causal Embedding Theorem (adopted from \cite{Supp})]
+  % {\bf (Causal Embedding Theorem.)}
+ \label{Thm_CET}
+	Let $g$ be a driven system with SI-invertibility and the USP. Let $h$ denote the universal semi-conjugacy and $H_2(\overleftarrow{u}) := (h(r\overleftarrow{u}),h(\overleftarrow{u}))$, where $r$ is the right-shift map. 
+ Let $(\widehat{U}_T, \widehat{T})$  be the inverse-limit system of a dynamical system $(U,T)$. 
+ Then the restriction of $H_2$ to $\widehat{U}_T$ is a topological semi-conjugacy between the inverse-limit system $(\widehat{U}_T, \widehat{T})$ 
+and the induced dynamical system  $(Y_T,G_T)$, i.e., the following diagram commutes
+\begin{equation} \label{comm_H_CET}
+\psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
+ \everypsbox{\scriptstyle}
+ \begin{psmatrix}
+ \widehat{U}_T & \widehat{U}_T\\%
+ Y_T &  Y_T.
+ %%%
+%  \ncline{1,1}{1,2}^{\widehat{T}} \ncline{1,1}{2,1} <{H_2}
+%  \ncline{1,2}{2,2} > {H_2}
+%  \ncline{2,1}{2,2}^{G_T}
+ \end{psmatrix}
+ \end{equation}
+or in other words, $(Y_T, G_T)$ is a factor of  $(\widehat{U}_T, \widehat{T})$. Further, if $T:U \to U$ is a homeomorphism, 
+then $H_2$ embeds $\widehat{U}_T$ in $X_U \times X_U$, and hence $(Y_T, G_T)$ is conjugate to $(\widehat{U}_T, \widehat{T})$.
+\end{Theorem}
+\begin{proof}
+  May be found as the proof of~\cite[Th.4]{Supp}
+\end{proof}
+
+We are drawing nearer and nearer to our principal target and our results carry more and more weight. The next result is remarkable.
+
 
 \begin{Theorem}
   Graph \ref{Scomm_h} is exactly the inverse-limit system $(\hat{U}, \hat{T})$.    
 \end{Theorem}
 
 
-Note that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ to an element in $X\times{X}$.
-We now have the following (compare with \ref{SCausal_H} above):
-
-% \ednote{Add Causal Embedding Theorem}
-% \textbf{NB NB NB - Causal Embedding Theorem! - Th.4}
+Recall that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ to an element in $X\times{X}$.
+We now have the following (which may be compared with \ref{SCausal_H} above):
 
 \begin{equation} \label{fig:inverse_limsystem}
   %  \[ 
@@ -1511,7 +1509,26 @@ Another 2-equation discrete-time map named the Fractal Dream Attractor, or more 
 
 \chapter{Conclusion}\label{ch6}
 
-The driven states $(x_{n-1},x_n)$ holds the information of the left-infinite history of the input. Furthermore, there is some evidence that the inverse-limit space (not system) seems to distinguish two dynamical systems that are not topologically conjugate for a class of systems in the sense their inverse-limit spaces are not homeomorphic to each other.  So the relation $Y_T$, which is homeomorphic to the inverse-limit system, may be unique to a class of systems. (The reference is a paper on Ingram’s Conjecture by Marcy Barge, Henk Bruin and Sonja Stimac.) Further investigation is needed. 
+% The driven states $(x_{n-1},x_n)$ hold the information of the left-infinite history of the input. Furthermore, there is some evidence that the inverse-limit space (not system) seems to distinguish two dynamical systems that are not topologically conjugate for a class of systems in the sense their inverse-limit spaces are not homeomorphic to each other.  So the relation $Y_T$, which is homeomorphic to the inverse-limit system, may be unique to a class of systems. (The reference is a paper on Ingram’s Conjecture by Marcy Barge, Henk Bruin and Sonja Stimac.) Further investigation is needed.  \cite{budivsic2012applied, korda2020data}
+
+As technology has advanced over the past century, humanity’s ability to record and manipulate rich, complex data in order to produce forecasts has profoundly increased. 
+Collecting measurements from underlying artificial, natural, and physical systems through observables to realise a dynamical model with greater descriptive power is well-established in present-day science.
+
+A key to the success of these techniques is the fact that dynamics discerned from the observed space can often be characterised by a mapping of much lower functional complexity when compared to the map describing the unknown underlying system. Takens theorem and the numerous generalizations (e.g., [5, 6, 7, 8, 8]) thereof is one such method establishing (under some generic conditions) the learnability of a system produced by creating a delay-coordinate vector from a sufficiently large number of previous observations of a dynamical system. This system is topologically conjugate to the system from which the observed time-series was obtained.
+
+A critical concern of this method is the requirement of full knowledge of the variables of the underlying state space that govern the complex dynamical system one is interested in. In real-world conditions this intelligence is seldom available and one must depend heavily on human expertise and insight. 
+
+Each discrete-time state space model has at its core a driven dynamical system. In this project, it has been shown that an input originating from a compact space entailing exactly one solution (i.e., if the driven system has the USP) is equivalent to representing information without distortion, a concept which was formalised by establishing a causal mapping’s existence. The established results are general, implying that any driven dynamical system with specific properties can give rise to a causal mapping, and in so doing  providing an answer as to the success of arbitrary choices of driven systems in information processing applications in [4, 5].
+
+In particular, we have a topological conjugacy (semi-conjugacy) between the data comprising the 11single-delay lag dynamics of a driven system’s and the underlying homeomorphic dynamical system. Finite-length input data is sufficient for forecasting as driven system states are influenced only in an almost negligibly small manner by the left-infinite segment of the past of the input beyond some arbitrarily large but finite time (a result which holds due to the universal semi-conjugacy of a driven system’s continuity)
+
+
+Viewed through the lens reservoir computing approaches, we have also demonstrated that when single-delay dynamics are utilised, a learnable map in a reservoir computing network certainly exists. Moreover, such a driven system within a reservoir computing network enjoys certain proven qualities pertaining to the robustness w.r.t input- and parameter-perturbation. Accordingly, we are able to preserve the quality of a representation that would otherwise remain sensitive to various fluctuations, rendering the learning of the system’s dynamics wholly unpredictable. In addition, we obtain the robustness of the system against external noise, a phenomenon which is observed for the Fractal Dream Attractor.
+
+Finally, we consider some physical systems to observe the methodology in practice and verify that we can indeed predict the future evolution of chaotic systems such as the double pendulum. Empirical evidence shows that a linearity measure like a Pearson correlation coefficient points at reduced functional complexity while learning the dynamics in the state space of the driven system
+
+
+Considered with a philosophical-scientific lens, this project has aimed to establish a juncture between rationalism (the theory of nonautonomous dynamical systems) and empiricism (machine learning) to yield results profitable to the discipline of Applied Mathematics. This was done by showing that dynamics in an observed space can be established as topologically conjugate to the underlying system. As a result of the topological conjugacy, deep learning techniques are then subsequently applied to physically such equations from the data. In so doing, we acquire models of high fidelity that provide exceptional forecasting results on chaotic data that exhibit both statistical and topological consistency in the long run.
 
 
 \end{document}
