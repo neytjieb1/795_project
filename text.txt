@@ -194,3 +194,9 @@ then $H_2$ embeds $\widehat{U}_T$ in $X_U \times X_U$, and hence $(Y_T, G_T)$ is
 \end{proof}
 
 $g$ having SI-invertibility and the $USP$ then immediately guarantees at least a semi-conjugacy between the systems $(Y_T, G_T)$ and $(\widehat{U}_T, \widehat{T})$.
+
+Package inputenc: Unicode character � (U+FFFD)
+(inputenc)	not set up for use with LaTeX.
+
+
+%More formally we may say that in the process of measuring a system, we obtain a 1-dimensional time-series $\{\theta(u(t))\}$, where $\theta:\mathbb{R}^n\to\mathbb{R}$ is a smooth observation or measurement function. This series represents a possibly noise-augmented \ednote{M: Noise-augmented is not the right word} dataset containing information of certain parts of the original system. 

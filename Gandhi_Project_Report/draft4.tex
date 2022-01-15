@@ -176,11 +176,18 @@
 \date{January, 2022}
 \date{}
 \maketitle
-\tableofcontents
 
-% \begin{abstract}
-%   Abstract goes here.
-%   \end{abstract}
+
+\begin{abstract}
+  Collecting measurements from underlying artificial, natural, and physical systems through observables to realise a dynamical model with greater descriptive power is a well-established practice in present-day science. However, we often do not fully understand the many facets of the more complicated systems we interact with on a daily basis.
+
+  In this project we formulate the concept of discrete-time dynamical systems, particularly those which are chaotic. The learning problem is formulated and a well-known approach (first proposed by Takens) to solving the problem alongside its limitations is considered.
+  We then introduce the notion of driven dynamical systems and establish the theoretical existence of dynamical systems possessing certain properties that guarantee them to be topologically conjugate (or dynamically equivalent) to the dynamics of the underlying system from which measurements were taken. The methodology is practically implemented by making use of a recurrent neural network, a form of deep learning within the reservoir computing framework and we show that we may obtain long-term consistent predictions for simple physical systems such as the double pendulum as well as attractors exhibiting chaotic behaviour.
+
+
+  \end{abstract}
+
+  \tableofcontents
 
 \chapter{Introduction}\label{ch1}
 
@@ -293,7 +300,6 @@ However,  when the space $U$ is compact, all orbits approach an invariant set. T
 
 \begin{Example}
   For the map $Tu=u^2$ defined on $[0,1]$ all orbits lie in the invariant set $\{1\}$ or else would would approach the invariant set $\{0\}$. 
-  % \ednote{B: not relevant other than being an additional example perhaps? M: Have added another simple example}.
 \end{Example}
 
 
@@ -314,8 +320,6 @@ In particular we are interested in those invariant sets named attractors.
 
 Indeed in our previous examples, it can be verified that the system  $Tu=u/2$ defined on  $\mathbb{R}$ and $Tu=u^2$ defined on $[0,1]$  the singleton set $\{0\}$ is an attractor.  For the system,  $Tu=1-|2u-1|$ on $[0,1]$, one may easily verify that the only attractor is the entire space $[0,1]$. This is since between any two points $u< v$ in $[0,1]$, and for any $a,b$ so that $u\le a < b \le v$, we can find an $n$ so that $T^n(a,b)=[0,1]$ (as would be explained later in this chapter). 
 
-% \ednote{For let $B$ be an attractor of U. From above, we know that B is itself invariant, is asymptotically stable and has Lyapunov stability. Now suppose there is some attractor $C\subsetneq{U}=B$, so there is a $b\in{U}$ which is not in $C$. ........  M: Have changed the example}
-
 A dynamical system can have several attractors, and may also be contained in another attractor. For the example, $Tu =u^2$ on $[0,1]$, both $\{0\}$ and $[0,1]$ are attractors. It is a known result that for dynamical systems on a compact space there always exists an attractor. 
 
 The dynamics restricted to an invariant set can be complicated. For instance an invariant set could be just a single point or it could have an infinite set.    If the invariant set is infinite then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called  chaotic behaviour, and has been studied in detail over the last fifty years.
@@ -326,10 +330,9 @@ The dynamics restricted to an invariant set can be complicated. For instance an 
 
 \section{Chaos}
 
-% \ednote{ should one add paragraphs like these? M: this is a thesis, and not a paper; the instructions sent to the external examiner regarding the thesis evaluation says that the student suggest strongly that it is good to write}
 In the 1960s, a number of mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. The notions of invariance, attractivity and chaos may also be described for continuous systems, and Lorenz's system comprised of a system of differential equations. The narrative of Lorenz's discovery of chaos, as well as the history of other forerunners in this subject, are fascinating. For those who are interested, we highly recommend James Gleick's book Chaos: The Making of a New Science \cite{gleick2008chaos}. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery, and describes the underlying mathematical notions for non-specialists.
 
-There are several intricately different definitions of chaos available in the literature \textbf{(Cite)}, with each of them indicating some aspect of complexity. %\ednote{B:  what are we saying here? M: Devaney's definition is not the only one, there are about half a dozen definitions as well}  
+There are several intricately different definitions of chaos available in the literature \textbf{(Cite)}, with each of them indicating some aspect of complexity.
 In practice, it is not possible to verify which definition or notion does the underlying dynamical system satisfies when only data is observed from it. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances behind the complexity. Devaney's definition of chaos has three requirements, with the first being the notion  of sensitive dependence on initial conditions. 
 
 \begin{Definition}\rm
@@ -350,13 +353,13 @@ To this end, we make 3 remarks:
 To illustrate the concept of SDIC, we present two examples - one from Mathematics and the other from the field of Physics.
 
 \begin{Example}
-  The logistic map(LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r<4$ is of particular interest to us as it is classically used to illustrate the influence of chaos on a system \textbf{(Cite)}. Below are plotted the first 75 iterates of the LM for $r=3.7$ and $x_0=0.2$ with an adjustment of 0.001 in $x_0$ and then $r$.
+  The logistic map(LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r<4$ is of particular interest to us as it is classically used to illustrate the influence of chaos on a system \textbf{(Cite)}. Below are plotted the first 75 iterates of the LM for $r=3.7$ and $x_0=0.2$ with an adjustment of 0.001 in $x_0$ and $r$ respectively.
 
   \begin{figure}[ht]
     \includegraphics[scale=0.45]{_log_sdic.eps}
         \centering
         \label{fig:log_sdic}
-        \captionof{figure}{Logistic Map for $r=3.7$, $x_0=0.2$}
+        \captionof{figure}{Figure generated for Logistic Map for $r=3.7$, $x_0=0.2$ where each parameter is varied separately by 0.001.}
       \end{figure}
   
   For an intuitive sense of the fact that the LM exhibits SDIC, we draw two green neighbourhoods of diameters $\delta_1=0.1, \delta_2=0.02$ around the points $u_1=0.7, u_2=0.4$ respectively. It is easy to see that every neighbourhood around these two points will contain some $v_1, v_2\in[0,1]$ and natural number $N_1, N_2 \in\mathbb{N}$ respectively s.t. the distance $d(T^Nu_1,T^Nv)>\delta_1=0.02$ and $d(T^Nu_2,T^Nv)>\delta_2=0.1$. 
@@ -375,7 +378,7 @@ To illustrate the concept of SDIC, we present two examples - one from Mathematic
 \begin{figure}[ht]
   \centering
 \includegraphics[scale=0.8]{_dp_sdic.eps}
-    \captionof{figure}{Three double pendulum heads with initial angle differing by 0,025 radians}\label{fig:dp_sdic}
+    \captionof{figure}{Three double pendulum heads with equal angular velocity and initial angles differing by 0,025 radians}\label{fig:dp_sdic}
   \end{figure}
 
 \end{Example}
@@ -422,7 +425,7 @@ We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018i
   \begin{figure}[ht]
     \includegraphics[scale=0.6]{_tentmap_2.eps}
         \centering
-        \captionof{figure}{Three double pendulum heads with initial angle differing by 0,025 radians}\label{fig:T2tentmap}
+        \captionof{figure}{Graph of the $T^2$ map with bases at $x=0$, $x=\frac{1}{2}$ and $x=1$ respectively.}\label{fig:T2tentmap}
   \end{figure}
   
   In general, the graph of  $T^k$ contains $2^{k-1}$ tents.
@@ -529,7 +532,6 @@ $\Phi_{k,\theta}(w) := (\theta(T^{-k}w)\ldots,\theta(T^{-1}w),\theta(w))$.
 The concept of an observable is understood in the sense of an observable as originally introduced by \cite{takens1981detecting, genericObservableAeyels} to refer to a probe or measurement function inserted into the system. 
 The essence of Takens' theorem relates to the fact that when $k$ is sufficiently large, we can define a dynamical system on the space $\mathbb{R}^{k+1}$ whose states are $\Phi_{k,\theta}(w)$, $\Phi_{k,\theta}(Tw)$, $\Phi_{k,\theta}(T^2w)$, etc. and this dynamical system is topologically conjugate to the unknown underlying system $(W,T)$. We recall the Takens delay embedding theorem next.
 
-%More formally we may say that in the process of measuring a system, we obtain a 1-dimensional time-series $\{\theta(u(t))\}$, where $\theta:\mathbb{R}^n\to\mathbb{R}$ is a smooth observation or measurement function. This series represents a possibly noise-augmented \ednote{M: Noise-augmented is not the right word} dataset containing information of certain parts of the original system. 
 
 %We may then ask ourselves the question: Is it in any way possible to retain information about the system state $x(t)$ in this temporal data-series $\theta(x(t))$? The answer is easily yes if T is known. However, neither this, nor even the exact function $\theta$ is available. 
 
@@ -560,7 +562,7 @@ Takens Theorem states a result establishing a relationship between the observed 
             $(\Phi_{2d,\theta}(W), F_\theta)$.    
 \end{Theorem} 
 
-By generic we mean a residual set on a certain topology on appropriate spaces of functions (that we do not describe here) \textbf{(Cite)}.  %\ednote{How vague may one be in general by leaving things out?} 
+By generic we mean a residual set on a certain topology on appropriate spaces of functions (that we do not describe here) \textbf{(Cite)}. 
 By $C^2$, we make reference to a twice-differentiable function  with a continuous second derivative. In our scenario (and this remains important throughout) the input space $U$ is considered the attractor.~\label{attractor_U}
 
 Below we reproduce Figure 1 from \cite{Supp}.
@@ -572,11 +574,9 @@ Below we reproduce Figure 1 from \cite{Supp}.
 \begin{figure}[ht]
   \includegraphics[scale=0.25]{_takensmap.eps}
   \centering
-  \captionof{figure}{Schematic of Takens Embedding Theorem's usage and consequence of how iterates \ldots }
+  \captionof{figure}{Schematic of Takens Embedding Theorem's usage and impact of iterates slipping from the attractor when the approximation $\tilde{F}_\theta$ of $F_\theta$ is learnt.}
   \label{fig:takensmap}
 \end{figure}
-\ednote{M: Here, and throughout if you reproduce a figure, it must be stated where it was reproduced from. B: Is this satisfactory? Also, should $\tilde{F}$ be left out for now?}
-\ednote{B: This is only a screenshot used as a temporary placeholder. If sufficient, I shall convert it to .eps. If not, may I perhaps have the original picture?}
 
 If we can learn the map $F_\theta$, from sufficient number of data points of $\{\phi_{2d,\theta}(w_n)\}$, then we also know how to forecast how $\theta(w_n)$. 
 
@@ -593,9 +593,6 @@ It is a fact that Takens' Embedding Theorem is both a powerful result and that i
 \item Even supposing that we could indeed find $F_\theta$ , our \emph{approximation} of  $F_\theta$ is a map from a larger set $\mathbb{R}^{2d+1}$ containing the embedded attractor. There are, however, no theoretical guarantees that $F_\theta$ will retain  $V=\Phi_{2d,\theta}(W)$  as an attractor although $W$ could itself be an attractor.
 \item Takens theorem is stated only for noiseless observations. Due to noise $\epsilon_n$ the delay vector $\Phi_{2d,\theta}(w_n) + \epsilon_n$  may lie outside $V$.Furthermore, due to the chaotic nature of the underlying system (i.e. the fact that it has SIDC), the evolution of $\Phi_{2d,\theta}(w_n) + \epsilon_n$ under the map $F_\theta$ could move out of $V$ completely. This problem can be overcome  by using a driven dynamical system with some properties, and we discuss this in Chapter\ref{ch3}. 
 \end{enumerate}
-
-
-% Another limitation owes itself to the requirement that T be a surjective map. This is not always the case in practical examples and we may consider the case of a damped double pendulum \ednote{M: Please remove the paragraph as well. We do not overcome this problem. You can add this in the next Chapter where you need T to be surjective or else you could include this at the begining of this chapter where you explain the forecasting problem.}
 
 The Takens embedding theorem does not guarantee global dissipativity.
 \ednote{B:Links with~\ref{subs_LearnGamma} in discussion of dissipativity of $\Gamma$.  Sir, I'm not sure how to write this here - I think it a beneficial point to make so as to set the stage for the later discussion in ~\ref{subs_LearnGamma}, but I am unsure there as well.}
@@ -614,7 +611,7 @@ The methods described here are applicable for data originating from a surjective
 This follows from the fact that when $T$ maps the space $U$ into a proper subset $B$ of $U$, we me conclude that $T$ is not surjective as there exists some point in $U-A$ which does not have a preimage.
 An example of this would be the case when a system displays energy-loss. Consider, for instance, consider the oscillations dying down for a damped pendulum. (A more in-depth account will be given in \ref{ch5})
 
-This requirement is not overly restrictive, as a great number of chaotic systems do have a surjective map. (Cite) \ednote{I rememeber you saying this in one of our sessions, but don't have a source for it.}
+This requirement is not overly restrictive, as a great number of chaotic systems do have a surjective map. (Cite) \ednote{B: I remember you saying this in one of our sessions, but don't have a source for it.}
 
 
 \chapter{Driven Dynamical Systems to Forecast Problems}\label{ch4}
@@ -622,7 +619,6 @@ This requirement is not overly restrictive, as a great number of chaotic systems
 In this chapter, we discuss results pertaining to the mapping of temporal data obtained from a discrete-dynamical system onto a different space through the notion of a driven dynamical system. 
 We also consider the conditions a driven system should possess to avoid adding distortion to its state-space representation. We then describe the \emph{single-delay dynamics} (SDD) of the system and and finally recall conditions on the driven system so that the SDD are conjugate (or at least semi-conjugate) to the underlying system. 
 The SDD can then be used to forecast and reconstruct the underlying system. 
-% \ednote{Is this attractor assumed to exist? M:  I replaced  it with the system. Attractor is also a commonly used term since we observe data from an attractor in almost all cases.}
 
 \section{Nonautonomous and Driven Dynamical Systems}
 
@@ -649,8 +645,8 @@ V & V.
 %#####################################
 \end{center}
 
-To find a function $\phi$, the need now arises to consider a so-called driven dynamical system, a special case of a nonautonomous dynamical system, where two spaces are considered: input is taken from an input space $U$ and the state of a space $X$ is updated. (Previously, only the state was considered.)
-We do this to mimic the true conditions. By accounting for both external and internal factors which influence the  system-state at a specific time-step, our model resembles nature much more realistically.  \ednote{M : I understand this sentence, but am not sure if a general audience would. So please elaborate or omit. B: Is this satisfactory?}
+To find a function $\phi$, the need now arises to consider a so-called driven dynamical system, one that can generate a  nonautonomous dynamical system, where two spaces are considered: input is taken from an input space $U$ and the state of a space $X$ is updated. (Previously, only the state was considered.)
+We do this to mimic the true conditions. By accounting for an extrogenous input sequence in $U$ which can also influence the  system-state at a specific time-step, it produces more general models than an autonomous system.
 
 \begin{Definition}
   [\bf Driven, Compactly Driven Dynamical System] \label{Dfn_DDS} \rm
@@ -678,13 +674,13 @@ It is important to emphasise that a sequence $\{x_n\}$ satisfying the update equ
   The driven system may be rewritten as $x_{n-1}=\frac{2x_n}{u_{n-1}}=4x_n$ and the  iterates of $x_n$ in backward time will increase by a factor of 4 at each timestep. 
   Thus for some $m\leq{n}$,  $1<x_m$ i.e. $x_m\notin{X}$. So ${\{x_n\}}_{n\in\mathbb{Z}}$ is not a solution and it follows that the only possible solution is the zero solution.
 \end{Example}
-% \ednote{Nicely written!}
+% \ednote{Nicely written! Thank you}
 
 
 A system may also have multiple solutions as is evidenced in the example below.
 
 \begin{Example}\label{Ex_exp} \rm 
- Consider the driven system $g(u_n,x_n)=x^n$ for $X=[0,1]$, $U=\mathbb{R}$. The system has an uncountable number of solutions, as there exists a solution for every $x\in{X}$ which also passes through the point $x$ and $lim_{n\to\infty}x_n=0$, $lim_{n\to{-}\infty}x_n=1$. 
+  Consider the driven system $g(u,x)=x^2$ for $X=[0,1]$, $U=\mathbb{R}$. The system has an uncountable number of solutions, as there exists a solution for every $x\in{X}$ which also passes through the point $x$ and $lim_{n\to\infty}x_n=0$, $lim_{n\to{-}\infty}x_n=1$.  
  The proof is deferred to immediately after the next paragraph (see~\ref{rem_proofEx}).
 \end{Example}
 
@@ -710,10 +706,9 @@ This will lead to a result established later, but which is worth taking note of 
 
 \begin{Remark}
   [\bf Proof of Example~\ref{Ex_exp}] \label{rem_proofEx} \rm
-  To see this, we show that for every input $\overline{u}=\{u_n\}_{n\in\mathbb{Z}}$, $g(u_n,\cdot)$ is a contraction map on $X$ for every $k\in\mathbb{Z}$. 
-  Indeed $g(u_n,x_n)=x^n$ depends only on the state at time $n$ and so for each input $\overline{u}$, $X_n(\overline{u})=\{x^n\}$ is a singleton subset.
-  We then easily conclude that $\{x_n\}\equiv0$ is the only solution. 
-\end{Remark} \ednote{B: Is this sufficient?}
+  For the driven system,  
+  $g(u,x)=x^2$ the evolution does not depend on the input at all. Hence $g(u,x)$ can be written as a single map $f(x)=x^2$ which is a homeomorphism on $[0,1]$. A left-infinite orbit is defined and it converges to $1$ while the right-infinite orbit converges to $0$. Or in other words the iterates of $f^{-1}$ converges to $1$ while the iterates of $f$ converge to $0$ 
+\end{Remark}
 
 Thus far it has been demonstrated that a system may have one or more solutions; one may ask if a driven system always has a solution and, if so, whether it satisfies certain properties such as uniqueness. 
 Should the driven system be compact, existence follows immediately as shown in the following result.
@@ -725,7 +720,7 @@ Should the driven system be compact, existence follows immediately as shown in t
   May be found in \cite{kloeden2011nonautonomous, manjunath2014dynamics, manjunath2013echo}
 \end{proof}
 
-One may easily construct many systems with trivial solution-sets, such as $g(u,x)=x$ which has only the constant solution $x$ and so for $U=[-1,1]$, the system would have no solution if $|x|>1$. To refine the scenario, we consider only systems with unique solutions. 
+% One may easily construct many systems with trivial solution-sets, such as $g(u,x)=x$ which has only the constant solution $x$ and so for $U=[-1,1]$, the system would have no solution if $|x|>1$. To refine the scenario, we consider only systems with unique solutions. 
 
 \section{Unique Solution Property}
 
@@ -738,30 +733,28 @@ One may easily construct many systems with trivial solution-sets, such as $g(u,x
 One of the first result obtained after defining the USP is the fact that every solution will attract different initial conditions towards the component parts of the solution. %, i.e. that the solution $\Psi$ is a non-autonomous uniform attractor. \ednote{Define Uniform Attractor before stating theorem or else omit the statement.} 
 If $g$ has the USP, then any solution to $g$ is also a uniform attractor in nonautonomous dynamical systems literature \cite{Manju_Nonlinearity}. The discussion on nonautonomous attractors is beyond the scope of this project and we refer the reader to \cite{Manju_ESP, esann2012ids} for further reading. 
 
-% \ednote{M: You can omit the theorem, and just say it is a uniform attractor in the nonautonomous dynamical systems literature \cite{Manju_Nonlinearity}, and say the discussion on nonautonomous attractors is beyond the scope of the thesis.}
 % Paraphrased.
 Additionally, $g$ having the USP is in our context also equivalent to $g$ being a topological contraction \cite{manjunath2021universal}, or alternatively also that $g$ exhibits the Echo State Property (ESP). 
 
-In the majority of Reservoir Computing(RC) literature (a machine learning algorithm approach)\ednote{How should I explain/qualify RC better here? It's mentioned without really explaining.}, 
-the ESP is used to describe the concept of fading memory or memory-loss  \cite{jaeger2004harnessing, lu2018attractor}. 
-If $g$ possesses the ESP (equivalent in our context to the USP), the we are guaranteed that the whole of an input's left-infinite history will exactly determine the current system state; i.e. there is only ever the possibility of a single reachable state at a given instance of time \cite{jaeger2001echo}
+In the majority of Reservoir Computing(RC) literature (a machine learning approach) where the input is mapped onto a different but higher dimensional through a system called the reservoir and a readout that measures the state of the reservoir is trained, a notion of forgetting the states of the reservoir asymptotically is often used.  
 
-Defined formally, the ESP is intrinsically linked to an input (see \cite{Manju_ESP}) Unfortunately, definitions and results concerning the ESP do not have much practical benefit since a relationship between the network's response and the temporo-statistical properties of the input are not directly described. A more detailed presentation may be found in~\cite{jaeger2001echo}.
+% \ednote{How should I explain/qualify RC better here? It's mentioned without really explaining. M: Have put it in one sentence; just to let you know people use optical devices to map signal into a ``reservoir". B: Thanks!}, 
+Concepts like the ESP,  fading memory \cite{boyd1985fading} are some of these notions.  
+If $g$ possesses the ESP (equivalent in our context to the USP), the we are guaranteed that the whole of an input's left-infinite history will exactly determine the current system state; i.e. there is only ever the possibility of a single reachable state at a given instance of time \cite{jaeger2001echo,Manju_2020}.
+% Defined formally, the ESP is intrinsically linked to an input (see \cite{Manju_ESP}) Unfortunately, definitions and results concerning the ESP do not have much practical benefit since a relationship between the network's response and the temporo-statistical properties of the input are not directly described. A more detailed presentation may be found in~\cite{jaeger2001echo}.
 
-We do however consider it important to mention that the ESP is also often discussed in terms of a stability property that holds for all inputs of a system~\cite{manjunath2020stability} and, furthermore, plays a key role in the design and training of recurrent neural networks(RNN) within the field of RC \cite{Manju_ESP}.
- 
+% We do however consider it important to mention that the ESP is also often discussed in terms of a stability property that holds for all inputs of a system~\cite{manjunath2020stability} and, furthermore, plays a key role in the design and training of recurrent neural networks(RNN) within the field of RC \cite{Manju_ESP}.
+Beyond forgetting the past states the ESP is also often discussed in terms of a stability property that is nearby inputs create close by responses (solutions), a concept called input-related stability~\cite{manjunath2020stability} and, furthermore, plays a key role in the robustness of recurrent neural networks(RNN).
 
-\section{Next section?}
-\ednote{I feel a break is necessary here, but would hear from you what your thoughts are.}
+\section{Conjugacies}
 
-Having already defined the reachable set $X_U$ as the set of all elements of all entire solutions, we pause briefly in order to fix additional notation.
+Having already defined the reachable set $X_U$ as the collection of all elements of all entire solutions, we pause briefly in order to fix additional notation.
 Defining $\cev{u}^{n}:=(\ldots,u_{n-2} ,u_{n-1})$ as the left-infinite subsequence of an input up until time $n$, $\overleftarrow{U}$ is then the notation for all these left-infinite sequences in $U$. 
 Moreover, $\cev{u}^{n}v:=(\ldots,u_{n-2} ,u_{n-1}, v)$ will symbolise the input up to time $n$ with $v \in U$ being the specific input value at time $n$. 
 The introduction of a new input at time $n$ can be described by the mapping $\sigma_v:   \cev{u}^{n} \mapsto \cev{u}^{n}v$. 
 The right-shift map, $r\overleftarrow{U}\to\overleftarrow{U}$, of an input sequence is defined $r: (\cdots, u_{-2},u_{-1}) \mapsto(\cdots, u_{-3},u_{-2})$
 
 The goal now assumes the form of the question on our ability to establish a semi-conjugacy as presented below for the driven system $g$. 
-%\ednote{M: I have changed it to a semi-conjugacy since conjugacy amounts to asking a infinite-dimensional space $\overleftarrow{U}$ to be embedded in $X_U$ which is not possible.} 
 
 \begin{equation}  \label{Scomm_h}
   %    \[ 
@@ -786,17 +779,17 @@ We proceed to consider a specific subclass of conjugacies.
     Given a driven system $g$, we  call a continuous and surjective map $h : \overleftarrow{U} \to X_U$ a universal semi-conjugacy if  diagram \ref{Scomm_h} commutes for all $v \in U$.
   \end{Definition}
 
-If the universal semi-conjugacy $h$ exists (i.e. the diagram in \ref{Scomm_h} commutes) then the solution $\Psi$ will be at least a coarse-grained representation of the input $u$. \ednote{B: Expand/Cite}
+  If the universal semi-conjugacy $h$ exists (i.e. the diagram in \ref{Scomm_h} commutes) then the solution $\Psi(\bar{u})$ will intuitively have no more ``complexity' than the input $\bar{u}$.
 
 But does such a function $h$ for the above driven system $g$ above exist? Whenever $g$ has the USP and $\Psi(u)=\{x_n\}_{n\in\mathbb{Z}}$ it follows that $h$, defined by  $h(\cev{u}_n):=g(u_n,x_{n-1})=x_n$, will satisfy the semi-conjugacy in the graph above \ref{Scomm_h}.
 Regrettably, such a continuous mapping $h$ is not guaranteed to exist \cite{M: Have edited here} when $g$ does not have the USP \cite[Lemma 5]{Manju_Nonlinearity}.
 Note that even when $h$ does exist, we are not guaranteed its injectivity. Considering again example \ref{ex_halfux}, we see that even if $h$ were to exist, it could not be injective as $X_U=\{0\}$.
 
-Re-sketching the commutativity diagram \ref{Scomm_h} above by fixing the input $v$ in $g$ and replacing $X_U$ by its left-infinite sequence space $\overleftarrow{U}$, we obtain the diagram below. In this case, the function $H:\overleftarrow{U}\to\overleftarrow{X}_U$, a map that is both continuous and surjective, is called a \emph{causal mapping}. 
+Re-sketching the commutativity diagram \ref{Scomm_h} above by replacing $X_U$ by its left-infinite sequence space $\overleftarrow{X}_U$, we obtain the diagram below. In this case, the function $H:\overleftarrow{U}\to\overleftarrow{X}_U$, a map that is both continuous and surjective, is called a \emph{causal mapping} that is defined next. 
 
 \begin{Definition}
   [\bf Causal Mapping]\label{Def_CausMap}
-  A continuous, surjective map $H:\overleftarrow{U}\to\overleftarrow{X}_U$ such that \[H\circ\tilde{g}_v=\sigma\circ{H}\] where $\tilde{g}_v$ maps $(\ldots, u_{-2}, u_{-1})$ to $(\ldots, u_{-2}, u_{-1}, g(v, u_{-1}))$ is called a causal mapping.
+  A continuous, surjective map $H:\overleftarrow{U}\to\overleftarrow{X}_U$ such that \[H\circ\tilde{g}_v=\sigma\circ{H}\] holds for all $v \in U$ where $\tilde{g}_v$ maps $(\ldots, u_{-2}, u_{-1})$ to $(\ldots, u_{-2}, u_{-1}, g(v, u_{-1}))$ is called a causal mapping.
 \end{Definition}
 
 \begin{equation} \label{SCausal_H}
@@ -820,22 +813,17 @@ Re-sketching the commutativity diagram \ref{Scomm_h} above by fixing the input $
 \begin{proof}
   See~\cite[Th.3]{manjunath2013echo}.
 \end{proof}
+\ednote{M: this sentence is freely hanging} To establish whether $\widehat{T}$ and $G_T$ are related, we consider the the function $H_2{\overline{}} := (h(r\overline{u}, h(\overline{u})))$ where $H_2$ is a mapping from the entirety of a left-infinite sequence to some element of $X\times{X}$.
 
 The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: 
 If the causal mapping $H:\overleftarrow{U}{\to}{\overleftarrow{X}_U}$ is injective (in addition to being surjective), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$. \ednote{Explain why $H_{-1}$ is continuous} and we refer to $H$ as a \emph{causal embedding} 
-% \ednote{M : Causal embedding a dynamical system is different from the definition of causal embedding, so please edit/delete this paragraph and the next theorem and also in the remaining part till Section 1.2}. 
-% \begin{Theorem}
-%  If $g(\ldotp,x)$ is invertible and has the USP then $H$ is a causal embedding. 
-% \end{Theorem}
-% \begin{proof}
-%   See \cite{manjunath2021universal}.
-% \end{proof}
+
 When $g$ has the USP, the diagram below (adopted from~\cite{Manju_Nonlinearity}) illustrates the operation of the mappings $h$ and $H$. The mapping $h:\overleftarrow{U}\to{X_U}$ is also considered an observable as mentioned in the introduction of Chapter \ref{ch3}).  
 
 \begin{figure}[ht]
-  \includegraphics[scale=0.3]{_actionofh_H.eps}
+  \includegraphics[scale=0.4]{_actionofh_H.eps}
   \centering
-  \captionof{figure}{Ladder-like behaviour of $h$ and $H$ to illustrate the causal mapping. }
+  \captionof{figure}{Ladder-like behaviour of $h$ and $H$ to illustrate the causal mapping. (Figure reproduced from~\cite{Manju_Nonlinearity}) }
   \label{fig:actionh_H}
 \end{figure}
 
@@ -861,7 +849,7 @@ The inverse-limit space is well-defined since T : U →U is surjective by assump
 The driving function $g$ cannot be chosen in a frivolous manner as it could possibly complicate our work. Specifically, one must be careful to avoid a choice of $g$ which would  add complexity to the obtained solution.  
 
 When a causal embedding $H$ exists for the driven system $g$, one can map an arbitrary input ${u}$ onto the solution space $X$ without additional distortion or information-loss \textbf{(Cite.)}.
-Established such an embedding eliminates the question of possible additional complexity in the solution by guaranteeing that, since the systems are conjugate (semi-conjugate, \textbf{(refer)}), $g$ does not add any (some) complexity to the system.  
+When an embedding is established, the question of possible additional complexity in the solution is removed by guaranteeing that, since the systems are conjugate (semi-conjugate, \textbf{(refer)}), $g$ does not add any (some) complexity to the system.  
 
 It is, however, a balancing act as it also undesirable to choose a function $g$ that quenches the temporal structure in $u$ by contracting to such a degree that the ability to recover information from the original system is lost completely.
 In the above example (\ref{ex_halfux}), the input's temporal variation cannot be related to the reachable set since $X_U$ consists of a single element; little, if not no, information is encoded.
@@ -914,7 +902,7 @@ Incredibly, this permits one to initialise a driven system $g$ with an altogethe
 \begin{figure}[ht]
   \includegraphics[scale=0.4]{_memloss_conttime.eps}
   \centering
-\captionof{figure}{Reproduced from \cite{manunath2021universal}. Illustration of all trajectories approaching the true solution if $g$ has the UAP}
+\captionof{figure}{Illustration of trajectories that all approach the true solution if $g$ has the UAP. Reproduced from \cite{manunath2021universal}.}
 \label{fig:memloss_conttime} 
 \end{figure}
 
@@ -953,7 +941,7 @@ If we let $G_T:Y_T\to{Y_T}$ be a map defined by the relation $(x_{n-1},x_n)\maps
 
 % Recall that $g$ is only being given inputs from the orbits of $T$.  
 
-It is of interest to ascertain whether $\widehat{T}$ and $G_T$ are related\ednote{B: Should I expand more here?}, and we consequently introduce  the function $H_2{\overline{}} := (h(r\overline{u}, h(\overline{u})))$ mapping the entirety of a left-infinite sequence to some element in $X\times{X}$. 
+It is of interest to ascertain whether $\widehat{T}$ and $G_T$ are related \ednote{B: Should I expand more here?}, and we consequently introduce  the function $H_2{\overline{}} := (h(r\overline{u}, h(\overline{u})))$ mapping the entirety of a left-infinite sequence to some element in $X\times{X}$. 
 Indeed, it may be shown that $g$ having SI-invertibility and the USP immediately guarantees the existence of at least a semi-conjugacy between the systems $(Y_T, G_T)$ and $(\widehat{U}_T, \widehat{T})$.
 This is formalised in Causal Embedding Theorem, which we state next:
 
@@ -1130,21 +1118,15 @@ In a similar fashion, parameter-related stability is obtained thanks to a result
 % Secondly,  due to $g$ possessing the USP, both input- and parameter-related stability~\cite{manjunath2020stability} is obtained, which in turn prevents numerical errors that caused by input and measurement noise (see~\cite[Th. 5]{manjunath2021universal}). 
 
 \begin{figure}[ht]
-  \includegraphics[scale=0.5]{_AutovsDriven.eps}
+  \includegraphics[scale=0.3]{_autovsdriven.eps}
   \centering
   \label{fig:learningFailure}
-  \captionof{figure}{Illustrating empirically the importance of global dissipativity. Plotted below the three principal components of randomly initiated trajectories of a learnt version of $G_T$ versus the trajectory $(x_{n-1}, x_n)$(grey) of driven stated obtained from the Thomas Attractor's data (see below). }
+  \captionof{figure}{Illustrating empirically the importance of global dissipativity. Plotted below the three principal components of randomly initiated points(blue) of a learnt version of $G_T$ versus the trajectory $(x_{n-1}, x_n)$(red) of driven states obtained from the Fractal Dream Attractor's data~\ref{Thomas_Attractor}). Figure generated by altering the code used to produce Figure 7 in \cite{Supp}. }
 \end{figure}
 
 \ednote{B: Would you please help me with the writing here? Otherwise I shall leave this out.}
 \emph{Thirdly, $\Gamma$ is globally dissipative whereas $G_T$ is not guaranteed to be~\cite{manjunath2021universal}). 
 Global dissipativity prevents large numerical errors due to input data.If a system is not globally dissipative, neglibly small errors result in major errors which thus induce predictions to fail utterly. If one learns $G_T$ directly, we are in danger of replicating the problems arising for Takens. }
-
-% The $\omega$-limit set $\omega(u;T)$ of a point $u$ is defined to be the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$. This set is nonempty, and $\omega(u;T)$ is invariant. \textbf{(Change)}
-% \begin{Definition}
-%   [\bf Global Dissipativity]\label{Dfn_GlobalDiss}\rm
-% 	We say a dynamical system $(Z,f)$ is globally dissipative if there exists a nonempty proper closed subset $B$ of $Z$  so that for all $x\in Z\setminus B$, (i). $\omega(x;f) \subset B$  and (ii).  $B$ is positively invariant that is $f(B) \subset B$. We call any such closed subset $B$ a trapping set of $f$. 
-% \end{Definition}
 
 
 
@@ -1237,7 +1219,7 @@ Accordingly we define the following abbreviations:
 
 Within this framework, the PCA-implementation of~\cite{manjunath2021universal} is then considered to fall underneath the of auspices of what we term \emph{Approximated Multi-Delay Dynamics(AMDD)}.
 
-We have now seen that one may comfortably switch between the use of SDD or MDD when $g$ has SI-invertibility. /ednote{This sentence needs to be improved.}
+% We have now seen that one may comfortably switch between the use of SDD or MDD when $g$ has SI-invertibility. /ednote{This sentence needs to be improved.}
 
 Naturally, one would immediately suppose that the MDD approach would increased computation time and resource use as the internal matrices and datasets generated during learning would grow with every increase in the delay-parameter $d$. 
 
@@ -1286,14 +1268,14 @@ Due to the assumption, the program discounted any possibility of energy-loss and
 \begin{figure}[ht]
   \includegraphics[scale=0.4]{_dp_dying.eps}
   \centering
-\caption{The map generating data for a damped pendulum is not surjective.}
+\caption{The map generating data for a damped pendulum is not surjective. Data obtained from chaotic double pendulum dataset generated by~\cite{asseman2018learning}}
 \label{fig:damped_pendulum}
 \end{figure}
 
 Despite feeding data that originated from a DP with dying occilations into the system, a map was instead learnt which continued to oscillate in a chaotic, but conservative manner.
 
 \begin{figure}[ht]
-  \includegraphics[scale=0.4]{_dpfailure_nonsurj.eps}
+  \includegraphics[scale=0.4]{_dpfail_nonsurj.eps}
   \centering
 \caption{Failure to learn a map which is not surjective.}
 \label{fig:dp_notsurjective}
@@ -1331,7 +1313,7 @@ Training was accomplished using 256 epochs with batch sizes 128 and a delay of 1
 \subsection{Additional Attractors: Clifford \& Thomas}
 We follow the methodology presented in \cite{manjunath2021universal} but opt to consider attractors different from the Lorenz system and H\'enon map in this project.
 
-\subsubsection{Thomas' Cyclically Symmetric Strange Attractor}
+\subsubsection{Thomas' Cyclically Symmetric Strange Attractor}\label{Thomas_Attractor}
 Thomas' Cyclically Symmetric Strange Attractor, a 3D attractor proposed in 1999 by Ren\'e Thomas in \cite{ThomasAttractor}, is described by a set of three equations which is distinctly reminiscent of the Lorenz system, another deterministic three-equation model exhibiting chaotic behaviour.It has a single parameter $\beta$ and has been shown to transition to chaotic behavious when $\beta<0.208186$~\cite{Thomas_BetaParameter}.
 \begin{eqnarray}\label{eqns_thomas}
   x_{n+1} = \sin(y_n) - \beta{x_n} \\
@@ -1393,6 +1375,17 @@ Another 2-equation discrete-time map named the Fractal Dream Attractor, or more 
 
 \section{Generalized Pearson Correlation}\ednote{B: Alter heading.}
 
+% Besides being able to learn the action of the Koopman operator exactly, our setup has other advantages over selecting or optimizing the choice of observables as in the Extended Dynamic Mode Decomposition (EDMD) algorithm (e.g., [21, 22]). We can alter the functional complexity of G T by changing the number of observables or equivalently by altering the dimension of X – in the case of a RNN implementation of g, by simply changing the number of neurons in the network. Empirically, increasing the dimension of X is found to increase the linear relationship (or intuitively reduces the functional complexity of G T ) that is measured as a generalization of the Pearson correlation coefficient to random vectors (e.g., [44]) between (x_{n−1} , x_{n}) and G_T (x_{n−1} , x_n), and such numerical evidence is tabulated in [11, Table 1]. In contrast, expanding the set of observables while using EDMD to learn a map with a lower functional complexity is a highly involved task, not least because so much that one often does not know how to guess a new observable, as well as the fact that adding observables does not necessarily retain the invariance of the span of the observables.
+
+% Empirical evidence shows that a linearity measure like a Pearson correlation coefficient points at reduced functional complexity while learning the dynamics in the state space of the driven system.
+
+% Empirically (see Table ??), increasing the dimension of X is found to increase the linear relationship
+% (or intuitively reduce the functional complexity of G T ) that is measured as a generalization of the Pearson correlation coefficient to random vectors (e.g., [?]) between (x n−1 , x n ) and G T (x n−1 , x n ). If Σ a and Σ b denotes the covariance matrices of the vectors (x n−1 , x n ) and G T (x n-1 , x n ) respectively, and if Σ ab denotes the covariance matrix between the vectors (x n-1 , x_n ) and G_T (x n-1 , x_n ), then the multidimensional 18correlation coefficient is computed by using the traces of these matrices: 
+% \[\pho = \frac{tr(\sum_{ab})}{tr(\sqrt{\sum_{a}\sum_{b}})}\]
+
+% This multidimensional correlation coefficient satisfies most of the well-known properties of the one-dimensional Pearson coefficient. In particular, ρ = ±1 if and only Y = AX + b for some invertible matrix A and vector b. Hence ρ, and in practice, the estimator ρ̂, can be used to measure the linear relationship between two random vectors of the same dimension and thus serves as an indicator of functional complexity.
+
+% We remark that the estimation of such linear relationship in (see Table ??) obtained by sample correlations alone is justified whenever {u n } is a realization of an ergodic process since then when g has the USP, any solution {x n } is also a realization of an ergodic process [?]. In the ergodic input case the generalized Pearson correlation coefficient (between (x n−1 , x n ) and G T (x n−1 , x n )) is independent of n.
 
 \ednote{B: Write Pearson Introduction. Could you give me some help here, Sir?}
 
@@ -1514,7 +1507,7 @@ Another 2-equation discrete-time map named the Fractal Dream Attractor, or more 
 As technology has advanced over the past century, humanity’s ability to record and manipulate rich, complex data in order to produce forecasts has profoundly increased. 
 Collecting measurements from underlying artificial, natural, and physical systems through observables to realise a dynamical model with greater descriptive power is well-established in present-day science.
 
-A key to the success of these techniques is the fact that dynamics discerned from the observed space can often be characterised by a mapping of much lower functional complexity when compared to the map describing the unknown underlying system. Takens theorem and the numerous generalizations (e.g., [5, 6, 7, 8, 8]) thereof is one such method establishing (under some generic conditions) the learnability of a system produced by creating a delay-coordinate vector from a sufficiently large number of previous observations of a dynamical system. This system is topologically conjugate to the system from which the observed time-series was obtained.
+Core to the success of these techniques is the fact that dynamics discerned from the observed space can often be characterised by a mapping of much lower functional complexity when compared to the map describing the unknown underlying system. Takens theorem and the numerous generalizations thereof is one such method establishing (under some generic conditions) the learnability of a system produced by creating a delay-coordinate vector from a sufficiently large number of previous observations of a dynamical system. This system is topologically conjugate to the system from which the observed time-series was obtained.
 
 A critical concern of this method is the requirement of full knowledge of the variables of the underlying state space that govern the complex dynamical system one is interested in. In real-world conditions this intelligence is seldom available and one must depend heavily on human expertise and insight. 
 
