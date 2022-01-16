@@ -14,3 +14,7 @@ Loose_Late/*
 *-eps-converted-to.pdf
 *.zip
 .latexmkrc
+!originalArticle/
+
+forcomparison.*
+!forcomparison.tex

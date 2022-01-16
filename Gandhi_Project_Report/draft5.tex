@@ -584,7 +584,7 @@ If we can learn the map $F_\theta$, from sufficient number of data points of $\{
 
 %Thus information about U can be retained in the time series' (or observation's) output. By preserving the topology on the manifold $U$ in the reconstruction space $X$ (\textbf{not discussed before}), we are also guaranteed the preservation of topological invariants of the manifold, of which dimensionality is one such invariant. (We note here that dimensionality will again be considered later in this project).
 
-\section{Practical Limitations to Takens' Theorem}
+\section{Practical Limitations to Takens' Theorem}\label{sect_takenslimits}
 
 It is a fact that Takens' Embedding Theorem is both a powerful result and that it provides compelling reason to believe that one could conceivably reconstruct accurately a system conjugate to the underlying system. Nonetheless, it does present some serious practical limitations:
 \vspace{-5mm}
@@ -711,7 +711,7 @@ whenever $X$ is compact, the intersection is nonempty.  \ednote{B: Should I cite
   We say $g$ is a topological contraction if $\bigcap_{i<n}X_{n,i}(\overline{u})$ is a singleton subset of $X$ for each $\overline{u}$. 
 \end{Definition}
 
-It turns out that $\bigcap_{i<n}X_{n,i}(\overline{u})$ is identically equal to $X_n(\overline{u})$ that we had defined earlier \textbf{(Cite.)}. This will lead to a result (for. e.g., \cite{manjunath2013echo}) that  \textit{$g$ being a topological contraction is equivalent to the existence of a exactly one entire solution.}
+It turns out that $\bigcap_{i<n}X_{n,i}(\overline{u})$ is identically equal to $X_n(\overline{u})$ that we had defined earlier \ednote{(Insert citations.)}. This will lead to a result (for. e.g., \cite{manjunath2013echo}) that  \textit{$g$ being a topological contraction is equivalent to the existence of a exactly one entire solution.}
 
 \begin{Remark}
   [\bf Proof of Example~\ref{Ex_exp}] \label{rem_proofEx} \rm
@@ -725,9 +725,8 @@ Should the driven system be compact, existence follows immediately.
 \begin{Theorem}\label{Thm_CompactExistence}
  Let $g$ be a driven system.  If $X$ is compact, then for each input $\overline{u}$, there exists at least one solution to the driven system $g(\ldotp, x)$
 \end{Theorem}
-\begin{proof}
-  May be found in \cite{kloeden2011nonautonomous, manjunath2014dynamics, manjunath2013echo}
-\end{proof}
+{\bf Proof.}  May be found in \cite{kloeden2011nonautonomous, manjunath2014dynamics, manjunath2013echo}
+
 
 % One may easily construct many systems with trivial solution-sets, such as $g(u,x)=x$ which has only the constant solution $x$ and so for $U=[-1,1]$, the system would have no solution if $|x|>1$. To refine the scenario, we consider only systems with unique solutions. 
 
@@ -745,7 +744,7 @@ If $g$ has the USP, then any solution to $g$ is also a uniform attractor in nona
 % Paraphrased. 
 %Additionally, $g$ having the USP is in our context also equivalent to $g$ being a topological contraction \cite{manjunath2021universal}, or alternatively also that $g$ exhibits the Echo State Property (ESP). 
 
-\ednote{RC introduced a bit abruptly} Reservoir Computing(RC) refers to a machine learning approach in which input is mapped onto a different, but higher dimensional, space through a system called the reservoir after which a readout measuring the reservoir state is trained.
+\ednote{B: RC introduced a bit abruptly. Adjust.} Reservoir Computing(RC) refers to a machine learning approach in which input is mapped onto a different, but higher dimensional, space through a system called the reservoir after which a readout measuring the reservoir state is trained.
 In the majority of Reservoir Computing(RC) literature \textbf{(Cite)}, a notion of forgetting the states of the reservoir asymptotically is often used.  
 Concepts like the echo state property(ESP) and  fading memory \cite{boyd1985fading} are two of these.  
 If $g$ possesses the ESP (equivalent in our context to the USP \textbf{(Cite)}), we are guaranteed that the whole of an input's left-infinite history will exactly determine the current system state; i.e. there is only ever the possibility of a single reachable state at a given instance of time \cite{jaeger2001echo,Manju_2020}.
@@ -817,9 +816,7 @@ Re-sketching the commutativity diagram \ref{Scomm_h} above by replacing $X_U$ by
  \begin{Theorem}
   For a compactly driven system, a causal mapping $H$ exists if and only if $g$ has the USP. 
 \end{Theorem}
-\begin{proof}
-  See~\cite[Th.3]{manjunath2013echo}.
-\end{proof}
+{\bf Proof.}  See~\cite[Th.3]{manjunath2013echo}.
 
 The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: 
 If the causal mapping $H:\overleftarrow{U}{\to}{\overleftarrow{X}_U}$ is injective (in addition to being surjective), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$. 
@@ -862,7 +859,7 @@ It is imperative to take note of a subtlety here: we refer to the \emph{map} $H$
 
 \section{Choosing the driven system $g$}
 
-So far it is not clear if the USP alone ensures the ability to causally embedding a dynamical system and we mention that a driving function $g$ cannot just be chosen in a frivolous manner. This could possibly complicate our work. \ednote{Dié lees vreemd}
+So far it is not clear if the USP alone ensures the ability to causally embedding a dynamical system and we mention that a driving function $g$ cannot just be chosen in a frivolous manner. This could possibly complicate our work. %\ednote{B: Grammarly}
 
 %The driving function $g$ cannot be chosen in a frivolous manner as it could possibly complicate our work. Specifically, one must be careful to avoid a choice of $g$ which would  add complexity to the obtained solution.  
 
@@ -874,7 +871,7 @@ So far it is not clear if the USP alone ensures the ability to causally embeddin
 %To achieve a causal embedding embedding not just a causal mapping, it is undesirable to choose a function $g$ that quenches the temporal structure in $u$ by contracting to such a degree that the ability to recover information from the original system is lost completely.
 In the above example(\ref{ex_halfux}), the input's temporal variation could not be related to the reachable set as $X_U$ only consisted of a single element; little, if not no, information is encoded.
 To obtain a suitably complex function $g$, it is thus desired that the reachable set of a driven system  be large enough to relate to the input. 
-This is true even for embedding  the inverse-limit space of a dynamical system. \textbf{(B: Expand or refer?)}
+This is true even for embedding  the inverse-limit space of a dynamical system. \ednote{B: Expand or refer?}
 
 
  To this end, we recall the notion of State-Input (SI) Invertibility.  
@@ -893,13 +890,12 @@ $$Y_T:=\{(x_{n-1},x_n): \{x_k\}_{k\in \mathbb{Z}} \mbox{ is a solution for some 
 
 The following theorem establishes the existence of a well-defined map $G_T$ describing the SDD of the system above. 
 
-\begin{Theorem}
-If we let $G_T:Y_T\to{Y_T}$ be a map defined by the relation $(x_{n-1},x_n)\mapsto(x_n,x_{n-1})$, then $G_T$ is well-defined (and this results holds even in the absence of $g$ possessing over the USP)  
-\end{Theorem}
-\begin{proof}
-  \textbf{See .....................}
-\end{proof}
-
+\begin{Theorem}\label{Thm_GT_Exists}
+  For an SI-invertible driven system $g$ and a dynamical system $(U,T)$, the map $G_T: Y_T \to Y_T$ defined by the relation $(x_{n-1},x_n) \mapsto (x_n,x_{n+1})$ is well-defined. 
+  (This results holds even in the absence of $g$ possessing over the USP) 
+  % Moreover, the mapping $(x_{n-1},x_n) \mapsto u_{n}$ is well-defined when $x_{n-1}$ and $x_n$ are successive points on a solution obtained for an input  $\{u_n\}$ that is an orbit of $T$.
+  \end{Theorem}
+  {\bf Proof.} See~\cite[Th.3]{Supp}
 
 
 %'Without additional complexity' is guaranteed by the invertibility of the function $g$ that guarantees a one-to-one mapping between $u_n, x_{n-1}$ and $x_n$. In obtaining an SI-invertible function, therefore, we are guaranteed a system which will not lose so much information about its previous states in the forward-flow of time that one may not make any credible claims as to the original system's behaviour and properties. Simultaneously, it does guarantee us that the important information encoded in previous inputs is indeed preserved.
@@ -934,16 +930,18 @@ The UAP guarantees that all trajectories will converge to the same trajectory as
 \begin{figure}[ht]
   \includegraphics[scale=0.35]{_Nonlinearity_Fig_response.eps}
   \centering
-\captionof{figure}{A coordinate of a simulated solution $(x_0,x_1,\ldots,x_{5000})$ of a RNN  plotted in red (with parameter $\alpha=0.99$ (where $g$ has the USP) and blue ($a=1$ and $\alpha=1.05$ where $g$ does not have the USP) while the matrices $A$ and $B$ are randomly generated, and $B$ has unit spectral radius. Reproduced from \cite{Manju_Nonlinearity}.}
+\captionof{figure}{A coordinate of a simulated solution $(x_0,x_1,\ldots,x_{5000})$ of a RNN  plotted in red (with parameter $\alpha=0.99$ (where $g$ has the USP) and blue ($a=1$ and $\alpha=1.05$ where $g$ does not have the USP) while the matrices $A$ and $B$ are randomly generated, and $B$ has unit spectral radius. 
+Reproduced from \cite{Manju_Nonlinearity}. }
 \label{fig:memloss_conttime} 
-\end{figure} \ednote{This graph with the black line does not immediately make sense}
+\end{figure} 
+\ednote{B: How can I explain the black line? I don't think this makes sense to the reader immediately.}
 
 One may now appreciate an even more astounding result: $g$ having the USP is equivalent to the UAP as is proved in~\cite{Manju_Nonlinearity}.
 
 
 %We restate the above theorem.
 
-%\begin{Theorem}\label{thm_usp-contr-uap}  The following statements are equivalent:  \vspace{-8mm}  \begin{enumerate}[noitemsep, label=\roman*.]    \item $g$ has the USP.    \item $g$ is a topological contraction.    \item $g$ has the UAP.  \end{enumerate\end{Theorem}\begin{proof}  May be found in \cite[Th.1]{Manju_Nonlinearity}\end{proof}
+%\begin{Theorem}\label{thm_usp-contr-uap}  The following statements are equivalent:  \vspace{-8mm}  \begin{enumerate}[noitemsep, label=\roman*.]    \item $g$ has the USP.    \item $g$ is a topological contraction.    \item $g$ has the UAP.  \end{enumerate\end{Theorem} {\bf Proof.}  May be found in \cite[Th.1]{Manju_Nonlinearity}
 
 % One need therefore not establish any additional results to ensure that the sequence uniformly approaches the unique solution $\Psi$. This vastly simplifies the effort necessary to set up a problem in order to guarantee that the underlying system will be accurately represented by the conjugate system.
 
@@ -987,14 +985,11 @@ and the induced dynamical system  $(Y_T,G_T)$, i.e., the following diagram commu
 or in other words, $(Y_T, G_T)$ is a factor of  $(\widehat{U}_T, \widehat{T})$. Further, if $T:U \to U$ is a homeomorphism, 
 then $H_2$ embeds $\widehat{U}_T$ in $X_U \times X_U$, and hence $(Y_T, G_T)$ is conjugate to $(\widehat{U}_T, \widehat{T})$.
 \end{Theorem}
-\begin{proof}
-  May be found as the proof of~\cite[Th.4]{Supp}
-\end{proof}
+{\bf Proof.}  May be found as the proof of~\cite[Th.4]{Supp}
 
-Recall that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ \ednote{Check}to an element in $X\times{X}$. 
-\ednote{Rephrase}We are drawing nearer and nearer to our principal target and our results carry more and more weight. Since if learn $G_T$ we would have learnt $\widehat{T}$ and since $\widehat{T}$ is an extension of $T$, we would have learnt $T$ as well. 
+Recall that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ to an element in $X\times{X}$. 
+We are drawing nearer and nearer to our principal target and our results carry more and more weight: If we are able to learn $G_T$, we will also have learnt $\widehat{T}$; and since $\widehat{T}$ is an extension of $T$, we will have obtained $T$ as well.  %\ednote{B: Grammarly check}
 
-\ednote{Why is theorem on inverse-limit system taken out?}
 %\begin{Theorem} Graph \ref{Scomm_h} is exactly the inverse-limit system $(\hat{U}, \hat{T})$.    \end{Theorem}
 
 
@@ -1016,9 +1011,7 @@ Recall that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ \ed
 %\begin{Theorem}
  %   $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$.
 %\end{Theorem}
-%\begin{proof}
-%  See \cite[Th.3, Th.4]{manunath2021universal}
-%\end{proof}
+% {\bf Proof.} See \cite[Th.3, Th.4]{manunath2021universal}
 
 
 \section*{Summarising the discussing thus far:}
@@ -1043,17 +1036,16 @@ One can therefore in practice learn the SDD of the driven system states via $G_T
 \end{itemize} 
 
 
-Finally, we note that although $G_T$ exists with SI-invertibility, we need USP  otherwise the driven states has to be running for all time since the driven states would not have forgotten its past states. 
+Finally, we note that although $G_T$ exists with SI-invertibility, we need the USP as well(see \ref{fig_pictorialSummary} below for a visual illustration). If not, the driven states would have to be running for all time since they would not have forgotten their past states. 
 
-% Below is reproduced a pictorial representation of the relationship between different entities and properties. \textbf{(Cite SIG_25May)}
-% Below is reproduced a pictorial representation of the relationship between the different entities and their properties.
 
 \begin{figure}[ht]
   \includegraphics[scale=0.3]{_summarypictorial.eps}
   \centering
+  \captionof{figure}{Pictorial summary of results obtained up to now and how they overlap. Reproduced from \textbf{(Cite SIG-25May)} }
   \label{fig:fig_pictorialSummary}
 \end{figure}
-\ednote{M: Please put a caption on this figure and cite the figure in the main text}
+
 
 
 
@@ -1062,7 +1054,7 @@ Finally, we note that although $G_T$ exists with SI-invertibility, we need USP  
 In the above sections, we established the map $G_T$ describing the SDD of a driven system. By establishing the existence of this map, we’ve essentially embedded the attractor $U$ (recall from \ref{attractor_U}) into the higher dimensional space $X\times{X}$.
 In layman’s terms, this ensures that there is more “dimensional room” for the underlying system’s underlying dynamics to “move”. Since the dynamics aren’t as “squashed”, we might therefore hope that the dynamics of $G_T$ are in some sense simpler than that of $T$. (Taken note of the fact that $G_T$ is a homeomorphism even when $T$ is just continuous)
  
-In \cite{manjunath2021universal} it is illustrated in an empirical fashion in that the map $G_T$ describes dynamics which are less functionally complex than that of $T$ or of the map $\Phi_{2d,\theta}$. This is done by implementing a Recurrent Neural Network (RNN), which is discussed in~\ref{ch5}. \ednote{(B: Should I add in that we'll be using Pearson coefficient?)}
+In \cite{manjunath2021universal} it is illustrated in an empirical fashion in that the map $G_T$ describes dynamics which are less functionally complex than that of $T$ or of the map $\Phi_{2d,\theta}$. This is done by implementing a Recurrent Neural Network (RNN), which is discussed in~\ref{ch5}. \ednote{B: Should I add in that we'll be using Pearson coefficient?}
  
 We opt to learn $G_T$ in an indirect manner by defining a new map $\Gamma:(x_{n-1},x_n)\mapsto{u_n}$. It will follow immediately from $G_T$’s existence that $\Gamma$ also exists. 
 
@@ -1071,9 +1063,7 @@ The reasons for taking this roundabout approach remain to be discussed in \ref{s
 \begin{Theorem}
   When $x_n$ and $x_{n-1}$ are successive points on a solution obtained for input-orbit of $T$ $\{u_n\}$, then the map $\Gamma: X\times{X}\to{U}$ defined by $(x_{n-1},x_n)\mapsto{u_n}$ exists whenever $G_T$ exists 
 \end{Theorem}
-\begin{proof}
-  See \cite[Th. 3c]{manjunath2021universal}.
-\end{proof}
+{\bf Proof.}  See \cite[Th. 3c]{manjunath2021universal}.
 
 Projection mappings $\pi_i$ are defined in the traditional meaning where a $k$-dimensional vector is projected to it's $i^{th}$ component such that $$\pi_i:(a_1,a_2, \ldotp, a_{k-1}, a_k)\to{a_i}$$
 
@@ -1118,7 +1108,7 @@ In the first place, learning $\Gamma$ saves computational resources. This is due
 %In practice, if the input is of a  lower dimension, one may easily embed it into the space $X\times{X}$ by padding the vector $u_n$ with zeroes.
 
 Secondly, the function $\Gamma$ is known to be stable. Learning $\Gamma$ makes use of equations \ref{eqns_from_data} which in turn employs the driven system $g$ possessing the USP, and offers distinct advantages with regards to stability in the presence of perturbation. It is desirable that inputs that differ only slightly would have only ‘slight’ effects on the output of the system. Moreover, one would hope to prevent numerical errors originating from input and measurement noise (see~\cite[Th. 5]{manjunath2021universal}). 
-As the data fed into the system is a function of both the input given and the parameters of the system itself (i.e. the value a, $\alpha$ in $\tanh$), we exploit both input-related and parameter-related stability. Both these notions are defined by way of the continuity of an encoding map of an input and design parameter respectively in \cite{manjunath2020stability}.\
+As the data fed into the system is a function of both the input given and the parameters of the system itself (i.e. the value a, $\alpha$ in $\tanh$), we exploit both input-related and parameter-related stability. Both these notions are defined by way of the continuity of an encoding map of an input and design parameter respectively in \cite{manjunath2020stability}.\ednote{B: Is this satisfactory?}
 
 Informally, we may consider input-related stability as concerned with the question of whether or not small variations in input would result in small responses.   
 If two inputs $\bar{u}$ and $\bar{u}_{noisy}$ are close in the product topology, then their tails could differ greatly due to the metric that generates the product topology has insensitivity to the differences in sequence's tails.
@@ -1128,17 +1118,31 @@ In a similar fashion, parameter-related stability is obtained thanks to a result
 
 % Secondly,  due to $g$ possessing the USP, both input- and parameter-related stability~\cite{manjunath2020stability} is obtained, which in turn prevents numerical errors that caused by input and measurement noise (see~\cite[Th. 5]{manjunath2021universal}). 
 
+
+Thirdly, learning a chaotic map on a set(here $Y_T$) with even a small measure of noise  means that the learnt system accepts arguments out of the set (Problems similar to Takens, cf.~\ref{sect_takenslimits}). 
+We thus have a map $G_T^+$ acting on $Y_T^+$ and since $Y_T$ is not guaranteed to be an attractor of $G_T$ this could lead to errors.
+If one learns $G_T$ directly, we are in danger of replicating the problems arising for Takens.  To see this, consider Fig.~\ref{fig:YtGtFailure}.
+
+\begin{figure}[ht]
+  \includegraphics[scale=0.25]{_YTerrors.eps}
+  \centering
+  \captionof{figure}{Diagram of potential errors developing when $G_T$ is learnt.}
+  \label{fig:YtGtFailure}
+\end{figure}
+
+To circumvent this: if a driven system with a saturation function\ednote{B: What is a saturation function?} is used, we can indirectly (via $g$) ensure the existence of an attractor $A$ of the map which implements $G_T$, and containing $Y_T^+$.  \ednote{B: I'm not sure this sentence makes complete sense.}
+By defining the dynamics to $A$, this prevents large errors from occuring.  
+More details on the global dissipativity of $g$, as it is termed there, may be found in~\cite{Supp}.
+
 \begin{figure}[ht]
   \includegraphics[scale=0.25]{_autovsdriven.eps}
   \centering
-  \label{fig:learningFailure}
   \captionof{figure}{Illustrating empirically the importance of global dissipativity. Plotted below are the three principal components of randomly initiated points(blue) of a learnt version of $G_T$ versus the trajectory $(x_{n-1}, x_n)$(red) of driven states obtained from the Fractal Dream Attractor's data~\ref{Thomas_Attractor}). }
+  \label{fig:learningFailure}
 \end{figure}
-\ednote{nice figure: Please rescale the figure and also you do not have to state that code was borrowed. So I have omitted that in the caption. Please put a caption to the figure and then cite in the text. }
 
-Thirdly, whenever we learn a chaotic map on a set (here $Y_T$), as we had remarked in the disadvantages of Takens delay embedding a little noise would mean that the learnt system would accept arguments out of the set, so we will have a map $G_T^+$ acting on $Y_T^+$, and since $Y_T$ may not be an attractor of $G_T$ this could lead to errors. To circumvent this if the driven system with a saturation function is used, then we can ensure that there exists an attractor $A$ of the map that implements $G_T$ indirectly via $g$ containing $Y_T^+$. This prevents from large errors occuring since the dynamics is confined to $A$.  We refer to \cite{Supp} for details where this is referred to as the global dissipativity of $g$.   
-
-In essence, global dissipativity prevents large numerical errors due to the noise in input data. If a system is not globally dissipative, neglibly small errors result could lead to major errors which thus induce predictions to fail utterly. If one learns $G_T$ directly, we are in danger of replicating the problems arising for Takens. 
+In effect, global dissipativity prevents large numerical errors due to the noise in input data from arising (see Fig.~\ref{fig:learningFailure}). 
+If a system is not globally dissipative, neglibly small errors could lead to major inaccuracy which thus induce predictions to utterly fail.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
