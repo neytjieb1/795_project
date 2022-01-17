@@ -1,0 +1,161 @@
+% \documentclass[a4paper,12pt,twoside]{book}
+\pagestyle{headings}
+\usepackage[utf8]{inputenc}
+\usepackage{filecontents}
+\usepackage[many]{tcolorbox}
+\usepackage{graphicx}
+\usepackage{harpoon}
+%\usepackage{apacite} 
+\usepackage{xcolor}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mdframed}
+%\usepackage[authoryear]{natbib}
+\usepackage{hyperref, url}
+\usepackage[show]{ed}
+\usepackage{subfigure}
+\usepackage[ntheorem]{empheq} 
+\usepackage{amsthm, amssymb, amsfonts, latexsym}
+% \usepackage{pst-all}
+
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage[export]{adjustbox}
+% $f\arrowvert_A$ To restrict functions
+
+\setlength{\parskip}{1.7em}
+\setlength{\parindent}{0em}
+
+
+%\setlength{\baselineskip}{20pt}
+
+\setlength{\textwidth}{429.75499pt}
+\setlength{\textheight}{643.20255pt}
+\setlength{\oddsidemargin}{5 mm}
+\setlength{\evensidemargin}{5 mm}
+\setlength{\topmargin}{0 mm}
+\setlength{\headsep}{0 mm}
+\setlength{\headheight}{0 mm}
+
+
+\usepackage{pst-node}
+
+\newcommand{\citealtt}[1]{\citeauthor{#1},\citeyear{#1}}
+\newcommand{\myycite}[1]{\citep{#1}}
+
+\mathchardef\mhyphen="2D
+
+%\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
+
+
+\usepackage{pst-node,graphicx,pst-blur}
+%\uspackage{auto-pst-pdf}
+%\usepackage{tikz-cd} 
+
+
+
+\makeatletter
+\DeclareRobustCommand{\cev}[1]{%
+  \mathpalette\do@cev{#1}%
+}
+\newcommand{\do@cev}[2]{%
+  \fix@cev{#1}{+}%
+  \reflectbox{$\m@th#1\vec{\reflectbox{$\fix@cev{#1}{-}\m@th#1#2\fix@cev{#1}{+}$}}$}%
+  \fix@cev{#1}{-}%
+}
+\newcommand{\fix@cev}[2]{%
+  \ifx#1\displaystyle
+    \mkern#20mu
+  \else
+    \ifx#1\textstyle
+      \mkern#20mu
+    \else
+      \ifx#1\scriptstyle
+        \mkern#26mu
+      \else
+        \mkern#26mu
+      \fi
+    \fi
+  \fi
+}
+
+\makeatother
+
+\newcommand{\xcm}{\epsfxsize=3.1cm}
+\newcommand{\fig}[1]{\epsfbox}
+% \newcommand{\bp}{\begin{minipage}{3.1cm}}
+% \newcommand{\ep}{\end{minipage}}
+
+
+
+\newtheorem{Definition}{Definition}[]
+%\newmdtheoremenv{Theorem}{Theorem}[]
+\newtheorem{Theorem}{Theorem}[]
+\newtheorem{Lemma}{Lemma}[]
+\newtheorem{Proposition}{Proposition}[]
+\newtheorem{Corollary}{Corollary}[]
+\newtheorem{Remark}{Remark}[]
+\newtheorem{Example}{Example}[]
+
+
+%Shortcut symbols
+\newcommand{\Ftheta}{\ensuremath{F_\theta}}
+
+\makeatletter 
+\renewcommand{\thefigure}{\@arabic\c@figure}
+\makeatother
+\usepackage{xr}
+
+
+%%%% PNAS GRAPHICS SETUP- FROM THE PNAS STYLE LATEX FILE
+\RequirePackage{graphicx,xcolor}
+\RequirePackage{colortbl}
+\RequirePackage{booktabs}
+\RequirePackage{algorithm}
+\RequirePackage[noend]{algpseudocode}
+\RequirePackage{changepage}
+\RequirePackage[twoside,%
+				letterpaper,includeheadfoot,%
+				layoutsize={8.125in,10.875in},%
+                layouthoffset=0.1875in,%
+                layoutvoffset=0.0625in,%
+                left=38.5pt,%
+                right=43pt,%
+                top=43pt,% 10pt provided by headsep
+                bottom=32pt,%
+                headheight=0pt,% No Header
+                headsep=30pt,%
+                footskip=25pt,
+                marginparwidth=38pt]{geometry}
+\RequirePackage[labelfont={bf,sf},%
+                labelsep=period,%
+                figurename=Fig. ]{caption}
+\setlength{\columnsep}{13.5pt} % Distance between the two columns of text
+\setlength{\parindent}{12pt} % Paragraph indent
+
+%% Figure caption style
+\DeclareCaptionFormat{pnasformat}{\normalfont\sffamily\fontsize{7}{9}\selectfont#1#2#3}
+\captionsetup*{format=pnasformat}
+
+%%% GREYBOX AROUND FIG
+\definecolor{lightgray}{gray}{0.95}
+\newcommand\greybox[1]{%
+  \vskip\baselineskip%
+  \par\noindent\colorbox{lightgray}{%
+    \begin{minipage}{\textwidth}#1\end{minipage}%
+  }%
+  \vskip\baselineskip%
+}
+
+\newtcolorbox{paperbox}[1][]{
+    enhanced,
+    colback=white,
+    boxrule=0pt,
+    boxsep=0pt,
+    arc=0mm,
+    width=0.8\linewidth,
+    fuzzy shadow={0mm}{-4pt}{-4pt}{1mm}{black!30!white},
+    #1
+}
