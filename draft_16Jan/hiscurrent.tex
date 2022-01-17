@@ -179,16 +179,21 @@
 
 
 \begin{abstract}
-  Collecting measurements from underlying artificial, natural, and physical systems through observables to realise a dynamical model with greater descriptive power is a well-established practice. Physical systems can often be modelled by instance with differential equations derived from the laws of physics, if we knew the laws.  However, we often do not fully understand the many complexities of the more intricate systems we interact with on a daily basis.
-  In this project we start with the hypothesis that an discrete-time dynamical systems, particularly those which are chaotic generates the data. The general learning problem is then formulated and a well-known approach to the problem, alongside its practical limitations are considered.
-  We then introduce the notion of driven dynamical systems and establish the theoretical existence of dynamical systems possessing certain properties that guarantee them to be topologically conjugate ('dynamically equivalent') to the dynamics of the underlying system from which measurements were taken. The methodology is practically implemented by making use of a recurrent neural network and using deep learning methods to train on the recurrent neural network states to show that we may obtain long-term consistent predictions for simple physical systems such as the double pendulum as well as a few other attractors exhibiting chaotic behaviour. The machine learning algorithms for modelling the double pendulum thus far have not been successful when it exhibits chaos. 
+  It is a well-established practice to collect measurements from underlying artificial, natural, and physical systems through observables in order to realise a dynamical model with greater descriptive power. 
+  Many data-driven approaches to forecast the future evolution of systems exist. However, many of these methods rely on an initial understanding of the system and we often do not fully understand the many complexities of more intricate systems that we interact with on a daily basis.
+
+  In this project, the base assumption is that data is originates from  some discrete-time dynamical system, particularly one of a chaotic nature but no assumptions are made pertaining to a specific dynamical system.
+  A general learning problem is formulated and a well-known approach to the problem, alongside its practical limitations, is then considered.
+  The notion of driven dynamical systems is introduced, and we subsequently establish the theoretical existence of a dynamical system possessing certain properties which guarantees it to be topologically conjugate (`dynamically equivalent`) to the dynamics of the underlying system from which measurements were originally taken. 
+  Our methodology is implemented practically by making use of recurrent neural networks, a form of deep learning, to learn a map topologically equivalent to the underlying system that forecasts future states.
+  In so doing we present the workability of an approach to obtain long-term topological and statistically consistent predictions for simple physical systems as well as a some chaotic attractors.
   \end{abstract}
 
   \tableofcontents
 
 \chapter{Introduction}\label{ch1}
 
-Experimenting with biological, physical, and artificial systems to generate a more informative dynamical model is a well-established practice in modern science. Traditional methods for modelling physical systems are based on laws of physics that are based either on empirical relationships or intuition. For systems that evolve with time, physical laws yield mathematical equations that govern how the quantities evolve with time. However, our world is much more complex than that which can be distilled into elegant equations. We do not fully understand many of the more complex systems, nor do they provide us with a good physical intuition of the underlying principles governing system dynamics. To complicate this, the underlying systems we observe often display sensitive dependence on initial conditions despite having highly similar initial conditions. This is because differing orbits diverge quickly and to such an extent that it becomes seemingly impossible to retrace their steps back to the original conditions. Even the presence of usually' negligible' computational noise or measurement error renders long-term pointwise prediction infeasible. There are many difficulties that one encounters while modelling such systems:
+Experimenting with biological, physical, and artificial systems to generate a more informative dynamical model is a well-established practice in modern science. Traditional methods for modelling physical systems are based on laws of physics that are based either on empirical relationships or intuition. For systems that evolve with time, physical laws yield mathematical equations that govern how the quantities evolve with time. However, our world is much more complex than that which can be distilled into elegant equations. We do not fully understand many of the more complex systems, nor do they provide us with a good physical intuition of the underlying principles governing system dynamics. To complicate this, the underlying systems we observe often display sensitive dependence on initial conditions despite having highly similar initial conditions. This is because differing orbits diverge quickly and to such an extent that it becomes seemingly impossible to retrace their steps back to the original conditions. Even the presence of usually `negligible' computational noise or measurement error renders long-term pointwise prediction infeasible. We encounter many difficultiesin the process of modelling such systems:
 \vspace{-8mm}
 \begin{enumerate}[noitemsep, label=\roman*.]
   \item One may not have access to the complete states of the systems
@@ -201,30 +206,29 @@ Models derived primarily from data can be classified into three categories:
 \begin{enumerate}[noitemsep, label=\roman*.]
   \item  Interpretable models (i.e., they establish relationships between internal physical mechanisms), 
   \item Partially interpretable models capturing some modes of the dynamics, 
-  \item Non-Interpretable models, defined as such mainly due to the fact that they are defined on a different phase space that is usually high-dimensional. 
+  \item Non-interpretable models, defined as such mainly due to the fact that they are defined on a different phase space that is usually high-dimensional. 
 \end{enumerate}
 
 Examples in the literature attempting to forecast data from such systems have tried many different approaches with differing degrees of success. 
 When we have complete access to states of the system, an ordinary differential equation can be obtained from data (\cite{brunton2016discovering, champion2019data} and \cite{small2002modeling,xu2006modeling}) wherein one could approximate the vector field by a library of functions to obtain interpretable models. 
 
 
-Recent partially interpretable models available in the literature have been based on the Koopman operator (e.g.,[?, ?]) to employ observables mapping the data onto a higher-dimensional space. This makes the dynamics in the higher-dimensional space more amenable for approximation by a linear transformation. Such methods do not guarantee exact reconstructions for nonlinear models, and in practice, provide poor long-term consistency for a large class of systems. (Citation)
-\textbf{(Citation)}
+Recent partially interpretable models available in the literature have been based on the Koopman operator (see~\cite{koopman1932dynamical,budivsic2012applied}) to employ observables mapping the data onto a higher-dimensional space. This makes the dynamics in the higher-dimensional space more amenable for approximation by a linear transformation. Such methods do not guarantee exact reconstructions for nonlinear models, and in practice provide poor long-term consistency for a large class of chaotic dynamical systems \cite{Supp}.
 
-The non-interpretable models include the delay embedding and the machine learning algorithms. For example, one could learn a system conjugate to the underlying system by applying the Takens delay embedding~\cite{takens1981detecting} when one has "good" observations from the system; this learnt system could then be used to forecast the observed data. 
-Takens delay embedding theorem ~\cite{takens1981detecting} and its various generalisations (e.g., \cite{sauer1991embedology, stark1999delay, gutman2018embedding}) establishes the learnability of a system constructed by concatenating sufficiently large previous time-series observations of a dynamical system into a vector (called delay coordinates). This then confirms the existence of a map on the space of delay coordinates equivalent (or topologically conjugate) to the underlying map from which the observed time-series was first obtained. Although topological conjugacy guarantees an alternate representation of the underlying system, the quality still depends on numerous parameters, making the comprehension of the dynamics unreliable (e.g., [?]). One reason for this fragility is that the embedded attractor in the reconstruction space is not always an attractor of the map learnt in the reconstruction space, despite unquestionably being an invariant set. When the embedded object is not explicitly known to be an attractor (as explained in Chapter~ \ref{ch3}), it can cause predictions to fail.
+The non-interpretable models include the delay embedding and the machine learning algorithms. For example, one could learn a system conjugate to the underlying system by applying the Takens delay embedding method of delay-coordinates~\cite{takens1981detecting} when one has "good" observations from the system; this learnt system could then be used to forecast the observed data. 
+Takens delay embedding theorem~\cite{takens1981detecting} and its various generalisations (see,~\cite{sauer1991embedology, stark1999delay, gutman2018embedding}) establishes the learnability of a system constructed by concatenating sufficiently large previous time-series observations of a dynamical system into a vector (called delay coordinates). This then confirms the existence of a map on the space of delay coordinates equivalent (or topologically conjugate) to the underlying map from which the observed time-series was first obtained. Although topological conjugacy guarantees an alternate representation of the underlying system, the quality still depends on numerous parameters, making the comprehension of the dynamics unreliable (see, [?]). One reason for this fragility is that the embedded attractor in the reconstruction space is not always an attractor of the map learnt in the reconstruction space, despite unquestionably being an invariant set. When the embedded object is not explicitly known to be an attractor (as explained in Chapter~ \ref{ch3}), it can cause predictions to fail.
 
-Practically, the application of Takens embedding involves learning a map through some technique, and consequently one wishes that these would have low functional complexity\cite{manjunath2021universal}, i.e., functions with fewer oscillatory graphs. On the other hand, pure machine learning methodology processes temporal information (like the echo state networks (Citations to echo state networks)) by mapping data onto a higher dimensional space for further processing. Although they perform  well on forecasting some dynamical systems, they fail completely on others (Citations here) as there is often no guarantee that the right function was learnt during training.
+Practically, the application of Takens embedding involves learning a map through some technique, and consequently one wishes that these would have low functional complexity\cite{manjunath2021universal}, i.e., functions with fewer oscillatory graphs. On the other hand, pure machine learning methodology processes temporal information (like the echo state networks~\cite{Manju_ESP, Manju_IEEE, grigoryeva2018echo}) by mapping data onto a higher dimensional space for further processing. Although they perform  well on forecasting some dynamical systems, they fail completely on others (\ednote{Ask for resources here}) as there is often no guarantee that the right function was learnt during training.
 
-This thesis involves implementing and analysing non-interpretable models that can guarantee exact reconstruction. 
-The project work concerns the study and implementation of a method (\cite{manjunath2021universal}) that incorporates learning a function by mapping the data on to a higher dimensional space using what is called a driven dynamical system (See Chapter~ref{ch.4}). With a clear understanding of how the data is mapped onto the higher dimensional space, the method then permits the learning of a dynamical system topologically conjugate to that of the underlying system. Instead of linear regression as in the training of echo state networks, deep learning methods are employed to learn the correct function. With slight modifications to the implementation in the paper (with Adriaan), we show that one can construct accurate non-interpretable models with the ability to reconstruct attractors from more hard-to-forecast systems like the double pendulum. (The forecasting of the time-series from a double pendulum has not been reported before.) Moreover, we also demonstrate that long-term statistical consistency is preserved.
+This project involves implementing and analysing non-interpretable models that can guarantee exact reconstruction. 
+The project work concerns the study and implementation of a method (\cite{manjunath2021universal}) that incorporates learning a function by mapping the data on to a higher dimensional space using what is called a driven dynamical system (See Chapter~ref{ch.4}). With a clear understanding of how the data is mapped onto the higher dimensional space, the method then permits the learning of a dynamical system topologically conjugate to that of the underlying system. Instead of linear regression as in the training of echo state networks, deep learning methods are employed to learn the correct function. With slight modifications to the implementation in the paper (\cite{manjunath2021universal}), we show that one can construct accurate non-interpretable models with the ability to reconstruct attractors from more hard-to-forecast systems like the double pendulum. (The forecasting of the time-series from a double pendulum has not been reported before.) Moreover, we also demonstrate that long-term statistical consistency is preserved.
 
 \emph{By solidifying the mathematical underpinnings of our theory, we hope to guarantee the ability to construct models with predictive power ranging from molecular biology to neuroscience. in the near future. (We can modify this sentence when the report is completed.)}
 
 The more intricate details of proofs are referred to where relevant throughout. This report is organised as follows: 
 \newline In Chapter~\ref{ch2}, we recall the definition of a discrete-time dynamical system, how a discrete-system arises from a flow of an ODE and then proceed to define the inverse-limit space and topological conjugacy of autonomous systems. 
 \newline Chapter~\ref{ch3} introduces the problem of forecasting dynamical systems, states the Takens delay embedding theorem, and discusses various issues faced while forecasting. 
-\newline In Chapter~\ref{ch4}, a driven dynamical system is defined and discuss the properties of a specific class of driven dynamical systems that we make use of in this thesis/report/paper. 
+\newline In Chapter~\ref{ch4}, a driven dynamical system is defined and discuss the properties of a specific class of driven dynamical systems that we make use of in this project.
 \newline Finally, in Chapter~\ref{ch5} we show the implementation of these forecasting methods, and conclusions are provided in Chapter~\ref{ch6}.
 
 
@@ -232,7 +236,7 @@ The more intricate details of proofs are referred to where relevant throughout. 
 
 This chapter briefly describes a discrete-time dynamical system and what it means to exhibit chaos. We refer to \cite{devaney2018introduction, de2013elements} for more details. 
 
-At its most elementary level, a dynamical system is just something that evolves deterministically through time. In the context of this thesis, deterministic refers to the fact that a system evolves according to specified rules rather than based on random events. 
+At its most elementary level, a dynamical system is just something that evolves deterministically through time. In the context of this project, deterministic refers to the fact that a system evolves according to specified rules rather than based on random events. 
 Dynamical systems arise in a variety of situations. A continuous-time dynamical system describes the states for all values of the time. Specifically, if the motion of a pendulum in which the quantities such as the angular position and angular momentum are known at all times, then it is a continuous-time dynamical system. The equations of the dynamical system can take the form of one or more ordinary differential equations that determine the relevant quantities at any future time if we know the initial location and momentum. 
 In ecology, discrete-time dynamical systems are widely used to model population growth. The model in this case is a function calculating the following generation's population given the population of the previous generation. If we know the starting population, we may once again calculate the population at any time in the future. 
 
@@ -267,8 +271,8 @@ u_{m+1} = u_m + hf(u_m)
 or in even simpler terms as the discrete-time dynamical system with map $T(u) = u + hf(u)$, where $T$, $u$ and $f$ are understood to be as above.
 
 
-Of course, discrete-time dynamical systems need not always arise through a differential equation. Once again, we may consider the field of ecology, where discrete dynamical systems are often directly derived or assumed. \textbf{Citation}
-There is a school of thought that advocates discrete-time dynamical systems to be more natural for modelling real-world observations than differential equations. We refer the interested reader to \cite{saber2010introduction}.
+Of course, discrete-time dynamical systems need not always arise through a differential equation. Once again, we may consider the field of ecology, where discrete dynamical systems are often directly derived or assumed. \ednote{Ask for resource}
+There is a school of thought that advocates discrete-time dynamical systems to be more natural for modelling real-world observations than differential equations. We refer the interested reader to~\cite{saber2010introduction}.
 
 
 \section{Invariant Sets}
@@ -318,9 +322,9 @@ In particular, we are interested in those invariant sets named attractors.
 
 Indeed in our previous examples, it can be verified that the system  $Tu=u/2$ defined on  $\mathbb{R}$ and $Tu=u^2$ defined on $[0,1]$  the singleton set $\{0\}$ is an attractor.  For the system,  $Tu=1-|2u-1|$ on $[0,1]$, one may easily verify that the only attractor is the entire space $[0,1]$. This follows from the fact that between any two points $u< v$ in $[0,1]$, and for any $a,b$ so that $u\le a < b \le v$, we can find an $n$ so that $T^n(a,b)=[0,1]$ (as would be explained later in this chapter). 
 
-A dynamical system can have several attractors and may also be contained in another attractor. For the example, $Tu =u^2$ on $[0,1]$, both $\{0\}$ and $[0,1]$ are attractors. It is known that an attractor for a dynamical system always exists in a compact space. \textbf{(Cite).}
+A dynamical system can have several attractors and may also be contained in another attractor. For the example, $Tu =u^2$ on $[0,1]$, both $\{0\}$ and $[0,1]$ are attractors. It is known that an attractor for a dynamical system always exists in a compact space~\cite{Milnor1985}.
 
-The dynamics restricted to an invariant set can be complicated. For instance an invariant set could be just a single point or it could have an infinite set. If the invariant set is infinite, then complicated dynamics are possible.A particular well-studied phenomenon of such complexity gives rise to so-called  chaotic behaviour, studied in detail over the past fifty years.
+The dynamics restricted to an invariant set can be complicated. For instance an invariant set could be just a single point or it could have an infinite set. If the invariant set is infinite, then complicated dynamics are possible. A particular, well-studied phenomenon of such complexity gives rise to so-called chaotic behaviour, a subject studied in detail over the past fifty years.
 
 % If the dynamics on the attractor are somewhat complicated in the sense that the attractor cannot be decomposed further, and if the attractor is infinite then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called a chaotic behaviour. 
 
@@ -331,8 +335,9 @@ The dynamics restricted to an invariant set can be complicated. For instance an 
 In the 1960s, several mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. The notions of invariance, attractivity, and chaos may also be described for continuous systems, and Lorenz's system comprised of a system of differential equations. 
 The narrative of Lorenz's discovery of chaos and the history of other forerunners in this subject is fascinating. We highly recommend James Gleick's book Chaos: The Making of a New Science~\cite{gleick2008chaos} for those interested. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery and describes the underlying mathematical notions for non-specialists.
 
-There are several intricately different definitions of chaos available in the literature \textbf{(Cite)}, with each of them indicating some aspect of complexity.
-In practice, it is not possible to verify which definition or notion does the underlying dynamical system satisfies when only data is observed from it. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances behind the complexity. Devaney's definition of chaos has three requirements, with the first being the notion  of sensitive dependence on initial conditions. 
+Different authors propose a number of intricately different definitions of chaos in the literature~\cite{RasbandChaos, TaborChaos, WigginsChaos} and each of them indicate some aspect of complexity.
+
+In practice, when only data is observed from a system, it is not possible to verify which definition or notion is satisfied by the underlying dynamical system. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances behind the complexity. Devaney's definition of chaos has three requirements, with the first being the notion  of sensitive dependence on initial conditions. 
 
 \begin{Definition}\rm
   [\bf {Sensitive Dependence on Initial Conditions}]\label{Dfn_SDIC}\rm
@@ -352,7 +357,7 @@ To this end, we make 3 remarks:
 To illustrate the concept of SDIC, we present two examples - one from Mathematics and the other from the field of Physics.
 
 \begin{Example} \rm
-  The logistic map(LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r\leq{4}$ is of particular interest to us as it is classically used to illustrate the influence of chaos on a system \textbf{(Cite)}. 
+  The logistic map(LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r\leq{4}$ is a classic example used to illustrate the chaotic behaviour that a system may exhibit. When $r=4$, the one-dimensional recurrence relation $x_{n+1}=4x_n(1-x_n)$ can be used as the kindergarten's model to exhibit the presence of SDIC. \ednote{B: edited and removed unnecessary citation}
   In the graph below~\ref{fig:log_sdic} we plot the first 50 iterates of the LM for $r=4$ and two slightly different initial values $x_0$.
 
   \begin{figure}[ht]
@@ -474,7 +479,7 @@ To understand the diagram, we note that if we travel "right and then down," the 
 \end{Definition} 
 
 \ednote{B: Does defining explicitly the domain and codomain of $\phi$ make it clear enough?  M: Saying $\phi$ is then a semi-conjugacy between $T$ and $S$ could be ambiguous as it does not specify which system is on the top in the commutativity. So please edit accordingly.}
-When $S$ is conjugate to $T$, the dynamics of the two systems are in some way ''dynamically equivalent''. Specifically, they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi:U\to{V}$ a many-to-one mapping, the dynamics on $V$ provide merely a coarse-grained description of the dynamics on $U$~\cite{de2013elements}. When $S$ is semi-conjugate to $T$, it is also common to call $S$ a \emph{factor of $T$}, or conversely that $T$ is an \emph{extension of $S$}. In essence, an extension (e.g., \cite{de2013elements}) is a more extensive system capturing all of the essential dynamics of its factor.
+When $S$ is conjugate to $T$, the dynamics of the two systems are in some way `dynamically equivalent'. Specifically, they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi:U\to{V}$ a many-to-one mapping, the dynamics on $V$ provide merely a coarse-grained description of the dynamics on $U$~\cite{de2013elements}. When $S$ is semi-conjugate to $T$, it is also common to call $S$ a \emph{factor of $T$}, or conversely that $T$ is an \emph{extension of $S$}. In essence, an extension (see, \cite{de2013elements}) is a more extensive system capturing all of the essential dynamics of its factor.
 
 It is a very hard or nearly an impossible task to establish the existence of a conjugacy or a semi-conjugacy $\phi$ between two systems \cite{devaney2018introduction}. However, one can verify that a function $\phi$ satisfies the commutativity diagram \ref{eqn_conjugacy}.  
 
@@ -509,7 +514,7 @@ Suppose we only have the observations $\theta(u_0), \theta(u_1), \ldots, \theta(
 
 First we establish the method of Takens delay embedding. 
 In this method, one considers a discrete-time dynamical system defined on a 'nice' space (a smooth manifold)\ednote{B: Should this be further explained?} that can be obtained as time-$K$ map of a continuous time-dynamical system, concepts formalised below.
-We make observations from such a system, i.e., we observe the evolution of $\theta(w_0)$ (where $w_0$ represents the initial state) i.e.\ednote{two i.e.'s}, we examine  a finite set of values of $u_n :=  \theta(w_n) = \theta(Tw_{n-1})$. The sequence $\{u_n\}$ represents a scalar time-series and intuitively $\theta$ represents a probe inserted into a bigger system which is itself only measuring/extracting a small part of the greater system state at time $t=n$. 
+We make observations from such a system, i.e., we observe the evolution of $\theta(w_0)$ (where $w_0$ represents the initial state) by examining  a finite set of values of $u_n :=  \theta(w_n) = \theta(Tw_{n-1})$. The sequence $\{u_n\}$ represents a scalar time-series and intuitively $\theta$ represents a probe inserted into a bigger system which is itself only measuring/extracting a small part of the greater system state at time $t=n$. 
 Consider, for example, a thermometer erected to measure the ambient temperature in a local village. This measurement function, the thermometer, is capturing only a single aspect, the temperature, of a much grander dynamical system entailing the current weather of the surrounding area. Even more than that though- it is measuring a miniscule part of the global weather system. 
 
 
@@ -559,7 +564,7 @@ Takens Theorem states a result establishing a relationship between the observed 
             $(\Phi_{2d,\theta}(W), F_\theta)$.    
 \end{Theorem} 
 
-By generic we mean a residual set on a certain topology on appropriate spaces of functions (that we do not describe here) \textbf{(Cite)}. 
+By generic we mean a residual set on a certain topology on appropriate spaces of functions (that we do not describe here) \ednote{B: Where can I find a citation for this?}. 
 By $C^2$, we make reference to a twice-differentiable function  with a continuous second derivative. In our scenario (and this remains important throughout) the input space $U$ is considered the attractor.~\label{attractor_U}
 
 Below we reproduce Figure 1 from \cite{Supp}.
@@ -600,7 +605,7 @@ The methods described here are applicable for data originating from a surjective
 This follows from the fact that when $T$ maps the space $U$ into a proper subset $B$ of$ $U, there exists some point in $U - A$ that does not have a preimage and we conclude that $T$ is not surjective. 
 An example of this would be the case when a system displays energy-loss. Consider, for instance, consider the dying oscillations for a damped pendulum. (An account of greater depth  is provided in~\ref{ch5})
 
-This requirement is not overly restrictive, as a great number of chaotic systems do have a surjective map. (Cite) \ednote{B: I remember you saying this in one of our sessions, but don't have a source for it.}
+This requirement is not overly restrictive, as a great number of chaotic systems do have a surjective map. (Cite) \ednote{B: I remember you saying this in one of our sessions, but don't have a source for it. Do you have a specific reference?}
 
 
 \chapter{Driven Dynamical Systems to Forecast Problems}\label{ch4}
@@ -682,7 +687,7 @@ The reachable set of a driven system $g$ is exactly the union of all the element
 The set of all reachable states at a specific time $n$ for input $\overline{u}$ is denoted by $X_n(\overline{u})$
 \end{Definition}
 
-The reachable set itself can defined independently from $g$ possessing the ESP/USP. We note that $x\in{X_n(\overline{u})}$ if and only $g$ has a solution $\{x_k\}$ for $x_n=x$ and input $\overline{u}$. \textbf{(Cite)}.
+The reachable set itself can defined independently from $g$ possessing the ESP/USP. Note that $x\in{X_n(\overline{u})}$ if and only $g$ has a solution $\{x_k\}$ for $x_n=x$ and input $\overline{u}$, a result proved in nonautonomous dynamical systems literature~\cite{manjunath2014dynamics, manjunath2013echo}. \ednote{B: Adjusted sentence and cited}
 
 
 The set $X_n(\overline{u})$ is precisely the set of points $x$ through which some entire solution $\Psi$ passes at time $n$. We can give an alternate formulation of the set $X_n(\overline{u})$. 
@@ -699,7 +704,7 @@ nonempty.  Further, $X_{n,i}(\overline{u}) \supset X_{n,i-1}$. Hence $\bigcap_{i
 X_{n,i}(\overline{u})$ is a nested intersection of closed nonempty subsets, and
 whenever $X$ is compact, the intersection is nonempty. We say $g$ is a topological contraction if $\bigcap_{i<n}X_{n,i}(\overline{u})$ is a singleton subset of $X$ for each $\overline{u}$. 
 
-It turns out that $\bigcap_{i<n}X_{n,i}(\overline{u})$ is identically equal to $X_n((\overline{u})$ that we had defined earlier. This will lead to a result (for. e.g., \cite{manjunath2013echo}) that  \textit{$g$ being a topological contraction is equivalent to the existence of a exactly one entire solution.}
+It turns out that $\bigcap_{i<n}X_{n,i}(\overline{u})$ is identically equal to $X_n((\overline{u})$ that we had defined earlier. This will lead to a result (for. see, \cite{manjunath2013echo}) that  \textit{$g$ being a topological contraction is equivalent to the existence of a exactly one entire solution.}
 
 % \begin{Definition}
 %   [\bf Topological Contraction]\label{Dfn_TopContr}\rm
@@ -912,7 +917,7 @@ This specific driving function $g$ is used in our implementation and is discusse
 
 Despite the ease that with which one manipulates a left-infinite history in the realm of theory, it is impossible to obtain or use such a sequence in any real-life application.  
 Fortunately, one does not need the entire left-infinite history of an input in practice thanks to the Uniform Attraction Property(UAP). 
-We use an alternate version of the definition of UAP -- since the notion of nonautonomous attractors in this thesis would take some time to establish and detracts from the principal thrust of this project, we refer to \cite{Manju_Nonlinearity}. 
+We use an alternate version of the definition of UAP -- since the notion of nonautonomous attractors in this project would take some time to establish and detracts from the principal thrust of this project, we refer to \cite{Manju_Nonlinearity}. 
 
 \begin{Definition}
   [\bf Uniform Attraction Property]\label{Dfn_UAP}\rm
@@ -1037,7 +1042,7 @@ Finally, we note that although $G_T$ exists with SI-invertibility, we need the U
   \captionof{figure}{Pictorial summary of results obtained up to now and how they overlap. Reproduced from \textbf{(Cite SIG-25May)} }
   \label{fig:fig_pictorialSummary}
 \end{figure}
-
+\ednote{Ask M: Cite SIG-25May.}
 
 \section{A discussion of $G_T$ }
 
@@ -1098,7 +1103,7 @@ In the first place, learning $\Gamma$ saves computational resources. This is due
 %In practice, if the input is of a  lower dimension, one may easily embed it into the space $X\times{X}$ by padding the vector $u_n$ with zeroes.
 
 Secondly, the function $\Gamma$ is known to be stable. Learning $\Gamma$ makes use of equations \ref{eqns_from_data} which in turn employs the driven system $g$ possessing the USP, and offers distinct advantages with regards to stability in the presence of perturbation. It is desirable that inputs that differ only slightly would have only ‘slight’ effects on the output of the system. Moreover, one would hope to prevent numerical errors originating from input and measurement noise (see~\cite[Th. 5]{manjunath2021universal}). 
-As the data fed into the system is a function of both the input given and the parameters of the system itself (i.e. the value a, $\alpha$ in $\tanh$), we exploit both input-related and parameter-related stability. Both these notions are defined by way of the continuity of an encoding map of an input and design parameter respectively in \cite{manjunath2020stability}.\ednote{B: Is this satisfactory?}
+As the data fed into the system is a function of both the input given and the parameters of the system itself (i.e. the value a, $\alpha$ in $\tanh$), we exploit both input-related and parameter-related stability. Both these notions are defined by way of the continuity of an encoding map of an input and design parameter respectively in \cite{manjunath2020stability}.
 
 Informally, we may consider input-related stability as concerned with the question of whether or not small variations in input would result in small responses.   
 If two inputs $\bar{u}$ and $\bar{u}_{noisy}$ are close in the product topology, then their tails could differ greatly due to the metric that generates the product topology has insensitivity to the differences in sequence's tails.
@@ -1119,7 +1124,7 @@ If one learns $G_T$ directly, we are in danger of replicating the problems arisi
   \label{fig:YtGtFailure}
 \end{figure}
 
-To circumvent this: if a driven system with a saturation function\ednote{B: What is a saturation function?} is used, we can indirectly (via $g$) ensure the existence of an attractor $A$ of the map which implements $G_T$, and containing $Y_T^+$.  \ednote{B: I'm not sure this sentence makes complete sense.}
+To circumvent this: if a driven system with a saturation function\ednote{B: What is a saturation function?} is used, we can ensure the existence of an attractor $A$ of the map which implements $G_T$, and containing $Y_T^+$ indirectly (via $g$).  \ednote{B: A little vague. Are we saying that an attractor of a map implementing $G_T$ is also the one that contains $Y_T^+$?}
 By defining the dynamics to $A$, this prevents large errors from occuring.  
 More details on the global dissipativity of $g$, as it is termed there, may be found in~\cite{Supp}.
 
@@ -1146,13 +1151,13 @@ In this chapter we turn to the implementation of the function $G_T$ by discussin
 
 \section{Implementing $G_T$}
 The map $G_T$ is implemented by applying the functions $\Gamma$, $g$ and the projection function $\pi_2$ in the relevant order as described by the equations~\ref{eqns_from_data}. To reach this point, one must first learn $\Gamma$.
-After first normalising the data to ensure that it has zero mean value and lies within the range $[-1,1]$ and required zero-padding \ednote{M: this zero padding is something that we need to tell the examiner}, we continue by driving the system with external input through the function $g$.
+After first normalising the data to ensure that it has zero mean value and lies within the range $[-1,1]$ and required zero-padding(see paragraph below for further discussion), we continue by driving the system with external input through the function $g$.
 
 From \eqref{eqn_driving} we know that $g(u,x) = (1-a) x + a \tanh(Au + \alpha B x)$. Recall that $g$ is SI-invertible. We refer to $A$ as the input matrix and $B$ the reservoir matrix. 
 
 We make use of a Recurrent Neural Network (RNN) in our implementation to project the data on to a higher dimensional space, but we do not train the RNN in the conventional manner. \ednote{B: Should we say what the conventional manner is?} A few words about the RNNs: RNNs are widely used in the literature for temporal processing of data as a type of deep learning technique. They take the form of equations considered to be discrete-time version of continuous dynamical systems modelling a neural network of neurons \cite{jaeger2001echo}.
 
-We implement a feedforward network, (a network with no memory, unlike the RNN)\ednote{B: Added so that FFN is in more context} required to learn $\Gamma$ in the \emph{Python} programming language and making use of the \emph{Scipy} library, alongside the \emph{Keras} package in the \emph{Tensorflow} library \ednote{B: Is this something you want me to write in? M: Note! We do not implement the RNN, but the FN that learns Gamma through the Tensorflow. We called the RNN + FN set up a RCN in Adriaan's paper. FYI: FN's work only if there is a definite relationship between the $u_n$ and $u_{n+1}$ which is rare in temporal data.
+We implement a feedforward network, (a network with no memory, unlike the RNN)\ednote{B: Expanded sentence s.t. FFN is in more context} required to learn $\Gamma$ in the \emph{Python} programming language and making use of the \emph{Scipy} library, alongside the \emph{Keras} package in the \emph{Tensorflow} library \ednote{B: Is this something you want me to write in? M: We do not implement the RNN, but the FN that learns Gamma through the Tensorflow. We called the RNN + FN set up a RCN in Adriaan's paper. FYI: FN's work only if there is a definite relationship between the $u_n$ and $u_{n+1}$ which is rare in temporal data.
 RNNs with ESP work when there is a definite relationship between $(\ldots,u_{n-1},u_n)$ and $u_{n+1}$ and is suited for temporal processing.}.
 
 If the RNN we will be using in the next step has $N$ neurons, then $A$ and $B$ are each $N\times{N}$ matrices. Inputs $u_n$ of dimension $K < N$ are padded by zeroes (as remarked earlier) to embed the input in a space of dimension $N$. As we do not need the entire left-infinite history of input, an arbitrary initialisation of the system with initial values followed by the driving of the system with the function $g$ means that the generated values will approach the actual solution elements in a uniform manner thanks to the UAP that we had discussed in the preceding chapter.
@@ -1165,30 +1170,31 @@ We then reach the prediction step. Making use of $g$'s SI-invertibility and $g$ 
   u_n := A^{-1}\bigg(\overline{\tanh}^{^{-1}}\frac{1}{a}\Big(x_{n+1}-(1-a)x_n\Big) \bigg) - \alpha B x_n
 \end{equation*}
     
-The two model equations for learning from data (\eqref{eqns_from_data}) allows us to determine what the state $x_{n+1}$ at time $n+1$ will be. 
+The two model equations for learning from data~\eqref{eqns_from_data} allows us to determine what the state $x_{n+1}$ at time $n+1$ will be. 
 We specifically remind ourselves of \[x_{k+1}=\pi_2 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k)\]
 
 \section{Delay Coordinates}
 
 We also consider a more general problem of learning an attractor of dynamical system when only observations of an orbit are given. Explicitly, if $(W,T)$ is a dynamical system with dynamics generated by $w_{n+1}=Tw_n$, and if $\theta:W \to \mathbb{R}$ is an observable, then the task is to learn a dynamical system that is topologically conjugate to $(W,T)$ and predict $\theta(w_{m+1}),\theta(w_{m+2}),...$ using the data $\theta(w_{0}),\theta(w_{1}),\ldots,\theta(w_{m})$.  So how do we do it?
 Suppose the input generated from the delay-coordinate map $\Phi_{\theta,2d}(\theta(w_{n})) := (\theta(w_{n-2d}),\ldots,\theta(w_{n-1}),\theta(w_{n}))$ is such that Takens delay embedding theorem (see Theorem~\ref{Thm_Takens}) holds, in which case, there exists a homeomorphism  $F_\theta: \Phi_{\theta,2d}(\theta(w_{n})) \mapsto \Phi_{\theta,2d}(\theta(w_{n+1}))$. Then if we feed  the input values $u_n := \Phi_{\theta,2d}(\theta(w_{n}))$ to a driven system $g$ that is SI-invertible and has USP, the induced system $(Y_F,G_F)$ would be topologically conjugate to the inverse-limit space of
-$(\Phi_{\theta,2d}(W), F_\theta)$ as in Theorem~\ref{Thm_CET} \ednote{M: please see if this refers to the causal embedding theorem in the thesis}, and hence one could forecast $u_n,u_{n+1},\ldots$. In other words, one could forecast  the values $\theta(w_n), \theta(w_{n+1}),\ldots$ by feeding these observations as delay coordinates. The advantage of feeding delay-coordinates to a driven system is that the embedding is stable in the sense of global dissipativity that we have described in the previous chapter, i.e., $Y_F$ is made to contained in an attractor of a mapping induced on $Y_F$ that is induced by $g$. 
+$(\Phi_{\theta,2d}(W), F_\theta)$ as in Theorem~\ref{Thm_CET}, and hence one could forecast $u_n,u_{n+1},\ldots$. In other words, one could forecast  the values $\theta(w_n), \theta(w_{n+1}),\ldots$ by feeding these observations as delay coordinates. The advantage of feeding delay-coordinates to a driven system is that the embedding is stable in the sense of global dissipativity that we have described in the previous chapter, i.e., $Y_F$ is made to contained in an attractor of a mapping induced on $Y_F$ that is induced by $g$. 
 
 We note that the twin equations together~\ref{eqns_from_data} generate a model from data. For a chaotic system, a small amount of noise due either to the input-noise or computational error would cause the solutions from two accurate models with the same initial conditions to  diverge as they are not identical. \ednote{B: edited this sentence} However, statistically, they would be the same since due to ergodic theory all typical orbits have the same visiting frequency to any region of the phase space of the dynamical system. \ednote{B: I'll need to recap this sentence with you before presenting as it's new to me.} To illustrate that we plot the densities of the trajectories of the actual and predicted solutions. 
 
 Our implementation of the reservoir(A) and input(B) matrices in the RNN makes use of sparse matrices. We discuss three specifics relating to this concept. Firstly, the matrices are assigned a variable density in terms of the amount of non-zero entries and are scaled to have values within the range $[-1,1]$. For this, we make use of \textit{Python's SciPy} library and specifically the \textit{Sparse, LinAlg} modules. In our experiments, we generally opted for a density ratio of 10\%-25\%.
-Secondly, we opted to enforce the requirement that both matrices be well-conditioned, i.e. that they have a condition number of \~1. The condition number of a matrix $M$ (denoted $cond(M)$) is the product of the matrix norms of the matrix $M$ and its inverse $M^{-1}$ and is a measure of the sensitivity of output of a matrix multiplication when an input is changed. \textbf{(Cite.)} By ensuring a condition number close to 1, we also ensure that our driven function $g$, depending on the matrices $A$ and $B$, will not be sensitive to adjustments in the input. In so doing we then also guarantee a measure of stability. \ednote{B: Not satisfactory. Edit again.}
+Secondly, we opted to enforce the requirement that both matrices be well-conditioned, i.e. that they have a condition number of \~1. The condition number of a matrix $M$ (denoted $cond(M)$) is the product of the matrix norms of the matrix $M$ and its inverse $M^{-1}$ and is a measure of the sensitivity of output of a matrix multiplication when an input is changed. \textbf{(Cite.)}\ednote{Ask M: Cite specific resource?} By ensuring a condition number close to 1, we also ensure that our driven function $g$, depending on the matrices $A$ and $B$, will not be sensitive to adjustments in the input. In so doing we then also guarantee another form stability. \ednote{B: Not complete enough. Edit further and cite}
 
-Lastly, we ensure the matrix $B$ has unit spectral radius. This is necessary due to the Causal Embedding Theorem~\ref{Thm_GT_Exists} which can then guarantee the existence of semi-conjugacy between the systems $(Y_T, G_T)$ and $(\widehat{U}_T, \widehat{T})$. In fact, the theorem actually requires that $\alpha{B}$ have spectral radius $<1$, so we impose the restriction $\alpha<1$ and consider only the matrix $B$'s spectral radius from thereon.
+Lastly, we ensure the matrix $B$ has unit spectral radius. This is necessary due to the Causal Embedding Theorem~\ref{Thm_CET} which can then guarantee the existence of semi-conjugacy between the systems $(Y_T, G_T)$ and $(\widehat{U}_T, \widehat{T})$. In fact, the theorem actually requires that $\alpha{B}$ have spectral radius $<1$, so we impose the restriction $\alpha<1$ and consider only the matrix $B$'s spectral radius from thereon.
 
 
-Note that to learn $\Gamma: (x_{n-1},x_{n}) \mapsto u_n$ throughout feedforward network, one could learn from the principal components of $(x_{n-1},x_{n})$ as well. 
-We employ this since empirically it gives slightly better results and not essential.
-The principal components are used only for an efficient state representation possibly to reduce the errors while learning and is not for a lossy approximation since all principal components are used.
-  To be explicit, we denote $X_{1:N}$ to be the matrix with the first $N$ states of the network data as row vectors. So, if $X_{1:N}=U\Sigma P^T$ represents the singular value decomposition of $X_{1:N}$, then the principal component matrix is denoted by $P$, and the principal components are given by 
+Note that to learn $\Gamma: (x_{n-1},x_{n}) \mapsto u_n$ through our feedforward network, we could learn the principal components of $(x_{n-1},x_{n})$ as well. 
+We employ this since it provides slightly better results empirically but is not essential.
+
+Principal components are used only for a more efficient state representation to possibly reduce learning errors; it is not for a lossy approximation since we use all principal components \textbf{(Cite.)}\ednote{Ask M: Is there a specific resource to cite?}.
+More explicitly, denote $X_{1:N}$ as the matrix with the first $N$ states of the network data represented by row vectors. If $X_{1:N}=U\Sigma P^T$\ednote{Expand here} represents the singular value decomposition of $X_{1:N}$ \ednote{Ask: Is there a specific resource to cite?}, we then denote the principal component matrix $P$, and the principal components are given by 
  $Z_{1:N}=X_{1:N}P.$
-These principal components are then used to train a feedforward neural network. If we denote the row vectors of $Z_{1:N}$ by 
-$z_i^T, i=1,2,\cdots,N$ and the neural network by $NN$, then the network is trained to learn an approximation of the map
+These principal components are then used to train a feedforward neural network. Denote the row vectors of $Z_{1:N}$ by 
+$z_i^T, i=1,2,\cdots,N$ and the neural network by $NN$, the network is subsequently trained to learn an approximation of the map
 $NN: (z_{n-1},z_n) \mapsto  u_n.
 $
 The learnt approximation of $NN$ can be used to approximate $\Gamma$ since 
@@ -1213,7 +1219,7 @@ In this section we showcase numerical results pertaining to 3 attractors that we
 \subsection{Double Pendulum}
 
 The Double Pendulum consists of two pendulums fastened to one another such that the system moves as a whole. The first (or higher pendulum) is attached to a fixed point while the second is attached to the endpoint of the first. (See below)
-This system is a classical example of a system exhibiting chaos. \textbf{(Citation.)} Consider again~\ref{fig:dp_sdic}.
+This system is a classical example of a system exhibiting chaos and is often used as explanation of the very well-known Butterfly Effect. \ednote{B: Originally though a reference here was needed, but no longer think so.} Consider again~\ref{fig:dp_sdic}.
 The system has four variables: angle and angular velocity of each pendulum rod. An ideal system is assumed where the rods are massless and no friction in the pivots are considered.
 \begin{figure}[ht]
   \includegraphics[scale=0.35]{_dp_setup.eps}
@@ -1276,13 +1282,15 @@ Training was accomplished using 256 epochs with batch sizes 128 and a delay of 1
  \end{figure}
   
 
-We now consider an experiment where noise is added to the system and find it to be incredibly robust. We employ the same parameters as before and add noise from a normal-distribution with mean zero and standard deviation equal to 0.1.
+We now consider an experiment where noise is added to the system and find it to be incredibly robust. We employ the same parameters as before and add noise from a normal-distribution with mean zero and standard deviation equal to 0.1 which translates to roughly 39dB's of noise.
+(For the signal-to-noise ration we adopt the formula $\text{SNR}_{dB}=10\text{log}_{10}\big(\frac{P_\text{{signal}}}{P_{\text{noise}}}\big)$ where $P_\text{{signal}}$ refers to the variance observed in the normalised data and $P_{\text{noise}}$ represents the variance of the added noise.)
+
 Once again consider the actual and predicted trajectories for the noisy DP dataset in Figure~\ref{fig:noisydp_success_traj}. Next we consider the densities of the predicted and actual values in Figure~\ref{fig:noisydp_success_density} and observe that they display highly similar distributions.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.95\linewidth]{_dp_noise_FigCD_2030.eps} 
-  \captionof{figure}{Predicted(red) and actual(blue) trajectories of the $x$- and $y$-coordinates of each of the pendulum heads with noise added from a normal distribution with mean zero and standard deviation 0.1.  
+  \captionof{figure}{Predicted(red) and actual(blue) trajectories of the $x$- and $y$-coordinates of each of the pendulum heads with noise added from a normal distribution with mean zero and standard deviation 0.1, equating to approximately 39dB's of noise.
   These graphs were constructed by predicting the DP 1000 timesteps into the future and in so doing illustrating the long-term consistency and accuracy of the learnt system. Here we lock onto the near-exact trajectory for about 250 timesteps and stay close up until about 400 seconds.  } 
   \label{fig:noisydp_success_traj}
 \end{figure}
@@ -1293,6 +1301,8 @@ Once again consider the actual and predicted trajectories for the noisy DP datas
   \label{fig:noisydp_success_density}
  \end{figure}
 
+ Lastly, a run was done where only a single coordinate (the $y$-coordinate of the lower pendulum head) was fed into the system and we can illustrate through the obtained success that the coordinate contains all the information in its past states necessary to forecast its future evolution.
+ \textbf{Insert graphs here. Had to quickly change something here.}
  
 
 \subsection{Additional Attractors: Clifford \& Thomas}
@@ -1306,8 +1316,10 @@ Thomas' Cyclically Symmetric Strange Attractor, a 3D attractor proposed in 1999 
   z_{n+1} = \sin(x_n) - \beta{z_n}
 \end{eqnarray}
 
-The behaviour of the system with a $\beta$-parameter value of 0.1056 was simulated by scaling it to fit inside the interval $[-1,1]$. Two cases were considered: noise-free and the one perturbed by noise. Noise was generated from a normal distribution with mean 0 and standard deviation 0.05, which translates approximately to * dB \ednote{Please calculate dB as signal to noise ratio }
- A sequence of 3000 observations in both the clear and noisy data-sets respectively were fed into the system with 300 entries discarded to simulate the network's loss of memory. The next 9000 steps were predicted and compared with true data.
+The behaviour of the system with a $\beta$-parameter value of 0.1056 was simulated by scaling it to fit inside the interval $[-1,1]$. Two cases were considered: noise-free and the one perturbed by noise. Noise was generated from a normal distribution with mean 0 and standard deviation 0.05, which to translates approximately 33dB. 
+($\text{SNR}_dB$ is calculated exactly as for the DP-data above)
+
+A sequence of 3000 observations in both the clear and noisy data-sets respectively were fed into the system with 300 entries discarded to simulate the network's loss of memory. The next 9000 steps were predicted and compared with true data.
 
 \begin{figure}[ht]
   \centering
@@ -1362,12 +1374,12 @@ The RNN was initialised exactly as for Thomas' Cyclically Symmetric Strange attr
 
 \section{Functional Complexity Reduction in Noninvertible maps}
 
-% Besides being able to learn the action of the Koopman operator exactly, our setup has other advantages over selecting or optimizing the choice of observables as in the Extended Dynamic Mode Decomposition (EDMD) algorithm (e.g., [21, 22]). We can alter the functional complexity of G T by changing the number of observables or equivalently by altering the dimension of X – in the case of a RNN implementation of g, by simply changing the number of neurons in the network. Empirically, increasing the dimension of X is found to increase the linear relationship (or intuitively reduces the functional complexity of G T ) that is measured as a generalization of the Pearson correlation coefficient to random vectors (e.g., [44]) between (x_{n−1} , x_{n}) and G_T (x_{n−1} , x_n), and such numerical evidence is tabulated in [11, Table 1]. In contrast, expanding the set of observables while using EDMD to learn a map with a lower functional complexity is a highly involved task, not least because so much that one often does not know how to guess a new observable, as well as the fact that adding observables does not necessarily retain the invariance of the span of the observables.
+% Besides being able to learn the action of the Koopman operator exactly, our setup has other advantages over selecting or optimizing the choice of observables as in the Extended Dynamic Mode Decomposition (EDMD) algorithm (see, [21, 22]). We can alter the functional complexity of G T by changing the number of observables or equivalently by altering the dimension of X – in the case of a RNN implementation of g, by simply changing the number of neurons in the network. Empirically, increasing the dimension of X is found to increase the linear relationship (or intuitively reduces the functional complexity of G T ) that is measured as a generalization of the Pearson correlation coefficient to random vectors (see, [44]) between (x_{n−1} , x_{n}) and G_T (x_{n−1} , x_n), and such numerical evidence is tabulated in [11, Table 1]. In contrast, expanding the set of observables while using EDMD to learn a map with a lower functional complexity is a highly involved task, not least because so much that one often does not know how to guess a new observable, as well as the fact that adding observables does not necessarily retain the invariance of the span of the observables.
 
 % Empirical evidence shows that a linearity measure like a Pearson correlation coefficient points at reduced functional complexity while learning the dynamics in the state space of the driven system.
 
 % Empirically (see Table ??), increasing the dimension of X is found to increase the linear relationship
-% (or intuitively reduce the functional complexity of G T ) that is measured as a generalization of the Pearson correlation coefficient to random vectors (e.g., [?]) between (x n−1 , x n ) and G T (x n−1 , x n ). If Σ a and Σ b denotes the covariance matrices of the vectors (x n−1 , x n ) and G T (x n-1 , x n ) respectively, and if Σ ab denotes the covariance matrix between the vectors (x n-1 , x_n ) and G_T (x n-1 , x_n ), then the multidimensional 18correlation coefficient is computed by using the traces of these matrices: 
+% (or intuitively reduce the functional complexity of G T ) that is measured as a generalization of the Pearson correlation coefficient to random vectors (see, [?]) between (x n−1 , x n ) and G T (x n−1 , x n ). If Σ a and Σ b denotes the covariance matrices of the vectors (x n−1 , x n ) and G T (x n-1 , x n ) respectively, and if Σ ab denotes the covariance matrix between the vectors (x n-1 , x_n ) and G_T (x n-1 , x_n ), then the multidimensional 18correlation coefficient is computed by using the traces of these matrices: 
 % \[\pho = \frac{tr(\sum_{ab})}{tr(\sqrt{\sum_{a}\sum_{b}})}\]
 
 % This multidimensional correlation coefficient satisfies most of the well-known properties of the one-dimensional Pearson coefficient. In particular, ρ = ±1 if and only Y = AX + b for some invertible matrix A and vector b. Hence ρ, and in practice, the estimator ρ̂, can be used to measure the linear relationship between two random vectors of the same dimension and thus serves as an indicator of functional complexity.
@@ -1376,7 +1388,7 @@ The RNN was initialised exactly as for Thomas' Cyclically Symmetric Strange attr
 
 
 
-In the case of non-invertible maps, we note that the map $G_T$ is a homemorphism although $T$ is not. Further, empirically it is found that $G_T$ is much more linear than $T$ as measured by what is called the multidimensional correlation coefficient $\rho$. This coefficient is a generalization of the Pearson correlation coefficient for real-valued random variables to random vectors (e.g., \cite{puccetti2019measuring}). We state teh details of computing this coefficient between 
+In the case of non-invertible maps, we note that the map $G_T$ is a homemorphism although $T$ is not. Further, empirically it is found that $G_T$ is much more linear than $T$ as measured by what is called the multidimensional correlation coefficient $\rho$. This coefficient is a generalization of the Pearson correlation coefficient for real-valued random variables to random vectors (see, \cite{puccetti2019measuring}). We state teh details of computing this coefficient between 
 $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$. 
 If $\Sigma_{a}$ and $\Sigma_{b}$ denotes the covariance matrices of the vectors $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$ respectively, and if $\Sigma_{ab}$ denotes the covariance matrix between the vectors $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$, then the multidimensional correlation coefficient is computed by using the traces of these matrices:
 \[
@@ -1456,31 +1468,9 @@ Table ~\ref{tbl_attractorsPearson}, the second column corresponds to the amount 
 
   
 
-
-
+\chapter{Conclusion}\label{ch6}
+\input{chapter6.tex}
   
-\chapter{Conclusions} \label{ch6}
-
-% The driven states $(x_{n-1},x_n)$ hold the information of the left-infinite history of the input. Furthermore, there is some evidence that the inverse-limit space (not system) seems to distinguish two dynamical systems that are not topologically conjugate for a class of systems in the sense their inverse-limit spaces are not homeomorphic to each other.  So the relation $Y_T$, which is homeomorphic to the inverse-limit system, may be unique to a class of systems. (The reference is a paper on Ingram’s Conjecture by Marcy Barge, Henk Bruin and Sonja Stimac.) Further investigation is needed.  \cite{budivsic2012applied, korda2020data}
-
-As technology has advanced over the past century, humanity’s ability to record and manipulate rich, complex data in order to produce forecasts has profoundly increased. 
-Collecting measurements from underlying artificial, natural, and physical systems through observables to realise a dynamical model with greater descriptive power is well-established in present-day science.
-
-Core to the success of these techniques is the fact that dynamics discerned from the observed space can often be characterised by a mapping of much lower functional complexity when compared to the map describing the unknown underlying system. Takens theorem and the numerous generalizations thereof is one such method establishing (under some generic conditions) the learnability of a system produced by creating a delay-coordinate vector from a sufficiently large number of previous observations of a dynamical system. This system is topologically conjugate to the system from which the observed time-series was obtained.
-
-A critical concern of this method is the requirement of full knowledge of the variables of the underlying state space that govern the complex dynamical system one is interested in. In real-world conditions this intelligence is seldom available and one must depend heavily on human expertise and insight. 
-
-Each discrete-time state space model has at its core a driven dynamical system. In this project, it has been shown that an input originating from a compact space entailing exactly one solution (i.e., if the driven system has the USP) is equivalent to representing information without distortion, a concept which was formalised by establishing a causal mapping’s existence. The established results are general, implying that any driven dynamical system with specific properties can give rise to a causal mapping, and in so doing  providing an answer as to the success of arbitrary choices of driven systems in information processing applications in \cite{jaeger2004harnessing, mass2002realtime}.
-
-In particular, we have a topological conjugacy (semi-conjugacy) between the data comprising the single-delay lag dynamics of a driven system~\cite{manjunath2013echo} and the underlying homeomorphic dynamical system. Finite-length input data is sufficient for forecasting as driven system states are influenced only in an almost negligibly small manner by the left-infinite segment of the past of the input beyond some arbitrarily large but finite time (a result which holds due to the universal semi-conjugacy of a driven system’s continuity)
-
-
-Viewed through the lens reservoir computing approaches, we have also demonstrated that when single-delay dynamics are utilised, a learnable map in a reservoir computing network certainly exists. Moreover, such a driven system within a reservoir computing network enjoys certain proven qualities pertaining to the robustness w.r.t input- and parameter-perturbation. Accordingly, we are able to preserve the quality of a representation that would otherwise remain sensitive to various fluctuations, rendering the learning of the system’s dynamics wholly unpredictable. In addition, we obtain the robustness of the system against external noise, a phenomenon which is observed for the Fractal Dream Attractor.
-
-Finally, we consider some physical systems to observe the methodology in practice and verify that we can indeed predict the future evolution of chaotic systems such as the double pendulum. Empirical evidence shows that a linearity measure like a Pearson correlation coefficient points at reduced functional complexity while learning the dynamics in the state space of the driven system
-
-
-Considered with a philosophical-scientific lens, this project has aimed to establish a juncture between rationalism (the theory of nonautonomous dynamical systems) and empiricism (machine learning) to yield results profitable to the discipline of Applied Mathematics. This was done by showing that dynamics in an observed space can be established as topologically conjugate to the underlying system. As a result of the topological conjugacy, deep learning techniques are then subsequently applied to physically such equations from the data. In so doing, we acquire models of high fidelity that provide exceptional forecasting results on chaotic data that exhibit both statistical and topological consistency in the long run.
 
 \bibliographystyle{pnas-new}
 \bibliography{pnas}

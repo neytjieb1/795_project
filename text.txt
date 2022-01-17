@@ -1,31 +1,29 @@
-Moontlike Artikels
-https://www.worldscientific.com/doi/epdf/10.1142/9789811228667_0001
-
 Notas
-
 Inleiding
 "learn"
 "echo state"
 "embedded attractor" used out of the blue
 
-Section 2
-ons begin eweskielik van "chaos" praat, maar sonder enige vooraf rede
-
-Section 3
-Give T as surjective
-
-Section 4
 
 
 To-Do
-- Condition number
+- Add in all missing citations
+- Add in all last graph
+- Abstract
+- Conclusion
+- Condition number recheck
+- Pearson
+- 9EdNote: B: How can I explain the black line? I don’t think this makes sense to the reader immediately
 
 Waiting for Gandhi
-~ 5.2: Project Changes (check with Gandhi)
-~ 3.2: Takens Issues & Dissipativity (Gandhi)
 ~ Abstract
 ~ Conclusion
 
+"However, statistically, they would be the same since due to ergodic theory all typical orbits have the same visiting frequency to any region of the phase space of the dynamical system"
+Condition number citing
+"it is not for a lossy approximation since we use all principal components"
+"If $X_{1:N}=U\Sigma P^T$ represents the singular value decomposition of $X_{1:N}$"
+if a driven system with a saturation function is used
 
 Done
 x 5.3: DP data dying down.
@@ -37,6 +35,9 @@ x Pearson
 
 
 LOOSE
+
+Moontlike Artikels
+https://www.worldscientific.com/doi/epdf/10.1142/9789811228667_0001
 
 In reservoir computing, the dimension of the state–space of the reservoir is typically much larger than the input space while forecasting dynamical systems, and the map f in (2) is supposed to have much lesser functional complexity than the map that generates the data.
 
