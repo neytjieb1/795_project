@@ -18,20 +18,22 @@ Section 4
 
 
 To-Do
-- Abstract
-- H_2
-- Pearson
-- Conclusion
+- Condition number
 
 Waiting for Gandhi
 ~ 5.2: Project Changes (check with Gandhi)
 ~ 3.2: Takens Issues & Dissipativity (Gandhi)
+~ Abstract
+~ Conclusion
+
 
 Done
 x 5.3: DP data dying down.
 x 5.3: DP parameters
 x Surjectivity of T + Pictures
 x SDD & MDD
+x H_2
+x Pearson
 
 
 LOOSE
