@@ -1,12 +1,12 @@
 
-In this chapter, we discuss results on the mapping of temporal data obtained from a discrete-dynamical system onto a different space through the notion of a driven dynamical system. 
-We also consider the conditions a driven system should possess to avoid adding distortion to its state-space representation. We then describe the \emph{single-delay dynamics} (SDD) of the system and finally recall conditions on the driven system so that the SDD are conjugate (or at least semi-conjugate) to the underlying system. 
+In this chapter, we discuss mathematical results relating to the mapping of temporal data obtained from a discrete-dynamical system onto a different space through the notion of a driven dynamical system. 
+We also consider the conditions a driven system should possess to avoid adding distortion to its state-space representation. We then describe the \emph{single-delay dynamics} (SDD) of the system and finally state conditions on the driven system so that the SDD are conjugate (or at least semi-conjugate) to the underlying system. 
 The SDD can then be used to forecast and reconstruct the underlying system. 
 
 \section{Nonautonomous and Driven Dynamical Systems}
 
 \begin{Definition}
-  [\bf Nonautonomous Dynamical System (adopted from~\cite{Manju_ESP})]\label{Dfn_NDS}\rm
+  [\bf Nonautonomous Dynamical System (as defined in~\cite{Manju_ESP})]\label{Dfn_NDS}\rm
   A nonautonomous dynamical system (NDS) on a space $X$ is simply a dynamical system comprising a family of maps ${\{g_n\}}_{n \in \mathbb{Z}}$ where $g_n(\ldotp):=g(u_n,\ldotp):X\to{X}$ is continuous. Each $g_n$ arises as a consequence of an input $u_n$ from the input space $U$, a topological space. 
 \end{Definition}
 
@@ -87,7 +87,7 @@ The reachable set of a driven system $g$ is exactly the union of all the element
 The set of all reachable states at a specific time $n$ for input $\overline{u}$ is denoted by $X_n(\overline{u})$
 \end{Definition}
 
-The reachable set itself can defined independently from $g$ possessing the ESP/USP. Note that $x\in{X_n(\overline{u})}$ if and only $g$ has a solution $\{x_k\}$ for $x_n=x$ and input $\overline{u}$, a result proved in nonautonomous dynamical systems literature~\cite{manjunath2014dynamics, manjunath2013echo}. \ednote{B: Adjusted sentence and cited}
+The reachable set itself can defined independently from $g$ possessing the ESP/USP. Note that $x\in{X_n(\overline{u})}$ if and only $g$ has a solution $\{x_k\}$ for $x_n=x$ and input $\overline{u}$, a result proved in nonautonomous dynamical systems literature~\cite{manjunath2014dynamics, manjunath2013echo}.
 
 The set $X_n(\overline{u})$ is precisely the set of points $x$ through which some entire solution $\Psi$ passes at time $n$. We can give an alternate formulation of the set $X_n(\overline{u})$. 
 Now suppose, we for some fixed input 
@@ -121,6 +121,7 @@ Should the driven system be compact, existence follows immediately, as shown in 
 \begin{Theorem}\label{Thm_CompactExistence}
  Let $g$ be a driven system.  If $X$ is compact then for each input $\overline{u}$, there exists at least one solution to the driven system $g(\ldotp, x)$
 \end{Theorem}
+\vspace{-6mm}
 {\bf Proof.} May be found in~\cite{kloeden2011nonautonomous, manjunath2014dynamics, manjunath2013echo}
 % One may easily construct many systems with trivial solution-sets, such as $g(u,x)=x$ which has only the constant solution $x$ and so for $U=[-1,1]$, the system would have no solution if $|x|>1$. To refine the scenario, we consider only systems with unique solutions. 
 \section{Unique Solution Property}
@@ -211,15 +212,16 @@ Re-sketching the commutativity diagram~\ref{Scomm_h} above by replacing $X_U$ by
  \begin{Theorem}
   For a compactly driven system, a causal mapping $H$ exists if and only if $g$ has the USP. 
 \end{Theorem}
+\vspace{-6mm}
 {\bf Proof.}  See~\cite[Th.3]{manjunath2013echo}.
 
 The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: 
 If the causal mapping $H:\overleftarrow{U}{\to}{\overleftarrow{X}_U}$ is injective (in addition to being surjective), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$. 
 The continuity of $H^{-1}$ follows from the fact that $H$ is itself a continuous and surjective mapping of a compact space $\overleftarrow{U}$ in a Hausdorff space.
 and we refer to the map $H$ as a \emph{causal embedding}. 
-\ednote{B: edited the sentence here}
+%\ednote{B: edited the sentence here}
 
-When $g$ has the USP, the diagram below (adopted from~\cite{Manju_Nonlinearity}) illustrates the operation of the mappings $h$ and $H$. The mapping $h:\overleftarrow{U}\to{X_U}$ is also considered an observable as mentioned in the introduction of Chapter~\ref{ch3}).  
+When $g$ has the USP, the diagram below (taken from~\cite{Manju_Nonlinearity}) illustrates the operation of the mappings $h$ and $H$. The mapping $h:\overleftarrow{U}\to{X_U}$ is also considered an observable as mentioned in the introduction of Chapter~\ref{ch3}).  
 
 \begin{figure}[ht]
   \includegraphics[scale=0.4]{Graphs/_actionofh_H.eps}
@@ -256,14 +258,19 @@ Following~\cite{manjunath2021universal, ingram2011inverse} we provide a definiti
 The inverse-limit space is well-defined since $T : U \to{U}$ is surjective by assumption.
 We now get to the concept of embedding the inverse limit-space of the dynamical system in $X \times X$. 
 \begin{Definition} \rm
-	We say a driven system $g$ \emph{causally embeds} a dynamical system $(U,T)$ if it satisfies the two properties: (i) a universal semi-conjugacy exists and  (ii)  $H_2(\cev{u}) := (h(r\cev{u}),h(\cev{u}))$ embeds the inverse-limit space $\widehat{U}_T$ in $X \times X$. \end{Definition} 
-
-  It is imperative to take note of a subtlety here: we refer to the \emph{map} $H$ as a (causal) embedding, whereas the driven \emph{system} $g$ (causally) embeds another \emph{system} $(U,T)$. \ednote{B: inserted line}
-
+	We say a driven system $g$ \emph{causally embeds} a dynamical system $(U,T)$ if it satisfies the two properties: 
+  \vspace{-8mm}
+\begin{enumerate}[noitemsep, label=\roman*.]
+  \item  a universal semi-conjugacy exists and  
+  \item  $H_2(\cev{u}) := (h(r\cev{u}),h(\cev{u}))$ embeds the inverse-limit space $\widehat{U}_T$ in $X \times X$. 
+\end{enumerate}
+\end{Definition} 
+ 
+It is imperative to take note of a subtlety here: we refer to the \emph{map} $H$ as a (causal) embedding, whereas the driven \emph{system} $g$ (causally) embeds another \emph{system} $(U,T)$. \ednote{Check this sentence again.}
 
 \section{Choosing the driven system $g$}
 
-So far it is not clear if the USP alone ensures the ability to causally embedding a dynamical system and we mention that a driving function $g$ cannot just be chosen in a frivolous manner. This could possibly complicate our work. %\ednote{B: Grammarly}
+So far it is not clear whether the USP alone ensures the ability to causally embedding a dynamical system and we mention that a driving function $g$ cannot just be chosen in a frivolous manner. This could possibly complicate our work. %\ednote{B: Grammarly}
 
 %The driving function $g$ cannot be chosen in a frivolous manner as it could possibly complicate our work. Specifically, one must be careful to avoid a choice of $g$ which would  add complexity to the obtained solution.  
 
@@ -275,8 +282,7 @@ So far it is not clear if the USP alone ensures the ability to causally embeddin
 %To achieve a causal embedding embedding not just a causal mapping, it is undesirable to choose a function $g$ that quenches the temporal structure in $u$ by contracting to such a degree that the ability to recover information from the original system is lost completely.
 In the above example (\ref{ex_halfux}), the input's temporal variation could not be related to the reachable set as $X_U$ only consisted of a single element; little, if not no, information is encoded.
 To obtain a suitably complex function $g$, it is thus desired that the reachable set of a driven system  be large enough to relate to the input. 
-This is true even for embedding  the inverse-limit space of a dynamical system. \ednote{B: Expand or refer?}
-
+This is even true for embedding  the inverse-limit space of a dynamical system. \ednote{B: Expand or refer?}
 
  To this end, we recall the notion of State-Input (SI) Invertibility.  
 
@@ -284,7 +290,11 @@ This is true even for embedding  the inverse-limit space of a dynamical system. 
   [\bf SI-Invertibility]\label{Dfn_SIinv}\rm
   A driven system $g$ is said to be SI-Invertible if $g(*,x): U \to X$ is invertible for all $x\in X$. Alternatively it may be said that if, given $x_n$ and $x_{n-1}$, $u_{n-1}$ can be uniquely determined from $x_n=g(u_n,x_{n-1})$, then $g$ is said to be SI-invertible.
 \end{Definition}
- 
+
+As mentioned, $g$ can also introduce additional complexity to a solution. Consider the Figure~\ref{fig:memloss_conttime} where a RNN's solution was numerically simulated for randomly generated matrices $A$ and $B$ where $B$ has unit spectral radius.
+An input sequence (black) $(x_0,x_1,\ldots,x_{5000})$ was fed to the network and we plot it as well as the the coordinates of two simulated solutions in red (with parameter $a=1$, $\alpha=0.99$ where $g$ has the USP) and blue ($a=1$, $\alpha=1.05$ where $g$ does not have the USP).
+The red solution mimics the input sequence well in its variation, whereas the blue solution is disordered and changes a lot. In this we may say that the blue solution has introduced additional complexity to the system.  \ednote{B: Added this paragraph}
+
 SI-invertibility promises that `enough' information is retained when $g$ is chosen without introducing one's choice of $g$ will still ensure `enough' information is retained without introducing unwanted complexity. 
 `Enough' here refers to the fact that we may always recover the previous input value $u_n$ (if we know successive states $x_{n-1}, x_n$).
 
@@ -302,8 +312,8 @@ The following theorem establishes the existence of a well-defined map $G_T$ desc
   (This results holds even in the absence of $g$ possessing over the USP) 
   % Moreover, the mapping $(x_{n-1},x_n) \mapsto u_{n}$ is well-defined when $x_{n-1}$ and $x_n$ are successive points on a solution obtained for an input  $\{u_n\}$ that is an orbit of $T$.
   \end{Theorem}
+  \vspace{-6mm}
   {\bf Proof.} See~\cite[Th.3]{Supp}
-
 
 %'Without additional complexity' is guaranteed by the invertibility of the function $g$ that guarantees a one-to-one mapping between $u_n, x_{n-1}$ and $x_n$. In obtaining an SI-invertible function, therefore, we are guaranteed a system which will not lose so much information about its previous states in the forward-flow of time that one may not make any credible claims as to the original system's behaviour and properties. Simultaneously, it does guarantee us that the important information encoded in previous inputs is indeed preserved.
 
@@ -330,15 +340,15 @@ We use an alternate version of the definition of UAP -- since the notion of nona
 with an arbitrary initial value $y_m \in X$, and the sequence $y_{m+1}, y_{m+2}, y_{m+3},\ldots$ satisfying $y_{k+1}= g(u_k,y_k)$ for $k \geq m$ then approximates an actual solution $\{x_n\}$ uniformly in the sense that given $\epsilon>0$ (independent of $y_m$) there is an integer $n$ so that $d(x_{n+i}, y_{n+i})<\epsilon$ for all $i\ge 0$, where $\{x_m\}$ is a solution.
 \end{Definition}
 
-The UAP guarantees that all trajectories will converge to the same trajectory as time moves forward. An illustration of this is shown in Fig.~\ref{fig:memloss_conttime} where the trajectory in red locks on to the supposed actual solution when the system has the USP.
+The UAP guarantees that all trajectories will converge to the same trajectory as time moves forward. 
+An illustration of this is shown in Fig.~\ref{fig:memloss_conttime} where the trajectory in red seems to lock on to the supposed actual solution in black when the system has the USP.
 
 \begin{figure}[ht]
   \includegraphics[scale=0.35]{Graphs/_Nonlinearity_Fig_response.eps}
   \centering
-\captionof{figure}{A coordinate of a simulated solution $(x_0,x_1,\ldots,x_{5000})$ of a RNN  plotted in red (with parameter $\alpha=0.99$ where $g$ has the USP) and blue ($a=1$, $\alpha=1.05$ where $g$ does not have the USP) while the matrices $A$ and $B$ are randomly generated, and $B$ has unit spectral radius.  Reproduced from~\cite{Manju_Nonlinearity}. } 
+\captionof{figure}{Input sequence (black) and a coordinate of a simulated solution $(x_0,x_1,\ldots,x_{5000})$ of a RNN  plotted in red (with parameter $a=1$, $\alpha=0.99$ where $g$ has the USP) and blue ($a=1$, $\alpha=1.05$ where $g$ does not have the USP) for randomly generated matrices $A$ and $B$. $B$ has unit spectral radius.  Reproduced from~\cite{Manju_Nonlinearity}. } 
 \label{fig:memloss_conttime} 
 \end{figure} 
-\ednote{B: How can I explain the black line? I don't think this makes sense to the reader immediately.}
 
 One may now appreciate an even more astounding result: $g$ having the USP is equivalent to the UAP as is proved in~\cite{Manju_Nonlinearity}.
 
@@ -389,6 +399,7 @@ and the induced dynamical system  $(Y_T,G_T)$, i.e., the following diagram commu
 or in other words, $(Y_T, G_T)$ is a factor of  $(\widehat{U}_T, \widehat{T})$. Further, if $T:U \to U$ is a homeomorphism, 
 then $H_2$ embeds $\widehat{U}_T$ in $X_U \times X_U$, and hence $(Y_T, G_T)$ is conjugate to $(\widehat{U}_T, \widehat{T})$.
 \end{Theorem}
+\vspace{-6mm}
 {\bf Proof.}  May be found as the proof of~\cite[Th.4]{Supp}
 
 Recall that $H_2$ maps an entire left-infinite solution sequence from $\Psi$ to an element in $X\times{X}$. 
@@ -444,10 +455,10 @@ If not, the driven states would have to be running for all time since they would
 \begin{figure}[ht]
   \includegraphics[scale=0.3]{Graphs/_summarypictorial.eps}
   \centering
-  \captionof{figure}{Pictorial summary of results obtained up to now and how they overlap. Reproduced from \textbf{(Cite SIG-25May)} }
+  \captionof{figure}{Pictorial summary of results obtained up to now and how they overlap. Reproduced from~\cite{SIG25May} }
   \label{fig:pictorialSummary}
 \end{figure}
-\ednote{Ask M: Cite SIG-25May.}
+\ednote{Cited SIG25May here, but unsure if bibtex reference is correct}
 
 \section{A discussion of $G_T$ }
 
@@ -463,6 +474,7 @@ The reasons for taking this roundabout approach remain to be discussed in~\ref{s
 \begin{Theorem}
   When $x_n$ and $x_{n-1}$ are successive points on a solution obtained for input-orbit of $T$ $\{u_n\}$, then the map $\Gamma: X\times{X}\to{U}$ defined by $(x_{n-1},x_n)\mapsto{u_n}$ exists whenever $G_T$ exists 
 \end{Theorem}
+\vspace{-6mm}
 {\bf Proof.}  See~\cite[Th. 3c]{manjunath2021universal}.
 
 Projection mappings $\pi_i$ are defined in the traditional meaning where a $k$-dimensional vector is projected to it's $i^{th}$ component such that \[\pi_i:(a_1,a_2, \ldotp, a_{k-1}, a_k)\to{a_i}\]

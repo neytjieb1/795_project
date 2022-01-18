@@ -8,7 +8,7 @@ A practical example of this would be the subsequent scenario: given the time-seq
 Suppose we only have the observations $\theta(u_0), \theta(u_1), \ldots, \theta(u_m)$ of the true system states $u$ in an unknown dynamical system $(U,T)$ and we wish to predict the values $\theta(u_{m+1}), \theta(u_{m+2})$ and so forth.
 
 First we establish the method of Takens delay embedding. 
-In this method, one considers a discrete-time dynamical system defined on a `nice' space (a smooth manifold)\ednote{B: Should this be further explained?} that can be obtained as time-$K$ map of a continuous time-dynamical system, concepts formalised below.
+In this method, one considers a discrete-time dynamical system defined on a `nice' space (a smooth manifold)\ednote{B: Where can I find a citation for this?} that can be obtained as time-$K$ map of a continuous time-dynamical system, concepts which are formalised below.
 We make observations from such a system, i.e., we observe the evolution of $\theta(w_0)$ (where $w_0$ represents the initial state) by examining  a finite set of values of $u_n :=  \theta(w_n) = \theta(Tw_{n-1})$. The sequence $\{u_n\}$ represents a scalar time-series and intuitively $\theta$ represents a probe inserted into a bigger system which is itself only measuring/extracting a small part of the greater system state at time $t=n$. 
 Consider, for example, a thermometer erected to measure the ambient temperature in a local village. This measurement function, the thermometer, is capturing only a single aspect, the temperature, of a much grander dynamical system entailing the current weather of the surrounding area. Even more than that though- it is measuring a miniscule part of the global weather system. 
 
@@ -35,7 +35,7 @@ Takens' theorem, in essence, refers to the fact that for a sufficiently large $k
 \section{Takens Embedding Theorem}\label{sect_Takens}
 
 We define first the concepts of homeomorphism and embedding:
-\begin{Definition}\rm
+\begin{Definition}
   {\bf(Homeomorphism)}\label{Dfn_homeo}\rm
   A homeomorphism is a function $f:Z\rightarrow Y$ between two topological spaces $Z$ and $Y$ that is continuous, bijective and has a continuous inverse. 
 \end{Definition}
@@ -45,7 +45,20 @@ We define first the concepts of homeomorphism and embedding:
   Consider a homeomorphism $f:Z\rightarrow Y$ for $Y\subset X$. $Z$ is said to be embedded in $X$ by $f$.
 \end{Definition}
 
-Takens Theorem states a result establishing a relationship between the observed and underlying dynamical systems by showing that the concatenation of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems.  We formulate the theorem from~\cite{takens1981detecting}.  
+Takens Theorem states a result establishing a relationship between the observed and underlying dynamical systems by showing that the concatenation of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems.  We formulate the theorem from~\cite{takens1981detecting} after establishing preliminary definitions.  
+
+\ednote{It was suggested that I define these two concepts before stating the theorem.}
+\begin{Definition}
+  [\bf{Manifold, Compact Manifold}]\label{Dfn_compactManif}\rm
+  A topological space is called a manifold if every point in the space has a neighbourhood homeomorphic to $\mathbb{R}^n$. Succinctly, a manifold is a locally Euclidean topological space.
+  If a manifold is compact as a space topologically, then it is termed a compact manifold
+\end{Definition}
+
+\begin{Definition}
+  [\bf{Diffeomorphism}]\label{Dfn_diffeo}\rm
+  A smooth, differential map $f:X\to{Y}$ with a differentiable inverse is said to be a diffeomorphism. By `smooth' we mean at least $C^2$, where $C^2$ refers to any twice-differentiable function  with a continuous second derivative.
+\end{Definition}
+
 
 \begin{Theorem} 
 	[\bf Takens Embedding Theorem (adopted from~\cite{takens1981detecting})]\label{Thm_Takens}
@@ -53,14 +66,14 @@ Takens Theorem states a result establishing a relationship between the observed 
             generic property for the pair $(T, \theta)$,  where $T:W \to W$ is
             a smooth diffeomorphism, and $\theta:W \to \mathbb{R}$ a smooth function, the map $\Phi_{2d,\theta}:W \to \mathbb{R}^{2d+1}$ defined on $W$ by 
             $\Phi_{2d,\theta}(w) := (\theta(T^{-2d}w)\ldots,\theta(T^{-1}w),\theta(w))$
-            is a diffeomorphic embedding; by `smooth' we mean at least $C^2$. Consequently, there exists a map $F_\theta: \Phi_{2d,\theta}(W) \to \Phi_{2d,\theta}(W)$ defined by \[F_\theta: (\theta(T^{-2d}w),\ldots,\theta(T^{-1}w),\theta(w)) \mapsto 
+            is a diffeomorphic embedding. Consequently, there exists a map $F_\theta: \Phi_{2d,\theta}(W) \to \Phi_{2d,\theta}(W)$ defined by \[F_\theta: (\theta(T^{-2d}w),\ldots,\theta(T^{-1}w),\theta(w)) \mapsto 
             (\theta(T^{-2d+1}w),\ldots,\theta(w),\theta(Tw)) \]
            so that $(W,T)$ is topologically conjugate to 
             $(\Phi_{2d,\theta}(W), F_\theta)$.    
 \end{Theorem} 
 
-By generic we mean a residual set on a certain topology on appropriate spaces of functions (that we do not describe here) \ednote{B: Where can I find a citation for this?}. 
-By $C^2$, we make reference to a twice-differentiable function  with a continuous second derivative. In our scenario (and this remains important throughout) the input space $U$ is considered the attractor.~\label{attractor_U}
+By generic, we mean a residual set on a certain topology on appropriate spaces of functions (that we do not describe here) \ednote{B: Where can I find a citation for this?}. 
+In our scenario (and this remains important throughout) the input space $U$ is considered the attractor.~\label{attractor_U}
 
 Below we reproduce Figure 1 from~\cite{Supp}.
 
@@ -100,5 +113,5 @@ The methods described here are applicable for data originating from a surjective
 This follows from the fact that when $T$ maps the space $U$ into a proper subset $B$ of$ $U, there exists some point in $U - A$ that does not have a preimage and we conclude that $T$ is not surjective. 
 An example of this would be the case when a system displays energy-loss. Consider, for instance, consider the dying oscillations for a damped pendulum. (An account of greater depth  is provided in~\ref{ch5})
 
-This requirement is not overly restrictive, as a great number of chaotic systems do have a surjective map. (Cite) \ednote{B:I remember you saying this in one of our sessions, but don't have a source for it. Do you have a specific reference?}
+This requirement is not overly restrictive, as a great number of chaotic systems do have a surjective map. \textbf{(Cite)} \ednote{B: I remember you saying this in one of our sessions, but don't have a source. Could you point me to a resource?}
 
