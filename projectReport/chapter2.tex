@@ -1,4 +1,4 @@
-This chapter briefly describes a discrete-time dynamical system and what it means to exhibit chaos. We refer to \cite{devaney2018introduction, de2013elements} for more details. 
+This chapter briefly describes a discrete-time dynamical system and what it means to exhibit chaos. We refer to~\cite{devaney2018introduction, de2013elements} for more details. 
 
 At its most elementary level, a dynamical system is just something that evolves deterministically through time. In the context of this project, deterministic refers to the fact that a system evolves according to specified rules rather than based on random events. 
 Dynamical systems arise in a variety of situations. A continuous-time dynamical system describes the states for all values of the time. Specifically, if the motion of a pendulum in which the quantities such as the angular position and angular momentum are known at all times, then it is a continuous-time dynamical system. The equations of the dynamical system can take the form of one or more ordinary differential equations that determine the relevant quantities at any future time if we know the initial location and momentum. 
@@ -14,7 +14,7 @@ Continuous-time dynamical systems modelled using ordinary differential equations
 each point $x\in\mathbb{R}^{n}$, call it $x(t)$ where $x(0)=x_0$. 
 
 \begin{Definition}
-  [\bf Flow of an Equation] \label{Dfn_Flow}\rm
+  [\bf Flow of an Equation]\label{Dfn_Flow}\rm
   The flow of the equation  $\dot{x} = f(x)$  is defined to be a mapping $\varphi: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ where $\varphi(x_0,t)= x(t)$ for the solution $x(t)$ with $x(0)=x_0$ 
 \end{Definition}
 
@@ -46,14 +46,13 @@ A core concept in the study of dynamical systems is that of invariance.
   [\bf Invariant Set]\label{Dfn_InvariantSet}\rm
   Given a discrete-time dynamical system $T: U \to U$, a subset $A \subset U$ is said to be an \emph{invariant set} if $T(A) =A$. 
 \end{Definition}
-
 We also define the orbit of a function $T$.
 \begin{Definition}
   [\bf Orbit of $T$]\label{Dfn_Orbit}\rm
-  The orbit of $T$ is to be defined the sequence $\bar{u} = \{u_n\}_{n\in \mathbb{Z}}$ obeying the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$. 
+  The orbit of $T$ is to be defined the sequence $\bar{u} = {\{u_n\}}_{n\in \mathbb{Z}}$ obeying the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$. 
 \end{Definition}
 
-Two examples of invariant sets include a fixed point where $Tu=u$ for  $u\in U$, and a periodic orbit, i.e., a set of iterates $\{u,Tu, T^2u,\ldots,T^pu\}$, where $T^{p+1}u=u$ for some $p\in\mathbb{Z}$.  The entire space $U$ could be also be invariant.
+Two examples of invariant sets include a fixed point where $Tu=u$ for  $u\in U$, and a periodic orbit, i.e., a set of iterates $\{u,Tu, T^2u,\ldots,T^{pu}\}$, where $T^{p+1}u=u$ for some $p\in\mathbb{Z}$.  The entire space $U$ could be also be invariant.
 Consider for example the space $U=[0,1]$, where $Tu=4u(1-u)$ and then $U$ is invariant (as every $u\in{U}$ can be written as $u = 4x(1-x)$ for some $x\in{U}$).
 
 We may learn a great deal about the iterates of a dynamical system by considering the types of invariant sets of a discrete-time dynamical system.  For example, if $U=[0,1]$ has map $Tu= u/2$, then the only invariant set is $\{0\}$, and all orbits approach this invariant set as time flows in the forward direction. 
@@ -61,15 +60,15 @@ Indeed, if a some non-zero invariant set (call it $B$) exists, then there is  so
 
 One may ask if every orbit approaches an invariant set? In general the answer is no, since for the dynamical system $T: \mathbb{R} \to \mathbb{R}$ defined by $Tu=2u$, any orbit that does not intersect the invariant set $\{0\}$, will not approach any invariant set. 
 
-However,  when the space $U$ is compact, all orbits approach an invariant set. This is since the set of limit points of the orbit can be shown to be invariant \cite{de2013elements}. So, when $U$ is compact,  the $\omega$-limit set $\omega(u;T)$ of a point $u$ defined to the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$ is nonempty, and $\omega(u;T)$ is invariant. 
+However,  when the space $U$ is compact, all orbits approach an invariant set. This is since the set of limit points of the orbit can be shown to be invariant~\cite{de2013elements}. So, when $U$ is compact,  the $\omega$-limit set $\omega(u;T)$ of a point $u$ defined to the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$ is nonempty, and $\omega(u;T)$ is invariant. 
 
-\begin{Example}
+\begin{Example}\rm
   For the map $Tu=u^2$ defined on $[0,1]$ all orbits lie in the invariant set $\{1\}$ or else would would approach the invariant set $\{0\}$. 
 \end{Example}
 
 
 Invariant sets have various properties. Invariant sets can be attracting or repelling depending on how orbits in their vicinity behave. 
-Recall the examples $Tu =u/2$ and $Tu=2u$ defined on $\mathbb{R}$ (where $\{0\}$ “attracts" orbits) or the example, $Tu=u^2$ defined on $[0,1]$ (where $\{1\}$ “repels" orbits). 
+Recall the examples $Tu =u/2$ and $Tu=2u$ defined on $\mathbb{R}$ (where $\{0\}$ `attracts' orbits) or the example, $Tu=u^2$ defined on $[0,1]$ (where $\{1\}$ `repels' orbits). 
 We are interested in attractive invariant sets since they capture the long-term dynamics as time increases. 
 In particular, we are interested in those invariant sets named attractors.
 
@@ -79,7 +78,7 @@ In particular, we are interested in those invariant sets named attractors.
   \vspace{-8mm}
   \begin{enumerate}
 	\item $A$ is invariant. 
-	\item $A$ is asymptotically stable, i.e., for every $\epsilon > 0$ and for all $u$ so that $d(u,A) < \epsilon$, we have $d(T^nu,A) \to 0$ as $n\to \infty$. 
+	\item $A$ is asymptotically stable, i.e., for every $\epsilon > 0$ and for all $u$ so that $d(u,A) < \epsilon$, we have $d(T^nu,A){\to}{0}$ as $n\to \infty$. 
 	\item $A$ has Lyapunov stability, i.e., for every $\epsilon > 0$  there exists a $\delta(\epsilon) > 0$ so that $d(u,A) < \delta$ implies $d(T^nu,A) < \epsilon$ for all $n\ge 0$.  
 \end{enumerate}
 \end{Definition} 
@@ -96,12 +95,12 @@ The dynamics restricted to an invariant set can be complicated. For instance an 
 
 \section{Chaos}
 
-In the 1960s, several mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper \cite{lorenz1963deterministic}. The notions of invariance, attractivity, and chaos may also be described for continuous systems, and Lorenz's system comprised of a system of differential equations. 
+In the 1960s, several mathematicians and mathematically interested scientists independently discovered chaos in the mathematical sense. The meteorologist Edward Lorenz may have been the first to explain this phenomenon in his 1963 paper~\cite{lorenz1963deterministic}. The notions of invariance, attractivity, and chaos may also be described for continuous systems, and Lorenz's system comprised of a system of differential equations. 
 The narrative of Lorenz's discovery of chaos and the history of other forerunners in this subject is fascinating. We highly recommend James Gleick's book Chaos: The Making of a New Science~\cite{gleick2008chaos} for those interested. It clearly illustrates these experiences, explains why chaos was such a startling and crucial mathematical and scientific discovery and describes the underlying mathematical notions for non-specialists.
 
 Different authors propose a number of intricately different definitions of chaos in the literature~\cite{RasbandChaos, TaborChaos, WigginsChaos} and each of them indicate some aspect of complexity.
 
-In practice, when only data is observed from a system, it is not possible to verify which definition or notion is satisfied by the underlying dynamical system. We do, however, specifically recall the definition of chaos in the sense of Devaney \cite{devaney2018introduction,de2013elements} so as to understand some nuances behind the complexity. Devaney's definition of chaos has three requirements, with the first being the notion  of sensitive dependence on initial conditions. 
+In practice, when only data is observed from a system, it is not possible to verify which definition or notion is satisfied by the underlying dynamical system. We do, however, specifically recall the definition of chaos in the sense of Devaney~\cite{devaney2018introduction,de2013elements} so as to understand some nuances behind the complexity. Devaney's definition of chaos has three requirements, with the first being the notion  of sensitive dependence on initial conditions. 
 
 \begin{Definition}\rm
   [\bf {Sensitive Dependence on Initial Conditions}]\label{Dfn_SDIC}\rm
@@ -118,17 +117,18 @@ To this end, we make 3 remarks:
   \item  Finally, $N$ depends upon $u$ and $v$ chosen, and their iterates may not separate forever (i.e., for all $n>N$) and we allow their iterates to get arbitrarily close in the future. 
 \end{enumerate}
 
-To illustrate the concept of SDIC, we present two examples - one from Mathematics and the other from the field of Physics.
+To illustrate the concept of SDIC, we present two examples -- one from Mathematics and the other from the field of Physics.
 
 \begin{Example} \rm
-  The logistic map(LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r\leq{4}$ is a classic example used to illustrate the chaotic behaviour that a system may exhibit. When $r=4$, the one-dimensional recurrence relation $x_{n+1}=4x_n(1-x_n)$ can be used as the kindergarten's model to exhibit the presence of SDIC. \ednote{B: edited and removed unnecessary citation}
-  In the graph below~\ref{fig:log_sdic} we plot the first 50 iterates of the LM for $r=4$ and two slightly different initial values $x_0$.
+  The logistic map (LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r\leq{4}$ is a classic example used to illustrate the chaotic behaviour that a system may exhibit. When $r=4$, the one-dimensional recurrence relation $x_{n+1}=4x_n(1-x_n)$ can be used as the kindergarten's model to exhibit the presence of SDIC.
+    \ednote{B:edited and removed unnecessary citation}
+  In Graph~\ref{fig:log_sdic} below, we plot the first 50 iterates of the LM for $r=4$ and two slightly different initial values $x_0$.
 
   \begin{figure}[ht]
     \includegraphics[scale=0.74]{Graphs/_logistic_sdic.eps}
         \centering
         \captionof{figure}{Figure generated for Logistic Map $x_{n+1}=rx_n(1-x_n)$ with $r=4$ to exhibit the presence of SDIC. Plotted are the values $x_n$ against time $n$ for the the first 50 step with initial values $x_0=0.2$ (blue) and $x_0=0.20001$ (red). Initially the two trajectories overlap, but they diverge completely at $n=12$ whereafter they follow distinct paths.}
-        \label{fig:log_sdic}
+   \label{fig:log_sdic}
       \end{figure}
   \ednote{B: Caption and figure adjusted}
   % For an intuitive sense of the fact that the LM exhibits SDIC, consider again the definition and substitute specific values. Let $\delta=0.05$ and for purposes of illustration consider the value $u=0.4$. The green band in~\ref{fig:log_sdic} shades the region $[u-\delta, u+\delta]$ and we can see that regardless the value $v$  and in every neighborhood of $u \in U$ there exists a $v\in{U}$ and an integer $N:=N{(u,v)}\in\mathbb{Z}$ such that $d(T^Nu,T^Nv)>\delta$
@@ -137,7 +137,7 @@ To illustrate the concept of SDIC, we present two examples - one from Mathematic
 
 
 \begin{Example} \rm
-  A second example pertains to a simple physical system called the double pendulum - a pendulum with another pendulum attached to its head given an initial position and angular velocity.  
+  A further example pertains to the simple physical system of the double pendulum -- a pendulum with another pendulum attached to its head given an initial position and angular velocity (see the setup of the pendulum in Figure~\ref{fig:dp_setup}).  
 
   Below are two figures denoting trajectories of a double pendulum's second head after some elapsed time. Depicted are three pendulum heads with equal angular velocity but differing slightly in initial position. As can be seen below, the trajectories diverge very quickly to become completely different. We discuss the double pendulum in greater detail in a later chapter (\ref{ch5}), but we mention the example here to provide a numerical example of a practical system exhibiting SDIC.
 
@@ -157,7 +157,7 @@ The second part in Devaney's definition of chaos concerns topological transitivi
 	A dynamical system $F: U \to U$ is topologically transitive if for any pair of nonempty open sets $E_1$ and $E_2$ there exists a $n\in\mathbb{N}$ such that $T^n(E_1) \cap E_2 \not= \emptyset$. 
 \end{Definition}
 
-Topological transitivity implies that iterates of an open set of initial conditions get mixed up with other open sets. On a compact metric space, one may show that topological transitivity also implies the existence of a point whose forward iterates are dense \cite{de2013elements}; or in other words, the orbit going through this point will be dense in the compact metric space. 
+Topological transitivity implies that iterates of an open set of initial conditions get mixed up with other open sets. On a compact metric space, one may show that topological transitivity also implies the existence of a point whose forward iterates are dense~\cite{de2013elements}; or in other words, the orbit going through this point will be dense in the compact metric space. 
 In fact, it is topologically more likely that the choice of an arbitrary point will be one whose iterates are almost dense. 
 
 \begin{Definition}
@@ -165,7 +165,7 @@ In fact, it is topologically more likely that the choice of an arbitrary point w
 A subset of a topological space $U$ is said to be a meager set if it can be written as a countable union of sets of with empty interior. The complement of the a meager set is set to be a residual set.
 \end{Definition}
 
-To be more precise (see \cite{de2013elements}), for a discrete-time dynamical system on a compact space, the set of points with dense iterates are residual, and they are typical or likely to be observed in practice. In this project, when data is observed from a topologically transitive system, we assume it arises from a dense orbit.
+To be more precise (see~\cite{de2013elements}), for a discrete-time dynamical system on a compact space, the set of points with dense iterates are residual, and they are typical or likely to be observed in practice. In this project, when data is observed from a topologically transitive system, we assume it arises from a dense orbit.
 
 We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018introduction}.
 \begin{Definition}
@@ -185,7 +185,7 @@ We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018i
 \begin{Example} \rm
   The standard tent map $Tu=1-|2u-1|$ defined on $[0,1]$ is a well-known example of a dynamical system satisfying these three properties. 
 
-  We now reason as to why this is true. The graph of the map $T$ is piecewise linear with two straight lines, one connecting the points $(0,0)$ and $(\frac{1}{2},1)$ and the other connecting $(\frac{1}{2},1)$ with $(1,0)$. They form a so-called tent with base centered at $u=1/2$. The graph of the map $T^2$ comprises two symmetric tents with their base centered at $1/4$ and $3/4$. See Figure \ref{fig:T2tentmap}
+  We now reason as to why this is true. The graph of the map $T$ is piecewise linear with two straight lines, one connecting the points $(0,0)$ and $(\frac{1}{2},1)$ and the other connecting $(\frac{1}{2},1)$ with $(1,0)$. They form a so-called tent with base centered at $u=1/2$. The graph of the map $T^2$ comprises two symmetric tents with their base centered at $1/4$ and $3/4$. See Figure~\ref{fig:T2tentmap}
 
   \begin{figure}[ht]
     \includegraphics[scale=0.6]{Graphs/_tentmap_2.eps}
@@ -235,7 +235,7 @@ V & V.
 \end{equation} 
 
 %Composite functions
-To understand the diagram, we note that if we travel "right and then down," the diagram instructs us to use $T$ (top arrow right) first, followed by $\phi$. (right arrow downwards). Consequently, the pathway amounts to finding $\phi(T(u))$. If we proceed "down and then right," the diagram instructs us to apply $\phi$ (left arrow downwards) first, and then apply $S$ (bottom arrow right). This then amounts to finding  $S(\phi(u))$. When the relationships in this diagram hold, we say $\phi(T(u))= S(\phi(u))$, and we formally denote it as $\phi \circ T=S\circ \phi$.
+To understand the diagram, we note that if we travel `right and then down', the diagram instructs us to use $T$ (top arrow right) first, followed by $\phi$. (right arrow downwards). Consequently, the pathway amounts to finding $\phi(T(u))$. If we proceed `down and then right', the diagram instructs us to apply $\phi$ (left arrow downwards) first, and then apply $S$ (bottom arrow right). This then amounts to finding  $S(\phi(u))$. When the relationships in this diagram hold, we say $\phi(T(u))= S(\phi(u))$, and we formally denote it as $\phi \circ T=S\circ \phi$.
 
 \begin{Definition}\rm  
 [\bf {Conjugacy \& Semi-Conjugacy}]\label{Dfn_Conjugate}\rm
@@ -243,18 +243,18 @@ To understand the diagram, we note that if we travel "right and then down," the 
 \end{Definition} 
 
 \ednote{B: Does defining explicitly the domain and codomain of $\phi$ make it clear enough?  M: Saying $\phi$ is then a semi-conjugacy between $T$ and $S$ could be ambiguous as it does not specify which system is on the top in the commutativity. So please edit accordingly.}
-When $S$ is conjugate to $T$, the dynamics of the two systems are in some way `dynamically equivalent'. Specifically, they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi:U\to{V}$ a many-to-one mapping, the dynamics on $V$ provide merely a coarse-grained description of the dynamics on $U$~\cite{de2013elements}. When $S$ is semi-conjugate to $T$, it is also common to call $S$ a \emph{factor of $T$}, or conversely that $T$ is an \emph{extension of $S$}. In essence, an extension (see, \cite{de2013elements}) is a more extensive system capturing all of the essential dynamics of its factor.
+When $S$ is conjugate to $T$, the dynamics of the two systems are in some way `dynamically equivalent'. Specifically, they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi:U\to{V}$ a many-to-one mapping, the dynamics on $V$ provide merely a coarse-grained description of the dynamics on $U$~\cite{de2013elements}. When $S$ is semi-conjugate to $T$, it is also common to call $S$ a \emph{factor of $T$}, or conversely that $T$ is an \emph{extension of $S$}. In essence, an extension (see,~\cite{de2013elements}) is a more extensive system capturing all of the essential dynamics of its factor.
 
-It is a very hard or nearly an impossible task to establish the existence of a conjugacy or a semi-conjugacy $\phi$ between two systems \cite{devaney2018introduction}. However, one can verify that a function $\phi$ satisfies the commutativity diagram \ref{eqn_conjugacy}.  
+It is a very hard or nearly an impossible task to establish the existence of a conjugacy or a semi-conjugacy $\phi$ between two systems~\cite{devaney2018introduction}. However, one can verify that a function $\phi$ satisfies the commutativity diagram~\ref{eqn_conjugacy}.  
 
 \begin{Example}\rm
-  For example $\phi(x)=\sin\big(\frac{\pi}{2}x\big)^2$ is a conjugacy between two systems $Tu=1-|2u-1|$ and $Sv=4v(1-v)$  defined on $U=[0,1]$.  
+  For example $\phi(x)=\sin{\big(\frac{\pi}{2}x\big)}^2$ is a conjugacy between two systems $Tu=1-|2u-1|$ and $Sv=4v(1-v)$  defined on $U=[0,1]$.  
 
   Indeed, $\phi:[0,1]\to[0,1]$ is a homeomorphism and by employing simple trigonometric identities, it is easily proved that $\phi$ satisfies~\ref{eqn_conjugacy}
   \[
     \begin{aligned}[t]
       (\phi\circ{T})u 
-                &=\sin^{2}\Big(\frac{\pi}{2} - \frac{\pi}{2}|2u-1|\Big) = \sin^{2}(\pi{u})=\Big(2\sin(\frac{\pi}{2})\cos(\frac{\pi}{2})\Big)^{2}=4\sin^{2}(\frac{\pi}{2}u)\Big(1-\sin^{2}\frac{\pi}{2}u\Big) \\
+                &=\sin^{2}\Big(\frac{\pi}{2} - \frac{\pi}{2}|2u-1|\Big) = \sin^{2}(\pi{u})={\Big(2\sin(\frac{\pi}{2})\cos(\frac{\pi}{2})\Big)}^{2}=4\sin^{2}(\frac{\pi}{2}u)\Big(1-\sin^{2}\frac{\pi}{2}u\Big) \\
                                     &=({S}\circ\phi)u.
     \end{aligned}
 \]
