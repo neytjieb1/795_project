@@ -53,20 +53,20 @@ $z_i^T, i=1,2,\ldots,N$ and the neural network by $NN$, the network is subsequen
 $NN: (z_{n-1},z_n) \mapsto  u_n.
 $
 The learnt approximation of $NN$ can be used to approximate $\Gamma$ since 
-\[
-NN\left( \begin{bmatrix} 
-P^Tx_{n-1} \\
-P^Tx_n
-\end{bmatrix}
-\right) = NN \circ 
-\begin{bmatrix}
-P^T & 0 \\
-0 & P^T 
-\end{bmatrix}\begin{bmatrix}
-x_{n-1}\\
-x_n
-\end{bmatrix} = u_n = \Gamma(x_{n-1},x_n).
-\]
+\begin{equation}\label{Seq_RNN}
+  NN\left( \begin{bmatrix} 
+    P^Tx_{n-1} \\
+    P^Tx_n
+    \end{bmatrix}
+    \right) = NN \circ 
+    \begin{bmatrix}
+    P^T & 0 \\
+    0 & P^T 
+    \end{bmatrix}\begin{bmatrix}
+    x_{n-1}\\
+    x_n
+    \end{bmatrix} = u_n = \Gamma(x_{n-1},x_n).
+\end{equation}
 
 
 \section{Experimental Results}
@@ -260,6 +260,7 @@ Table~\ref{tbl_attractorsPearson}, the second column corresponds to the amount o
 \begin{center}
   \begin{table} 
       \scalebox{0.75}
+      \centering
       {\begin{tabular}{|c|c| c c |} 
           \toprule
           Input & Dimension of $X$ & $u_n$ vs $u_{n+1}$ 
@@ -318,8 +319,8 @@ Table~\ref{tbl_attractorsPearson}, the second column corresponds to the amount o
               x_{n-1}\\
               x_n
           \end{bmatrix}\right)$ may be contrasted by the reader. 
-          Finally, the RNN's dimension (from~\eqref{Seq_RNN}) is provided to exhibiting that an increase in dimension of the driven system will 
-          typically result in a map $G_T$ with less functional complexity.}.
+          Finally, the RNN's dimension (from~\eqref{Seq_RNN}\ednote{Is this reference correct?}) is provided to exhibiting that an increase in dimension of the driven system will 
+typically result in a map $G_T$ with less functional complexity.}.
       \end{table}\label{tbl_attractorsPearson}
 \end{center}
 
