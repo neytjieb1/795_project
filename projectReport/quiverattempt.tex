@@ -1,0 +1,87 @@
+\documentclass[a4paper,12pt,twoside]{report}
+\pagestyle{headings}
+\usepackage[utf8]{inputenc}
+\usepackage{quiver}
+
+\begin{document}
+Here are some diagrams: 
+
+
+\begin{equation}
+\begin{tikzcd}
+	U && U \\
+	V && V \\
+	\arrow["T", from=1-1, to=1-3]
+	\arrow["\phi", from=1-3, to=2-3]
+	\arrow["\phi"', from=1-1, to=2-1]
+	\arrow["S"', from=2-1, to=2-3]
+\end{tikzcd}
+\end{equation}
+
+\begin{equation}
+    \begin{tikzcd}
+	{\overleftarrow{U}} && {\overleftarrow{U}} \\
+	{X_U} && {X_U} \\
+	\arrow["{\sigma_v}", from=1-1, to=1-3]
+	\arrow["h"', from=1-3, to=2-3]
+	\arrow["h", from=1-1, to=2-1]
+	\arrow["{g(v,\cdot)}"', from=2-1, to=2-3]
+\end{tikzcd}
+\end{equation}
+
+\begin{equation}
+\begin{tikzcd}
+{\widehat{U}_T} && {\widehat{U}_T} \\
+	{Y_T} && {Y_T} \\
+\arrow["{\widehat{T}}", from=1-1, to=1-3]
+		\arrow["{\pi_{-1}}"', from=1-3, to=2-3]
+		\arrow["{\pi_{-1}}"', from=1-1, to=2-1]
+	\arrow["{T}"', from=2-1, to=2-3]
+\end{tikzcd}
+\end{equation}
+
+
+\begin{equation}
+	\begin{tikzcd}
+	{\widehat{U}_T} && {\widehat{U}_T} \\
+		{Y_T} && {Y_T} \\
+	\arrow["{\widehat{T}}", from=1-1, to=1-3]
+			\arrow["{H_2}"', from=1-3, to=2-3]
+			\arrow["H_2"', from=1-1, to=2-1]
+		\arrow["G_T"', from=2-1, to=2-3]
+	\end{tikzcd}
+	\end{equation}
+	
+
+
+\begin{equation}
+\begin{tikzcd}
+	{\widehat{U}_T} && {\widehat{U}_T} \\
+	\\
+	{Y_T} && {Y_T} \\
+	\\
+	&& {U\times X} \\
+		\arrow["{\widehat{T}}"{description}, from=1-1, to=1-3]
+	\arrow["{G_T}"{description}', from=3-1, to=3-3]
+	\arrow["{H_2}"{description}, from=1-1, to=3-1]
+	\arrow["{H_2}"{description}, from=1-3, to=3-3]
+	\arrow["{(\Gamma, \pi_2)}"{description}, from=3-1, to=5-3] %draw={rgb, 225:red,214;green,92;blue92},
+	\arrow["{(\pi_2,g)}"{description}', from=5-3, to=3-3]
+\end{tikzcd}
+\end{equation}
+
+ 
+\begin{equation}
+    \begin{tikzcd}
+    \overleftarrow{U} && \overleftarrow{U}\\
+     \overleftarrow{X}_U && \overleftarrow{X}_U.
+     \\
+    \arrow["{\sigma_v}", from=1-1, to=1-3]
+	\arrow["h"', from=1-3, to=2-3]
+	\arrow["h", from=1-1, to=2-1]
+	\arrow["{\tilde{g_v}}"', from=2-1, to=2-3]
+\end{tikzcd}
+\end{equation}
+
+
+\end{document}

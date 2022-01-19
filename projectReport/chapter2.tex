@@ -81,7 +81,7 @@ In particular, we are interested in those invariant sets named attractors.
 
 \begin{Definition}
   [\bf Attractor]\label{Dfn_Attractor}\rm
-  Let $T: U \to U$, where $U$  is a metric space with metric $d$. A compact subset $A \subset U$ is said to be an attractor if it satisfies the three conditions: 
+  Let $T: U \to U$, where $U$  is a metric space with metric $d$. A compact subset $A \subset U$ is said to be an attractor if it satisfies the three conditions.
   \vspace{-8mm}
   \begin{enumerate}
 	\item $A$ is invariant. 
@@ -116,7 +116,7 @@ A dynamical system $T: U \to U$ is said to have \textit{sensitive dependence on 
 
 It is vital to acquire a sense of this definition as it can easily be misunderstood. It is a common misconception to interpret SDIC as two close points ($u$ and $v$) that eventually become separated by a distance $\delta$ under iteration by $T$. But this is not true. To fully comprehend all the subtleties of the concept, one needs to discuss it more thoroughly by considering each sentence with care and attention, whereafter one may examine how they fit together to convey the idea of sensitive dependence. 
 
-To this end, we make 3 remarks:
+To this end, we make 3 remarks.
 \vspace{-5mm}
 \begin{enumerate}
   \item The $\delta>0$ in the definition of SDIC is independent of $u$. 
@@ -127,7 +127,7 @@ To this end, we make 3 remarks:
 To illustrate the concept of SDIC, we present two examples -- one from Mathematics and the other from the field of Physics.
 
 \begin{Example}\label{ex_LM} \rm
-  The logistic map (LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r\leq{4}$, is a classic example used to illustrate the chaotic behaviour that a system may exhibit. When $r=4$, the one-dimensional recurrence relation $x_{n+1}=4x_n(1-x_n)$ can be used as the kindergarten's model to exhibit the presence of SDIC. %\ednote{B:edited and removed unnecessary citation}
+  The logistic map (LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r\leq{4}$, is a classic example used to illustrate the chaotic behaviour that a system may exhibit. When $r=4$, the one-dimensional recurrence relation $x_{n+1}=4x_n(1-x_n)$ can be used as the kindergarten's model to exhibit the presence of SDIC.
   In Graph~\ref{fig:log_sdic} below, we plot the first 50 iterates of the LM for $r=4$ and two slightly different initial values $x_0$. 
   The values of $x_n$ are plotted agains time $n$  where they have initial values $x_0=0.2$ (blue) and $x_0=0.20001$ (red). Initially the two trajectories overlap, but they diverge completely at $n=12$ whereafter they follow distinct paths.
 
@@ -174,7 +174,7 @@ To be more precise (see~\cite{de2013elements}), for a discrete-time dynamical sy
 We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018introduction}.
 \begin{Definition}
   [\bf {Devaney's Chaos}]\label{Dfn_ChaosDec}\rm
-	A dynamical system $T: U \to U$ is said to exhibit chaos in the sense of Devaney if it satisfies the three properties:
+	A dynamical system $T: U \to U$ is said to exhibit chaos in the sense of Devaney if it satisfies the three properties.
 	\vspace{-5mm}
   \begin{enumerate}
 		\item $T$ has SDIC.
@@ -199,7 +199,7 @@ We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018i
     \end{figure}
     
     In general, the graph of  $T^k$ contains $2^{k-1}$ tents.
-    Given any point $u$ and an open neighborhood $W \subset[0,1]$ of $u$, we can find $k\in\mathbb{Z}$ large enough so that $T^k(W) = [0,1]$ because we can accommodate a tent whose base is contained in $W$. % \ednote{B: This last phrase doesn't make sense to me. M: The number of tents grow with $k$ and hence this is obvious; I explained in one of our meetings. Does it make sense?} 
+    Given any point $u$ and an open neighborhood $W \subset[0,1]$ of $u$, we can find $k\in\mathbb{Z}$ large enough so that $T^k(W) = [0,1]$ because we can accommodate a tent whose base is contained in $W$.
     This implies the existence of two points $w_1$ and $w_2$ in $W$ so that $d(T^kw_1,T^kw_2)= 1$, and by the triangle inequality  at least one of the inequalities $d(T^ku,T^kw_1)> \delta$ or $d(T^ku,T^kw_2)> \delta$ hold when $\delta\in (0,\frac{1}{2})$.  So $T$ has sensitive dependence on initial conditions.
     
     Next, let $W_1$ and $W_2$ be two nonempty open sets. Given any open set $W_1$, we can find a $k\in\mathbb{N}$ large enough so that $T^k(W_1) = [0,1]$ because we can accommodate a tent with base contained in $W$. So $T^k(W_1) \cap W_2 \not=\emptyset$, and thus $T$ has topological transitivity.
@@ -211,45 +211,39 @@ We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018i
 
 \section{Conjugacy}
 
-We now turn our attention to the subject of conjugacy that describes when two dynamical systems are equivalent dynamically. 
+We now turn our attention to the subject of conjugacy to describe when two dynamical systems are dynamically equivalent. 
 
-To show topological similarity (or sameness) between two metric or topological spaces, one needs to establish a homeomorphism between the two spaces. 
-However, in the study of dynamical systems defined on two spaces, establishing a homeomorphism does not indicate that the systems are dynamically related in any way.
+To show topological similarity (or sameness) between two metric or topological spaces, one needs to establish a homeomorphism between these two spaces. 
+However, in the study of dynamical systems, establishing a homeomorphism does not indicate that the systems are dynamically related in any way.
 For instance, the maps $Tu=u^2$ and $Tu=1-|2u-1|$ defined on $[0,1]$ have totally different behaviour. 
-Therefore, to find dynamically similar systems, one must establish a dynamical equivalence that we illustrate in a simple commutativity diagram below~\ref{eqn_conjugacy}.
+Therefore, to find dynamically similar systems, one must establish a dynamical equivalence as illustrated in the simple commutativity diagram below~\ref{eqn_conjugacy}.
 
-% Giving errors
-\begin{equation}  \label{eqn_conjugacy}
-%    \[ 
-    \psset{arrows=->, arrowinset=0.25, linewidth=0.6pt, nodesep=3pt, labelsep=2pt, rowsep=0.7cm, colsep = 1.1cm, shortput =tablr}
- \everypsbox{\scriptstyle}
- \begin{psmatrix}
-U & U\\%
-V & V.
- %%%
-%  \ncline{1,1}{1,2}^{T} 
-%  \ncline{1,1}{2,1} <{\phi}
-%   \ncline{2,1}{2,2}^{S}
-%  \ncline{1,2}{2,2} > {\phi}
- \end{psmatrix}
-% \]
-\end{equation} 
+\begin{equation}\label{eqn_conjugacy}
+  \begin{tikzcd}
+    U && U \\
+    V && V \\
+    \arrow["T", from=1-1, to=1-3]
+    \arrow["\phi", from=1-3, to=2-3]
+    \arrow["\phi"', from=1-1, to=2-1]
+    \arrow["S"', from=2-1, to=2-3]
+  \end{tikzcd}
+  \end{equation}
 
 %Composite functions
-To understand the diagram, we note that if we travel `right and then down', the diagram instructs us to use $T$ (top arrow right) first, followed by $\phi$ (right arrow downwards). Consequently, the pathway amounts to finding $\phi(T(u))$. If we proceed `down and then right', the diagram instructs us to apply $\phi$ (left arrow downwards) first, and then apply $S$ (bottom arrow right). This then amounts to finding  $S(\phi(u))$. When the relationships in this diagram hold, we say $\phi(T(u))= S(\phi(u))$, and we formally denote it as $\phi \circ T=S\circ \phi$.
+To understand this diagram, we note that if we travel `right and then down', the diagram instructs us to apply $T$ (top arrow right) first, followed by $\phi$ (right arrow downwards). Consequently, the pathway amounts to finding $\phi(T(u))$. If we proceed `down and then right', the diagram instructs us to apply $\phi$ (left arrow downwards) first, and then apply $S$ (bottom arrow right). This then amounts to finding  $S(\phi(u))$. When the relationships in this diagram hold, we say $\phi(T(u))= S(\phi(u))$, and we formally denote it as $\phi \circ T=S\circ \phi$.
 
 \begin{Definition}
   [\bf {Conjugacy and Semi-Conjugacy}]\label{Dfn_Conjugate}\rm
-   Consider the dynamical systems $T:U\to{U}$, $S:V\to{V}$ and suppose the relationship $\phi \circ T=S\circ \phi$ holds. If $\phi:U\to{V}$ is a homeomorphism, then $S$ is said to be conjugate to $T$ and $\phi$ is called a conjugacy. If we relax the criterion on $\phi$ and merely require $\phi$ to be continuous and surjective where $\phi:U\to{V}$, then $\phi$ is a semi-conjugacy between $T$ and $S$ where T has domain $U$ and S has domain $V$; S is said to be semi-conjugate to T. 
+   Consider the dynamical systems $T:U\to{U}$, $S:V\to{V}$ and suppose the relationship $\phi \circ T=S\circ \phi$ holds. If $\phi:U\to{V}$ is a homeomorphism, then $S$ is said to be conjugate to $T$ and $\phi$ is called a conjugacy. If we relax the criterion on $\phi$ and merely require $\phi$ to be continuous and surjective where $\phi:U\to{V}$, then $\phi$ is a semi-conjugacy between $T$ and $S$, where T has domain $U$ and S has domain $V$; S is said to be semi-conjugate to T. 
 \end{Definition} 
 
-\ednote{B: Does defining explicitly the domain and codomain of $\phi$ make it clear enough?  M: Saying $\phi$ is then a semi-conjugacy between $T$ and $S$ could be ambiguous as it does not specify which system is on the top in the commutativity. So please edit accordingly.}
-When $S$ is conjugate to $T$, the dynamics of the two systems are in some way `dynamically equivalent'. Specifically, they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi:U\to{V}$ a many-to-one mapping, the dynamics on $V$ provide merely a coarse-grained description of the dynamics on $U$~\cite{de2013elements}. When $S$ is semi-conjugate to $T$, it is also common to call $S$ a \emph{factor of $T$}, or conversely that $T$ is an \emph{extension of $S$}. In essence, an extension (see,~\cite{de2013elements}) is a more extensive system capturing all of the essential dynamics of its factor.
+% \ednote{B: Does defining explicitly the domain and codomain of $\phi$ make it clear enough?  M: Saying $\phi$ is then a semi-conjugacy between $T$ and $S$ could be ambiguous as it does not specify which system is on the top in the commutativity. So please edit accordingly.}
+When $S$ is conjugate to $T$, the dynamics of the two systems are in some way `dynamically equivalent'. Specifically, they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi:U\to{V}$ a many-to-one mapping, the dynamics on $V$ provide merely a coarse-grained description of the dynamics on $U$~\cite{de2013elements}. When $S$ is semi-conjugate to $T$, it is common to call $S$ a \emph{factor of $T$}, or conversely that $T$ is an \emph{extension of $S$}. In essence, an extension (see,~\cite{de2013elements}) is a more extensive system capturing all of the essential dynamics of its factor.
 
-It is a very hard or nearly an impossible task to establish the existence of a conjugacy or a semi-conjugacy $\phi$ between two systems~\cite{devaney2018introduction}. However, one can verify that a function $\phi$ satisfies the commutativity diagram~\ref{eqn_conjugacy}.  
+It is a very hard or nearly an impossible task to establish the existence of a conjugacy or a semi-conjugacy $\phi$ between two systems~\cite{devaney2018introduction}. However, one can more easily verify that a function $\phi$ satisfies the commutativity diagram~\ref{eqn_conjugacy}.  
 
 \begin{Example}\rm
-  For example $\phi(x)=\sin{\big(\frac{\pi}{2}x\big)}^2$ is a conjugacy between two systems $Tu=1-|2u-1|$ and $Sv=4v(1-v)$  defined on $U=[0,1]$.  
+  $\phi(x)=\sin{\big(\frac{\pi}{2}x\big)}^2$ is a conjugacy between two systems $Tu=1-|2u-1|$ and $Sv=4v(1-v)$  defined on $U=[0,1]$.  
 
   Indeed, $\phi:[0,1]\to[0,1]$ is a homeomorphism and by employing simple trigonometric identities, it is easily proved that $\phi$ satisfies~\ref{eqn_conjugacy}
   \[
@@ -259,9 +253,9 @@ It is a very hard or nearly an impossible task to establish the existence of a c
                                     &=({S}\circ\phi)u.
     \end{aligned}
 \]
-And it follows that $\phi$ is a conjugacy between the two systems.
+So $\phi$ is a conjugacy between the two systems.
 \end{Example}
 
 
-By establishing that two systems are conjugate (semi-conjugate) to one another, we have also shown that one may choose to work with one system instead of the second and still be guaranteed to obtain information on the latter. It is instrumental during the process of forecasting the future evolution of dynamical systems. 
+By establishing that two systems are conjugate (semi-conjugate) to one another, we have simultaneously shown that one may choose to work with one system instead of the second and still be guaranteed information pertaining to the latter. This is instrumental during the process of forecasting the future evolution of dynamical systems. 
 

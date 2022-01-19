@@ -1,0 +1,35 @@
+  
+\chapter{Conclusions}\label{ch6}
+
+% The driven states $(x_{n-1},x_n)$ hold the information of the left-infinite history of the input. Furthermore, there is some evidence that the inverse-limit space (not system) seems to distinguish two dynamical systems that are not topologically conjugate for a class of systems in the sense their inverse-limit spaces are not homeomorphic to each other.  So the relation $Y_T$, which is homeomorphic to the inverse-limit system, may be unique to a class of systems. (The reference is a paper on Ingram’s Conjecture by Marcy Barge, Henk Bruin and Sonja Stimac.) Further investigation is needed.  \cite{budivsic2012applied, korda2020data}
+
+There are a myriad of techniques to generate accurate models for observed dynamical systems using data obtained from measurement functions.
+Core to the success of such methods is the fact that we can often characterise the dynamics from am observed space by a mapping of much lower functional complexity when compared to the true map describing the unknown underlying system. 
+Takens theorem and the numerous generalizations thereof is one such method establishing (under some generic conditions) the learnability of a system produced by creating a delay-coordinate vector from a sufficiently large number of previous observations from a dynamical system. 
+In this case the new system is topologically conjugate to the system from which the observed time-series was obtained.
+A critical concern of such methods is the requirement of full knowledge of the underlying state space variables governing the dynamical system one is interested in. In real-world conditions this information is rarely available and, when it is, is often contingent upon human expertise and insight. 
+
+Each discrete-time state space model has at its core a driven dynamical system. 
+In this project, it has been shown that an input originating from a compact space entailing exactly one solution (i.e., if the driven system has the USP) is equivalent to representing information without distortion, a concept which was formalised by establishing the existence of a causal mapping’s. 
+The established results are general, implying that any driven dynamical system with specific properties, such SI-invertibility, can give rise to a causal mapping. 
+In particular, we have a topological conjugacy (semi-conjugacy) between the data comprising the single-delay lag dynamics of a driven system~\cite{manjunath2013echo} and the underlying homeomorphic dynamical system. 
+Finite-length input data is shown to be sufficient for forecasting as the left-infinite segment of the past of the input beyond some arbitrarily large but finite time (a result which holds due to the universal semi-conjugacy of a driven system’s continuity) influences the driven system's states in an almost negligibly small manner.
+
+Viewed through the lens of reservoir computing, we have also demonstrated that when single-delay dynamics are utilised, a learnable map in a reservoir computing network certainly exists. 
+Moreover, within a reservoir computing network, such a driven system posssesses certain proven qualities pertaining to the robustness of the system to different forms of perturbation. 
+We are thus able to preserve the quality of a representation that would otherwise have remained sensitive to various fluctuations and rendering the learning of the system’s dynamics wholly unpredictable. 
+
+
+Finally, we have considered some physical systems to observe the methodology in practice and verify that we can indeed predict the future evolution of chaotic systems such as the double pendulum.
+We demonstrated the robustness of our methodology to external noise by considering the cases of the  Dream Attractor and the Double Pendulum.
+
+\ednote{Loose paragraph commented out}
+% Considered from a philosophical-scientific  perspective, this project has aimed to establish a juncture between rationalism (the theory of nonautonomous dynamical systems) and empiricism (machine learning) to yield results profitable to the discipline of Applied Mathematics. 
+% This was done by showing that dynamics in an observed space can be established as topologically conjugate to the underlying system. 
+% As a result of the topological conjugacy, deep learning techniques are then subsequently applied to physically such equations from the data. 
+% In so doing, we acquire models of high fidelity that provide exceptional forecasting results on chaotic data that exhibit both statistical and topological consistency in the long run.
+
+\bibliographystyle{pnas-new}
+\bibliography{pnas}
+
+\end{document}
