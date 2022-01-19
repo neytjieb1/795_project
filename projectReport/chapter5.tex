@@ -1,10 +1,11 @@
 In this chapter we turn to the implementation of the function $G_T$ by discussing a method to learn the function $\Gamma$. We apply our methodology to some chaotic attractors. 
-Most notably, we consider the reconstruction of the chaotic attractor of the double pendulum -- an  attractor that has not previously been successfully reconstructed because of its intricate structure. In fact the previous data-driven approaches also have not been successful in building a model from the double pendulum. 
+Most notably, we consider the reconstruction of the chaotic attractor of the double pendulum -- an  attractor that has not previously been successfully reconstructed because of its intricate structure. 
+In fact the previous data-driven approaches also have not been successful in building a model from the double pendulum. 
 
 %We then indicate where this implementation differs from previous work done by (\cite{manjunath2021universal}) and empirically show that the SDD of $G_T$ are less functionally complex than $\Phi_{k, \theta}$ or $T$ by considering the Pearson correlation coefficient. Finally, we present and discuss some numerical results for a focus system of this project: the double pendulum. We also consider other chaotic attractors.
 
 \section{Implementing $G_T$}
-The map $G_T$ is implemented by applying the functions $\Gamma$, $g$ and the projection function $\pi_2$ in the relevant order as described by the equations~\ref{eqns_from_data}\ednote{How do I get both?}. To reach this point though, one must first learn $\Gamma$.
+The map $G_T$ is implemented by applying the functions $\Gamma$, $g$ and the projection function $\pi_2$ in the relevant order as described by the equations~\eqref{eqns_from_data}\ednote{How do I get both?}. To reach this point though, one must first learn $\Gamma$.
 After first normalising the data to ensure that it has zero mean value, lies within the range $[-1,1]$, and has been zero-padded as required (see paragraph below for further discussion), we drive the system with external input through the function $g$.
 
 From~\eqref{eqn_driving} we recall the equation of the RNN: \[g(u,x) = (1-a) x + a \tanh(Au + \alpha B x).\]
@@ -42,10 +43,10 @@ I.e., there is an attractor $A$ of a map that implements $G_T$ on an expansion $
 
 We now turn our attention to another practical issue related to the forecasting of chaotic dynamical systems.  
 Recall that the twin equations~\ref{eqns_from_data} generate a model from data. 
-For a chaotic system, a small amount of noise due either to input-noise or computational error would cause solutions from even a very accurate model with the same initial conditions to diverge. %\ednote{Grammarly}
+For a chaotic system, a small amount of noise from even a very accurate model would cause solutions with the same initial conditions to diverge. This noise could be due either to input-noise or computational error.
 Statistically, however,  a chaotic system will behave well in the sense that the visiting frequency (the average time spent by an orbit in any region of the phase space of the dynamical system) is identical for almost all initial conditions. 
 The phrase `almost all' here is specified as a measure and refers to a result in ergodic theory (\cite{wikiErgodicTheory}) which is a topic beyond the scope of this project.
-To illustrate the accuracy of the twin  equations~\ref{eqns_from_data} in modelling the data, we plot the densities of the trajectories of the actual and predicted solutions in ~\ref{fig:dp_success_density},~\ref{fig:noisydp_success_density} and ~\ref{fig:Thomas_TrajDensity}.
+To illustrate the accuracy of the twin  equations~\ref{eqns_from_data} in modelling the data, we plot the densities of the trajectories of the actual and predicted solutions in ~\ref{fig:dp_success_density},~\ref{fig:noisydp_success_density} and~\ref{fig:Thomas_TrajDensity}.
 
 In our implementation, the input and reservoir  matrices $A$ and $B$ in the RNN are sparse matrices. This sparsity is not essential but seems to perform slightly empirically better than choosing the matrices arbitrarily.  We also discuss three specifics relating to this concept. Firstly, the matrices are assigned a variable density in terms of the amount of non-zero entries and are scaled to have values within the range $[-1,1]$. For this, we make use of \textit{Python's SciPy} library and specifically the \textit{Sparse, LinAlg} modules. In our experiments, we generally opted for a density ratio of 10\%-25\%.
 Secondly, we opt to enforce the requirement that both matrices be well-conditioned, i.e. that they have a condition number of 1. The condition number of a matrix $M$ is the product of the matrix norms of the matrix $M$ and its inverse $M^{-1}$ and is a measure of the sensitivity of output of a matrix multiplication when an input is changed.  We do not have any theoretical justifications for this. 
@@ -144,7 +145,7 @@ Training was accomplished using 256 epochs with batch sizes 128. See Fig.~\ref{f
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.95\linewidth]{Graphs/_dp_success_4coords_traj.eps} 
+  \includegraphics[width=\linewidth]{Graphs/_dp_success_4coords_traj.eps} 
   \captionof{figure}{Predicted (red) and actual (blue) trajectories of the $x$- and $y$-coordinates of each of the pendulum heads. From top to bottom are as follows: $x$-coordinate of topmost pendulum head, $y$-coordinate of topmost pendulum head, $x$-coordinate of lower pendulum head, $y$-coordinate of lower pendulum head. 
   These graphs were constructed by predicting the DP 1000 timesteps into the future and in so doing illustrating the long-term consistency and accuracy of the learnt system. Here we lock onto the near-exact trajectory for about 300 timesteps and stay close up until about 600 seconds.  } 
   \label{fig:dp_success_traj}
@@ -220,7 +221,7 @@ The RNN was initialised as follows: the dimension of the network is set equal to
   \centering
   \includegraphics[scale=0.35]{Graphs/_Thomas_1.eps}\caption*{Predicted trajectories of the $x$- and $y$-coordinates for the Thomas attractor with parameter-value $\beta=0.1056$ demonstrate empirically the ability to predict the evolution of the trajectory for the next an estimated 100 timesteps into the future near-exactly. Here no noise was added.}
   \includegraphics[scale=0.5]{Graphs/_Thomas_3.eps}\caption*{Represented here the learnt (blue) and actual (red) densities of the first coordinate ($x$-coordinate) of the dataset for the Cyclically Symmetric Attractor with parameter-value $\beta=0.1056$.}
-\end{figure} \label{fig:Thomas_TrajDensity}
+\end{figure}\label{fig:Thomas_TrajDensity}
 
 
 \subsubsection{Fractal Dream Attractor}
@@ -241,7 +242,7 @@ Depictions of the empirical results are available in Figure~\ref{fig:Clifford}.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=1.0\textwidth,left]{Graphs/_Clifford_1_nonoise.eps}
+  \includegraphics[width=\textwidth,left]{Graphs/_Clifford_1_nonoise.eps}
   \caption*{These graphs were constructed by predicting the Clifford system 1000 steps into the future and in so doing illustrating the long-term consistency and accuracy of the learnt system. As perceived here, we are able to lock on to the trajectory of the Clifford map almost exactly for the first 25 steps.}
   \minipage{0.5\textwidth}
       \centering

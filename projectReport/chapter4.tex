@@ -27,7 +27,6 @@ To find a function $\phi$, the need now arises to consider a so-called driven dy
 Two spaces are considered: input is taken from an input space $U$, and the state of a space $X$ is updated. (Previously, only the state was considered.)
 We do this to mimic the true conditions. By accounting for an extrogenous input sequence in $U$ which can also influence the  system-state at a specific time-step, models more general than an autonomous system are produced.
 
-
 \begin{Definition}
   [\bf Driven and Compactly Driven Dynamical System]\label{Dfn_DDS} \rm
 A driven dynamical system comprises two topological metric spaces $U$ and $X$, as well as  a continuous function  ${g:U\times{X}\to{X}}$ where ${g(u_n, x_n)=x_{n+1}}$.
@@ -80,7 +79,6 @@ The reachable set of a driven system $g$ is exactly the union of all the element
 The set of all reachable states at a specific time $n$ for input $\overline{u}$ is denoted by $X_n(\overline{u})$
 \end{Definition}
 
-\ednote{Moved to after defn of USP/ESP: The reachable set itself can defined independently from $g$ possessing the ESP/USP. } 
 Note that $x\in{X_n(\overline{u})}$ if and only $g$ has a solution $\{x_k\}$ for $x_n=x$ and input $\overline{u}$, a result proved in nonautonomous dynamical systems literature~\cite{manjunath2014dynamics, manjunath2013echo}.
 
 The set $X_n(\overline{u})$ is precisely the set of points $x$ through which some entire solution $\Psi$ passes at time $n$. We can give an alternate formulation of the set $X_n(\overline{u})$: 
@@ -120,7 +118,6 @@ Should the driven system be compact, existence follows immediately, as shown in 
 \end{Theorem}
 \vspace{-6mm}
 {\bf Proof.} May be found in~\cite{kloeden2011nonautonomous, manjunath2014dynamics, manjunath2013echo}
-% One may easily construct many systems with trivial solution-sets, such as $g(u,x)=x$ which has only the constant solution $x$ and so for $U=[-1,1]$, the system would have no solution if $|x|>1$. To refine the scenario, we consider only systems with unique solutions. 
 
 
 \section{Unique Solution Property}
@@ -136,7 +133,7 @@ The USP is equivalently called  the echo state property (ESP)~\cite{Manju_ESP}, 
 One of the first results obtained after defining the USP refers to the fact that every solution will attract different initial conditions towards the component parts of the solution.
 If $g$ has the USP, then any solution to $g$ is also a uniform attractor in nonautonomous dynamical systems literature~\cite{Manju_Nonlinearity}. The discussion on nonautonomous attractors is beyond the scope of this project, and we refer the reader to~\cite{Manju_ESP, esann2012ids} for further reading. 
 
-Secondly, it is worth noting that the reachable set~\ref{Dfn_ReachableSet} can be defined independently from $g$ possessing the USP. \ednote{hmm. does it fit here}
+% Secondly, it is worth noting that the reachable set~\ref{Dfn_ReachableSet} can be defined independently from $g$ possessing the USP. \ednote{hmm. does it fit here}
 % Paraphrased.
 %Additionally, $g$ having the USP is in our context also equivalent to $g$ being a topological contraction \cite{manjunath2021universal}, or alternatively also that $g$ exhibits the Echo State Property (ESP). 
 
@@ -148,7 +145,8 @@ If $g$ possesses the ESP (equivalent in our context to the USP), then we are gua
 % Defined formally, the ESP is intrinsically linked to an input (see \cite{Manju_ESP}) Unfortunately, definitions and results concerning the ESP do not have much practical benefit since a relationship between the network's response and the temporo-statistical properties of the input are not directly described. A more detailed presentation may be found in~\cite{jaeger2001echo}.
 
 % We do however consider it important to mention that the ESP is also often discussed in terms of a stability property that holds for all inputs of a system~\cite{manjunath2020stability} and, furthermore, plays a key role in the design and training of recurrent neural networks(RNN) within the field of RC \cite{Manju_ESP}.
-Beyond forgetting the past states, the ESP is also often discussed in terms of a stability property termed input-related stability where nearby inputs create nearby responses (solutions)~\cite{manjunath2020stability}. Furthermore, it plays a key role in the robustness of recurrent neural networks (RNN), a component of the implementation discussed in~\ref{ch5}.
+Beyond forgetting the past states, the ESP is also often discussed in terms of a stability property termed input-related stability where nearby inputs create nearby responses (solutions)~\cite{manjunath2020stability}. 
+Furthermore, it plays a key role in the robustness of recurrent neural networks (RNN), a component of the implementation discussed in~\ref{ch5}.
 
 \section{Conjugacies}
 
@@ -221,7 +219,6 @@ The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overle
 If the causal mapping $H:\overleftarrow{U}{\to}{\overleftarrow{X}_U}$ is injective (in addition to its surjectivity), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$. 
 The continuity of $H^{-1}$ follows from the fact that $H$ is itself a continuous and surjective mapping of a compact space $\overleftarrow{U}$ in a Hausdorff space.
 and we refer to the map $H$ as a \emph{causal embedding}. (Compare this with Definition~\ref{defn_causallyEmbed}.) 
-%\ednote{B: edited the sentence here}
 
 When $g$ has the USP, the diagram below (taken from~\cite{Manju_Nonlinearity}) illustrates the operation of the mappings $h$ and $H$. 
 The mapping $h:\overleftarrow{U}\to{X_U}$ is an observable as mentioned in the introduction of Chapter~\ref{ch3}).  
@@ -272,7 +269,9 @@ It is imperative to take note of a subtlety here: we refer to the map $H$ as a c
 
 \section{Choosing the driven system $g$}
 
-So far it is not clear whether the USP alone ensures the ability to causally embedding a dynamical system and we mention that a driving function $g$ cannot just be chosen in a frivolous manner. This could possibly complicate our task. %\ednote{B: Grammarly}
+So far it is not clear whether the USP alone ensures the ability to causally embed a dynamical system.
+We also mention that a driving function $g$ cannot just be chosen in a frivolous manner. 
+This could possibly complicate our task. %\ednote{B: Grammarly}
 
 %The driving function $g$ cannot be chosen in a frivolous manner as it could possibly complicate our work. Specifically, one must be careful to avoid a choice of $g$ which would  add complexity to the obtained solution.  
 
@@ -332,7 +331,8 @@ This specific driving function $g$ is used in our implementation and is discusse
 
 Despite the ease with which one manipulates a left-infinite history in the realm of theory, it is impossible to either obtain or use such a sequence in any real-life application.
 Fortunately, one does not need an input's entire left-infinite history in practice in practice thanks to the Uniform Attraction Property (UAP). 
-We use an alternate version of the definition of UAP since the notion of nonautonomous attractors in this project would take some time to establish and detracts from the principal thrust of this project. For more specific results, we refer to~\cite{Manju_Nonlinearity}. 
+We use an alternate version of the definition of UAP since the notion of nonautonomous attractors in this project would take some time to establish and detracts from the principal thrust of this project. 
+For more specific results, we refer to~\cite{Manju_Nonlinearity}. 
 
 \begin{Definition}
   [\bf Uniform Attraction Property]\label{Dfn_UAP}\rm
@@ -344,7 +344,7 @@ The UAP guarantees that all trajectories will converge to the same trajectory in
 An illustration of this is shown in Fig.~\ref{fig:memloss_conttime} where the trajectory in red seems to lock on to the supposed actual solution in black when the system has the USP.
 
 \begin{figure}[ht]
-  \includegraphics[scale=0.35]{Graphs/_Nonlinearity_Fig_response.eps}
+  \includegraphics[width=0.5\linewidth]{Graphs/_Nonlinearity_Fig_response.eps}
   \centering
 \captionof{figure}{Input sequence (black) and a coordinate of a simulated solution $(x_0,x_1,\ldots,x_{5000})$ of a RNN  plotted in red (with parameter $a=1$, $\alpha=0.99$ where $g$ has the USP) and blue ($a=1$, $\alpha=1.05$ where $g$ does not have the USP) for randomly generated matrices $A$ and $B$. $B$ has unit spectral radius.  Reproduced from~\cite{Manju_Nonlinearity}. } 
 \label{fig:memloss_conttime} 
@@ -456,11 +456,12 @@ Finally, we note that although $G_T$ exists with SI-invertibility, we need the U
 If not, the driven states would have to be running for all time since they would not have forgotten their past states. 
 
 \begin{figure}[ht]
-  \includegraphics[scale=0.3]{Graphs/_summarypictorial.eps}
+  \includegraphics[width=0.7\linewidth]{Graphs/_summarypictorial.eps}
   \centering
   \captionof{figure}{Pictorial summary of results obtained up to now and how they overlap. Reproduced from~\cite{SIG25May} }
 \label{fig:pictorialSummary}
 \end{figure}
+
 
 \section{A discussion of $G_T$ }
 
@@ -518,7 +519,8 @@ Firstly, learning $\Gamma$ saves computational resources. This is due to the fac
 %In practice, if the input is of a  lower dimension, one may easily embed it into the space $X\times{X}$ by padding the vector $u_n$ with zeroes.
 
 Secondly, the function $\Gamma$ is known to be stable. Learning $\Gamma$ makes use of equations~\ref{eqns_from_data}\ednote{how can I reference both 4.13 and 4.14?} which in turn employ the driven system $g$ possessing the USP. This offers distinct advantages with regards to stability in the presence of perturbation. 
-It is desirable that inputs differing slightly would have only ‘slight’ effects on the system's output. Moreover, one would hope to prevent numerical errors originating from input and measurement noise (see~\cite[Theorem. 5]{manjunath2021universal}). 
+It is desirable that inputs differing slightly would have only ‘slight’ effects on the system's output. 
+Moreover, one would hope to prevent numerical errors originating from input and measurement noise (see~\cite[Theorem. 5]{manjunath2021universal}). 
 As the data fed into the system is a function of both the input and the parameters of the system itself (i.e. the value a, $\alpha$ in $\tanh$), we exploit both input-related and parameter-related stability. 
 Both these notions are defined by way of the continuity of an encoding map of the respective input and design parameters~\cite{manjunath2020stability}.
 
@@ -541,7 +543,7 @@ If one learns $G_T$ directly, we are in danger of replicating the problems arisi
 \end{figure}
 
 To circumvent this: if a driven system with a saturation function \footnote{A function $f(t)$ that is monotonic and approaches a constant as $|t|\to \infty$, for e.g., $\tanh(t)$ on $\mathbb{R}$} is used, we can ensure the existence of an attractor $A$ of the map that implements 
-$(\pi_2,g) \circ (\Gamma,\pi_2)$ (printed in the red on Figure~\ref{Scomm_imp})
+$(\pi_2,g) \circ (\Gamma,\pi_2)$ (printed in the red on Equation~\ref{Scomm_imp})
  which in practice turns out to be defined on $Y_T^+$ has an attractor $A$  containing $Y_T$.
 By restricting the dynamics to not spill beyond $A$, prevents large errors from occuring.  
 More details on the global dissipativity of $g$, as it is termed here, may be found in~\cite{Supp}.

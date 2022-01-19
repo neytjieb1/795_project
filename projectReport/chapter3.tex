@@ -1,4 +1,4 @@
-In this chapter, we acquaint ourselves with the question of forecasting dynamical systems that have unknown underlying structures, state and discuss the shortcomings of the Takens delay embedding theorem, and discuss various issues faced while forecasting. 
+In this chapter, we acquaint ourselves with the question of forecasting dynamical systems with unknown underlying structures, state and discuss the shortcomings of the Takens delay embedding theorem and discuss various issues faced while forecasting. 
 
 Consider a relatively simple learning problem:
 Given the sequence $(u_0, u_1, \ldots, u_m)$ for $m\in\mathbb{Z}$, a finite segment of an orbit of the map $T$ where $T$ is defined by the update equation $u_{n+1} = Tu_n$, forecast the values $u_{m+1}, u_{m+2}, \ldots$ where the map $T$ is unknown. 
@@ -19,7 +19,7 @@ Consider, for example, a thermometer erected to measure the ambient temperature 
 
 %Given the sequence $\{u_1, u_2, \ldots, u_n}$, we define the variable \newline $y_n:=[\theta_n, \theta_{n-\tau}, \ldots, \theta_{n-(2d-2)\tau}, \theta_{n-(2d-1)\tau}]^{T}\in\mathbb{R}_{d}\times{1}$ where $\tau$ represents the lag and $d$ the dimension of the attractor. (We shall return to these terms shortly and their discussion may be put on hold for the time being).
 
-As already mentioned, the actual state $u$ of a system is nearly never fully known. The most one can do is to place probes into a system to obtain partial information through the measurements taken. Moreover, the process of taking a measurement itself introduces two additional aspects which complicate the problem. 
+As already mentioned, the actual state $u$ of a system is nearly never fully known. The most one can do is to place probes into a system to obtain partial information through the measurements taken. Moreover, the process of taking a measurement itself introduces two additional aspects which complicate the problem:
 \vspace{-6mm}
 \begin{enumerate}[noitemsep, label=\roman*.]
   \item A series of measurements over a specific time interval is inherently a discretisation procedure of the underlying continuous-time dynamical system. (Hence why we restricted our attention to discrete-time systems in the preceding section)
@@ -48,6 +48,14 @@ We define first the concepts of homeomorphism and embedding.
   Consider a homeomorphism $f:Z\rightarrow Y$ for $Y\subset X$. $Z$ is said to be embedded in $X$ by $f$.
 \end{Definition}
 
+Takens Theorem states a result establishing a relationship between the observed and underlying dynamical systems by showing that the concatenation of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems.  We formulate the theorem from \cite{takens1981detecting} after establishing preliminary definitions.  
+
+\begin{Definition}
+  [\bf{Manifold, Compact Manifold}]\label{Dfn_compactManif}\rm
+  A topological space is called a manifold if every point in the space has a neighbourhood homeomorphic to $\mathbb{R}^n$. Succinctly, a manifold is a locally Euclidean topological space.
+  If a manifold is compact as a space topologically, then it is termed a compact manifold.
+\end{Definition}
+
 \begin{Definition}
   [\bf{Diffeomorphism}]\label{Dfn_diffeo}\rm
   A smooth, differential map $f:X\to{Y}$ with a differentiable inverse is said to be a diffeomorphism. By `smooth' we mean at least $C^2$, where $C^2$ refers to any twice-differentiable function  with a continuous second derivative.
@@ -67,8 +75,8 @@ Takens Theorem states a result establishing a relationship between the observed 
             $(\Phi_{2d,\theta}(W), F_\theta)$.    
 \end{Theorem} 
 
-By generic, we mean a residual set on a certain topology on appropriate spaces of functions (that we do not describe here) \ednote{B: Where can I find a citation for this?}. 
-In our scenario -- and this remains important throughout -- the input space $U$ is considered the attractor.~\label{attractor_U}
+By generic we mean a residual set on a certain topology on appropriate spaces of functions~\cite{takens1981detecting}.
+% In our scenario -- and this remains important throughout -- the input space $U$ is considered the attractor.~\label{attractor_U}
 
 Below we reproduce Figure 1 from~\cite{Supp}.
 
@@ -106,6 +114,7 @@ Nonetheless, it does present some severe practical limitations.
 Though not uniquely related to the Takens embedding theorem, we opt to make mention of another requirement to our work here. 
 The methods described in this project are applicable for data originating from a surjective map. 
 This follows from the fact that when $T$ maps the space $U$ into a proper subset $B$ of $U$, there exists some point in $U - A$ that does not have a preimage such that $T$ cannot be not surjective. 
-An example of this would be the case when a system displays energy-loss. Consider, for instance, consider the dying oscillations for a damped pendulum (see Figure~\ref{fig:damped_pendulum}). The double pendulum is discussed in greater depth  is provided in Chapter~\ref{ch5}.
-The requirement is not overly restrictive as map that is topologically transitive on a subspace must also be surjective on it; if it were to be not surjective there would be an open set $V$ that does not intersect with any future iterates of an open set  $U$ disjoint from it.
+An example of this would be the case when a system displays energy-loss. 
+Consider, for instance, consider the dying oscillations for a damped pendulum (see Figure~\ref{fig:damped_pendulum}). The double pendulum is discussed in greater depth  is provided in Chapter~\ref{ch5}.
 
+The requirement is not overly restrictive as map that is topologically transitive on a subspace must also be surjective on it; if it were to be not surjective there would be an open set $V$ that does not intersect with any future iterates of an open set  $U$ disjoint from it.
