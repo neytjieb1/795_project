@@ -258,15 +258,19 @@ Depictions of the empirical results are available in Figure~\ref{fig:Clifford}.
  The RNN was initialised exactly as for Thomas' Cyclically Symmetric Strange attractor: the dimension of the network is set equal to 500 neurons and 12 hidden layers of dimension 64 each were initialised. Training is realised through 150 epochs of batch sizes of 128 each; the map is learnt via the Adam Optimiser using finer and finer learning rates (0.001 and then divided by 10 at every iteration).
 
 \section{Functional Complexity Reduction in Noninvertible Maps}
-The map $G_T : Y_T \to Y_T$ is a homeomorphism since it is conjugate to the homeomorphism $\widehat{T}$ even though $T$ may be a non-invertible map. We remark that in the case of a non-invertible map, empirically it is found that $G_T$ is much more linear than $T$ as measured by what is called the multidimensional correlation coefficient $\rho$. This amplification in linearity  or the increased value of the multidimensional correlation coefficient $\rho$  is also true for invertible maps and we refer to empirical results in \cite{Supp}. Here we consider only one non-invertible map pertaining to the Clifford attractor to add to the results in \cite{Supp}. This coefficient is a generalization of the Pearson correlation coefficient for real-valued random variables to random vectors (e.g., \cite{puccetti2019measuring}). We state the details of computing this coefficient between 
-$(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$. 
-If $\Sigma_{a}$ and $\Sigma_{b}$ denotes the covariance matrices of the vectors $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$ respectively, and if $\Sigma_{ab}$ denotes the covariance matrix between the vectors $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$, then the multidimensional correlation coefficient is computed by using the traces of these matrices.
+The map $G_T : Y_T \to Y_T$ is a homeomorphism since it is conjugate to the homeomorphism $\widehat{T}$ even though $T$ may itself be a non-invertible map. In the case of a non-invertible map, it is empirically found that $G_T$ is much more linear than $T$ when measured by the multidimensional correlation coefficient $\rho$. This amplification in linearity visible through the increased value of the multidimensional correlation coefficient $\rho$  also holds for invertible maps and we refer to empirical results in \cite{Supp}. 
+
+Here we consider only the non-invertible map of the Clifford attractor to supplement the results in \cite{Supp}. 
+This statistic is a generalisation of the Pearson correlation coefficient for real-valued random variables to random vectors (e.g., \cite{puccetti2019measuring}) and we present the details of computing this coefficient between $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$. 
+If $\Sigma_{a}$ and $\Sigma_{b}$ denote the covariance matrices of the vectors $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$ respectively, and $\Sigma_{ab}$ denotes the covariance matrix between the vectors $(x_{n-1},x_n)$ and $G_T(x_{n-1},x_n)$, then the multidimensional correlation coefficient is computed by using the traces of these matrices.
 \[
     \rho= \frac{\text{tr}({\Sigma_{ab}})}{\text{tr}({\sqrt{\Sigma_a\Sigma_b}})}.
 \]
-This multidimensional correlation coefficient satisfies one of the desired and well-known properties of the one-dimensional Pearson coefficient. That is, $\rho=\pm 1$ if and only if $Y\overset{d}{=}AX+b$ for some invertible matrix $A$ and vector $b$. Hence $\rho$, and in practice can be used  to measure the linear relationship between two random vectors of the same dimension and thus serves as an indicator of functional complexity. For the non-invertible system defined by the Clifford attractor, we indicate the difference by which $\rho$ changes for $G_T$ in Table~\ref{tbl_attractorsPearson}.
-Following~\cite{manjunath2021universal}, we say that this multidimensional correlation coefficients $\rho$ to evidence a general reduction in the functional complexity of the map $G_T$ emerging due to a RNN. In the 
-Table~\ref{tbl_attractorsPearson}, the second column corresponds to the amount of artificial neurons (the dimension of $X$) in the implemented RNN.
+The value $\rho$ also satisfies one of the desired and well-known properties of the one-dimensional Pearson coefficient; that is, $\rho=\pm 1$ if and only if $Y\overset{d}{=}AX+b$ for some invertible matrix $A$ and vector $b$. 
+In practice then, $\rho$, can be used to measure the linear relationship between two random vectors of the same dimension and thus serves as an indicator of functional complexity. 
+For the non-invertible system defined by the Clifford attractor, we indicate the difference by which $\rho$ changes for $G_T$ in Table~\ref{tbl_attractorsPearson}.
+Following~\cite{manjunath2021universal}, we state that the multidimensional correlation coefficient $\rho$ evidences a general reduction in the functional complexity of the map $G_T$ emerging due to a RNN. 
+In Table~\ref{tbl_attractorsPearson}, the second column corresponds to the amount of artificial neurons (the dimension of $X$) in the implemented RNN.
                
 % \begin{center}
   \begin{table} 
@@ -282,17 +286,7 @@ Table~\ref{tbl_attractorsPearson}, the second column corresponds to the amount o
               x_n\\
               x_{n+1}
           \end{bmatrix}$ \\
-          \midrule      
-          % \hline
-          % $(w_n)$ is the Lorenz states, sampled every 0.1 timestamps. & & &\\
-          % \multirow{3}{*}{$u_n=\frac{1}{100}w_n$} & 10 &0.9311  & 0.9731\\
-          %     & 100 &  & 0.9934\\
-          %     & 1000 & & 0.9930\\              
-          % \multirow{3}{*}{$u_n=\frac{1}{10}(\sin(0.1w_{n,x})+\sin(0.1w_{n,y})+\sin(0.1w_{n,z}))$} 
-          %     & 10 &0.8401  & 0.9392\\
-          %     & 100 & & 0.9616\\
-          %     & 1000 & & 0.9737\\
-          % \hline         
+
                \midrule  
                $(w_n)$ comes from the Clifford Attractor \\ (for $a = -1.7; b = 1.8; c = -1.9; d = -0.4$): & & & \\
         {$w_{n+1}= \begin{bmatrix} \sin(aw_{n,y}) + c\cos(aw_{n,x}) \\ 
@@ -301,22 +295,7 @@ Table~\ref{tbl_attractorsPearson}, the second column corresponds to the amount o
               & 10 & -0.21713 & 0.78719 \\
               & 100 & &  0.8334 \\
               & 1000 & & 0.84854 \\
-          % \hline 
-          % $(w_n)$ comes from the Logistic map: & & & \\
-          % {$ w_{n+1}  = 4w_n(1-w_n)$} & & & \\
-          % \multirow{3}{*}{$u_n = w_n - 0.5$} 
-          %     & 10 &-0.0314  & 0.5577\\
-          %     & 100 &  & 0.7150\\
-          %     & 1000 & & 0.7826\\
-          % \hline
-          % \hline
-          % $(w_n)$ comes from the Svensson Attractor \\ (for $a = -1.7; b = 1.8; c = -1.9; d = -0.4$): & & & \\
-          % {$w_{n+1}= \begin{bmatrix} d\sin(aw_{n,x}) - \sin(bw_{n,y}) \\ 
-          %                                                             c\cos(aw_{n,x})+\cos(bw_{n,y}) \end{bmatrix}$} & & & \\
-          %   \multirow{3}{*}{$u_n = w_n-\overline{w}$}
-          %       & 10 & -0.2243 & 0.49698 \\
-          %       & 100 & &  0.63310 \\
-          %       & 1000 & & 0.71151 \\
+
            \bottomrule
                 \end{tabular}}\label{Table_FC}%\ednote{http://paulbourke.net/fractals/peterdejong/}
      \caption{
@@ -335,8 +314,8 @@ Table~\ref{tbl_attractorsPearson}, the second column corresponds to the amount o
               may be contrasted by the reader. 
               Finally, the RNN's dimension (from \eqref{Seq_RNN})
               is provided to exhibiting that an increase in dimension of the driven system will 
-              typically result in a map $G_T$ with less functional complexity.}
-      \end{table}\label{tbl_attractorsPearson}
+              typically result in a map $G_T$ with less functional complexity.}\label{tbl_attractorsPearson}
+      \end{table}
 % \end{center}
 
-In summary, the numerical results not only corroborate the theory of employing the notion of causally embedding a dynamical system for data-driven modeling by showing both long-term topological consistency (the attractor reconstruction) and statistical consistency (the densities of the actual and predicted match).
+In summary, the numerical results presented here corroborate the theory that causally embedding a dynamical system for data-driven modelling show long-term topological consistency (the attractor reconstruction) and statistical consistency (the densities of the actual and predicted match).
