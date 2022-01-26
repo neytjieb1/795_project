@@ -1,7 +1,7 @@
 This chapter briefly describes a discrete-time dynamical system and what it means to exhibit chaos. We refer to~\cite{devaney2018introduction, de2013elements} for more details. 
 
 At its most elementary level, a dynamical system is just something that evolves deterministically through time. In the context of this project, deterministic refers to the fact that a system evolves according to specified rules rather than based on random events. 
-Dynamical systems arise in a variety of situations. A continuous-time dynamical system describes the states for all values of the time. Specifically, if the motion of a pendulum in which the quantities such as the angular position and angular momentum are known at all times, then it is a continuous-time dynamical system. The equations of the dynamical system can take the form of one or more ordinary differential equations that determine the relevant quantities at any future time if we know the initial location and momentum. 
+Dynamical systems arise in a variety of situations. A continuous-time dynamical system describes the states for all values of the time. Specifically, if the motion of a pendulum in which the quantities such as the angular position and angular momentum are always known, then it is a continuous-time dynamical system. The equations of the dynamical system can take the form of one or more ordinary differential equations that determine the relevant quantities at any future time if we know the initial location and momentum. 
 In ecology, discrete-time dynamical systems are widely used to model population growth. The model in this case is a function calculating the following generation's population given the population of the previous generation. If we know the starting population, we may once again calculate the population at any time in the future. 
 
 Formally, a function $T: U \to U$, where $U$ is some set is  a \emph{discrete-time dynamical system} and its iterates $\{u,Tu,T^2u,\ldots\}$, where $T^n$ denotes the $n$-fold composition of $T$ with itself, describe the evolution of an initial condition $u\in U$. Note that we frequently drop the brackets and denote $T(u)$ by $Tu$ so as to simplify notations.  
@@ -51,33 +51,33 @@ A core concept in the study of dynamical systems is that of invariance.
 We also define the orbit of a function $T$.
 \begin{Definition}
   [\bf Orbit of $T$]\label{Dfn_Orbit}\rm
-  The orbit of $T$ is defined  is to the sequence $\bar{u} = {\{u_n\}}_{n\in \mathbb{Z}}$ obeying the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$. 
+  The orbit of $T$ is defined to be the sequence $\bar{u} = {\{u_n\}}_{n\in \mathbb{Z}}$ obeying the update equation, $u_{n+1}=Tu_n$, $n \in \mathbb{Z}$. 
 \end{Definition}
 
-Two examples of invariant sets include a fixed point where $Tu=u$ for  $u\in U$, and a periodic orbit, i.e., a set of iterates $\{u,Tu, T^2u,\ldots,T^{pu}\}$, where $T^{p+1}u=u$ for some $p\in\mathbb{Z}$.  The entire space $U$ could be also be invariant.
+Two examples of invariant sets include a fixed point where $Tu=u$ for  $u\in U$, and a periodic orbit, i.e., a set of iterates $\{u,Tu, T^2u,\ldots,T^{pu}\}$, where $T^{p+1}u=u$ for some $p\in\mathbb{Z}$.  The entire space $U$ could also be invariant.
 Consider for example the space $U=[0,1]$, where $Tu=4u(1-u)$ and then $U$ is invariant as every $u\in{U}$ can be written as $u = 4x(1-x)$ for some $x\in{U}$.
 
 We may learn a great deal about the iterates of a dynamical system by considering the types of invariant sets of a discrete-time dynamical system.  
 
 \begin{Example}\label{ex_halfu} \rm
 If $U=[0,1]$ has map $Tu= u/2$, then the only invariant set is $\{0\}$, and all orbits approach this invariant set as time flows in the forward direction. 
-Indeed, if a some non-zero invariant set (call it $B$) exists, then there is  some $r\in(0,1]\cap{B}$. But $r\notin{T(B)}$ since any orbit with initial value $r$ will be a decreasing sequence. Moreover, every orbit of T will be decreasing and therefore approach the value $0$ as $n\rightarrow\infty$.
+Indeed, if some non-zero invariant set (call it $B$) exists, then there is  some $r\in(0,1]\cap{B}$. But $r\notin{T(B)}$ since any orbit with initial value $r$ will be a decreasing sequence. Moreover, every orbit of T will be decreasing and therefore approach the value $0$ as $n\rightarrow\infty$.
 \end{Example}
 
 
-One may ask if every orbit approaches an invariant set? In general the answer is no, since for the dynamical system $T: \mathbb{R} \to \mathbb{R}$ defined by $Tu=2u$, any orbit that does not intersect the invariant set $\{0\}$, will not approach any invariant set. 
+One may ask if every orbit approaches an invariant set. In general the answer is no, since for the dynamical system $T: \mathbb{R} \to \mathbb{R}$ defined by $Tu=2u$, any orbit that does not intersect the invariant set $\{0\}$, will not approach any invariant set. 
 
 However,  when the space $U$ is compact, all orbits approach an invariant set. This is since the set of limit points of the orbit can be shown to be invariant~\cite{de2013elements}. So, when $U$ is compact,  the $\omega$-limit set $\omega(u;T)$ of a point $u$ defined to the collection of limit points of the sequence $\{x,Tu,T^2u,\ldots\}$ is nonempty, and $\omega(u;T)$ is invariant. 
 
 \begin{Example}\label{ex_Tu2}\rm
-  For the map $Tu=u^2$ defined on $[0,1]$ all orbits lie in the invariant set $\{1\}$ or else would would approach the invariant set $\{0\}$. 
+  For the map $Tu=u^2$ defined on $[0,1]$ all orbits lie in the invariant set $\{1\}$ or else would approach the invariant set $\{0\}$. 
 \end{Example}
 
 
 Invariant sets have various properties. Invariant sets can be attracting or repelling depending on how orbits in their vicinity behave. 
 Recall the examples $Tu =u/2$ and $Tu=2u$ defined on $\mathbb{R}$ (where $\{0\}$ `attracts' orbits) or the example, $Tu=u^2$ defined on $[0,1]$ (where $\{1\}$ `repels' orbits). 
 We are interested in attractive invariant sets since they capture the long-term dynamics as time increases. 
-In particular, we are interested in those invariant sets named attractors.
+We are interested in those invariant sets named attractors.
 
 \begin{Definition}
   [\bf Attractor]\label{Dfn_Attractor}\rm
@@ -90,11 +90,11 @@ In particular, we are interested in those invariant sets named attractors.
 \end{enumerate}
 \end{Definition} 
 
-Indeed in our previous example~\ref{ex_halfu, ex_Tu2}, it can be verified that the system  $Tu=u/2$ defined on  $\mathbb{R}$ and $Tu=u^2$ defined on $[0,1]$  the singleton set $\{0\}$ is an attractor.  For the system,  $Tu=1-|2u-1|$ on $[0,1]$, one may easily verify that the only attractor is the entire space $[0,1]$. This follows from the fact that between any two points $u$ and $v$ s.t. $u< v$ in $[0,1]$, and for any $a,b$ so that $u\le a < b \le v$, we can find an $n$ so that $T^n(a,b)=[0,1]$  as is explained in Ex.~\ref{ex_standardTentMap}. 
+Indeed, in our previous example~\ref{ex_halfu},~\ref{ex_Tu2}, it can be verified that the system  $Tu=u/2$ defined on  $\mathbb{R}$ and $Tu=u^2$ defined on $[0,1]$  the singleton set $\{0\}$ is an attractor.  For the system,  $Tu=1-|2u-1|$ on $[0,1]$, one may easily verify that the only attractor is the entire space $[0,1]$. This follows from the fact that between any two points $u$ and $v$ s.t. $u< v$ in $[0,1]$, and for any $a,b$ so that $u\le a < b \le v$, we can find an $n$ so that $T^n(a,b)=[0,1]$  as is explained in Ex.~\ref{ex_standardTentMap}. 
 
 A dynamical system can have several attractors and may also be contained in another attractor. For the example, $Tu =u^2$ on $[0,1]$, both $\{0\}$ and $[0,1]$ are attractors. It is known that an attractor for a dynamical system always exists in a compact space~\cite{Milnor1985}.
 
-The dynamics restricted to an invariant set can be complicated. For instance an invariant set could be just a single point or it could have an infinite set. If the invariant set is infinite, then complicated dynamics are possible. A particular, well-studied phenomenon of such complexity gives rise to so-called chaotic behaviour, a subject studied in detail over the past fifty years.
+The dynamics restricted to an invariant set can be complicated. For instance, an invariant set could be just a single point or it could have an infinite set. If the invariant set is infinite, then complicated dynamics are possible. A well-studied phenomenon of such complexity gives rise to so-called chaotic behaviour, a subject studied in detail over the past fifty years.
 
 % If the dynamics on the attractor are somewhat complicated in the sense that the attractor cannot be decomposed further, and if the attractor is infinite then there is a possibility of complicated dynamics, and a particular well-studied phenomenon of such complexity gives rise to what is called a chaotic behaviour. 
 
@@ -111,7 +111,7 @@ In practice, when only data is observed from a system, it is not possible to ver
 
 \begin{Definition}
   [\bf {(Sensitive Dependence on Initial Conditions)}]\label{Dfn_SDIC}\rm
-A dynamical system $T: U \to U$ is said to have \textit{sensitive dependence on initial conditions (SDIC)} if there exists a $\delta > 0$ such that for every $u \in U$ and in every neighborhood of $u \in U$ there exists a $v\in{U}$ and an integer $N:=N{(u,v)}\in\mathbb{Z}$ such that $d(T^Nu,T^Nv)>\delta$. 	
+A dynamical system $T: U \to U$ is said to have \textit{sensitive dependence on initial conditions (SDIC)} if there exists a $\delta > 0$ such that for every $u \in U$ and in every neighbourhood of $u \in U$ there exists a $v\in{U}$ and an integer $N:=N{(u,v)}\in\mathbb{Z}$ such that $d(T^Nu,T^Nv)>\delta$. 	
 \end{Definition}
 
 It is vital to acquire a sense of this definition as it can easily be misunderstood. It is a common misconception to interpret SDIC as two close points ($u$ and $v$) that eventually become separated by a distance $\delta$ under iteration by $T$. But this is not true. To fully comprehend all the subtleties of the concept, one needs to discuss it more thoroughly by considering each sentence with care and attention, whereafter one may examine how they fit together to convey the idea of sensitive dependence. 
@@ -120,7 +120,7 @@ To this end, we make 3 remarks:
 \vspace{-5mm}
 \begin{enumerate}
   \item The $\delta>0$ in the definition of SDIC is independent of $u$. 
-  \item In every neighborhood of $u$, we may not necessarily find all points $v$ in the neighborhood distinct from $u$ that would separate from the forward iterates of $u$. 
+  \item In every neighbourhood of $u$, we may not necessarily find all points $v$ in the neighbourhood distinct from $u$ that would separate from the forward iterates of $u$. 
   \item  $N$ depends upon $u$ and $v$ chosen, and their iterates may not separate forever (i.e., for all $n>N$) and we allow their iterates to get arbitrarily close in the future. 
 \end{enumerate}
 
@@ -129,7 +129,7 @@ To illustrate the concept of SDIC, we present two examples -- one from Mathemati
 \begin{Example}\label{ex_LM} \rm
   The logistic map (LM), a recursion relation of the form $x_{n+1}=rx_n(1-x_n)$ where $x_n\in[0,1]$ and $r\leq{4}$, is a classic example used to illustrate the chaotic behaviour that a system may exhibit. When $r=4$, the one-dimensional recurrence relation $x_{n+1}=4x_n(1-x_n)$ can be used as the kindergarten's model to exhibit the presence of SDIC.
   In the plot Fig.~\ref{fig:log_sdic} below, we plot the first 50 iterates of the LM for $r=4$ and two slightly different initial values $x_0$. 
-  The values of $x_n$ are plotted agains time $n$  where they have initial values $x_0=0.2$ (blue) and $x_0=0.20001$ (red). Initially the two trajectories overlap, but they diverge completely at $n=12$ whereafter they follow distinct paths.
+  The values of $x_n$ are plotted against time $n$  where they have initial values $x_0=0.2$ (blue) and $x_0=0.20001$ (red). Initially the two trajectories overlap, but they diverge completely at $n=12$ whereafter they follow distinct paths.
 
   \begin{figure}[ht]
     \includegraphics[scale=0.74]{Graphs/_logistic_sdic.eps}
@@ -158,15 +158,15 @@ The second part in Devaney's definition of chaos concerns topological transitivi
 
 \begin{Definition}
   [\bf {Topologically Transitive}]\label{Dfn_TopolTrans}\rm
-	A dynamical system $F: U \to U$ is topologically transitive if for any pair of nonempty open sets $E_1$ and $E_2$ there exists a $n\in\mathbb{N}$ such that $$T^n(E_1) \cap E_2 \not= \emptyset$$. 
+	A dynamical system $F: U \to U$ is topologically transitive if for any pair of nonempty open sets $E_1$ and $E_2$ there exists a $n\in\mathbb{N}$ such that \[T^n(E_1) \cap E_2 \not= \emptyset.\]
 \end{Definition}
 
 Topological transitivity implies that iterates of an open set of initial conditions get mixed up with other open sets. On a compact metric space, one may show that topological transitivity also implies the existence of a point whose forward iterates are dense~\cite{de2013elements}; or in other words, the orbit going through this point will be dense in the compact metric space. 
 In fact, it is topologically more likely that the choice of an arbitrary point will be one whose iterates are almost dense. 
 
 \begin{Definition}
-  [\bf {Meager Set}]\label{Dfn_Meager Set}\rm
-A subset of a topological space $U$ is said to be a meager set if it can be written as a countable union of sets of with empty interior. The complement of the a meager set is said to be a residual set.
+  [\bf {Meagre Set}]\label{Dfn_Meagre Set}\rm
+A subset of a topological space $U$ is said to be a meagre set if it can be written as a countable union of sets of with empty interior. The complement of the meagre set is said to be a residual set.
 \end{Definition}
 
 To be more precise (see~\cite{de2013elements}), for a discrete-time dynamical system on a compact space, the set of points with dense iterates are residual, and they are typical or likely to be observed in practice. In this project, when data is observed from a topologically transitive system, we assume it arises from a dense orbit.
@@ -190,7 +190,7 @@ We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018i
   The standard tent map $Tu=1-|2u-1|$ defined on $[0,1]$ is a well-known example of a dynamical system satisfying these three properties.  We now reason as to why this is true. 
   
   \begin{proof}
-    The graph of the map $T$ is piecewise linear with two straight lines, one connecting the points $(0,0)$ and $(\frac{1}{2},1)$ and the other connecting $(\frac{1}{2},1)$ with $(1,0)$. They form a so-called tent with base centered at $u=1/2$. The graph of the map $T^2$ comprises two symmetric tents with their base centered at $1/4$ and $3/4$. See Figure~\ref{fig:T2tentmap}
+    The graph of the map $T$ is piecewise linear with two straight lines, one connecting the points $(0,0)$ and $(\frac{1}{2},1)$ and the other connecting $(\frac{1}{2},1)$ with $(1,0)$. They form a so-called tent with base centred at $u=1/2$. The graph of the map $T^2$ comprises two symmetric tents with their base centred at $1/4$ and $3/4$. See Figure~\ref{fig:T2tentmap}
 
     \begin{figure}[ht]
       \includegraphics[width=0.5\linewidth]{Graphs/_tentmap_2.eps}
@@ -199,7 +199,7 @@ We may now define the notion of Chaos as formulated by Devaney\cite{devaney2018i
     \end{figure}
     
     In general, the graph of  $T^k$ contains $2^{k-1}$ tents.
-    Given any point $u$ and an open neighborhood $W \subset[0,1]$ of $u$, we can find $k\in\mathbb{Z}$ large enough so that $T^k(W) = [0,1]$ because we can accommodate a tent whose base is contained in $W$.
+    Given any point $u$ and an open neighbourhood $W \subset[0,1]$ of $u$, we can find $k\in\mathbb{Z}$ large enough so that $T^k(W) = [0,1]$ because we can accommodate a tent whose base is contained in $W$.
     This implies the existence of two points $w_1$ and $w_2$ in $W$ so that $d(T^kw_1,T^kw_2)= 1$, and by the triangle inequality  at least one of the inequalities $d(T^ku,T^kw_1)> \delta$ or $d(T^ku,T^kw_2)> \delta$ hold when $\delta\in (0,\frac{1}{2})$.  So $T$ has sensitive dependence on initial conditions.
     
     Next, let $W_1$ and $W_2$ be two nonempty open sets. Given any open set $W_1$, we can find a $k\in\mathbb{N}$ large enough so that $T^k(W_1) = [0,1]$ because we can accommodate a tent with base contained in $W$. So $T^k(W_1) \cap W_2 \not=\emptyset$, and thus $T$ has topological transitivity.
@@ -237,7 +237,7 @@ To understand this diagram, we note that if we travel `right and then down', the
   Consider the dynamical systems $T:U\to{U}$, $S:V\to{V}$ and suppose the relationship $\phi \circ T=S\circ \phi$ holds. If $\phi:U\to{V}$ is a homeomorphism, then $S$ is said to be conjugate to $T$ and $\phi$ is called a conjugacy. If we relax the criterion on $\phi$ and merely require $\phi$ to be continuous and surjective where $\phi:U\to{V}$, then $\phi$ is a semi-conjugacy between $T$ and $S$ where T has domain $U$ and S has domain $V$; S is said to be semi-conjugate to T. 
 \end{Definition} 
 
-When $S$ is conjugate to $T$, the dynamics of the two systems are in some way `dynamically equivalent'. Specifically, they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi:U\to{V}$ a many-to-one mapping, the dynamics on $V$ provide merely a coarse-grained description of the dynamics on $U$~\cite{de2013elements}. When $S$ is semi-conjugate to $T$, it is common to call $S$ a \emph{factor of $T$}, or conversely that $T$ is an \emph{extension of $S$}. In essence, an extension (see,~\cite{de2013elements}) is a more extensive system capturing all of the essential dynamics of its factor.
+When $S$ is conjugate to $T$, the dynamics of the two systems are in some way `dynamically equivalent'. Specifically, they are in one-to-one correspondence with one another. However when $S$ is semi-conjugate to $T$ with $\phi:U\to{V}$ a many-to-one mapping, the dynamics on $V$ provide merely a coarse-grained description of the dynamics on $U$~\cite{de2013elements}. When $S$ is semi-conjugate to $T$, it is common to call $S$ a \emph{factor of $T$}, or conversely that $T$ is an \emph{extension of $S$}. In essence, an extension (see,~\cite{de2013elements}) is a more extensive system capturing all the essential dynamics of its factor.
 
 It is a very hard or nearly an impossible task to establish the existence of a conjugacy or a semi-conjugacy $\phi$ between two systems~\cite{devaney2018introduction}. However, one can more easily verify that a function $\phi$ satisfies the commutativity diagram~\ref{eqn_conjugacy}.  
 

@@ -7,7 +7,7 @@ The SDD can then be used to forecast and reconstruct the underlying system.
 
 \begin{Definition}
   [\bf Nonautonomous Dynamical System (as defined in~\cite{Manju_ESP})]\label{Dfn_NDS}\rm
-  A nonautonomous dynamical system (NDS) on a space $X$ is simply a dynamical system comprising a family of maps ${\{g_n\}}_{n \in \mathbb{Z}}$ where $g_n(\ldotp):=g(u_n,\ldotp):X\to{X}$ is continuous. Each $g_n$ arises as a consequence of an input $u_n$ from the input space $U$, a topological space. 
+  A nonautonomous dynamical system (NDS) on a space $X$ is simply a dynamical system comprising a family of maps ${\{g_n\}}_{n \in \mathbb{Z}}$ where $g_n(\ldotp):=g(u_n,\ldotp):X\to{X}$ is continuous. Each $g_n$ arises because of an input $u_n$ from the input space $U$, a topological space. 
 \end{Definition}
 
 We immediately recall the figure first defined in\eqref{eqn_conjugacy}  and remind ourselves of our ultimate goal to learn a system that is conjugate to an underlying/unknown dynamical system $(U,T)$ by making use of measurements obtained from  this unknown system. 
@@ -29,7 +29,7 @@ We do this to mimic the true conditions. By accounting for an extrogenous input 
 
 \begin{Definition}
   [\bf Driven and Compactly Driven Dynamical System]\label{Dfn_DDS} \rm
-A driven dynamical system comprises two topological metric spaces $U$ and $X$, as well as  a continuous function  ${g:U\times{X}\to{X}}$ where ${g(u_n, x_n)=x_{n+1}}$.
+A driven dynamical system comprises two topological metric spaces $U$ and $X$, as well as  a continuous function  ${g:U\times{X}\to{X}}$ where ${g(u_{n-1}, x_{n-1})=x_{n}}$.
 If the input space $U$ is compact, we refer to the system as compactly driven. 
 \end{Definition}
 
@@ -54,10 +54,8 @@ It is important to emphasise that a sequence $\{x_n\}$ satisfying the update equ
   The only solution  ${\{x_n\}}_{n\in\mathbb{Z}}$ to the driven system  $g(u,x)=\frac{ux}{2}$, where $X=[0,1]$, $U=[0,1]$,  is the zero solution $x_n\equiv0$.
   To see this, consider any $x_n=a\in[0,1]$ where $a\neq{0}$.  Let $\overline{u}\in{U}$ be an non-zero constant sequence, say $u_n=0.5$. 
   The driven system may be rewritten as $x_{n-1}=\frac{2x_n}{u_{n-1}}=4x_n$ and the  iterates of $x_n$ in backward time will increase by a factor of 4 at each timestep. 
-  Thus for some $m\leq{n}$,  $1<x_m$ i.e. $x_m\notin{X}$. So ${\{x_n\}}_{n\in\mathbb{Z}}$ is not a solution and it follows that the only possible solution is the zero solution.
+  Thus for some $m\leq{n}$,  $1<x_m$ i.e., $x_m\notin{X}$. So ${\{x_n\}}_{n\in\mathbb{Z}}$ is not a solution, and it follows that the only possible solution is the zero solution.
 \end{Example}
-% \ednote{Nicely written! Thank you}
-
 
 A system may also have multiple solutions, as evidenced in Example~\ref{Ex_exp}.
 
@@ -106,8 +104,8 @@ It turns out that $\bigcap_{i<n}X_{n,i}(\overline{u})$ is identically equal to $
   [\bf Proof of Example~\ref{Ex_exp}]\label{rem_proofEx} \rm
   For the driven system,  
   $g(u,x)=x^2$ the evolution does not depend on the input at all. Hence $g(u,x)$ can be written as a single map $f(x)=x^2$ which is a homeomorphism on $[0,1]$. 
-  A left-infinite orbit is defined and it converges to $1$ while the right-infinite orbit converges to $0$. 
-  In other words the iterates of $f^{-1}$ converges to $1$ while the iterates of $f$ converge to $0$ 
+  A left-infinite orbit is defined, and it converges to $1$ while the right-infinite orbit converges to $0$. 
+  In other words, the iterates of $f^{-1}$ converges to $1$ while the iterates of $f$ converge to $0$ 
 \end{Remark}
 
 Thus far, it has been demonstrated that a system can have a single or multiple solutions. One may therefore reasonably ask if a driven system always has a solution and, if so, whether it satisfies specific properties such as uniqueness. 
@@ -128,7 +126,7 @@ Should the driven system be compact, existence follows immediately, as shown in 
   Alternatively we may formulate the USP as follows: $g$ has the Unique Solution Property if there exists a well-defined map $\Psi:{U}\to{X}$, where $\Psi({\overline{u}})$ denotes the unique solution.
 \end{Definition}
 
-The USP is equivalently called  the echo state property (ESP)~\cite{Manju_ESP}, and systems that possess the ESP have other important and useful properties for information processing~\cite{grigoryeva2018echo, grigoryeva2019differentiable, manjunath2020stability} .  
+The USP is equivalently called  the echo state property (ESP)~\cite{Manju_ESP}, and systems that possess the ESP have other important and useful properties for information processing~\cite{grigoryeva2018echo, grigoryeva2019differentiable, manjunath2020stability}.  
 
 One of the first results obtained after defining the USP refers to the fact that every solution will attract different initial conditions towards the component parts of the solution.
 If $g$ has the USP, then any solution to $g$ is also a uniform attractor in nonautonomous dynamical systems literature~\cite{Manju_Nonlinearity}. The discussion on nonautonomous attractors is beyond the scope of this project, and we refer the reader to~\cite{Manju_ESP, esann2012ids} for further reading. 
@@ -137,11 +135,11 @@ If $g$ has the USP, then any solution to $g$ is also a uniform attractor in nona
 % Paraphrased.
 %Additionally, $g$ having the USP is in our context also equivalent to $g$ being a topological contraction \cite{manjunath2021universal}, or alternatively also that $g$ exhibits the Echo State Property (ESP). 
 
-In the majority of Reservoir Computing (RC) literature -- a machine learning approach -- where the input is also mapped onto a different, but higher dimensional, space through a system called the reservoir. A readout that measures the state of the reservoir is trained, a notion of forgetting the states of the reservoir asymptotically is often used.   \ednote{this sentence falls out of the blue}
+In most of the Reservoir Computing (RC) literature -- a machine learning approach -- where the input is also mapped onto a different, but higher dimensional, space through a system called the reservoir. A readout that measures the state of the reservoir is trained, a notion of forgetting the states of the reservoir asymptotically is often used.   %\ednote{this sentence falls out of the blue}
 
 % \ednote{How should I explain/qualify RC better here? It's mentioned without really explaining. M: Have put it in one sentence; just to let you know people use optical devices to map signal into a ``reservoir". B: Thanks!}, 
 Concepts like the echo state property (ESP) and fading memory~\cite{boyd1985fading} are some of these notions.  
-If $g$ possesses the ESP (equivalent in our context to the USP), then we are guaranteed that the whole of an input's left-infinite history will determine exactly the current system state; i.e. there is only ever the possibility of a single reachable state at a given instance of time~\cite{jaeger2001echo,Manju_2020}.
+If $g$ possesses the ESP (equivalent in our context to the USP), then we are guaranteed that the whole of an input's left-infinite history will determine exactly the current system state; i.e. there is only ever the possibility of a single reachable state at a given instance of time~\cite{jaeger2001echo,manjunath2020stability}.
 % Defined formally, the ESP is intrinsically linked to an input (see \cite{Manju_ESP}) Unfortunately, definitions and results concerning the ESP do not have much practical benefit since a relationship between the network's response and the temporo-statistical properties of the input are not directly described. A more detailed presentation may be found in~\cite{jaeger2001echo}.
 
 % We do however consider it important to mention that the ESP is also often discussed in terms of a stability property that holds for all inputs of a system~\cite{manjunath2020stability} and, furthermore, plays a key role in the design and training of recurrent neural networks(RNN) within the field of RC \cite{Manju_ESP}.
@@ -150,11 +148,11 @@ Furthermore, it plays a key role in the robustness of recurrent neural networks 
 
 \section{Conjugacies}
 
-Having already defined the reachable set $X_U$ as the collection of all elements of all entire solutions, we pause briefly in order to fix additional notation.
+Having already defined the reachable set $X_U$ as the collection of all elements of all entire solutions, we pause briefly to fix additional notation.
 Defining $\cev{u}^{n}:=(\ldots,u_{n-2} ,u_{n-1})$ as the left-infinite subsequence of an input up until time $n$, $\overleftarrow{U}$ then denotes all such left-infinite sequences in $U$. 
 Moreover, $\cev{u}^{n}v:=(\ldots,u_{n-2} ,u_{n-1}, v)$ will symbolise the input up to time $n$, with $v \in U$ being the specific input value at time $n$. 
 The introduction of a new input at time $n$ can be described by the mapping $\sigma_v:   \cev{u}^{n} \mapsto \cev{u}^{n}v$. 
-The right-shift map, $r\overleftarrow{U}\to\overleftarrow{U}$, of an input sequence is defined $r: (\cdots, u_{-2},u_{-1}) \mapsto(\cdots, u_{-3},u_{-2})$
+The right-shift map, $r:\overleftarrow{U}\to\overleftarrow{U}$, of an input sequence is defined $r: (\cdots, u_{-2},u_{-1}) \mapsto(\cdots, u_{-3},u_{-2})$
 
 The question now assumes the form: Can we establish a semi-conjugacy for the driven system $g$ as presented below?
 
@@ -176,7 +174,7 @@ We proceed to consider a specific subclass of conjugacies.
     Given a driven system $g$, we  call a continuous and surjective map $h : \overleftarrow{U} \to X_U$ a universal semi-conjugacy if  diagram~\ref{Scomm_h} commutes for all $v \in U$.
   \end{Definition}
 
-  If the universal semi-conjugacy $h$ exists (i.e. the diagram in~\ref{Scomm_h} commutes) then the solution $\Psi(\bar{u})$ will intuitively have no more ``complexity' than the input $\bar{u}$.
+  If the universal semi-conjugacy $h$ exists (i.e., the diagram in~\ref{Scomm_h} commutes) then the solution $\Psi(\bar{u})$ will intuitively have no more ``complexity' than the input $\bar{u}$.
 
 But does such a function $h$ for the above driven system $g$ above exist? Whenever $g$ has the USP and $\Psi(u)={\{x_n\}}_{n\in\mathbb{Z}}$, it follows that $h$ defined by  $h(\cev{u}_n):=g(u_n,x_{n-1})=x_n$ will satisfy the semi-conjugacy in the graph above~\ref{Scomm_h}.
 Regrettably, such a continuous mapping $h$ is not guaranteed to exist when $g$ does not have the USP.
@@ -218,7 +216,7 @@ In this case, the function $H:\overleftarrow{U}\to\overleftarrow{X}_U$, a map th
 The driven system $g$ can induce an embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ as follows: 
 If the causal mapping $H:\overleftarrow{U}{\to}{\overleftarrow{X}_U}$ is injective (in addition to its surjectivity), it becomes the embedding of $\overleftarrow{U}$ in $\overleftarrow{X}$ induced by the driven system $g$. 
 The continuity of $H^{-1}$ follows from the fact that $H$ is itself a continuous and surjective mapping of a compact space $\overleftarrow{U}$ in a Hausdorff space.
-and we refer to the map $H$ as a \emph{causal embedding}. (Compare this with Definition~\ref{defn_causallyEmbed}.) 
+We refer to the map $H$ as a \emph{causal embedding}. (Compare this with Definition~\ref{defn_causallyEmbed}.) 
 
 When $g$ has the USP, the diagram below (taken from~\cite{Manju_Nonlinearity}) illustrates the operation of the mappings $h$ and $H$. 
 The mapping $h:\overleftarrow{U}\to{X_U}$ is an observable as mentioned in the introduction of Chapter~\ref{ch3}).  
@@ -230,14 +228,14 @@ The mapping $h:\overleftarrow{U}\to{X_U}$ is an observable as mentioned in the i
 \label{fig:actionh_H}
 \end{figure}
 
-The function $H$ contains a countably infinite number of coordinate (or \textit{factor maps}) since its codomain is $\overleftarrow{X}_U$.  
+The function $H$ contains a countably infinite number of coordinate (or \textit{factor}) maps since its codomain is $\overleftarrow{X}_U$.  
 It is not practically feasible to consider a left-infinite sequence in $X_U$ (in other words an element of  $\overleftarrow{X}_U$) for learning. We wish to restrict the inputs to a subspace of $\overleftarrow{U}$. 
 Particularly, we restrict our attention to the  so-called inverse-limit space (see Definition~\ref{Dfn_InverseL}) of a dynamical system and hope to embed it within a finite product of $X$. 
 
 %We wish to explore the possibility of establishing a conjugacy rather than a mere semi-conjugacy and therefore are interested in the restriction of inputs to the left-infinite orbits of a dynamical system.
 
 The left-infinite orbit space is significant because a great amount of information about the original system can be gleaned from its topological structure~\cite{ingram2011inverse,Manju_IEEE}. 
-The formal topological structure for the inverse-limit space of a chaotic dynamical system is complicated, and further discussion is relegated to~\cite{kennedy2008inverse_limit, ingram2011inverse}.
+The formal topological structure for the inverse-limit space of a chaotic dynamical system is complicated, and further discussion is relegated to~\cite{kennedy2008inverse, ingram2011inverse}.
 Broadly, we may conceive of the inverse-limit system of a dynamical system as a subspace of an infinite-dimensional space where each point in the inverse-limit space corresponds to a backward orbit of the map $T$. 
 Following~\cite{manjunath2021universal, ingram2011inverse} we provide a definition.
 \begin{Definition}
@@ -293,8 +291,8 @@ This is even true for embedding  the inverse-limit space of a dynamical system~\
 \end{Definition}
 
 As mentioned, $g$ can introduce additional complexity to a solution. Consider the Figure~\ref{fig:memloss_conttime} where a RNN's solution was numerically simulated for randomly generated matrices $A$ and $B$ where $B$ has unit spectral radius.
-An input sequence in black $(x_0,x_1,\ldots,x_{5000})$ was fed to the network and it, as well as the the coordinates of two simulated solutions in red (with parameter $a=1$, $\alpha=0.99$ where $g$ has the USP) and blue ($a=1$, $\alpha=1.05$ where $g$ does not have the USP), were plotted.
-The red solution mimicked the input sequence's temporal variation quite well, whereas the blue solution is observed to be disordered and oft-changing. Through this we may state that the blue solution has introduced additional complexity to the system. 
+An input sequence in black $(x_0,x_1,\ldots,x_{5000})$ was fed to the network and it, as well as the coordinates of two simulated solutions in red (with parameter $a=1$, $\alpha=0.99$ where $g$ has the USP) and blue ($a=1$, $\alpha=1.05$ where $g$ does not have the USP), were plotted.
+The red solution mimicked the input sequence's temporal variation quite well, whereas the blue solution is observed to be disordered and oft changing. Through this we may state that the blue solution has introduced additional complexity to the system. 
 
 SI-invertibility promises that `enough' information is retained when $g$ is chosen without introducing without introducing unwanted complexity. 
 `Enough' here refers to the fact that one can always recover the previous input value $u_n$ if the successive states $x_{n-1}, x_n$ are known.
@@ -309,7 +307,7 @@ The following theorem establishes the existence of a well-defined map $G_T$ desc
 
 \begin{Theorem}\label{Thm_GT_Exists}
   For an SI-invertible driven system $g$ and a dynamical system $(U,T)$, the map $G_T: Y_T \to Y_T$ defined by the relation $(x_{n-1},x_n) \mapsto (x_n,x_{n+1})$ is well-defined. 
-  (This results holds even in the absence of $g$ possessing the USP). 
+  (This result holds even in the absence of $g$ possessing the USP). 
   % Moreover, the mapping $(x_{n-1},x_n) \mapsto u_{n}$ is well-defined when $x_{n-1}$ and $x_n$ are successive points on a solution obtained for an input  $\{u_n\}$ that is an orbit of $T$.
   \end{Theorem}
   \vspace{-6mm}
@@ -317,11 +315,11 @@ The following theorem establishes the existence of a well-defined map $G_T$ desc
 
 %'Without additional complexity' is guaranteed by the invertibility of the function $g$ that guarantees a one-to-one mapping between $u_n, x_{n-1}$ and $x_n$. In obtaining an SI-invertible function, therefore, we are guaranteed a system which will not lose so much information about its previous states in the forward-flow of time that one may not make any credible claims as to the original system's behaviour and properties. Simultaneously, it does guarantee us that the important information encoded in previous inputs is indeed preserved.
 
-At this stage it is worth taking note of a specific driven system in the form of a discrete-time state-space model which has acquired some adherence in applications~\cite{Manju_IEEE} -- especially those pertaining to echo state betworks and the ESP. The function 
+At this stage it is worth taking note of a specific driven system in the form of a discrete-time state-space model which has acquired some adherence in applications~\cite{Manju_IEEE} -- especially those pertaining to echo state networks and the ESP. The function 
 \begin{equation}  \label{eqn_driving}
   g(u,x) = (1-a)x + a\overline{\tanh}(Au + \alpha Bx)
 \end{equation} 
-is SI-invertible and, if $\alpha B$ has a spectral norm $<1$, also possesses the USP~\cite[Theorem.2]{manjunath2013echo }. 
+is SI-invertible and, if $\alpha B$ has a spectral norm $<1$, also possesses the USP~\cite[Theorem.2]{manjunath2013echo}. 
 It is easy to show that $g$ is SI-invertible by recovering $u_n$ in 
 \begin{equation} \label{eqn_SI_RNN}
   u_{n-1} := A^{-1}\bigg(\overline{\tanh}^{^{-1}}\frac{1}{a}\Big(x_{n+1}-(1-a)x_n\Big) \bigg) - \alpha B x_n
@@ -362,7 +360,7 @@ One may now appreciate an even more astounding result.
 
 %\begin{Theorem}\label{thm_usp-contr-uap}  The following statements are equivalent:  \vspace{-8mm}  \begin{enumerate}[noitemsep, label=\roman*.]    \item $g$ has the USP.    \item $g$ is a topological contraction.    \item $g$ has the UAP.  \end{enumerate\end{Theorem}{\bf Proof.}  May be found in \cite[Theorem.1]{Manju_Nonlinearity}
 
-% One need therefore not establish any additional results to ensure that the sequence uniformly approaches the unique solution $\Psi$. This vastly simplifies the effort necessary to set up a problem in order to guarantee that the underlying system will be accurately represented by the conjugate system.
+% One need therefore not establish any additional results to ensure that the sequence uniformly approaches the unique solution $\Psi$. This vastly simplifies the effort necessary to set up a problem to guarantee that the underlying system will be accurately represented by the conjugate system.
 
 %This also solves the problem of perturbation/noise introduced by the observable or measurement function. Recall from before that an observable is inherently a map that discretises the underlying continuous-time system. Moreover, measurement and device error introduce mistakes. Since we are working with a chaotic system displaying sensitive dependence on initial conditions, these small errors could potentially send the trajectory into a completely different attractor. 
 %In the presence of the UAP, however, small measurement errors introduced into the system do not pose the same danger as before since the trajectories will eventually tend towards the actual solution.
@@ -375,9 +373,9 @@ One may now appreciate an even more astounding result.
 % Recall that $g$ is only being given inputs from the orbits of $T$.  
 
 
-%Incredibly, this permits one to initialise a driven system $g$ with an altogether arbitrary initial value $y_m\in{X}$ where $m\in\mathbb{Z}$ and the UAP then guarantees that the sequence $\{y_{m+1}, y_{m+2},\ldots\}$ which satisfies the relation $y_n=g(u_n, y_{n-1})$  for  $k\geq{m}$  will approach the elements $\{x_n\}$ of the actual solution. This vastly simplifies the effort necessary to set up a problem in order to guarantee that the underlying system will be accurately represented by the conjugate system.
+%Incredibly, this permits one to initialise a driven system $g$ with an altogether arbitrary initial value $y_m\in{X}$ where $m\in\mathbb{Z}$ and the UAP then guarantees that the sequence $\{y_{m+1}, y_{m+2},\ldots\}$ which satisfies the relation $y_n=g(u_n, y_{n-1})$  for  $k\geq{m}$  will approach the elements $\{x_n\}$ of the actual solution. This vastly simplifies the effort necessary to set up a problem to guarantee that the underlying system will be accurately represented by the conjugate system.
 
-We are interested in determining whether $\widehat{T}$ and $G_T$ are related. For this, we introduce  the function ${H_2{\overline{}} := (h(r\overline{u}, h(\overline{u}))}$ which maps the entirety of a left-infinite sequence in $\Psi$ to some element in $X\times{X}$. 
+We are interested in determining whether $\widehat{T}$ and $G_T$ are related. For this, we introduce  the function ${H_2{\overline{}} := (h(r\overline{u}, h(\overline{u})))}$ which maps the entirety of a left-infinite sequence in $\Psi$ to some element in $X\times{X}$. 
 Indeed, it may be shown that $g$ having SI-invertibility and the USP immediately guarantees the existence of at least a semi-conjugacy between the systems $(Y_T, G_T)$ and $(\widehat{U}_T, \widehat{T})$.
 This is formalised in the Causal Embedding Theorem, which we state next.
 
@@ -425,7 +423,7 @@ We are drawing nearer and nearer to our principal target and our results carry m
  
 
 %\begin{Theorem}
- %   $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$.
+ %   $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}_T, \widehat{T})$.
 %\end{Theorem}
 % {\bf Proof.} See \cite[Theorem.3, Theorem.4]{manunath2021universal}
 
@@ -437,11 +435,11 @@ It is easy to lose the birds-eye view, so we take a moment to review our progres
 \vspace{-8mm}
 \begin{enumerate}
 \item We are interested in a some dynamical system $(U,T)$ with unknown dynamics.
-\item To determine information about this system $(U,T)$ and predict its future evolution, we determine the dynamics of the inverse-limit system $(\widehat{U}, \widehat{T})$.
-% Given certain assumptions, we can guarantee that $(\widehat{U}, \widehat{T})$ is at least semi-conjugate to $(U,T)$.
+\item To determine information about this system $(U,T)$ and predict its future evolution, we determine the dynamics of the inverse-limit system $(\widehat{U}_T, \widehat{T})$.
+% Given certain assumptions, we can guarantee that $(\widehat{U}_T, \widehat{T})$ is at least semi-conjugate to $(U,T)$.
 \item If the driven system $g$ is SI-invertible (and $\{u_n\}\in{U}$  is an orbit of $T$), the map $G_T$ exists that describes the single delay dynamics. 
-\item If, furthermore, $g$ has the USP, $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}, \widehat{T})$.
-\item If we can assume that $T$ is a homeomorphism, $(Y_T, G_T)$ is topologically conjugate to $(\widehat{U}, \widehat{T})$, an extension space of $(U,T)$
+\item If, furthermore, $g$ has the USP, $(Y_T, G_T)$ is semi-conjugate to $(\widehat{U}_T, \widehat{T})$.
+\item If we can assume that $T$ is a homeomorphism, $(Y_T, G_T)$ is topologically conjugate to $(\widehat{U}_T, \widehat{T})$, an extension space of $(U,T)$
 \end{enumerate} 
 
 One can therefore in practice learn the SDD of the driven system states via $G_T$ with enough data thanks to the USP/UAP. This enables us to do at least two things. 
@@ -465,7 +463,7 @@ If not, the driven states would have to be running for all time since they would
 
 \section{A discussion of $G_T$ }
 
-In the above sections, we established the existence of a $G_T$ describing the SDD of a driven system. By establishing its existence, we’ve essentially embedded the attractor $U$ (recall from~\ref{attractor_U}) into the higher dimensional space $X\times{X}$.
+In the above sections, we established the existence of a $G_T$ describing the SDD of a driven system. By establishing its existence, we’ve essentially embedded the attractor $U$ into the higher dimensional space $X\times{X}$.
 In layman’s terms, this ensures that there is more `dimensional room' for the underlying system’s underlying dynamics to `move'. Since the dynamics aren’t as `squashed', we might therefore hope that the dynamics of $G_T$ are in some sense simpler than that of $T$. 
 In~\cite{manjunath2021universal} it is illustrated in an empirical fashion in that the map $G_T$ describes dynamics which are less functionally complex than that of $T$ or of the map $\Phi_{2d,\theta}$. This is done by implementing a Recurrent Neural Network (RNN), which is later discussed in Chapter~\ref{ch5}.
 Note that $G_T$ is a homeomorphism even when $T$ is merely continuous. 
@@ -504,7 +502,8 @@ Projection mappings $\pi_i$ are defined in the traditional meaning where a $k$-d
 Our task now finally simplifies to the question of learning the map $\Gamma$ and then combining it with the projection mapping $\pi_2$ and the function $g$, which will both be known. A final set of equations is obtained -- equations that have been \textit{entirely} constructed from data.
 \begin{eqnarray}\label{eqns_from_data}
 	u_{k+1} &=& \pi_1 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k) \label{Seqn_u}\\
-	x_{k+1} &=& \pi_2 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k). \label{Seqn_x}
+	x_{k+1} &=& \pi_2 \circ (\Gamma, \pi_2) \circ (\pi_2,g) (u_k,x_k). \nonumber
+	\label{Seqn_x}
 \end{eqnarray}
 
 
@@ -512,21 +511,21 @@ Our task now finally simplifies to the question of learning the map $\Gamma$ and
 \section{Advantages of learning $\Gamma$}\label{subs_LearnGamma}
 
 It is a completely valid to wonder why we opt to take such a roundabout route; why not just learn the map $G_T$ from the get-go? The decision does seem arbitrary on the surface, so we take a pause again and discuss the motivation for learning Gamma.
-There are a number of distinct advantages. 
+There are several distinct advantages. 
 
-Firstly, learning $\Gamma$ saves computational resources. This is due to the fact that the input $u_n$ lies in a lower-dimensional subspace in comparison to the high-dimensional space $X\times{X}$. 
+Firstly, learning $\Gamma$ saves computational resources. This is since the input $u_n$ lies in a lower-dimensional subspace in comparison to the high-dimensional space $X\times{X}$. 
 
 %In practice, if the input is of a  lower dimension, one may easily embed it into the space $X\times{X}$ by padding the vector $u_n$ with zeroes.
 
-Secondly, the function $\Gamma$ is known to be stable. Learning $\Gamma$ makes use of equations~\ref{eqns_from_data}\ednote{how can I reference both 4.13 and 4.14?} which in turn employ the driven system $g$ possessing the USP. This offers distinct advantages with regards to stability in the presence of perturbation. 
+Secondly, the function $\Gamma$ is known to be stable. Learning $\Gamma$ makes use of equations~\ref{eqns_from_data} which in turn employ the driven system $g$ possessing the USP. This offers distinct advantages with regards to stability in the presence of perturbation. 
 It is desirable that inputs differing slightly would have only ‘slight’ effects on the system's output. 
 Moreover, one would hope to prevent numerical errors originating from input and measurement noise (see~\cite[Theorem. 5]{manjunath2021universal}). 
-As the data fed into the system is a function of both the input and the parameters of the system itself (i.e. the value a, $\alpha$ in $\tanh$), we exploit both input-related and parameter-related stability. 
+As the data fed into the system is a function of both the input and the parameters of the system itself (i.e., the value a, $\alpha$ in $\tanh$), we exploit both input-related and parameter-related stability. 
 Both these notions are defined by way of the continuity of an encoding map of the respective input and design parameters~\cite{manjunath2020stability}.
 
-Informally, we may consider input-related stability relating to the question of whether or not small variations in input would result in small responses.   
+Informally, we may consider input-related stability relating to the question of whether small variations in input would result in small responses.   
 If two inputs $\bar{u}$ and $\bar{u}_{noisy}$ are close in the product topology, their tails could differ greatly due to the metric that generates the product topology insensitive to the differences in sequence's tails.
- However, if the system has the USP, then the function $h$ is continuous and so $h(\bar{u})$, $h(\bar{u}_{noisy})$ remain close-by for low levels of noise; this maintains a measure of robustness to input and measurement noise.\cite{manjunath2021universal}.
+ However, if the system has the USP, then the function $h$ is continuous and so $h(\bar{u})$, $h(\bar{u}_{noisy})$ remain close-by for low levels of noise; this maintains a measure of robustness to input and measurement noise~\cite{manjunath2021universal}.
 In a similar fashion, parameter-related stability is obtained thanks to a result~\cite[Lemma 3.2]{manjunath2020stability} relating this form of stability with the ESP (which is here equivalent to the USP).
 
 % Secondly,  due to $g$ possessing the USP, both input- and parameter-related stability~\cite{manjunath2020stability} is obtained, which in turn prevents numerical errors that caused by input and measurement noise (see~\cite[Theorem. 5]{manjunath2021universal}). 
@@ -545,7 +544,7 @@ If one learns $G_T$ directly, we are in danger of replicating the problems arisi
 To circumvent this: if a driven system with a saturation function \footnote{A function $f(t)$ that is monotonic and approaches a constant as $|t|\to \infty$, for e.g., $\tanh(t)$ on $\mathbb{R}$} is used, we can ensure the existence of an attractor $A$ of the map that implements 
 $(\pi_2,g) \circ (\Gamma,\pi_2)$ (printed in the red on Equation~\ref{Scomm_imp})
  which in practice turns out to be defined on $Y_T^+$ has an attractor $A$  containing $Y_T$.
-By restricting the dynamics to not spill beyond $A$, prevents large errors from occuring.  
+By restricting the dynamics to not spill beyond $A$, prevents large errors from occurring.  
 More details on the global dissipativity of $g$, as it is termed here, may be found in~\cite{Supp}.
 \begin{figure}[ht]
   \includegraphics[scale=0.25]{Graphs/_autovsdriven.eps}

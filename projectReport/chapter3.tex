@@ -26,7 +26,7 @@ As already mentioned, the actual state $u$ of a system is nearly never fully kno
   \item A probe will never be entirely accurate; the act of measurement introduces a certain measure of numerical noise/inaccuracy.
 \end{enumerate}
 
-Takens embedding theorem does not take into account the noise, and to describe it we construct a multidimensional observable using the method of stacking previous observations.
+Takens embedding theorem does not consider the noise, and to describe it we construct a multidimensional observable using the method of stacking previous observations.
 The concept of an observable is understood in the sense of an observable as originally introduced by~\cite{takens1981detecting, genericObservableAeyels} to refer to a probe or measurement function inserted into the system. 
 When speaking of stacking, we mean that a delay-coordinate map is defined by
 $\Phi_{k,\theta}(w) := (\theta(T^{-k}w)\ldots,\theta(T^{-1}w),\theta(w))$.  
@@ -48,7 +48,7 @@ We define first the concepts of homeomorphism and embedding.
   Consider a homeomorphism $f:Z\rightarrow Y$ for $Y\subset X$. $Z$ is said to be embedded in $X$ by $f$.
 \end{Definition}
 
-Takens Theorem states a result establishing a relationship between the observed and underlying dynamical systems by showing that the concatenation of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems.  We formulate the theorem from \cite{takens1981detecting} after establishing preliminary definitions.  
+Takens Theorem states a result establishing a relationship between the observed and underlying dynamical systems by showing that the concatenation of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems.  We formulate the theorem from~\cite{takens1981detecting} after establishing preliminary definitions.  
 
 \begin{Definition}
   [\bf{Manifold, Compact Manifold}]\label{Dfn_compactManif}\rm
@@ -60,8 +60,6 @@ Takens Theorem states a result establishing a relationship between the observed 
   [\bf{Diffeomorphism}]\label{Dfn_diffeo}\rm
   A smooth, differential map $f:X\to{Y}$ with a differentiable inverse is said to be a diffeomorphism. By `smooth' we mean at least $C^2$, where $C^2$ refers to any twice-differentiable function  with a continuous second derivative.
 \end{Definition}
-
-Takens Theorem states a result establishing a relationship between the observed and underlying dynamical systems by showing that the concatenation of a sufficiently large number of previous observations into a vector will, under certain conditions, generate a map between the vectors from the respective systems.  We formulate the theorem from~\cite{takens1981detecting}.  
 
 \begin{Theorem} 
 	[\bf Takens Embedding Theorem (taken from~\cite{takens1981detecting})]\label{Thm_Takens}
@@ -108,7 +106,6 @@ Nonetheless, it does present some severe practical limitations.
 \end{enumerate}
 
 % The Takens embedding theorem does not guarantee global dissipativity.
-% \ednote{B:Links with~\ref{subs_LearnGamma} in discussion of dissipativity of $\Gamma$.  Sir, I'm not sure how to write this here - I think it a beneficial point to make so as to set the stage for the later discussion in ~\ref{subs_LearnGamma}, but I am unsure there as well.}
 
 
 Though not uniquely related to the Takens embedding theorem, we opt to make mention of another requirement to our work here. 
